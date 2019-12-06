@@ -46,12 +46,23 @@ class IceCreamShop {
     //This function doesn't need any arguments.
     //In the function, build a string that lists out the names of each flavor in the shop's flavors array whose rating is over 4.0. For example, the string might say "Our top flavors are ." Hint: You may want to loop through the array of flavors in order to access each one's name.
     //When the string has been created, print it.
+    
+    //Mark: Stretch
+    //Format the various strings to account for edge cases, such as if there are no flavors with a rating above 4.0, finishing the last flavor with "and". For example,", , and ", instead of just ", , "
     func listTopFlavors() {
-        print("Our Top Flavors are:")
+        var favoriteFlavorArray = [Flavor]()
+        
         for flavor in flavors {
             if flavor.rating >= 4.0 {
-                print(flavor.name)
+                favoriteFlavorArray.append(flavor)
             }
+        }
+        if !favoriteFlavorArray.isEmpty {
+            print("Our Top Flavors are:")
+            for i in 0..<favoriteFlavorArray.count - 1 {
+                print("\(favoriteFlavorArray[i].name),")
+            }
+            print("and \(favoriteFlavorArray.last!.name)") //ok to force unwrap because we checked to see if the array was empty (all arrays have a first and last property)
         }
     }
     
@@ -64,15 +75,23 @@ class IceCreamShop {
     //Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
     //Finally, return the cone you initialized.
     
+    //Mark: Stretch
+    //In the orderCone function, check to make sure the flavor that the person requested exists on the menu.
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone{
-        let cone = Cone(flavor: flavor.name, size: size)
-        var printStatement = "Your \(cone.flavor) "
-        if let topping = topping {
-            printStatement += "with \(topping) is \(cone.size.rawValue)"
-        } else {
-            printStatement += "is \(cone.size.rawValue)"
+        var cone = Cone(flavor: flavor.name, size: size)
+        let flavorExists = flavors.contains{flavor.name == $0.name}
+        if flavorExists {
+            var printStatement = "Your \(cone.flavor) "
+            if let topping = topping {
+                printStatement += "with \(topping) is \(cone.size.rawValue)"
+            } else {
+                printStatement += "is \(cone.size.rawValue)"
+            }
+            print(printStatement)
+            return cone
         }
-        print(printStatement)
+        print("Sorry, we don't have \(flavor.name). Can we offer you a large \(flavors[0].name) instead?")
+        cone = Cone(flavor: flavors[0].name, size: .large)
         return cone
     }
     
@@ -82,15 +101,16 @@ class IceCreamShop {
 
 //At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
 let chocChip = Flavor(name: "Chocolate Chip", rating: 4.0)
-let vanilla = Flavor(name: "Vanilla", rating: 3.8)
-let chocolate = Flavor(name: "Chocolate", rating: 3.9)
 let doubleChocolate = Flavor(name: "Double Chocolate", rating: 4.8)
 let cookieDough = Flavor(name: "Cookie Dough", rating: 5.0)
+let vanilla = Flavor(name: "Vanilla", rating: 3.8)
+let chocolate = Flavor(name: "Chocolate", rating: 3.9)
+let notThisFlavor = Flavor(name: "Beanboozles", rating: 0.0)
 
 let sizes: [Size] = [.small, .medium, .large]
 
 //Use the constants you just made to initialize a new IceCreamShop constant.
-let myShop = IceCreamShop(flavors: [chocChip,vanilla,chocolate,doubleChocolate,cookieDough], sizes: [.small, .large])
+let myShop = IceCreamShop(flavors: [chocChip,vanilla,chocolate,doubleChocolate,cookieDough], sizes: [.small, .medium, .large])
 
 //Call the shop's listTopFlavors function and make sure it runs correctly.
 
@@ -101,3 +121,10 @@ let favoriteCone = Cone(flavor: doubleChocolate.name, size: .large)
 
 //Using that new Cone constant, call its eat function without unwrapping the constant.
 favoriteCone.eat()
+
+//test Order Cone Stretch:
+myShop.orderCone(flavor: doubleChocolate, topping: "chocolate chips", size: .large) // should work
+
+myShop.orderCone(flavor: notThisFlavor, topping: nil, size: .small) //shouldn't work
+
+
