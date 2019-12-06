@@ -55,16 +55,30 @@ class IceCreamShop {
         }
     }
     
+    //Customers will need a way to order a cone.
+    //Create a function called orderCone.
+    //This should have arguments needed to initialize a Cone, such as a flavor, topping (if desired), and a size.
+    //This function should return an optional Cone object. We're going to have it be optional for later use.
+    //In this function, create a constant that initializes a new Cone with the arguments passed into the function.
+    //Add the price of the cone to the totalSales variable you made in the previous step.
+    //Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
+    //Finally, return the cone you initialized.
+    
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone{
+        let cone = Cone(flavor: flavor.name, size: size)
+        var printStatement = "Your \(cone.flavor) "
+        if let topping = topping {
+            printStatement += "with \(topping) is \(cone.size.rawValue)"
+        } else {
+            printStatement += "is \(cone.size.rawValue)"
+        }
+        print(printStatement)
+        return cone
+    }
+    
 }
 
-//Customers will need a way to order a cone.
-//Create a function called orderCone.
-//This should have arguments needed to initialize a Cone, such as a flavor, topping (if desired), and a size.
-//This function should return an optional Cone object. We're going to have it be optional for later use.
-//In this function, create a constant that initializes a new Cone with the arguments passed into the function.
-//Add the price of the cone to the totalSales variable you made in the previous step.
-//Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
-//Finally, return the cone you initialized.
+
 
 //At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
 
