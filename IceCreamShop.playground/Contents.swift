@@ -10,8 +10,6 @@ struct Flavor {
     var rating: Int
     
 }
-
-                                                                                                
 //2. Create an enum called `Size`.
 //    - Give it a case for small, medium, and large.
 //    - Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
@@ -23,8 +21,6 @@ enum Size: Double {
     case large = 5.99
     
 }
-
-                                                                                            
 
 //3. Create a struct called `Cone`.
 //    - Give the struct properties (constants) that hold a flavor, topping (as a `String`), and size.
@@ -39,14 +35,11 @@ struct Cone {
     func eat() {
 
         print("Mmm! I love \(flavor.name)!")
-        
     }
 }
 
 let cone = Cone.self
-                                                                                                
-//eat(flavor: Flavor(name: "Cookie", rating: 5), topping: "", size: .medium)
-
+                                                                
 //4. Create a class called `IceCreamShop`.
 //    - An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
 //    - Create a variable called `totalSales`. This will be used to keep track of how much money was made.
@@ -73,10 +66,8 @@ class IceCreamShop {
 //    - When the string has been created, print it.
 
 let iceCreamShop = IceCreamShop(flavors: [], sizes: [] , toppings: "", totalSales: 0)
-                                                                                                
+                                                                    
 func listTopFlavors(iceCreamShop: IceCreamShop) {
-    
-    
     
     for flavor in iceCreamShop.flavors {
         if flavor.rating > 4 {
@@ -85,7 +76,6 @@ func listTopFlavors(iceCreamShop: IceCreamShop) {
     }
 }
                                                                               
-
 //6. Customers will need a way to order a cone.
 //    - Create a function called `orderCone`.
 //    - This should have arguments needed to initialize a `Cone`, such as a flavor, topping (if desired), and a size.
@@ -96,7 +86,7 @@ func listTopFlavors(iceCreamShop: IceCreamShop) {
 //    - Finally, return the cone you initialized.
 
 func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-                                                                                                
+                                                                
     let newCone = Cone(flavor: flavor, topping: topping ?? "", size: size)
     
     iceCreamShop.totalSales += size.rawValue
@@ -105,9 +95,8 @@ func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
     return newCone
 }
                                                             
-                                                                                        
 //7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
-                                                                                                
+                                                                    
 let strawberry = Flavor(name: "Strawberry", rating: 7)
 let chocolate = Flavor(name: "Chocolate", rating: 8)
 let vanilla = Flavor(name: "Vanilla", rating: 9)
@@ -119,22 +108,18 @@ iceCreamShop.flavors.append(vanilla)
 let sizes: [Size]
 let toppings: [String] = ["Topping1", "Topping2", "Topping3"]
                                             
-orderCone(flavor: iceCreamShop.flavors[0], topping: "", size: .small)
-
-
 //8. Use the constants you just made to initialize a new `IceCreamShop` constant.
 //9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
-                                                                                                
-                                                                                                
+                                                            
 listTopFlavors(iceCreamShop: iceCreamShop)
-                                                                                                
-                                                                                                
-                                                                                                
+                                                            
 //10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
-orderCone(flavor: strawberry, topping: "", size: .medium)
+                                                                                                let newCone: Cone = orderCone(flavor: iceCreamShop.flavors[0], topping: "", size: .small) ?? <#default value#>
+                                                            
 //11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
-Cone.eat(Cone)
-//
+
+Cone.eat(newCone)
+
 //Validate your work through running your playground and ensure that your code operates as designed.
 //
 //## Stretch Problems (Optional)
