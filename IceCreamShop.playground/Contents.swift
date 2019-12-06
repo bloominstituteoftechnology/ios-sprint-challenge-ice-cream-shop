@@ -18,8 +18,8 @@ enum Size: Double {
 //Give the struct properties (constants) that hold a flavor, topping (as a String), and size.
 //Create a function called eat. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love !"
 struct Cone {
-    let flavor: String
-    let size: Size
+    var flavor: String
+    var size: Size
     //class methods
     func eat() {
         print("NOM NOM NOM. Yummy \(flavor)! OW MY HEAD HURTS!")
@@ -39,6 +39,17 @@ class IceCreamShop {
         self.flavors = flavors
         self.sizes = sizes
         self.totalSales = 0.0 //since no sales have been made on a shop that was just created...
+    }
+    
+    //can this size be ordered?
+    func sizeExistsOnMenu(_ size: Size) -> Bool {
+        var exists = false
+        for thisSize in sizes {
+            if thisSize == size {
+                exists = true
+            }
+        }
+        return exists
     }
     
     //If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
@@ -77,21 +88,30 @@ class IceCreamShop {
     
     //Mark: Stretch
     //In the orderCone function, check to make sure the flavor that the person requested exists on the menu.
-    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone{
+    
+    //Mark: Super Stretch
+    //check to see if the size exists in the shop's menu
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone {
         var cone = Cone(flavor: flavor.name, size: size)
+        let sizeExists = sizeExistsOnMenu(size)
         let flavorExists = flavors.contains{flavor.name == $0.name}
-        if flavorExists {
-            var printStatement = "Your \(cone.flavor) "
-            if let topping = topping {
-                printStatement += "with \(topping) is \(cone.size.rawValue)"
-            } else {
-                printStatement += "is \(cone.size.rawValue)"
+        if sizeExists {
+            if flavorExists {
+                var printStatement = "Your \(cone.flavor) "
+                if let topping = topping {
+                    printStatement += "with \(topping) is \(cone.size.rawValue)"
+                } else {
+                    printStatement += "is \(cone.size.rawValue)"
+                }
+                print(printStatement)
+                return cone
             }
-            print(printStatement)
-            return cone
+            print("Sorry, we don't have \(flavor.name). Can we offer you a \(size) \(flavors[0].name) instead?")
+            cone.flavor = flavors[0].name
+        } else {
+            print("Sorry, we don't offer a \(size) sized \(flavor.name). Can we offer you a \(sizes[0]) sized \(flavor.name) instead?")
+            cone.size = sizes[0]
         }
-        print("Sorry, we don't have \(flavor.name). Can we offer you a large \(flavors[0].name) instead?")
-        cone = Cone(flavor: flavors[0].name, size: .large)
         return cone
     }
     
@@ -110,7 +130,7 @@ let notThisFlavor = Flavor(name: "Beanboozles", rating: 0.0)
 let sizes: [Size] = [.small, .medium, .large]
 
 //Use the constants you just made to initialize a new IceCreamShop constant.
-let myShop = IceCreamShop(flavors: [chocChip,vanilla,chocolate,doubleChocolate,cookieDough], sizes: [.small, .medium, .large])
+let myShop = IceCreamShop(flavors: [chocChip,vanilla,chocolate,doubleChocolate,cookieDough], sizes: [.small, .large])
 
 //Call the shop's listTopFlavors function and make sure it runs correctly.
 
@@ -125,6 +145,7 @@ favoriteCone.eat()
 //test Order Cone Stretch:
 myShop.orderCone(flavor: doubleChocolate, topping: "chocolate chips", size: .large) // should work
 
-myShop.orderCone(flavor: notThisFlavor, topping: nil, size: .small) //shouldn't work
+myShop.orderCone(flavor: notThisFlavor, topping: nil, size: .small) //should offer a different flavor
 
+myShop.orderCone(flavor: doubleChocolate, topping: nil, size: .medium) //should offer a different size
 
