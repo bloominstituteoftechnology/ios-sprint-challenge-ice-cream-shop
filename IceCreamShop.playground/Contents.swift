@@ -30,12 +30,18 @@ struct Cone {
 //Create a class called IceCreamShop.
 //An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
 //Create a variable called totalSales. This will be used to keep track of how much money was made.
-//If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
-
-//Create a function called listTopFlavors.
-//This function doesn't need any arguments.
-//In the function, build a string that lists out the names of each flavor in the shop's flavors array whose rating is over 4.0. For example, the string might say "Our top flavors are ." Hint: You may want to loop through the array of flavors in order to access each one's name.
-//When the string has been created, print it.
+class IceCreamShop {
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var totalSales: Double
+    
+    init(flavors: [Flavor], sizes: [Size]) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.totalSales = 0.0 //since no sales have been made on a shop that was just created...
+    }
+    
+}
 
 //Customers will need a way to order a cone.
 //Create a function called orderCone.
