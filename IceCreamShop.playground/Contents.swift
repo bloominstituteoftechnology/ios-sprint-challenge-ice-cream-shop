@@ -22,12 +22,17 @@ struct Cone {
 class iceCreamShop {
     var menu : Cone
     var totalSales : Double
-    init(flavor : Flavor, topping: String,size:Size, totalSales : Double) {
+    init(flavor : Flavor, topping: String,size: Size, totalSales : Double) {
         self.totalSales = totalSales
-        self.menu = Cone(flavor: Flavor, topping: String, size: Size)
-       
+        self.menu = Cone(flavor: flavor, topping: topping, size: size)
     }
+    
     func listTopFlavors() {
-        
+        var flavors : [Flavor]
+        for flavor in flavors {
+            if flavor == flavor {
+                flavors += 1
+            }
+        }
     }
 }
