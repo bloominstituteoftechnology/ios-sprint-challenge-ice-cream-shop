@@ -3,7 +3,7 @@
 //rating
 struct Flavor {
     let name: String
-    var rating: Int
+    var rating: Double
 }
 //Create an enum called Size.
 //Give it a case for small, medium, and large.
@@ -39,6 +39,20 @@ class IceCreamShop {
         self.flavors = flavors
         self.sizes = sizes
         self.totalSales = 0.0 //since no sales have been made on a shop that was just created...
+    }
+    
+    //If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
+    //Create a function called listTopFlavors.
+    //This function doesn't need any arguments.
+    //In the function, build a string that lists out the names of each flavor in the shop's flavors array whose rating is over 4.0. For example, the string might say "Our top flavors are ." Hint: You may want to loop through the array of flavors in order to access each one's name.
+    //When the string has been created, print it.
+    func listTopFlavors() {
+        print("Our Top Flavors are:")
+        for flavor in flavors {
+            if flavor.rating >= 4.0 {
+                print(flavor.name)
+            }
+        }
     }
     
 }
