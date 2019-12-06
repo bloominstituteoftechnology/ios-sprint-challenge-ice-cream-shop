@@ -17,7 +17,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Mmm! I love this \(flavor) cone.")
+        print("Mmm! I love this \(flavor.name) cone.")
     }
 }
 
@@ -51,9 +51,9 @@ class IceCreamShop {
         
         if let topping = topping,
             let price = totalSales {
-            print("Your \(flavor) ice cream with \(topping) is \(price)")
+            print("Your \(flavor.name) ice cream with \(topping) is \(price)")
         } else if let price = totalSales {
-            print("Your \(flavor) ice cream is \(price)")
+            print("Your \(flavor.name) ice cream is \(price)")
         }
         
         return cone
@@ -72,3 +72,6 @@ let toppings: [String] = ["brownie bits", "whipped cream", "oreo", "chocolate sy
 
 let iceCreamShop = IceCreamShop(flavors: [vanillaFlavor, chocolateFlavor, cookieDoughFlavor, mintFlavor, neopolitanFlavor], sizes: sizes, toppings: toppings)
 iceCreamShop.listTopFlavors()
+
+let cone = iceCreamShop.orderCone(flavor: cookieDoughFlavor, topping: toppings[4], size: .large)
+cone?.eat()
