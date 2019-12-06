@@ -45,14 +45,23 @@ class IceCreamShop {
     func orderCone(flavor: String, topping: String?, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
         if let coneTopping = topping {
-            print("Your \(newCone.flavor) with \(coneTopping) is \(newCone.size).")
+            print("Your \(newCone.flavor) with \(coneTopping) is \(newCone.size.rawValue).")
         } else {
-            print("Your \(newCone.flavor) is \(newCone.size).")
+            print("Your \(newCone.flavor) is \(newCone.size.rawValue).")
         }
         totalSales += newCone.size.rawValue
         return newCone
     }
 }
+//let flavor1 = Flavor(name: "Chocolate", rating: 3.2)
+//let flavor2 = Flavor(name: "Vanilla", rating: 3.0)
+//let flavor3 = Flavor(name: "Cookies N Cream", rating: 3.7)
+//let flavor4 = Flavor(name: "Chocolate Chip", rating: 3.5)
+//let flavor5 = Flavor(name: "Nutty Coconut", rating: 3.8)
+//let flavor6 = Flavor(name: "Vegan Chocolate Extreme", rating: 3.5)
+//let flavor7 = Flavor(name: "Strawberry Cheesecake", rating: 3.3)
+//let flavor8 = Flavor(name: "Egg Nog (Holiday Flavor)", rating: 3.9)
+
 let flavor1 = Flavor(name: "Chocolate", rating: 4.2)
 let flavor2 = Flavor(name: "Vanilla", rating: 4.0)
 let flavor3 = Flavor(name: "Cookies N Cream", rating: 4.7)
@@ -69,3 +78,12 @@ let toppings = ["Hot Fudge", "Caramel", "Whipped Cream", "M&M's", "Walnuts"]
 let myIceCreamShop = IceCreamShop(flavors: [flavor1, flavor2, flavor3, flavor4, flavor5, flavor6, flavor7, flavor8], toppings: toppings, sizes: sizes, totalSales: 0)
 
 myIceCreamShop.listTopFlavors()
+
+let myCone: Cone? = myIceCreamShop.orderCone(flavor: "Cookies N Cream", topping: "Whipped Cream", size: Size.medium)
+
+myCone?.eat()
+
+let firstSale = myIceCreamShop.orderCone(flavor: "Chocolate Chip", topping: nil, size: Size.large)
+
+print(myIceCreamShop.totalSales)
+

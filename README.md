@@ -26,7 +26,7 @@ Please fork this repository and clone the fork to your machine to begin work. Th
 
 ## Minimum Viable Product
 
-In your solution, it is essential that you follow best practices and produce clean and professional results. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your code. It is better to submit a challenge that meets the minimum requirements than one that attempts too much and does not work in the end.
+In your solution, it is essential that you follow best practices an"d produce clean and professional results. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your code. It is better to submit a challen"ge that meets the minimum requirements than one that attempts too much and does not work in the end.
 
 Follow these steps to complete the Sprint Challenge. Recognize that not every step necessary to complete this challenge will be listed below. It can be useful to mentally break a step down by its individual sentences, or even smaller than that.
 
