@@ -37,7 +37,13 @@ class IceCreamShop {
     }
     
     func listOfTopFlavor() {
-        let topFlavors: String = "all of flavors are " // Change later
+        var topFlavors: String = "Our top flavors are " // Change later
+        for flavor in self.flavors {
+            if flavor.rating >= 4.0 {
+                topFlavors += "\(flavor.name), "
+            }
+            // Stretch goal, fix formatting for last flavor and add "and" ???
+        }
         print(topFlavors)
     }
     
@@ -62,12 +68,19 @@ class IceCreamShop {
 
 
 //print(orderCone(flavor: Flavor(name: "chocolate", rating: 4.0), topping: "sprinkles", size: .medium))
-let flavor1 = Flavor(name: "Chocolate", rating: 5.0)
-let flavor2 = Flavor(name: "Vanilla", rating: 4.0)
-let flavor3 = Flavor(name: "Strawberry", rating: 3.0)
+let chocolate = Flavor(name: "chocolate", rating: 5.0)
+let vanilla = Flavor(name: "vanilla", rating: 4.0)
+let strawberry = Flavor(name: "strawberry", rating: 3.0)
+let flavorArray: [Flavor] = [chocolate, vanilla, strawberry]
 
 let sizeArray:[Size] = [.large, .medium, .small]
 
 let toppingsArray: [String] = ["cherries", "sprinkles", "chocolate chips"]
 
+let myIceCreamShop = IceCreamShop(flavors: flavorArray, sizes: sizeArray, toppings: toppingsArray)
+
+myIceCreamShop.listOfTopFlavor()
+
+let cone1: Cone = myIceCreamShop.orderCone(flavor: chocolate, topping: "sprinkles", size: .large)
+cone1.eat()
 
