@@ -1,5 +1,7 @@
 // Tobi Tselios
 
+import Foundation
+
 enum Size: Double {
     case small = 3.99
     case medium = 4.99
@@ -49,8 +51,13 @@ class IceCreamShop {
         let cone = Cone(flavor: flavor, topping: topping, size: size)
         totalSales = cone.size.rawValue
         
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        
+        let priceString = formatter.string(for: totalSales)
+        
         if let topping = topping,
-            let price = totalSales {
+            let price = priceString {
             print("Your \(flavor.name) ice cream with \(topping) is \(price)")
         } else if let price = totalSales {
             print("Your \(flavor.name) ice cream is \(price)")
