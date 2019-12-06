@@ -30,6 +30,11 @@ struct Cone {
 }
 
 let sizes: [Cone.Size] = [.small, .medium, .large]
+let toppings: [String] = ["Chocolate Drizzle", "Caramel Drizzle", "Sprinkles", "Hot Fudge", "Oreos", "Peanut butter cups", "Whipped Cream"]
+
+let newCone = Cone(flavor: mintChocolate.name, size: .small, topping: toppings[0])
+newCone.eat()
+
 
 class IceCreamShop {
     var flavors: [Flavor]
@@ -66,13 +71,8 @@ class IceCreamShop {
         return newCone
     }
 }
-let toppings: [String] = ["Chocolate Drizzle", "Caramel Drizzle", "Sprinkles", "Hot Fudge", "Oreos", "Peanut butter cups", "Whipped Cream"]
-
 let lambdaIceCreamShop = IceCreamShop(flavors: [chocolateChip, vanilla, mintChocolate, doubleChocolate, strawberry], sizes: sizes, toppings: toppings)
 lambdaIceCreamShop.listTopFlavors()
-
-let newCone = Cone(flavor: mintChocolate.name, size: .small, topping: toppings[0])
-newCone.eat()
 
 lambdaIceCreamShop.orderCone(flavor: chocolateChip, topping: nil, size: .small)
 lambdaIceCreamShop.orderCone(flavor: vanilla, topping: "Caramel Drizzle", size: .medium)
