@@ -22,7 +22,7 @@ struct Cone {
     var size: Size
     //class methods
     func eat() {
-        print("NOM NOM NOM. Yummy \(flavor)! OW MY HEAD HURTS!")
+        print("NOM NOM NOM. Yummy \(flavor)! OW MY HEAD HURTS!\n")
     }
 }
 
@@ -73,7 +73,7 @@ class IceCreamShop {
             for i in 0..<favoriteFlavorArray.count - 1 {
                 print("\(favoriteFlavorArray[i].name),")
             }
-            print("and \(favoriteFlavorArray.last!.name)") //ok to force unwrap because we checked to see if the array was empty (all arrays have a first and last property)
+            print("and \(favoriteFlavorArray.last!.name)\n") //ok to force unwrap because we checked to see if the array was empty (all arrays have a first and last property)
         }
     }
     
@@ -144,8 +144,8 @@ favoriteCone.eat()
 
 //test Order Cone Stretch:
 myShop.orderCone(flavor: doubleChocolate, topping: "chocolate chips", size: .large) // should work
-
+print() //blank line in console
 myShop.orderCone(flavor: notThisFlavor, topping: nil, size: .small) //should offer a different flavor
-
+print() //blank line in console
 myShop.orderCone(flavor: doubleChocolate, topping: nil, size: .medium) //should offer a different size
 
