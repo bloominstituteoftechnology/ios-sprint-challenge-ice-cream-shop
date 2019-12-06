@@ -81,11 +81,23 @@ class IceCreamShop {
 
 
 //At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
+let chocChip = Flavor(name: "Chocolate Chip", rating: 4.0)
+let vanilla = Flavor(name: "Vanilla", rating: 3.8)
+let chocolate = Flavor(name: "Chocolate", rating: 3.9)
+let doubleChocolate = Flavor(name: "Double Chocolate", rating: 4.8)
+let cookieDough = Flavor(name: "Cookie Dough", rating: 5.0)
+
+let sizes: [Size] = [.small, .medium, .large]
 
 //Use the constants you just made to initialize a new IceCreamShop constant.
+let myShop = IceCreamShop(flavors: [chocChip,vanilla,chocolate,doubleChocolate,cookieDough], sizes: [.small, .large])
 
 //Call the shop's listTopFlavors function and make sure it runs correctly.
 
+myShop.listTopFlavors()
+
 //Create a new Cone constant. Use the shop's orderCone function to assign the constant a Cone value.
+let favoriteCone = Cone(flavor: doubleChocolate.name, size: .large)
 
 //Using that new Cone constant, call its eat function without unwrapping the constant.
+favoriteCone.eat()
