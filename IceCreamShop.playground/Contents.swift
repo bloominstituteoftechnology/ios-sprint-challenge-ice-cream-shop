@@ -1,4 +1,4 @@
-                                                                                                // Ufuk Türközü
+                                                            // Ufuk Türközü
                     
 //1. Create a struct called `Flavor`. Add the following properties. Think about what type they should be:
 //    - `name`
@@ -10,6 +10,7 @@ struct Flavor {
     var rating: Int
     
 }
+                                                            
 //2. Create an enum called `Size`.
 //    - Give it a case for small, medium, and large.
 //    - Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
@@ -37,8 +38,6 @@ struct Cone {
         print("Mmm! I love \(flavor.name)!")
     }
 }
-
-let cone = Cone.self
                                                                 
 //4. Create a class called `IceCreamShop`.
 //    - An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
@@ -91,7 +90,13 @@ func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
     
     iceCreamShop.totalSales += size.rawValue
     
-    print(iceCreamShop.totalSales)
+    if topping != "" {
+        print("Your \(newCone.size) \(newCone.flavor.name) ice cream with \(newCone.topping) is \(newCone.size.rawValue)")
+    } else {
+        print("Your \(newCone.size) \(newCone.flavor.name) ice cream is \(newCone.size.rawValue)")
+    }
+    
+    print("Total Sales: \(iceCreamShop.totalSales)")
     return newCone
 }
                                                             
@@ -114,11 +119,12 @@ let toppings: [String] = ["Topping1", "Topping2", "Topping3"]
 listTopFlavors(iceCreamShop: iceCreamShop)
                                                             
 //10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
-                                                                                                let newCone: Cone = orderCone(flavor: iceCreamShop.flavors[0], topping: "", size: .small) ?? <#default value#>
+                                                            
+let newCone: Cone = orderCone(flavor: iceCreamShop.flavors[0], topping: "", size: .small) ?? <#default value#>
                                                             
 //11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 
-Cone.eat(newCone)
+newCone.eat()
 
 //Validate your work through running your playground and ensure that your code operates as designed.
 //
