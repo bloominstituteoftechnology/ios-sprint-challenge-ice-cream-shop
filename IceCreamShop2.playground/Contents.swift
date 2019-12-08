@@ -3,33 +3,46 @@ struct Flavor {
    var rating: String
 }
 
-enum Size  {
-    case small
-    case medium
-    case large
+enum Size: Double  {
+    case small = 1.99
+    case medium = 2.99
+    case large = 3.99
 }
 
 
 struct Cone {
-    var flavor: String = "Vanilla"
-    var topping: String
-    var coneSize: String
+    let  flavor: String
+    let  topping: String
+    let  coneSize: String
+    
+    func eat() {
+        print("Mmm I love \(flavor)")
+    }
+
 }
 
-
-
-func eat() {
-    print("Mmm! I Love \(flavor)")
-}
 
 
 class IceCreamShop {
-    var Vanilla
-    var flsvor2: String
+    var flavors: Array = ["vanilla", "Straberry", "Chocolate", "ChocalteChip"]
     var  totalSales: Int
+    
+    init(flavor1: String, totalSales: Int) {
+        self.flavors = []
+        self.totalSales = totalSales
+        
+        }
+    
+    
+    func listTopFlavors() {
+    for iceCream in 0..<flavors.count{
+        let flavor = flavors[iceCream]
+        
+        print("Our top flavors are \(flavor)")
+    }    }
 }
 
-
-func listTopFlaver() {
+func orderCone {
     
 }
+
