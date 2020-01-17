@@ -53,8 +53,20 @@ class IceCreamShop{
             }
         }
         
-        print("Our top flavors are \(topFlavorArray)")
+        print("Our top flavors are \(cleanUpFlavorString(stringArray: topFlavorArray))")
         return("Our top flavors are \(topFlavorArray)")
+    }
+    
+    func cleanUpFlavorString(stringArray: [String]) -> String {
+        var string = ""
+        for flavor in stringArray {
+            if flavor == stringArray.last {
+                string.append("& \(flavor).")
+            } else {
+            string.append("\(flavor), ")
+            }
+        }
+        return string
     }
     
     func orderCone(cone: Cone) -> Cone?{
@@ -62,16 +74,34 @@ class IceCreamShop{
         if let toppings = newOrder.topping{
             newOrder = Cone(flavor: newOrder.flavor, topping: toppings, size: newOrder.size)
             totalSales += newOrder.size.rawValue
-            print("Your \(newOrder.flavor.name) ice cream with \(toppings.rawValue) is \(newOrder.size.rawValue)")
+            print("Your \(newOrder.flavor.name) ice cream with \(toppings.rawValue) is \(currencyConverter(amount: totalSales))")
             
         }else {
             newOrder = Cone(flavor: newOrder.flavor, topping: nil, size: newOrder.size)
             totalSales += newOrder.size.rawValue
-            print("Your \(newOrder.flavor.name) ice cream is \(newOrder.size.rawValue)")
+            print("Your \(newOrder.flavor.name) ice cream is \(currencyConverter(amount: totalSales))")
         }
         return(newOrder)
     }
-}
+    
+    func currencyConverter(amount: Double) -> String {
+        let converTotal = totalSales
+        
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.usesGroupingSeparator = true
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.locale = Locale.current
+        
+        guard let formatedTotal = currencyFormatter.string(from: NSNumber(value: converTotal)) else {
+            return("Invalid Amount")
+        }
+        return(formatedTotal)
+    }
+    
+    func currencyConvertedTotalSales() -> String{
+        return(currencyConverter(amount: totalSales))
+        }
+    }
 
 let chocolateChip: Flavor = Flavor(name: "Chocolate Chip", rating: 4.3)
 let mintChip: Flavor = Flavor(name: "Mint Chip", rating: 4.8)
@@ -92,5 +122,5 @@ let firstCone: Cone = Cone(flavor: chocolateChip, topping: nil, size: .large)
 
 chrisIceCreamShop.orderCone(cone: firstCone)
 
-print(chrisIceCreamShop.totalSales)
+print(chrisIceCreamShop.currencyConvertedTotalSales())
 
