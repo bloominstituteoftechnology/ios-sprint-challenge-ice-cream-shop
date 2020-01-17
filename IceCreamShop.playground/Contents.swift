@@ -12,7 +12,7 @@
  
  struct Cone {
     let flavor: Flavor
-    let topping: String
+    let topping: String?
     let size: Size
  
 
@@ -22,13 +22,13 @@
  }
  
  class IceCreamShop {
-    var flavor: [Flavor]
+    var flavors: [Flavor]
     var size: [Size]
     var toppings: [String]
     var totalSales: Double
     
     init(flavor: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
-        self.flavor = flavor
+        self.flavors = flavor
         self.size = size
         self.toppings = toppings
         self.totalSales = totalSales
@@ -37,27 +37,35 @@
     func listTopFlavors() {
         var topFlavors: [String] = []
         
-       for flavor in flavor {
+       for flavor in flavors {
            if flavor.rating > 4 {
-            topFlavors.append("\(flavor.name)")
+            topFlavors.append("\(flavor.name)" + ", ")
+            return
            } else {
             return
            }
-       }
-        print("Our top flavors are \(topFlavors).")
+        }
+         print("Our top flavors are \(topFlavors).")
     }
  }
  
- func orderCone 
+ func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+    let newCone: Cone = Cone(flavor: flavor, topping: topping!, size: size)
+    
+    if let unwrappedTopping = topping {
+        print("Your \(flavor.name) ice cream with \(unwrappedTopping) is $\(size.rawValue).")
+        } else {
+        print("Your \(flavor.name) ice cream is $\(size.rawValue)")
+    }
+     return newCone
+ }
  
+ let chocolate = Flavor(name: "Chocolate", rating: 5)
+ let vanilla = Flavor(name: "Vanilla", rating: 3)
+ let strawberry = Flavor(name: "Strawberry", rating: 4)
+ let nutella = Flavor(name: "Nutella", rating: 5)
+
+ var beckysIceCreamShop = IceCreamShop(flavor: [chocolate, vanilla, strawberry, nutella], size: [.large, .small, .medium], toppings: ["chocolate shell", "sprinkles", "caramel drizzle"], totalSales: 0)
  
-// let chocolate = Flavor(name: "Chocolate", rating: 5)
-// let vanilla = Flavor(name: "Vanilla", rating: 3)
-// let strawberry = Flavor(name: "Strawberry", rating: 4)
-// let nutella = Flavor(name: "Nutella", rating: 5)
-//
-// let beckysFavoriteCone = Cone(flavor: chocolate,
-//                               topping: "Chocolate shell",
-//                               size: .small)
-//
-// let beckysIceCreamShop = IceCreamShop(flavor: [chocolate, vanilla, strawberry, nutella], size: [.large, .small, .medium], toppings: ["chocolate shell", "sprinkles", "caramel drizzle"], totalSales: 0)
+ beckysIceCreamShop.listTopFlavors()
+ 
