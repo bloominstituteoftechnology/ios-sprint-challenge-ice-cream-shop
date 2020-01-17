@@ -6,9 +6,9 @@ struct Flavor {
 }
 
 enum Size: Double {
-    case small = 1.99
-    case medium = 2.49
-    case large = 2.99
+    case small = 1.00
+    case medium = 1.50
+    case large = 2.15
 }
 
 struct Cone {
@@ -16,7 +16,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Wow! I love \(flavor.name)!")
+        print("Wow! I love this \(flavor.name) cone!")
     }
 }
 
