@@ -22,9 +22,9 @@
  }
  
  class IceCreamShop {
-    let flavor: [Flavor]
-    let size: [Size]
-    let toppings: [String]
+    var flavor: [Flavor]
+    var size: [Size]
+    var toppings: [String]
     var totalSales: Double
     
     init(flavor: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
@@ -33,17 +33,22 @@
         self.toppings = toppings
         self.totalSales = totalSales
     }
- }
- 
- func listTopFlavors() {
-   
-    print("Our top flav
-     for flavor in IceCreamShop {
-        if Flavor.rating > 4 {
-            print("\(flavor.name)")
+    
+    func listTopFlavors() {
+       
+       for flavor in flavor {
+           if flavor.rating > 4 {
+               print("\(flavor.name)")
             return
-        } else {
+           } else {
             return
-        }
+           }
+       }
     }
+    
+    func orderCone(cone: Cone) -> Cone?{
+       var myOrder = cone
+       totalSales += Size }
  }
+
+ 
