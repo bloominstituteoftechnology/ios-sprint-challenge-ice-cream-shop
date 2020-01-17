@@ -22,7 +22,7 @@ enum Toppings: String{
 
 struct Cone{
     let flavor: Flavor
-    let topping: String
+    let topping: Toppings
     let size: Size
     
     func eat(){
@@ -52,6 +52,21 @@ class IceCreamShop{
             }
         }
         return("Our top flavors are \(topFlavorArray)")
+    }
+    
+    func orderCone(flavor: Flavor, toppings: Toppings?, size: Size) -> Cone?{
+        let newOrder: Cone
+        if let toppings = toppings{
+        newOrder = Cone(flavor: flavor, topping: toppings, size: size)
+            totalSales += newOrder.size.rawValue
+            print("Your \(flavor) ice cream with \(toppings) is \(size.rawValue)")
+            
+        }else {
+            newOrder = Cone(flavor: flavor, topping: .none, size: size)
+            totalSales += newOrder.size.rawValue
+            print("Your \(flavor) ice cream with \(toppings!) is \(size.rawValue)")
+        }
+        return(newOrder)
     }
 }
 
