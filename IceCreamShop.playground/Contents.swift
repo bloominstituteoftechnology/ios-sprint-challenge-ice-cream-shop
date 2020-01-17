@@ -48,16 +48,16 @@ class IceCreamShop {
     var toppings: [String]
     var totalSales: Double
     
-    init(flavors: [Flavor], sizes: [Size], toppings: [String], totalSales: Double) {
+    init(flavors: [Flavor], sizes: [Size], toppings: [String]) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
-        self.totalSales = totalSales
+        self.totalSales = 0.0
         
     }
     
 }
-let iceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [" "], totalSales: 0.00)
+let iceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [" "], totalSales: Double)
 //5. If a customer asks which flavors are available, we need to be ready to tell them. To accomplis this, do the following:
 //- Create a function called `listTopFlavors`.
 //- This function doesn't need any arguments.
@@ -65,12 +65,13 @@ let iceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [" "], totalSa
 //- When the string has been created, print it.
 
 func listTopFlavors(iceCreamShop: IceCreamShop) {
-    if flavor.rating > 4 {
-        print(
+    
+    for flavor in iceCreamShop.flavors {
+        if flavor.rating >= 4 {
+            print("Our top flavors are \(flavor.name).")
+        }
     }
-    _ = ["Silk Chocolate", "Fresh Strawberry", "Key Lime Pie"]
 }
-
 //6. Customers will need a way to order a cone.
 //- Create a function called `orderCone`.
 //- This should have arguments needed to initialize a `Cone`, such as a flavor, topping (if desired), and a size.
@@ -80,9 +81,21 @@ func listTopFlavors(iceCreamShop: IceCreamShop) {
 //- Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
 //- Finally, return the cone you initialized.
 
-//func orderCone() {
-//    let Cone
-//}
+
+
+func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+
+    let newOrder: Cone? = Cone(flavor: Flavor(name: flavor.name, rating: flavor.rating), topping: topping ?? "", size: size)
+    
+    iceCreamShop.totalSales += size.rawValue
+    
+    if let unwrappedCone = newOrder {
+        if unwrappedCone.topping != "" {
+            
+            print("Your \(unwrappedCone.flavor.name) ice cream with \(String(describing: unwrappedCone.topping)) is \(unwrappedCone.size.rawValue)")
+            
+    }
+}
 
 
 //7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
