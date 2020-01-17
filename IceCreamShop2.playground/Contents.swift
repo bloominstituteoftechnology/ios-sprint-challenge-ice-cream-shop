@@ -15,10 +15,11 @@ struct Cone {
     let  topping: String
     let  coneSize: String
     
-    func eat() {
-        print("Mmm I love \(flavor)")
-    }
 
+}
+
+func eat() {
+    print(
 }
 
 
@@ -45,4 +46,5 @@ class IceCreamShop {
 func orderCone {
     
 }
+
 
