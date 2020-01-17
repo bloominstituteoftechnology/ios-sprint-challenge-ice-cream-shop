@@ -66,7 +66,7 @@ myShop.listTopFlavors()
 print(myShop.totalSales)
 
 let orderedCone = myShop.orderCone(flavor: chocolate, size: .large, toppings: toppingsArray[1])
-print(orderedCone)
+
 orderedCone?.eat()
 
 print(myShop.totalSales)
