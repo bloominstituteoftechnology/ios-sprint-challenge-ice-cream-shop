@@ -41,10 +41,21 @@ class IceCreamShop {
         }
     }
     
-
+    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        totalSales = newCone.size.rawValue
+        if let totalSales = orderCone(flavor: , topping: "Sprinkles", size: Size.large) {
+            print("Your \(flavor) ice cream with \(topping) is \(Size.large)") {
+            } else do {
+                print("You did not order anything")
+            }
 }
+}
+}
+// STILL NEED TO PRINT!**
 
-// #5 - Example below
+    // passing into means parameters
+
 
 
 
