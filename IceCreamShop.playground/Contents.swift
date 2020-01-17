@@ -66,6 +66,7 @@ class IceCreamShop {
         return customersCone
         }
     // need to unwrap topping if let statement
+
 }
 
 
@@ -83,23 +84,26 @@ let toppingsArray: [String] = ["fudge", "caramel", "nuts", "whipped cream"]
 
 // 8. Use the constants you just made to initialize a new IceCreamShop constant
 
-
+let theIceCreamShop = IceCreamShop(flavors: flavorArray, toppings: toppingsArray, size: sizeArray, totalSales: 0)
 
 
 // 9. Call the shops listTopFlavors function
 
 
+theIceCreamShop.listTopFlavors()
 
 
 
 // 10. Create a new Cone constant. Use the shop's orderCone function to assign the constant a Cone value.
 
-
+let customerCone: Cone? = theIceCreamShop.orderCone(flavor: "Vanilla Bean", topping: "Caramel", size: .medium)
 
 // 11. Using that new Cone costant, call its eat function without unwrapping the constant
 
-
+customerCone?.eat()
 
 // 12. Print the shop's totalSales and make sure that it has increased since you ordered a cone in step 10.
 
- 
+let firstSale = theIceCreamShop.orderCone(flavor: "Caramel Swirl", topping: "whipped cream", size: Size.large)
+
+print(theIceCreamShop.totalSales)
