@@ -57,7 +57,7 @@ class IceCreamShop {
         case "Beer","Coffee","Strawberry","Green tea":
              let newCone = Cone(flavor: flavor, size: size, topping: topping)
                
-                   totalSales = newCone.size.rawValue
+                   totalSales += newCone.size.rawValue
 
                    let secondString = "Here is your \(newCone.flavor.name) ice cream with \(newCone.topping) topping, customer rating is \(newCone.flavor.rating),total price for you today is \(newCone.size.rawValue)."
                    print(secondString)
