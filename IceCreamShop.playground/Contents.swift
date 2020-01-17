@@ -12,7 +12,7 @@ struct Flavor {
 }
 struct Cone {
     var flavor: Flavor
-    let topping: String
+    let topping: String?
     let size: Size
     
 func eat() {
@@ -44,14 +44,20 @@ class IceCreamShop {
     func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
         totalSales = newCone.size.rawValue
-        if let totalSales = orderCone(flavor: , topping: "Sprinkles", size: Size.large) {
-            print("Your \(flavor) ice cream with \(topping) is \(Size.large)") {
-            } else do {
-                print("You did not order anything")
-            }
+        if let newtopping = newCone.topping {            print("Your \(newCone.flavor) with \(newtopping) is \(newCone.size)")
+        }
+      
+        return newCone
+            
 }
 }
-}
+
+
+let flavor1 = Flavor(name: "Vanilla", rating: 4.3)
+let flavor2 = Flavor(name: "Chocolate", rating: 4.5)
+let flavor3 = Flavor(name: "Strawberry", rating: 2.3)
+
+let newIceCreamShop = IceCreamShop(flavors: [flavor1, flavor2, flavor3], sizes: [.large, .medium, .small], toppings: ["Sprinkles", "Candy", "Cookies"], totalSales: 14.99)
 // STILL NEED TO PRINT!**
 
     // passing into means parameters
