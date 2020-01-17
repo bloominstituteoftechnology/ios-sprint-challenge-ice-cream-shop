@@ -2,8 +2,8 @@
 
 struct Flavor {
     
-    let name: String
-    let rating: Int
+    var name: String
+    var rating: Int
 }
 
 // 2. Create a enum called Size
@@ -25,9 +25,83 @@ struct Cone {
     
     func eat() {
         
-        print("Mmm! I love \(self.flavor)")
+        print("Mmm! I love \(flavor)")
+    }
+}
+
+
+// 4. Create a class called IceCreamShop. Create variables that hold various flavors, sizes, and toppings. Create a variable called totalSales (track how much moneu was made)
+
+class IceCreamShop {
+    
+    var flavors: [Flavor]
+    var toppings: [String]
+    var size: [Size]
+    var totalSales: Double = 0.0
+    
+    init(flavors: [Flavor], toppings: [String], size: [Size]) {
+        self.flavors = flavors
+        self.toppings = toppings
+        self.size = size
+    }
+}
+
+// 5. Create a function called listTopFlavors
+
+func listTopFlavors() {
+    
+    for flavor in flavorArray{
+        if flavorArray.rating >= 4 {
+            print("Our top flavors are \(flavor)")
+        }
     }
 
 }
+
+// 6. Create function called orderCone
+
+func orderCone(flavor: Flavor, topping: String?, size: Size) -> Double {
+    let customersCone: Cone? = Cone(flavor: <#T##String#>, topping: <#T##String#>, size: <#T##Size#>)
+// need to unwrap topping if let statement
+    }
+
+
+// 7. Create a few Flavor constants, an array of sizes, and an array of toppings
+
+let vanillaBean = Flavor(name: "Vanilla Bean", rating: 4)
+let chocolate = Flavor(name: "Chocolate", rating: 3)
+let mooseTracks = Flavor(name: "Moose Tracks", rating: 5)
+let caramelSwirl = Flavor(name: "Caramel Swirl", rating: 4)
+
+let sizeArray: [Size] = [.small, .medium, .large]
+let toppingsArray: [String] = ["fudge", "caramel", "nuts", "whipped cream"]
+let flavorArray: [Flavor] = [vanillaBean, chocolate, mooseTracks, caramelSwirl]
+
+// 8. Use the constants you just made to initialize a new IceCreamShop constant
+
+let theIceCreamShop = IceCreamShop(flavors: flavorArray, toppings: toppingsArray, size: sizeArray)
+
+
+// 9. Call the shops listTopFlavors function
+
+
+listTopFlavors()
+
+
+
+// 10. Create a new Cone constant. Use the shop's orderCone function to assign the constant a Cone value.
+
+let customerCone = Cone(flavor: "waffle", topping: "marshmellow", size: .medium)
+
+
+// 11. Using that new Cone costant, call its eat function without unwrapping the constant
+
+
+
+
+
+// 12. Print the shop's totalSales and make sure that it has increased since you ordered a cone in step 10.
+
+
 
 
