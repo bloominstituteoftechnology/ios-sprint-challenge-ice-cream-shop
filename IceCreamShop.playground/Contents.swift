@@ -1,4 +1,4 @@
-import UIKit
+import Foundation
 
 enum Size: Double {
     case small = 3.99
@@ -7,28 +7,45 @@ enum Size: Double {
 }
 struct Flavor {
     var name: String
-    let rating: Int
+    let rating: Double
     
 }
 struct Cone {
-    var flavor: String
+    var flavor: Flavor
     let topping: String
     let size: Size
     
-}
 func eat() {
-    print("Mmm! I love \(Cone.init(flavor: "Vinella", topping: "Sprinkles", size: .large))")
+    print("Mmm! I love \(flavor)")
 }
-
+}
 class IceCreamShop {
-    var flavors: String
-    var sizes: Size
-    var toppings: String
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [String]
     var totalSales: Double
-    init(flavors: String, sizes: Size, toppings: String, totalSales: Double) {
+    
+    
+    
+    init(flavors: [Flavor], sizes: [Size], toppings: [String], totalSales: Double) {
         self.flavors = flavors
-        self.sizes = Size
+        self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
     }
+    func listTopFlavors() {
+        for flavor in flavors {
+            if flavor.rating > 4.0 {
+                print("Our top flavors are \(flavor.name)")
+            }
+        }
+    }
+    
+
 }
+
+// #5 - Example below
+
+
+
+
