@@ -52,6 +52,7 @@ class IceCreamShop{
                 topFlavorArray.append(flavor.name)
             }
         }
+        
         print("Our top flavors are \(topFlavorArray)")
         return("Our top flavors are \(topFlavorArray)")
     }
@@ -92,5 +93,4 @@ let firstCone: Cone = Cone(flavor: chocolateChip, topping: nil, size: .large)
 chrisIceCreamShop.orderCone(cone: firstCone)
 
 print(chrisIceCreamShop.totalSales)
-
 
