@@ -36,14 +36,14 @@ class IceCreamShop {
     func listTopFlavors() {
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                print("Our top flavors are \(flavor.name)")
+                print("Our top flavor is \(flavor.name)")
             }
         }
     }
     
     func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
-        totalSales = newCone.size.rawValue
+        totalSales += newCone.size.rawValue
         if let newtopping = newCone.topping {            print("Your \(newCone.flavor) with \(newtopping) is \(newCone.size)")
         }
       
@@ -57,8 +57,17 @@ let flavor1 = Flavor(name: "Vanilla", rating: 4.3)
 let flavor2 = Flavor(name: "Chocolate", rating: 4.5)
 let flavor3 = Flavor(name: "Strawberry", rating: 2.3)
 
-let newIceCreamShop = IceCreamShop(flavors: [flavor1, flavor2, flavor3], sizes: [.large, .medium, .small], toppings: ["Sprinkles", "Candy", "Cookies"], totalSales: 14.99)
-// STILL NEED TO PRINT!**
+let newIceCreamShop = IceCreamShop(flavors: [flavor1, flavor2, flavor3], sizes: [.large, .medium, .small], toppings: ["Sprinkles", "Candy", "Cookies"], totalSales: 0.0)
+
+// Below is number nine
+newIceCreamShop.listTopFlavors()
+
+
+let newCone2 = newIceCreamShop.orderCone(flavor: flavor2, topping: "Stawberries", size: .large)
+
+newCone2?.eat()
+
+print(newIceCreamShop.totalSales)
 
     // passing into means parameters
 
