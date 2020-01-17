@@ -11,4 +11,35 @@ enum Size: Double{
     case large = 5.99
 }
 
+enum Toppings: String{
+    case chocolateSauce = "chocolate sauce"
+    case caramelSauce = "caramel sauce"
+    case sprinkles = "sprinkles"
+    case whippedCream = "whipped cream"
+    case none = "no toppings"
+}
 
+
+struct Cone{
+    let flavor: Flavor
+    let topping: String
+    let size: Size
+    
+    func eat(){
+        print("Mmmmm... This \(size) \(flavor) cone with \(topping) is so good!")
+    }
+}
+
+class IceCreamShop{
+    var flavors: [Flavor] = []
+    var toppings: [Toppings] = []
+    var size: [Size] = []
+    var totalSales: Double = 0
+    
+    init(flavors: [Flavor], toppings: [Toppings], size: [Size], totalSales: Double) {
+        self.flavors = flavors
+        self.toppings = toppings
+        self.size = size
+        self.totalSales = totalSales
+    }
+}
