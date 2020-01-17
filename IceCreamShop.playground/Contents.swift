@@ -36,7 +36,7 @@ class IceCreamShop{
     var size: [Size] = []
     var totalSales: Double = 0
     
-    init(flavors: [Flavor], toppings: [Toppings], size: [Size], totalSales: Double) {
+    init(flavors: [Flavor], toppings: [Toppings], size: [Size], totalSales: Double = 0.00) {
         self.flavors = flavors
         self.toppings = toppings
         self.size = size
@@ -70,5 +70,16 @@ class IceCreamShop{
     }
 }
 
+let chocolateChip: Flavor = Flavor(name: "Chocolate Chip", rating: 4.3)
+let mintChip: Flavor = Flavor(name: "Mint Chip", rating: 4.8)
+let rockyRoad: Flavor = Flavor(name: "Rocky Road", rating: 3.2)
+let vanilla: Flavor = Flavor(name: "Vanilla", rating: 4.0)
+let rainbowSherbert: Flavor = Flavor(name: "Rainbow Sherbert", rating: 4.1)
+
+let sizes: [Size] = [.small, .medium, .large]
+let toppings: [Toppings] = [.caramelSauce, .chocolateSauce, .sprinkles, .whippedCream, .none]
+let flavors: [Flavor] = [chocolateChip, mintChip, rockyRoad, vanilla, rainbowSherbert]
+
+let chrisIceCreamShop: IceCreamShop = IceCreamShop(flavors: flavors, toppings: toppings, size: sizes)
 
 
