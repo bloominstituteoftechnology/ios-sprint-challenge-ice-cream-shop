@@ -35,20 +35,29 @@
     }
     
     func listTopFlavors() {
-       
+        var topFlavors: [String] = []
+        
        for flavor in flavor {
            if flavor.rating > 4 {
-               print("\(flavor.name)")
-            return
+            topFlavors.append("\(flavor.name)")
            } else {
             return
            }
        }
+        print("Our top flavors are \(topFlavors).")
     }
-    
-    func orderCone(cone: Cone) -> Cone?{
-       var myOrder = cone
-       totalSales += Size }
  }
-
  
+ func orderCone 
+ 
+ 
+// let chocolate = Flavor(name: "Chocolate", rating: 5)
+// let vanilla = Flavor(name: "Vanilla", rating: 3)
+// let strawberry = Flavor(name: "Strawberry", rating: 4)
+// let nutella = Flavor(name: "Nutella", rating: 5)
+//
+// let beckysFavoriteCone = Cone(flavor: chocolate,
+//                               topping: "Chocolate shell",
+//                               size: .small)
+//
+// let beckysIceCreamShop = IceCreamShop(flavor: [chocolate, vanilla, strawberry, nutella], size: [.large, .small, .medium], toppings: ["chocolate shell", "sprinkles", "caramel drizzle"], totalSales: 0)
