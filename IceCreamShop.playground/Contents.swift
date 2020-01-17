@@ -18,8 +18,8 @@ enum Size: Double {
 }
 
 struct Cone {
-    var topping: String
-    var flavor: String
+    var topping: String?
+    var flavor: Flavor
     var size: Size
     
 
@@ -29,29 +29,36 @@ func eat() {
 }
 
 class IceCreamShop {
-    var flavors: String
-    var sizes: Size
+    var flavors: [Flavor]
+    var sizes: [Size]
     var toppings: String
     var totalSales: Double
     
-    init(flavors: String, sizes: Size, toppings: String, totalSales: Double) {
+    init(flavors: [Flavor], sizes: [Size], toppings: String, totalSales: Double) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
-    
+    }
     
     func listTopFlavors() {
-        let flavorArray = ["flavor1", "flavor2", "flavor3"]
-        for items in flavorArray {
-        print("Our flavors are \(flavorArray)")
-   
-        
-        
-    func orderCone() {
-            
+        for flavor in flavors {
+            print("Our flavors are \(flavor.name)")
         }
+    }
+        
+    func orderCone(topping: String?, flavor: Flavor, size: Size) -> Cone? {
+            let newCone = Cone(topping: topping, flavor: flavor, size: size)
+        self.totalSales += newCone.size.rawValue
+        
+        if let toppings = newCone.topping {
+            print(" Your \(newCone.flavor) ice cream \(toppings)is \(newCone.size.rawValue)")
     
+        }
+    return newCone
+        }
+        }
+        
     
     
     
@@ -60,37 +67,20 @@ class IceCreamShop {
     let vanilla = Flavor(name: "Vanilla", rating: "Three Stars")
     let strawberry = Flavor(name: "Strawberry", rating: "Four Stars")
 
-    let newIceCreamShop = IceCreamShop(flavors: "All", sizes: .large, toppings: "All", totalSales: 200.00)
+let newIceCreamShop = IceCreamShop(flavors: [mintChocolate, vanilla, strawberry], sizes: [.large, .meduim, .small], toppings: "All", totalSales: 0.00)
     
-    
-            
-            
-            
-            
-            
-            
-            
-            
-            
-    
-listTopFlavors()
-    
-    
-    let newCone = Cone(topping: "Sprinkles", flavor: "Vanilla", size: .large)
-            
+newIceCreamShop.listTopFlavors()
+        
 
-orderCone()
+            
+        
+    
+let newCone = newIceCreamShop.orderCone(topping: "All", flavor: vanilla, size: .large)
 
-eat()
-    
-    
-    
-    
-             }
-            }
+newCone?.eat()
             
-            }
+newIceCreamShop
+
             
             
             
-print(totalSales)
