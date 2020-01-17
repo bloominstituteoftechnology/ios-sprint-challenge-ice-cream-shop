@@ -16,18 +16,19 @@ enum Toppings: String{
     case caramelSauce = "caramel sauce"
     case sprinkles = "sprinkles"
     case whippedCream = "whipped cream"
-    case none = "no toppings"
 }
 
 
 struct Cone{
     let flavor: Flavor
-    let topping: Toppings
+    let topping: Toppings?
     let size: Size
     
     func eat(){
-        print("Mmmmm... This \(size) \(flavor.name) cone with \(topping.rawValue) is so good!")
+        if let toppings = topping{
+        print("Mmmmm... This \(size) \(flavor.name) cone with \(toppings.rawValue) is so good!")
     }
+}
 }
 
 class IceCreamShop{
@@ -55,17 +56,17 @@ class IceCreamShop{
         return("Our top flavors are \(topFlavorArray)")
     }
     
-    func orderCone(flavor: Flavor, toppings: Toppings?, size: Size) -> Cone?{
-        let newOrder: Cone
-        if let toppings = toppings{
-        newOrder = Cone(flavor: flavor, topping: toppings, size: size)
+    func orderCone(cone: Cone) -> Cone?{
+        var newOrder: Cone = cone
+        if let toppings = newOrder.topping{
+            newOrder = Cone(flavor: newOrder.flavor, topping: toppings, size: newOrder.size)
             totalSales += newOrder.size.rawValue
-            print("Your \(flavor.name) ice cream with \(toppings.rawValue) is \(size.rawValue)")
+            print("Your \(newOrder.flavor.name) ice cream with \(toppings.rawValue) is \(newOrder.size.rawValue)")
             
         }else {
-            newOrder = Cone(flavor: flavor, topping: .none, size: size)
+            newOrder = Cone(flavor: newOrder.flavor, topping: nil, size: newOrder.size)
             totalSales += newOrder.size.rawValue
-            print("Your \(flavor.name) ice cream with \(toppings!.rawValue) is \(size.rawValue)")
+            print("Your \(newOrder.flavor.name) ice cream is \(newOrder.size.rawValue)")
         }
         return(newOrder)
     }
@@ -78,17 +79,17 @@ let vanilla: Flavor = Flavor(name: "Vanilla", rating: 4.0)
 let rainbowSherbert: Flavor = Flavor(name: "Rainbow Sherbert", rating: 4.1)
 
 let sizes: [Size] = [.small, .medium, .large]
-let toppings: [Toppings] = [.caramelSauce, .chocolateSauce, .sprinkles, .whippedCream, .none]
+let toppings: [Toppings] = [.caramelSauce, .chocolateSauce, .sprinkles, .whippedCream]
 let flavors: [Flavor] = [chocolateChip, mintChip, rockyRoad, vanilla, rainbowSherbert]
 
 let chrisIceCreamShop: IceCreamShop = IceCreamShop(flavors: flavors, toppings: toppings, size: sizes)
 
 chrisIceCreamShop.listTopFlavors()
-//fix so each element prints separately with a comma spacing them.
 
-let firstCone: Cone
 
-chrisIceCreamShop.orderCone(flavor: chocolateChip, toppings: .caramelSauce, size: .large)
+let firstCone: Cone = Cone(flavor: chocolateChip, topping: nil, size: .large)
+
+chrisIceCreamShop.orderCone(cone: firstCone)
 
 print(chrisIceCreamShop.totalSales)
 
