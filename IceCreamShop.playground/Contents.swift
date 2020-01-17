@@ -26,7 +26,7 @@ struct Cone{
     let size: Size
     
     func eat(){
-        print("Mmmmm... This \(size) \(flavor) cone with \(topping) is so good!")
+        print("Mmmmm... This \(size) \(flavor.name) cone with \(topping.rawValue) is so good!")
     }
 }
 
@@ -51,6 +51,7 @@ class IceCreamShop{
                 topFlavorArray.append(flavor.name)
             }
         }
+        print("Our top flavors are \(topFlavorArray)")
         return("Our top flavors are \(topFlavorArray)")
     }
     
@@ -59,12 +60,12 @@ class IceCreamShop{
         if let toppings = toppings{
         newOrder = Cone(flavor: flavor, topping: toppings, size: size)
             totalSales += newOrder.size.rawValue
-            print("Your \(flavor) ice cream with \(toppings) is \(size.rawValue)")
+            print("Your \(flavor.name) ice cream with \(toppings.rawValue) is \(size.rawValue)")
             
         }else {
             newOrder = Cone(flavor: flavor, topping: .none, size: size)
             totalSales += newOrder.size.rawValue
-            print("Your \(flavor) ice cream with \(toppings!) is \(size.rawValue)")
+            print("Your \(flavor.name) ice cream with \(toppings!.rawValue) is \(size.rawValue)")
         }
         return(newOrder)
     }
@@ -81,5 +82,14 @@ let toppings: [Toppings] = [.caramelSauce, .chocolateSauce, .sprinkles, .whipped
 let flavors: [Flavor] = [chocolateChip, mintChip, rockyRoad, vanilla, rainbowSherbert]
 
 let chrisIceCreamShop: IceCreamShop = IceCreamShop(flavors: flavors, toppings: toppings, size: sizes)
+
+chrisIceCreamShop.listTopFlavors()
+//fix so each element prints separately with a comma spacing them.
+
+let firstCone: Cone
+
+chrisIceCreamShop.orderCone(flavor: chocolateChip, toppings: .caramelSauce, size: .large)
+
+print(chrisIceCreamShop.totalSales)
 
 
