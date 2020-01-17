@@ -1,140 +1,96 @@
-//1. Create a struct called `Flavor`. Add the following properties. Think about what type they should be:
-//    - `name`
-//    - `rating`
-
+// 1. Create a struct called flavor
 struct Flavor {
     
     var name: String
-    var rating: String
-
+    var rating: Int
 }
 
-//2. Create an enum called `Size`.
-//    - Give it a case for small, medium, and large.
-//    - Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
-
+// 2. Create a enum called Size
 enum Size: Double {
+    
     case small = 2.99
-    case medium = 3.49
-    case large = 4.39
+    case medium = 3.99
+    case large = 4.69
 }
-//3. Create a struct called `Cone`.
-//    - Give the struct properties (constants) that hold a flavor, topping (as a `String`), and size.
-//    - Create a function called `eat`. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love <flavor here>!"
 
+// 3. Create a struct called Cone. Create a function called eat. No arguments. It should print a string of text that include the name of the cone's flavor.
 struct Cone {
-    let flavor: String?
-    var topping: String
-    let size: Size
     
+    let flavor: String
+    let topping: String?
+    let size: Size  // referring to enum
+    
+    func eat() {
+        print("Mmm! I love \(self.flavor)")
+    }
 }
 
-let myCone = Cone(flavor: "chocolate", topping: "sprinkles", size: .small)
-print(myCone)
 
-
-func eat() {
-    print("Mmm! I love \(String(describing: myCone.flavor))")
-    
-}
-
-print(eat())
-
-
-//4. Create a class called `IceCreamShop`.
-//    - An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
-//    - Create a variable called `totalSales`. This will be used to keep track of how much money was made.
-
+// 4. Create a class called IceCreamShop. Create variables that hold various flavors, sizes, and toppings. Create a variable called totalSales (track how much moneu was made)
 class IceCreamShop {
     
-    var flavors: String
-    var sizes: [Size]
-    var toppings: String
+    var flavors: [Flavor]
+    var toppings: [String]
+    var size: [Size]
+    var totalSales: Double
     
-    var totalSales: UInt
-    
-    init(flavors: String,sizes: [Size],toppings: String, totalSales: UInt){
+    init(flavors: [Flavor], toppings: [String], size: [Size], totalSales: Double) {
         self.flavors = flavors
-        self.sizes = sizes
         self.toppings = toppings
+        self.size = size
         self.totalSales = totalSales
     }
-}
-
-
-//5. If a customer asks which flavors are available, we need to be ready to tell them. To accomplis this, do the following:
-//    - Create a function called `listTopFlavors`.
-//    - This function doesn't need any arguments.
-//    - In the function, build a string that lists out the names of each flavor in the shop's `flavors` array whose rating is over 4.0. For example, the string might say "Our top flavors are <flavors here>." **Hint:** You may want to loop through the array of flavors in order to access each one's name.
-//    - When the string has been created, print it.
-
-let flavor1 = "chocolate"
-let flavor2 = "vanilla"
-let flavor3 = "strawberry"
-
-let flavors = [flavor1, flavor2, flavor3]
-
-func listTopFlavors() {
     
-    for _ in flavors {
-        print("Our top flavors are \(flavor1), \(flavor2) and \(flavor3)!")
-    }
- return
-}
-print(listTopFlavors())
-
-//6. Customers will need a way to order a cone.
-//    - Create a function called `orderCone`.
-//    - This should have arguments needed to initialize a `Cone`, such as a flavor, topping (if desired), and a size.
-//    - This function should return an optional `Cone` object. We're going to have it be optional for later use.
-//    - In this function, create a constant that initializes a new `Cone` with the arguments passed into the function.
-//    - Add the price of the cone to the `totalSales` variable you made in the previous step.
-//    - Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
-//    - Finally, return the cone you initialized.
-
-//let toppings = ["sprinkles", "gummy worms", "hot fudge"]
-
-var size: Size = .small
-
-
-func orderCone(_ dollars: Double) -> String? {
+    // 5. Create a function called listTopFlavors
     
-    switch Size(rawValue: Double) {
-    case .small:
-        return
-    case .medium:
-        return
-    case .large:
-        return
-        
+    func listTopFlavors() {
+        for flavor in flavors {
+            if flavor.rating >= 4 {
+                print("Our top flavors are \(flavor.name)")
+            }
+        }
     }
+    
+    // 6. Create function called orderCone
+    
+    func orderCone(flavor: String, topping: String?, size: Size) -> Cone? {
+        let customersCone = Cone(flavor: flavor, topping: topping, size: size)
+        if let unwrappedConeTopping = topping {
+            print("Your \(customersCone.flavor) with \(unwrappedConeTopping) is \(customersCone.size.rawValue)")
+        }
+        totalSales += customersCone.size.rawValue
+        return customersCone
+        }
+    // need to unwrap topping if let statement
 }
 
+// 7.
+let vanillaBean = Flavor(name: "Vanilla Bean", rating: 4)
+let mooseTracks = Flavor(name: "Moose Tracks", rating: 5)
+let caramelSwirl = Flavor(name: "Caramel Swirl", rating: 4)
+
+let flavorArray: [Flavor] = [vanillaBean, mooseTracks, caramelSwirl]
+let sizeArray: [Size] = [.small, .medium, .large]
+let toppingsArray: [String] = ["fudge", "caramel", "nuts", "whipped cream"]
 
 
+// 8.
+let theIceCreamShop = IceCreamShop(flavors: flavorArray, toppings: toppingsArray, size: sizeArray, totalSales: 0)
 
+// 9.
 
+theIceCreamShop.listTopFlavors()
 
+// 10.
 
-//7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
+let customerCone: Cone? = theIceCreamShop.orderCone(flavor: "Moose Tracks", topping: "whipped cream", size: .medium)
 
+// 11.
 
+customerCone?.eat()
 
-//8. Use the constants you just made to initialize a new `IceCreamShop` constant.
+// 12.
 
+let firstSale = theIceCreamShop.orderCone(flavor: "Vanilla Bean", topping: "whipped cream", size: Size.large)
 
-//9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
-
-
-
-//10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
-
-
-//11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
-
-
-//12. Print the shop's `totalSales` and make sure that it has increased since you ordered a cone in step 10.
-
-
-
-//Validate your work through running your playground and ensure that your code operates as designed.
+print(theIceCreamShop.totalSales)
