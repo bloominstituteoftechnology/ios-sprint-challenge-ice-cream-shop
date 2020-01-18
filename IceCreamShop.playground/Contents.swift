@@ -7,30 +7,31 @@ struct Flavor {
 
 
 enum Size: Double {
-    case small
-    case medium
-    case large
+    case small = 3.99
+    case medium = 5.50
+    case large = 6.99
     
 }
 
 struct Cone {
-    let chocolate: String
-    let sprinkles: String
+    let flavor: String
+    let topping: String?
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(chocolate)!")
+        print("Mmm! I love \(flavor)!")
     }
 }
 
 class IceCreamShop {
     let flavorOptions: [String]
     let size: Size
-    var toppings: String
+    var toppings: String?
     var totalSales: Double
     
     init(flavorOptions: String, size: Size, toppings: String, totalSales: Double) {
         self.flavorOptions = []
+        self.size = size
         self.toppings = toppings
         self.totalSales = totalSales
     }
