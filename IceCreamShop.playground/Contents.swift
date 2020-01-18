@@ -4,10 +4,16 @@ struct Flavor {
     var rating: Double
 }
 
-enum Size: Double {
-    case small = 3.99
-    case medium = 5.50
-    case large = 6.99
+var chocolate = Flavor(name: "Coocoo Chocolate", rating: 4.2)
+var vanilla = Flavor(name: "Milla Vanilla", rating: 3.8)
+var strawberry = Flavor(name: "Strawberry Shorts", rating: 4.6)
+var cottonCandy = Flavor(name: "Circus Candy", rating: 3.6)
+var pastachio = Flavor(name: "Pastachio Disguisey", rating: 5.0)
+
+enum Size: String {
+    case small = "Small"
+    case medium = "Medium"
+    case large = "Large"
 }
 
 struct Cone {
@@ -28,15 +34,9 @@ class IceCreamShop {
     
     init(name: String, rating: Double) {
         self.flavors = []
-      
+        
     }
 }
-
-var chocolate = Flavor(name: "Coocoo Chocolate", rating: 4.2)
-var vanilla = Flavor(name: "Milla Vanilla", rating: 3.8)
-var strawberry = Flavor(name: "Strawberry Shorts", rating: 4.6)
-var cottonCandy = Flavor(name: "Circus Candy", rating: 3.6)
-var pastachio = Flavor(name: "Pastachio Disguisey", rating: 5.0)
 
 var flavoroptions = IceCreamShop(name: "Coocoo Chocolate", rating: 4.2)
 
@@ -45,12 +45,12 @@ flavoroptions.flavors.append(strawberry)
 flavoroptions.flavors.append(cottonCandy)
 flavoroptions.flavors.append(pastachio)
 
+print(flavoroptions)
 
 func listTopFlavors() {
-    for ratings in flavoroptions {
-        switch ratings.rating {
-    case 4.0 ... 5.0:
-        print("Our top flavors are \(flavors)")
+    for ratings in Flavor {
+        if ratings >= 4.0 {
+        print("Our top flavors are \(name)")
         }
     }
 }
@@ -58,6 +58,8 @@ func listTopFlavors() {
 listTopFlavors()
 
 func orderCone(flavor: String, topping: String?, size: String) -> String? {
-    
+
+ 
 }
+
 
