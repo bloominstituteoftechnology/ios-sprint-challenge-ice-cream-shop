@@ -18,8 +18,10 @@ struct Cone {
 
 }
 
+let cones = Cone(flavor: "vanilla", topping: "Sprinkles", coneSize: "medium")
+
 func eat() {
-    print(
+    print("MMMMM I love \(cones.flavor)")
 }
 
 
@@ -28,22 +30,26 @@ class IceCreamShop {
     var flavors: Array = ["vanilla", "Straberry", "Chocolate", "ChocalteChip"]
     var  totalSales: Int
     
-    init(flavor1: String, totalSales: Int) {
-        self.flavors = []
+    init(flavors1: String, totalSales: Int) {
+        self.flavors = [flavors1]
         self.totalSales = totalSales
         
+        func listTopFlavors() {
+        for iceCream in 0..<flavors.count{
+            let flavor = flavors[iceCream]
+            
+            print("Our top flavors are \(flavor)")
+        }    }
+
         }
-    
-    
-    func listTopFlavors() {
-    for iceCream in 0..<flavors.count{
-        let flavor = flavors[iceCream]
-        
-        print("Our top flavors are \(flavor)")
-    }    }
 }
 
-func orderCone {
+
+
+
+
+
+func orderCone() {
     
 }
 
