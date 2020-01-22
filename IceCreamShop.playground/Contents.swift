@@ -10,14 +10,14 @@ var strawberry = Flavor(name: "Strawberry Shorts", rating: 4.6)
 var cottonCandy = Flavor(name: "Circus Candy", rating: 3.6)
 var pastachio = Flavor(name: "Pastachio Disguisey", rating: 5.0)
 
-enum Size: String {
-    case small = "Small"
-    case medium = "Medium"
-    case large = "Large"
+enum Size: Double {
+    case small = 3.99
+    case medium = 5.50
+    case large = 6.99
 }
 
 struct Cone {
-    let flavor: String
+    let flavor: String // Do these constants need to be specific?
     let topping: String?
     let size: Size
     
@@ -26,7 +26,7 @@ struct Cone {
     }
 }
 
-class IceCreamShop {
+class IceCreamShop { // Should these be arrays with all the options??
     var flavors: [Flavor]
     let size: Size
     var toppings: String?
@@ -34,7 +34,7 @@ class IceCreamShop {
     
     init(name: String, rating: Double) {
         self.flavors = []
-        
+        self.totalSales = totalSales // why is there an error here?
     }
 }
 
@@ -50,7 +50,7 @@ print(flavoroptions)
 func listTopFlavors() {
     for ratings in Flavor {
         if ratings >= 4.0 {
-        print("Our top flavors are \(name)")
+        print("Our top flavors are \(name)") //Not sure how multiple flavors will be listed here
         }
     }
 }
