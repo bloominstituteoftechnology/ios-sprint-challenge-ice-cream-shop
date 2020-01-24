@@ -17,7 +17,7 @@ enum Size: Double {
 }
 
 struct Cone {
-    let flavor: String // Do these constants need to be specific?
+    let flavor: Flavor // Do these constants need to be specific?
     let topping: String?
     let size: Size
     
@@ -28,38 +28,52 @@ struct Cone {
 
 class IceCreamShop { // Should these be arrays with all the options??
     var flavors: [Flavor]
-    let size: Size
-    var toppings: String?
+    var sizes: [Size]
+    var toppings: [String]
     var totalSales: Double
     
-    init(name: String, rating: Double) {
-        self.flavors = []
+    init(flavors: [Flavor], sizes: [Size], toppings: [String], totalSales: Double ) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
         self.totalSales = totalSales // why is there an error here?
     }
-}
-
-var flavoroptions = IceCreamShop(name: "Coocoo Chocolate", rating: 4.2)
-
-flavoroptions.flavors.append(vanilla)
-flavoroptions.flavors.append(strawberry)
-flavoroptions.flavors.append(cottonCandy)
-flavoroptions.flavors.append(pastachio)
-
-print(flavoroptions)
-
-func listTopFlavors() {
-    for ratings in Flavor {
-        if ratings >= 4.0 {
-        print("Our top flavors are \(name)") //Not sure how multiple flavors will be listed here
+    
+    func listTopFlavors() {
+        for flavor in flavors {
+            if flavor.rating >= 4.0 {
+                print("Our top flavors are \(flavor.name)") //Not sure how multiple flavors will be listed here
+            }
         }
+    }
+    
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+         
+        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        
+        self.totalSales += newCone.size.rawValue
+
+    
+        if let unwrappedTopping = newCone.topping {
+            print("Your \(newCone.flavor.name) ice cream with \(unwrappedTopping) is \(newCone.size)")
+        } else {
+            print("Your \(newCone.flavor.name) ice cream is \(newCone.size)")
+        }
+        
+        return newCone
     }
 }
 
-listTopFlavors()
+let flavorArray = [chocolate, strawberry, cottonCandy, pastachio]
+let sizeArray = [Size.small, .medium, .large]
 
-func orderCone(flavor: String, topping: String?, size: String) -> String? {
+let newIceCreamShop = IceCreamShop(flavors: flavorArray, sizes: sizeArray, toppings: ["sprinkles", "fudge"], totalSales: 0.0)
 
- 
-}
+newIceCreamShop.listTopFlavors()
+
+let newCone = newIceCreamShop.orderCone(flavor: chocolate, topping: nil, size: .small)
+
+newCone?.eat()
 
 
+print(newIceCreamShop.totalSales)
