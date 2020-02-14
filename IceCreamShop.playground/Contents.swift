@@ -229,9 +229,33 @@ print("Total sales of \(sale!) as of \(time)")
 //:
 //:- Format the various strings to account for edge cases, such as if there are no flavors with a rating above 4.0, finishing the last flavor with "and". For example,"<flavor>, <flavor>, and <flavor>", instead of just "<flavor>, <flavor>, <flavor>"
 
-
+// This is inline with code.
 
 //:- In the `orderCone` function, check to make sure the flavor that the person requested exists on the menu.
 
+extension IceCreamShop {
+    func orderConeByName(flavorName: String, size: Size, topping: String? = nil) -> Cone? {
+        var foundFlavor: Flavor?
+        
+        for item in flavor {
+            if item.name == flavorName {
+                foundFlavor = item
+                break
+            }
+        }
+        
+        guard let orderFlavor = foundFlavor else {
+            print("Sorry, we don't have a flavor called \(flavorName).")
+            return nil
+        }
+        
+        let order = Cone(flavor: orderFlavor, topping: topping, size: size)
 
+        totalSales += size.rawValue
+        
+        return order
+    }
+}
 
+saltAndStaw.orderConeByName(flavorName: "Pralines and Cream", size: .medium)
+saltAndStaw.orderConeByName(flavorName: "Strawberry & Coconut Water Sherbet", size: .medium)
