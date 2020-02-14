@@ -36,10 +36,20 @@ class IceCreamShop {
     
     func listTopFlavors() {
         print("Our top flavors are: ")
-        for f in self.flavors {
-            if f.rating >= 4 {
-                print(f.name)
-            }
+        for i in 0..<self.flavors.count {
+            
+            // Check if flavor's rating is 4 or higher
+            if self.flavors[i].rating >= 4 {
+                print(self.flavors[i].name, terminator: "")
+                // Check if current index is the last. If so, add a period.
+                if i == self.flavors.count - 1 {
+                    print(".")
+                } else if i == self.flavors.count - 2 { // If it's second to last, then add "and"
+                    print("and", terminator: " ")
+                } else { // Else just add a coma
+                    print(",", terminator: " ")
+                } // End of nested if else
+            } // End of initial if
         } // End of for loop
     } // End of listTpoFlavors method
     
