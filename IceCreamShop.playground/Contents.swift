@@ -28,14 +28,14 @@ struct Cone {
 class IceCreamShop {
     var menuItem: [String]
     var menuFlavors: [Flavor]
-    var menuTopping: [String]
+    var menuToppings: [String]
     var menuSize: [Size]
     var totalSales: Double
     
-    init(menuItem: [String], menuFlavors: [Flavor], menuTopping: [String], menuSize: [Size], totalSales: Double) {
+    init(menuItem: [String], menuFlavors: [Flavor], menuToppings: [String], menuSize: [Size], totalSales: Double) {
         self.menuItem = menuItem
         self.menuFlavors = menuFlavors
-        self.menuTopping = menuTopping
+        self.menuToppings = menuToppings
         self.menuSize = menuSize
         self.totalSales = totalSales
     }
@@ -47,14 +47,16 @@ class IceCreamShop {
                 topFlavor.append(flavors.name)
             }
         }
-        print(topFlavor)
+        //print(topFlavor)
+        let noLast = [topFlavor.removeLast()]
+        print("\(topFlavor) and \(noLast)")
     }
     
     func orderCone (yourCone : Cone) -> Cone? {
         guard menuFlavors.contains(yourCone.flavor) else {
             print("Please enter an avalible flavor.")
             return nil
-        }
+        } // test flavor
         totalSales += yourCone.size.rawValue
         if let actualTopping: [String] = yourCone.topping {
             print("Your order of \(yourCone.size) size \(yourCone.flavor.name) cone with \(actualTopping) topping will be \(totalSales) dollars.")
@@ -82,11 +84,14 @@ var myToppings: [String] = []
 myToppings.append(contentsOf: [myTopping1,myTopping2,myTopping3,myTopping4])
 let mySize: [Size] = [.small, .medium, .large]
 
-let myIceCreamShop = IceCreamShop(menuItem: myMeun, menuFlavors: myFlavor, menuTopping: myToppings, menuSize: mySize, totalSales: 0.00)
+let myIceCreamShop = IceCreamShop(menuItem: myMeun, menuFlavors: myFlavor, menuToppings: myToppings, menuSize: mySize, totalSales: 0.00)
 myIceCreamShop.listTopFlavors()
+print(" ")
 
 let myCone = Cone(flavor: myFlavor1, topping: nil, size:.medium)
 myCone.eat()
+print(" ")
 myIceCreamShop.orderCone(yourCone: myCone)
+print("")
 //myIceCreamShop.orderCone(yourCone: Cone(flavor: Flavor(name: "123", rating: 4.4), topping: nil, size: .large)) test my flavor
 print(myIceCreamShop.totalSales)
