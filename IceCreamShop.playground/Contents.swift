@@ -26,13 +26,15 @@ struct Cone {
 }
 
 class IceCreamShop {
+    let name: String
     let flavors: [Flavor]
     let toppings: [String]
     let sizes: [Size]
     
     var totalSales: Double = 0.0
     
-    init(flavors: [Flavor], toppings: [String], sizes: [Size]) {
+    init(name: String, flavors: [Flavor], toppings: [String], sizes: [Size]) {
+        self.name = name
         self.flavors = flavors
         self.toppings = toppings
         self.sizes = sizes
@@ -52,7 +54,7 @@ class IceCreamShop {
             } else {
                 result += ", "
                 if index == flavors.count - 1 {
-                    result += " and "
+                    result += "and "
                 }
                 result += flavor.name
             }
@@ -67,6 +69,10 @@ class IceCreamShop {
         print("Your \(cone.fullName) is \(size.rawValue)")
         return cone
     }
+    
+    func printTotalSales() {
+        print("The total sales for \(name) is: \(totalSales)")
+    }
 }
 
 let flavors = [Flavor(name: "Vanilla", rating: 5.0),
@@ -77,3 +83,11 @@ let toppings = ["Chocolate Chips",
                 "Caramel",
                 "Sprinkles"]
 let sizes = Size.allCases
+
+let iceCreamShop = IceCreamShop(name: "Sally Cones", flavors: flavors, toppings: toppings, sizes: sizes)
+iceCreamShop.listTopFlavors()
+
+let cone = iceCreamShop.orderCone(flavor: flavors[0], topping: toppings[2], size: .large)
+cone?.eat()
+
+iceCreamShop.printTotalSales()
