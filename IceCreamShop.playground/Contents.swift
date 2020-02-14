@@ -49,9 +49,13 @@ func listTopFlavor() {
 }
 
 listTopFlavor()
+let addIceCreamShop = (IceCreamShop(menu: Cone.init(flavor: addCone.flavor, size: .medium), totalSales: nil ))
 
-
-func orderCone(iceCream: IceCreamShop ) {
-    var iceCream = iceCream
+func orderCone(flavor: IceCreamShop = Flavor, topping: IceCreamShop = topping, size: Size ) -> Cone? {
+    var iceCream = iceCream.menu
+    for order in iceCream.flavor{
+        if order.flavorA {
     
+    }
+    }
 }
