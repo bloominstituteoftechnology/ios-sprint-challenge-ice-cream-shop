@@ -41,9 +41,25 @@ class IceCreamShop {
     
     func listTopFlavors() {
         var topFlavors: String = ""
+        var numberOfTopFlavors: Int = 0
+        var numberOfTimesRun: Int = 0
+        
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                topFlavors = flavor.name + ", " + topFlavors
+                numberOfTopFlavors += 1
+            }
+        }
+        
+        for flavor in flavors {
+            if flavor.rating > 4.0 {
+                numberOfTimesRun += 1
+                if topFlavors == "" {
+                    topFlavors += flavor.name
+                } else if numberOfTopFlavors == numberOfTimesRun {
+                    topFlavors = topFlavors + ", and " + flavor.name
+                } else {
+                    topFlavors = topFlavors + ", " + flavor.name
+                }
             }
         }
         print("Our top flavors are \(topFlavors)")
@@ -55,9 +71,9 @@ class IceCreamShop {
         let priceOfCone = size.rawValue
         
         if let unWrappedTopping = topping {
-            print("Your \(flavor) ice cream with \(unWrappedTopping) is \(size.rawValue)")
+            print("Your \(flavor.name) ice cream with \(unWrappedTopping) is \(size.rawValue)")
         } else {
-            print("Your \(flavor) ice cream is $\(size.rawValue)")
+            print("Your \(flavor.name) ice cream is $\(size.rawValue)")
         }
         
         totalSales += priceOfCone
@@ -67,15 +83,16 @@ class IceCreamShop {
 }
 
 
-let flavor1 = Flavor(name: "Mint", rating: 4.5)
-let flavor2 = Flavor(name: "Vanilla", rating: 3.2)
-let flavor3 = Flavor(name: "Chocolate", rating: 4.1)
+let flavor1 = Flavor(name: "mint", rating: 4.5)
+let flavor2 = Flavor(name: "vanilla", rating: 3.2)
+let flavor3 = Flavor(name: "chocolate", rating: 4.1)
+let flavor4 = Flavor(name: "birthday Cake", rating: 4.6)
 
 let arrayOfSizes: [Size] = [.small, .medium, .large]
 let arrayOfToppings: [String] = ["chocolate chips", "reese's peanut butter cups", "sour gummy worms"]
 
 
-let iceCreamShop = IceCreamShop(totalSales: 0, sizes: arrayOfSizes, toppings: arrayOfToppings, flavors: [flavor1, flavor2, flavor3])
+let iceCreamShop = IceCreamShop(totalSales: 0, sizes: arrayOfSizes, toppings: arrayOfToppings, flavors: [flavor1, flavor2, flavor3, flavor4])
 
 iceCreamShop.listTopFlavors()
 
