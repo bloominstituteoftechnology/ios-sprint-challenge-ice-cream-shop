@@ -73,12 +73,29 @@ class IceCreamShop {
     func printTotalSales() {
         print("The total sales for \(name) is: \(totalSales)")
     }
+}
+
+class Clerk {
+    let name: String
+    let shop: IceCreamShop
+    
+    init(name: String, shop: IceCreamShop) {
+        self.name = name
+        self.shop = shop
+    }
+    
+    var greeting: String {
+        """
+        **** \(name.capitalized) ****
+        How may I help you today?
+        """
+    }
     
     func open() {
-        print("\(name) is now open for business!")
+        print("\(shop.name) is now open for business!")
         var closed = false
         while !closed {
-            
+            print(greeting)
         }
     }
 }
