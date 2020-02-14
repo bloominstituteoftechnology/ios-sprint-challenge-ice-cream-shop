@@ -1,4 +1,3 @@
-
 struct Flavor {
     let name: String
     var rating: Double
@@ -11,62 +10,62 @@ enum Size: Double {
 }
 
 struct Cone {
-    let flavor: String
+    var flavor: String
     let topping: String
     let size: Size
-    
-    func eat() {
-        print("Mmm!  I love \(flavor) flavor!")
-    }
 }
 
 class IceCreamShop {
     
-    let Cone: Cone
-    let flavors = [(flavor: "Vanilla", 3.0), (flavor: "Chocolate", 4.0), (flavor: "Strawberry", 5.0)]
-    let sizes = Size
+    let cone: Cone
+    let sizes: Size
     let toppings = ["Gummy Bears", "Sprinkles", "Nuts"]
     let totalSales: Double
+    let flavors = [("Vanilla", 3.0), ("Chocolate", 4.0), ("Strawberry", 5.0)]
     
-    init(size: Size, toppings: [String], totalSales: Double, flavors: [Flavor]) {
-        self.size = size
+    init(cone: Cone, sizes: Size, toppings: [String], totalSales: Double, flavors: [(String, Double)]) {
+        self.cone = cone
+        self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
         self.flavors = flavors
+    }
+    func eat() {
+        print("Mmm!  I love \(cone.flavor) flavor!")
     }
 }
 
 var coneString: String = ""
 
-func orderCone(cone: Cone) {
-        
-    if let Cone = Cone {
-        
-    }
-    coneString += "Flavor: \(cone.flavor)"
+func orderCone(cone: Cone?) {
     
-    if let coneTopping = cone.topping {
-        coneString += " Topping: \(coneTopping)"
+    if let unwrappedCone = cone {
+        coneString += "Flavor: \(unwrappedCone.flavor)"
     }
     
-    coneString += " Size: \(cone.size)"
-    
-    //return cone
+    if let unwrappedConeTopping = cone {
+        coneString += " Topping: \(unwrappedConeTopping.topping)"
+    }
+    if let unWrappedConeSize = cone {
+        coneString += " Size: \(unWrappedConeSize.size)"
+    }
+    return cone
 }
 
-let iceCreamShop = IceCreamShop(size: Size, toppings: ["Gummy Bears", "Sprinkles", "Nuts"], totalSales: 0.0, flavors: ["Gummy Bears", "Sprinkles", "Nuts"])
+let iceCreamShop: IceCreamShop
 
 func listTopFlavors() {
     
-    let flavors = iceCreamShop.flavor
+    let flavors = iceCreamShop.flavors
     
     for flavor in flavors {
         var flavorsString = ""
-            flavorsString += " \(flavor)"
+        flavorsString += " \(flavor)"
         print(flavorsString)
     }
 }
 
 listTopFlavors()
 
-eat()
+
+iceCreamShop.eat()
