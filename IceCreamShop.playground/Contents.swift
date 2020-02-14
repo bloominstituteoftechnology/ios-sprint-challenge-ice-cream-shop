@@ -51,41 +51,15 @@ struct Cone {
     }
 }
 
-class IceCreamShop {
+struct IceCreamShop {
     let name: String
     let flavors: [Flavor]
     let toppings: [String]
     let sizes: [Size]
-    
     var totalSales: Double = 0.0
     
-    init(name: String, flavors: [Flavor], toppings: [String], sizes: [Size]) {
-        self.name = name
-        self.flavors = flavors
-        self.toppings = toppings
-        self.sizes = sizes
-    }
-    
-    func orderCone(flavor: Flavor, topping: String = "", size: Size) -> Cone? {
-        let cone = Cone(flavor: flavor, topping: topping, size: size)
-        totalSales += size.price
-        print("Your \(size.name) \(cone.fullName) is $\(size.price)")
-        return cone
-    }
-    
-    func printTotalSales() {
-        print("The total sales for \(name) is: $\(totalSales)")
-    }
-}
-
-class Clerk {
-    let name: String
-    let shop: IceCreamShop
-    
-    var greeting: String {
+    var menu: String {
         """
-        **** \(name.capitalized) ****
-        How may I help you today? You can enter:
         'f' to list all flavors
         'F' to list the top flavors (greater than 4.0 rating)
         't' to list all toppings
@@ -94,15 +68,15 @@ class Clerk {
         """
     }
     
-    var flavors: String {
+    var flavorsMenu: String {
         var result = ""
-        for (index, flavor) in shop.flavors.enumerated() {
+        for (index, flavor) in flavors.enumerated() {
             result += "\(index + 1)) \(flavor.fullName)\n"
         }
-        return Clerk.numberedPrompt("These are our flavors", result)
+        return result
     }
     
-    var topFlavors: String {
+    var topFlavorsMenu: String {
         var results = Array<(index: Int, flavor: Flavor)>()
         for (index, flavor) in shop.flavors.enumerated() {
             if flavor.rating > 4.0 {
@@ -119,26 +93,30 @@ class Clerk {
             stringResult += "\(val.index + 1)) \(val.flavor.fullName)"
         }
         
-        return Clerk.numberedPrompt("These are our top flavors", stringResult)
+        return stringResult
     }
     
-    var toppings: String {
+    var toppingsMenu: String {
         var result = ""
         for (index, topping) in shop.toppings.enumerated() {
             result += "\(index + 1)) \(topping)"
         }
-        
-        return Clerk.numberedPrompt("These are our toppings", result)
+        return menu
     }
     
-    var sizes: String {
+    
+    var sizesMenu: String {
         var result = ""
         for (index, size) in shop.sizes.enumerated() {
             result += "\(index + 1)) \(size.fullName)"
         }
-        
-        return Clerk.numberedPrompt("These are our sizes", result)
+        return result
     }
+}
+
+class Clerk {
+    let name: String
+    let shop: IceCreamShop
     
     static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
     
