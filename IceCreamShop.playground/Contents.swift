@@ -11,7 +11,7 @@
 
 struct Flavor {
     var name: String
-    var rating: Int
+    var rating: Double
 }
 
 //:2. Create an enum called `Size`.
@@ -66,7 +66,24 @@ class IceCreamShop {
 //:    - When the string has been created, print it.
 //:
 
+extension IceCreamShop {
+    func listTopFlavors() {
+        
+        let topFlavors = menu.filter{ $0.rating > 4.0 }
 
+        if topFlavors.count == 0 {
+            print("They all good!")
+            return
+        }
+        
+        var list = ""
+        for item in menu {
+            
+        }
+
+        print("Our top flavors are \(list).")
+    }
+}
 
 //:6. Customers will need a way to order a cone.
 //:    - Create a function called `orderCone`.
