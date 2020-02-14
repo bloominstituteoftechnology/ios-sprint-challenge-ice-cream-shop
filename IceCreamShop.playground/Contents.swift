@@ -203,12 +203,17 @@ let eleanorOrder = saltAndStaw.orderCone(flavor: saltAndStaw.flavor[0],
 
 //:11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 
-
+if let cone = eleanorOrder {
+    cone.eat()
+}
 
 //:12. Print the shop's `totalSales` and make sure that it has increased since you ordered a cone in step 10.
 //:
 //:Validate your work through running your playground and ensure that your code operates as designed.
 //:
+
+
+
 //:## Stretch Problems (Optional)
 //:
 //:After finishing your required elements, you can push your work further. These goals may or may not be things you have learned in this module but they build on the material you just studied. Time allowing, stretch your limits and see if you can deliver on the following **optional** goals:
