@@ -112,7 +112,15 @@ extension IceCreamShop {
 //:    - Finally, return the cone you initialized.
 //:
 
+extension IceCreamShop {
+    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+        let order = Cone(flavor: flavor, topping: topping, size: size)
 
+        totalSales += size.rawValue
+        
+        return order
+    }
+}
 
 //:7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
 //:8. Use the constants you just made to initialize a new `IceCreamShop` constant.
