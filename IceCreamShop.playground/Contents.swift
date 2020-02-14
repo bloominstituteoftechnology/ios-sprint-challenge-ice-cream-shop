@@ -1,5 +1,8 @@
 extension Cone {
-    struct Flavor {
+    struct Flavor: Equatable {
+    static func ==(lhs: Flavor, rhs: Flavor) {
+        lhs.name == rhs.name
+    }
         let name: String
         let rating: Double
     }
@@ -49,10 +52,29 @@ class IceCreamShop {
         }
     }
     func orderCone(flavor: Cone.Flavor, toppings: [String], size: Cone.Size) -> Cone? {
-        //confirm availability
-        //calculatePrice
-        //collectSales
-        nil
+        guard menu.flavors.contains(flavor) else {
+            print("Sorry, we don't have that flavor.")
+            return nil
+        }
+        guard toppings.allSatisfy(menu.toppings.contains) else {
+            let grammar = toppings.count > 1 ? "those toppings" : "that topping"
+            print("Sorry, we don't have \(grammar).")
+            return nil
+        }
+        guard menu.sizes.contains(size) else {
+            print("Sorry we don't carry that size.")
+            return nil
+        }
+        
+        let price: Double = {
+            let pricePerTopping = 0.5
+            let toppingsPrice = pricePerTopping * Double(toppings.count)
+            let priceOfSize = size.rawValue
+            return toppingsPrice + priceOfSize
+        }()
+        
+        totalSales += price
+        return Cone(flavor: flavor, toppings: toppings, size: size)
     }
     var totalSales = 0.0
 }
