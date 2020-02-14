@@ -11,12 +11,12 @@ struct Flavor {
 }
 
 struct Cone {
-    var flavor: [Flavor]
+    var flavor: Flavor
     var topping: [String]?
     var size: Size
     
     func eat() {
-        print("MMM! I love \(self.flavor).")
+        print("MMM! I love \(self.flavor.name) flavor.")
     }
 }
 
@@ -27,7 +27,7 @@ class IceCreamShop {
     var menuSize: [Size]
     var totalSales: Double
     
-    init(menuItem: [String], menuFlavors: [Flavor], menuTopping: [String], menuSize: [Size], totalSales: Double = 0.00) {
+    init(menuItem: [String], menuFlavors: [Flavor], menuTopping: [String], menuSize: [Size], totalSales: Double) {
         self.menuItem = menuItem
         self.menuFlavors = menuFlavors
         self.menuTopping = menuTopping
@@ -45,15 +45,14 @@ class IceCreamShop {
         print(topFlavor)
     }
     
-    func orderCone (flavor: Flavor, toppings: [String]?, size: Size) -> Cone? {
-        let ordered = Cone(flavor: [flavor], topping: toppings, size: size)
-        totalSales += ordered.size.rawValue
-        if let actualTopping: [String] = ordered.topping {
-            print("Your order of \(ordered.size) size \(ordered.flavor) cone with \(actualTopping) topping will be \(totalSales) dollars.")
+    func orderCone (yourCone : Cone) -> Cone? {
+        totalSales += yourCone.size.rawValue
+        if let actualTopping: [String] = yourCone.topping {
+            print("Your order of \(yourCone.size) size \(yourCone.flavor.name) cone with \(actualTopping) topping will be \(totalSales) dollars.")
         } else {
-            print("Your order of \(ordered.size) size \(ordered.flavor) cone with no topping will be \(totalSales) dollars.")
+            print("Your order of \(yourCone.size) size \(yourCone.flavor.name) cone with no topping will be \(totalSales) dollars.")
         }
-        return ordered
+        return yourCone
     }
 }
 
@@ -74,4 +73,10 @@ var myToppings: [String] = []
 myToppings.append(contentsOf: [myTopping1,myTopping2,myTopping3,myTopping4])
 let mySize: [Size] = [.small, .medium, .large]
 
-let myIceCreamShop = IceCreamShop(menuItem: myMeun, menuFlavors: myFlavor, menuTopping: myToppings, menuSize: mySize)
+let myIceCreamShop = IceCreamShop(menuItem: myMeun, menuFlavors: myFlavor, menuTopping: myToppings, menuSize: mySize, totalSales: 0.00)
+myIceCreamShop.listTopFlavors()
+
+let myCone = Cone(flavor: myFlavor1, topping: nil, size:.medium)
+myCone.eat()
+myIceCreamShop.orderCone(yourCone: myCone)
+//print(myIceCreamShop.totalSales)
