@@ -79,16 +79,34 @@ class Clerk {
     let name: String
     let shop: IceCreamShop
     
-    init(name: String, shop: IceCreamShop) {
-        self.name = name
-        self.shop = shop
-    }
-    
     var greeting: String {
         """
         **** \(name.capitalized) ****
-        How may I help you today?
+        How may I help you today? You can enter:
+        'f' to list all flavors
+        'F' to list the top flavors (greater than 4.0 rating)
+        't' to list all toppings
+        's' to list all sizes
+        'o' to order
         """
+    }
+    
+    var flavors: String {
+        var result = ""
+        for (index, flavor) in shop.flavors.enumerated() {
+            result += "\(index + 1)) \(flavor.name)\n"
+        }
+        return """
+               These are the available flavors, use the number next to it when you order:
+               \(result)
+               """
+    }
+    
+    static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
+    
+    init(name: String, shop: IceCreamShop) {
+        self.name = name
+        self.shop = shop
     }
     
     func open() {
@@ -96,6 +114,28 @@ class Clerk {
         var closed = false
         while !closed {
             print(greeting)
+            
+            let input = readLine(strippingNewline: true)
+            guard let choice = input else {
+                print(Clerk.inputErrorMsg)
+                continue
+            }
+            
+            switch choice {
+            case "f":
+                print(flavors)
+            case "F":
+                break
+            case "t":
+                break
+            case "s":
+                break
+            case "o":
+                break
+            default:
+                print(Clerk.inputErrorMsg)
+                continue
+            }
         }
     }
 }
