@@ -5,7 +5,7 @@ struct Flavor {
     var rating: Double
 }
 
-enum Size: Double {
+enum Size: Double, CaseIterable {
     case small = 2.99
     case medium = 4.99
     case large = 7.99
@@ -68,3 +68,12 @@ class IceCreamShop {
         return cone
     }
 }
+
+let flavors = [Flavor(name: "Vanilla", rating: 5.0),
+               Flavor(name: "Chocolate", rating: 4.0),
+               Flavor(name: "Mint", rating: 3.0)]
+let toppings = ["Chocolate Chips",
+                "Fudge",
+                "Caramel",
+                "Sprinkles"]
+let sizes = Size.allCases
