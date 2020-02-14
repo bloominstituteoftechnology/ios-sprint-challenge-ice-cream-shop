@@ -1,3 +1,14 @@
+extension Array where Element == String {
+    func formatCommaAnd() -> Self {
+        guard self.count > 1 else { return self }
+        return self.map({
+            item -> String in
+            if item != self.last { return "\(item), " }
+            else { return "and \(item)" }
+        })
+    }
+}
+
 extension Cone {
     struct Flavor: Equatable {
         static func ==(lhs: Flavor, rhs: Flavor) {
@@ -10,6 +21,7 @@ extension Cone {
         case small = 3.99
         case medium = 5.99
         case large = 7.99
+        case extraLarge = 11.99
     }
 }
 struct Cone {
@@ -20,7 +32,6 @@ struct Cone {
         print("Mmm! I love \(flavor.name)!")
     }
 }
-
 extension IceCreamShop {
     struct Menu {
         var flavors: [Cone.Flavor]
@@ -34,18 +45,12 @@ class IceCreamShop {
     }
     let menu: Menu
     func listTopFlavors() {
-        var topFlavors = [String]()
-        for flavor in menu.flavors where flavor.rating >= 4.0 {
-            topFlavors.append(flavor.name)
-        }
+        let topFlavors = menu.flavors.filter({ $0.rating >= 4.0 }).map({ $0.name })
         if topFlavors.isEmpty {
             print("Nobody seems to like any of our flavors.")
             return
         }
-        let formattedTopFlavors = topFlavors.map({ flavor -> String in
-            if flavor == topFlavors.last { return "and \(flavor)." }
-            else { return "\(flavor), " }
-            }).joined()
+        let formattedTopFlavors = topFlavors.formatCommaAnd().joined()
         print("Our top flavors are \(formattedTopFlavors)")
     }
     func orderCone(flavor: Cone.Flavor, toppings: [String], size: Cone.Size) -> Cone? {
@@ -68,6 +73,8 @@ class IceCreamShop {
             let priceOfSize = size.rawValue
             return toppingsPrice + priceOfSize
         }()
+        let formattedToppings = toppings.formatCommaAnd().joined().lowercased()
+        print("One \(size) Cone of \(flavor.name) ice cream with \(formattedToppings) coming right up!")
         print("That will be $\(price).")
         totalSales += price
         return Cone(flavor: flavor, toppings: toppings, size: size)
@@ -87,19 +94,20 @@ let iceCreamShop: IceCreamShop = {
             Cone.Flavor(name: "Cookie dough", rating: 4.3),
         ]
         let newShopToppings = [
-        "Hot Fudge",
-        "Sprinkles",
-        "Caramel",
-        "Oreos",
-        "Peanut butter cups",
-        "Cookie dough",
-        "Whipped cream",
-        "Nuts",
-        "Fruit",
+            "Hot Fudge",
+            "Sprinkles",
+            "Caramel",
+            "Oreos",
+            "Peanut butter cups",
+            "Cookie dough",
+            "Whipped cream",
+            "Nuts",
+            "Fruit",
         ]
         let newShopSizes = [
             Cone.Size.small,
-            Cone.Size.large
+            Cone.Size.medium,
+            Cone.Size.large,
         ]
         return IceCreamShop.Menu(flavors: newShopFlavors, toppings: newShopToppings, sizes: newShopSizes)
     }()
@@ -112,7 +120,11 @@ let cone: Cone? = {
     let selectedFlavor = iceCreamShop.menu.flavors.randomElement()!
     var selectedToppings = [String]()
     for _ in 0...Int.random(in: 0...3) {
-        selectedToppings.append(iceCreamShop.menu.toppings.randomElement()!)
+        var newTopping = iceCreamShop.menu.toppings.randomElement()!
+        while selectedToppings.contains(newTopping) {
+            newTopping = iceCreamShop.menu.toppings.randomElement()!
+        }
+        selectedToppings.append(newTopping)
     }
     let selectedSize = iceCreamShop.menu.sizes.randomElement()!
     return iceCreamShop.orderCone(flavor: selectedFlavor, toppings: selectedToppings, size: selectedSize)
