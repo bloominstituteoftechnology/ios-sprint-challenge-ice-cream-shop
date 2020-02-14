@@ -43,7 +43,7 @@ class IceCreamShop {
         var topFlavors: String = ""
         var numberOfTopFlavors: Int = 0
         var numberOfTimesRun: Int = 0
-        
+
         // CHECK TO SEE HOW MANY TOP FLAVORS THERE ARE
         for flavor in flavors {
             if flavor.rating > 4.0 {
@@ -51,6 +51,7 @@ class IceCreamShop {
             }
         }
         
+        // STRETCH GOAL #1
         for flavor in flavors {
             if flavor.rating > 4.0 {
                 if numberOfTopFlavors > 2 {
@@ -76,6 +77,18 @@ class IceCreamShop {
     
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         
+        // STRETCH GOAL #2 Check to see if topping exists
+        var doesExist = false
+        for toppings in toppings {
+            if topping == toppings {
+                doesExist = true
+            }
+        }
+        
+        if !doesExist {
+            return nil
+        }
+        
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
         let priceOfCone = size.rawValue
         
@@ -91,7 +104,6 @@ class IceCreamShop {
     }
 }
 
-
 let flavor1 = Flavor(name: "mint", rating: 4.5)
 let flavor2 = Flavor(name: "vanilla", rating: 3.2)
 let flavor3 = Flavor(name: "chocolate", rating: 4.1)
@@ -100,11 +112,14 @@ let flavor4 = Flavor(name: "birthday Cake", rating: 4.6)
 let arrayOfSizes: [Size] = [.small, .medium, .large]
 let arrayOfToppings: [String] = ["chocolate chips", "reese's peanut butter cups", "sour gummy worms"]
 
-
 let iceCreamShop = IceCreamShop(totalSales: 0, sizes: arrayOfSizes, toppings: arrayOfToppings, flavors: [flavor1, flavor2, flavor3, flavor4])
 
 iceCreamShop.listTopFlavors()
 
 let newCone = iceCreamShop.orderCone(flavor: flavor1, topping: "chocolate chips", size: .large)
+
 newCone?.eat()
+
 print(iceCreamShop.totalSales)
+
+// Both stretch goals completed
