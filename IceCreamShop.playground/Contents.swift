@@ -122,4 +122,4 @@ newCone?.eat()
 
 print(iceCreamShop.totalSales)
 
-// Both stretch goals completed
+// Both stretch goals completed and tested
