@@ -45,16 +45,23 @@ struct Cone {
 //:    - Create a variable called `totalSales`. This will be used to keep track of how much money was made.
 //:
 
+//FIXME: Not sure what to do about size.
 class IceCreamShop {
-    var menu: [Cone]
+    var flavor: [Flavor]
+    var topping: [String]
     var totalSales: Double
     
-    func addCone(_ cone: Cone) {
-        menu.append(cone)
+    func addTopping(_ item: String) {
+        topping.append(item)
+    }
+    
+    func addFlavor(_ item: Flavor) {
+        flavor.append(item)
     }
     
     init() {
-        self.menu = []
+        self.flavor = []
+        self.topping = []
         self.totalSales = 0.00
     }
 }
@@ -69,7 +76,7 @@ class IceCreamShop {
 extension IceCreamShop {
     func listTopFlavors() {
         
-        let topFlavors = menu.filter{ $0.flavor.rating > 4.0 }
+        let topFlavors = flavor.filter{ $0.rating > 4.0 }
 
         if topFlavors.count == 0 {
             print("They all good!")
@@ -77,11 +84,11 @@ extension IceCreamShop {
         }
         
         var list = ""
-        var count = menu.count
+        var count = flavor.count
         let total = count
         
-        for item in menu {
-            list += item.flavor.name
+        for item in flavor {
+            list += item.name
             
             switch count {
             case 2: // Second to the end.
@@ -125,11 +132,56 @@ extension IceCreamShop {
 //:7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
 //:8. Use the constants you just made to initialize a new `IceCreamShop` constant.
 
+var saltAndStaw = IceCreamShop()
 
+let a01 = Flavor(name: "Sea Salt w/ Caramel Ribbons"                  , rating: 0.0)
+let a02 = Flavor(name: "Salted, Malted, Chocolate Chip Cookie Dough"  , rating: 0.0)
+let a03 = Flavor(name: "Double Fold Vanilla"                          , rating: 0.0)
+let a04 = Flavor(name: "Honey Lavender"                               , rating: 0.0)
+let a05 = Flavor(name: "Chocolate Gooey Brownie"                      , rating: 0.0)
+let a06 = Flavor(name: "Strawberry Honey Balsamic w/ Black Pepper"    , rating: 0.0)
+let a07 = Flavor(name: "Pots of Gold & Rainbows"                      , rating: 0.0)
+let a08 = Flavor(name: "Sightglass Coffee Cashew Praline"             , rating: 0.0)
+let a09 = Flavor(name: "Black Olive Brittle & Goat Cheese"            , rating: 0.0)
+let a10 = Flavor(name: "Strawberry & Coconut Water Sherbet"           , rating: 0.0)
+let a11 = Flavor(name: "Dandelion Chocolate Hazelnut Cookies & Cream" , rating: 0.0)
+let a12 = Flavor(name: "Freckled Mint TCHO-colate Chip"               , rating: 0.0)
+let a13 = Flavor(name: "Milla’s Chocolate Hazelnut Praline"           , rating: 0.0)
+let a14 = Flavor(name: "Compartes Caramelized Popcorn Milk Chocolate" , rating: 0.0)
+let a15 = Flavor(name: "Nibble’s 85% Peruvian Chocolate Sorbet"       , rating: 0.0)
+
+saltAndStaw.addFlavor(a01)
+saltAndStaw.addFlavor(a02)
+saltAndStaw.addFlavor(a03)
+saltAndStaw.addFlavor(a04)
+saltAndStaw.addFlavor(a05)
+saltAndStaw.addFlavor(a06)
+saltAndStaw.addFlavor(a07)
+saltAndStaw.addFlavor(a08)
+saltAndStaw.addFlavor(a09)
+saltAndStaw.addFlavor(a10)
+saltAndStaw.addFlavor(a11)
+saltAndStaw.addFlavor(a12)
+saltAndStaw.addFlavor(a13)
+saltAndStaw.addFlavor(a14)
+saltAndStaw.addFlavor(a15)
+
+saltAndStaw.addTopping("Hot fudge")
+saltAndStaw.addTopping("Sprinkles")
+saltAndStaw.addTopping("Caramel")
+saltAndStaw.addTopping("Oreos")
+saltAndStaw.addTopping("Peanut butter cups")
+saltAndStaw.addTopping("Cookie dough")
+saltAndStaw.addTopping("Whipped cream")
+saltAndStaw.addTopping("Hard chocolate coating")
+saltAndStaw.addTopping("Melted marshmallows")
+saltAndStaw.addTopping("Cereal")
+saltAndStaw.addTopping("Nuts")
+saltAndStaw.addTopping("Fruit")
 
 //:9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
 
-
+saltAndStaw.listTopFlavors()
 
 //:10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
 
