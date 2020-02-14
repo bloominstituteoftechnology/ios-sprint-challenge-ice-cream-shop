@@ -68,7 +68,9 @@ let newIceCreamShop = IceCreamShop(flavors: flavorsOffered, sizes: sizesOffered,
 
 newIceCreamShop.listTopFlavors()
 
-let newCone = newIceCreamShop.orderCone(flavor: chocolateMousse, topping: nil, size: .medium)
+let newCone = newIceCreamShop.orderCone(flavor: chocolateMousse, topping: "Caramel", size: .medium)
 
-newCone.eat()
+newCone?.eat()
+
+print(newIceCreamShop.totalSales)
 
