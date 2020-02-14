@@ -11,19 +11,20 @@ enum Size: Double {
 }
 
 struct Cone {
-    let flavor: [Flavor]
-    let topping: String? // optional for cone
+    var flavor: String
+    let topping: String
     let size: Size
 }
 
 class IceCreamShop {
     
-    var size: Size
-    var toppings: String
+    let Cone: Cone
+    let flavors = ["Vanilla", "Chocolate", "Strawberry"]
+    let sizes = Size
+    let toppings = ["Gummy Bears", "Sprinkles", "Nuts"]
     let totalSales: Double
-    let flavors: Flavor
     
-    init(sizes: Size, toppings: String, totalSales: Double, flavors: Flavor) {
+    init(size: Size, toppings: [String], totalSales: Double, flavors: [Flavor]) {
         self.size = size
         self.toppings = toppings
         self.totalSales = totalSales
@@ -32,8 +33,6 @@ class IceCreamShop {
 }
 
 var coneString: String = ""
-
-let cone = Cone(flavor: "Vanilla", topping: "Sprinkles", size: Size.medium)
 
 func eat() {
     print("Mmm!  I love \(cone.flavor) flavor!")
@@ -48,7 +47,8 @@ func orderCone(cone: Cone) {
     }
     
     coneString += " Size: \(cone.size)"
-    //return cone
+    
+    return cone
 }
 
 
@@ -63,14 +63,6 @@ func listTopFlavors() {
     }
 }
 
-
-orderCone(cone: Cone(flavor: "Vanilla", topping: "Sprinkles", size: .large))
-print(coneString)
-
 listTopFlavors()
-
-var flavors = [("Vanilla", 3.0),("Chocolate", 3.0),("Strawberry", 5.0)]
-
-var iceCreamShop: IceCreamShop = IceCreamShop(flavor: [Flavor], sizes: [Size], toppings: [String], totalSales: Double)
 
 eat()
