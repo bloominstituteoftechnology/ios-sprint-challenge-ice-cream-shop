@@ -38,7 +38,20 @@ func listTopFlavors() {
     for flavor in flavors {
         if flavor.rating >= 4.0 {
             print("Our topflavors are \(flavor)")
-        }
+      }
     }
- }
+  }
+}
+
+func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+    
+    let newCone = Cone(flavor: flavor, topping: topping, size: size)
+    let newConePrice = newCone.size.rawValue
+    
+    if topping != nil {
+        print("Your \(flavor) ice cream with \(topping) is \(size.rawValue)")
+    } else {
+        print("Your \(flavor) ice cream is \(size.rawValue)")
+    }
+    return newCone
 }
