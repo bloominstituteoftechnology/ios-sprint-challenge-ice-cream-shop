@@ -2,7 +2,7 @@
 
 struct Flavor {
     var name: String
-    var rating: Int
+    var rating: Double
 }
 
 enum Size: Double {
@@ -55,7 +55,18 @@ class IceCreamShop {
         print("is \(cone.size.rawValue)") // Prints raw value of the size given
         
         return cone
-    }
+    } // End of orderCone function
     
-}
+} // End of IceCreamShop Class declaration
 
+// Add all flavors
+let vanilla = Flavor(name: "Vanilla", rating: 5.00)
+let mint = Flavor(name: "Mint", rating: 4.25)
+let lime = Flavor(name: "Lime", rating: 3.75)
+let chocolate = Flavor(name: "Chocolate", rating: 4.90)
+
+// Sizes array
+let sizes: [Size] = [.large, .medium, .small]
+
+// Toppings array
+let toppings: [String] = ["M&Ms", "Cookies", "Sprinkles", "Chocolate Chips"]
