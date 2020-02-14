@@ -31,12 +31,12 @@ enum Size: Double {
 //:
 
 struct Cone {
-    let flavor: String
+    let flavor: Flavor
     let topping: String
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 
@@ -69,7 +69,7 @@ class IceCreamShop {
 extension IceCreamShop {
     func listTopFlavors() {
         
-        let topFlavors = menu.filter{ $0.rating > 4.0 }
+        let topFlavors = menu.filter{ $0.flavor.rating > 4.0 }
 
         if topFlavors.count == 0 {
             print("They all good!")
@@ -77,11 +77,28 @@ extension IceCreamShop {
         }
         
         var list = ""
+        var count = menu.count
+        let total = count
+        
         for item in menu {
+            list += item.flavor.name
             
+            switch count {
+            case 2: // Second to the end.
+                if total == 2 {
+                    list += " & "
+                } else { // Don't forget the Oxford comma.
+                    list += ", & "
+                }
+            case 1: // At the end.
+                list += "."
+            default: // Lots of ice cream
+                list += ", "
+            }
+            count -= 1
         }
 
-        print("Our top flavors are \(list).")
+        print("Our top flavors are \(list)")
     }
 }
 
