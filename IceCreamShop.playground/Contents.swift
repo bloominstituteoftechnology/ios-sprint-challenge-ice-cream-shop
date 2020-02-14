@@ -36,7 +36,7 @@ class IceCreamShop {
 func listTopFlavors() {
     for flavor in flavors {
         if flavor.rating >= 4.0 {
-            print("Our topflavors are \(flavor)")
+            print("Our top flavors are \(flavor.name)")
       }
     }
   }
