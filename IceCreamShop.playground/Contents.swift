@@ -79,17 +79,18 @@ extension IceCreamShop {
         let topFlavors = flavor.filter{ $0.rating > 4.0 }
 
         if topFlavors.count == 0 {
-            print("They all good!")
+            print("They're all good!")
             return
         }
         
         var list = ""
-        var count = flavor.count
+        var count = topFlavors.count
         let total = count
         
-        for item in flavor {
-            list += item.name
-            
+        for item in topFlavors {
+            //list += "\(item.name) = \(item.rating)\n"
+            list += "\(item.name)"
+
             switch count {
             case 2: // Second to the end.
                 if total == 2 {
@@ -105,7 +106,9 @@ extension IceCreamShop {
             count -= 1
         }
 
-        print("Our top flavors are \(list)")
+        let plural = total == 1 ? " is" : "s are"
+        
+        print("Our top flavor\(plural) \(list)")
     }
 }
 
@@ -146,9 +149,9 @@ let a09 = Flavor(name: "Black Olive Brittle & Goat Cheese"            , rating: 
 let a10 = Flavor(name: "Strawberry & Coconut Water Sherbet"           , rating: 0.0)
 let a11 = Flavor(name: "Dandelion Chocolate Hazelnut Cookies & Cream" , rating: 0.0)
 let a12 = Flavor(name: "Freckled Mint TCHO-colate Chip"               , rating: 0.0)
-let a13 = Flavor(name: "Milla’s Chocolate Hazelnut Praline"           , rating: 0.0)
-let a14 = Flavor(name: "Compartes Caramelized Popcorn Milk Chocolate" , rating: 0.0)
-let a15 = Flavor(name: "Nibble’s 85% Peruvian Chocolate Sorbet"       , rating: 0.0)
+let a13 = Flavor(name: "Milla’s Chocolate Hazelnut Praline"           , rating: 5.0)
+let a14 = Flavor(name: "Compartes Caramelized Popcorn Milk Chocolate" , rating: 5.0)
+let a15 = Flavor(name: "Nibble’s 85% Peruvian Chocolate Sorbet"       , rating: 5.0)
 
 saltAndStaw.addFlavor(a01)
 saltAndStaw.addFlavor(a02)
@@ -162,9 +165,7 @@ saltAndStaw.addFlavor(a09)
 saltAndStaw.addFlavor(a10)
 saltAndStaw.addFlavor(a11)
 saltAndStaw.addFlavor(a12)
-saltAndStaw.addFlavor(a13)
-saltAndStaw.addFlavor(a14)
-saltAndStaw.addFlavor(a15)
+// Gonna add a13 - a15 later to aid in testing.
 
 saltAndStaw.addTopping("Hot fudge")
 saltAndStaw.addTopping("Sprinkles")
@@ -180,6 +181,18 @@ saltAndStaw.addTopping("Nuts")
 saltAndStaw.addTopping("Fruit")
 
 //:9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
+
+saltAndStaw.listTopFlavors()
+
+saltAndStaw.addFlavor(a13)
+
+saltAndStaw.listTopFlavors()
+
+saltAndStaw.addFlavor(a14)
+
+saltAndStaw.listTopFlavors()
+
+saltAndStaw.addFlavor(a15)
 
 saltAndStaw.listTopFlavors()
 
