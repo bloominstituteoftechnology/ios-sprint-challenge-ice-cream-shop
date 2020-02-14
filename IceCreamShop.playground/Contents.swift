@@ -3,6 +3,10 @@ import Foundation
 struct Flavor {
     let name: String
     var rating: Double
+    
+    var fullName: String {
+        "\(name) - \(rating)"
+    }
 }
 
 enum Size: Double, CaseIterable {
@@ -41,26 +45,6 @@ class IceCreamShop {
     }
 
     func listTopFlavors() {
-        let topFlavors = flavors.filter { flavor in flavor.rating > 4.0 }
-        if topFlavors.isEmpty {
-            print("There are no top flavors at this time.")
-            return
-        }
-        
-        var result = ""
-        for (index, flavor) in flavors.enumerated() {
-            if result.isEmpty {
-                result = flavor.name
-            } else {
-                result += ", "
-                if index == flavors.count - 1 {
-                    result += "and "
-                }
-                result += flavor.name
-            }
-        }
-        
-        print("Our top flavors are: \(result)")
     }
     
     func orderCone(flavor: Flavor, topping: String = "", size: Size) -> Cone? {
@@ -94,15 +78,39 @@ class Clerk {
     var flavors: String {
         var result = ""
         for (index, flavor) in shop.flavors.enumerated() {
-            result += "\(index + 1)) \(flavor.name)\n"
+            result += "\(index + 1)) \(flavor.fullName)\n"
         }
-        return """
-               These are the available flavors, use the number next to it when you order:
-               \(result)
-               """
+        return Clerk.numberedPrompt("These are our flavors", result)
+    }
+    
+    var topFlavors: String {
+        var results = Array<(index: Int, flavor: Flavor)>()
+        for (index, flavor) in shop.flavors.enumerated() {
+            if flavor.rating > 4.0 {
+                results.append((index: index, flavor: flavor))
+            }
+        }
+        
+        if results.isEmpty {
+            return "There are no top flavors at this time."
+        }
+        
+        var stringResult = ""
+        for val in results {
+            stringResult += "\(val.index + 1)) \(val.flavor.fullName)"
+        }
+        
+        return Clerk.numberedPrompt("These are our top flavors", stringResult)
     }
     
     static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
+    
+    static func numberedPrompt(_ pre: String, _ post: String) -> String {
+        return """
+               \(pre), use the number next to it when you order:
+               \(post)
+               """
+    }
     
     init(name: String, shop: IceCreamShop) {
         self.name = name
@@ -125,7 +133,7 @@ class Clerk {
             case "f":
                 print(flavors)
             case "F":
-                break
+                print(topFlavors)
             case "t":
                 break
             case "s":
