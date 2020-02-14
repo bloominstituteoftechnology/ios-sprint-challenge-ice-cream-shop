@@ -36,10 +36,33 @@ class IceCreamShop {
     }
     func listTopFlavors() {
         var string = ""
+        var count = 0
+        var topFlavors = [String]()
+        
         for flavor in self.flavors {
             if flavor.rating >= 4.0 {
-                string += "\(flavor.name), "
+                count += 1
+                topFlavors.append(flavor.name)
             }
+        }
+        switch count {
+        case 0:
+            string += "We don't current have any favorite flavors"
+        case 1:
+            string += "Our favorite flavor is \(topFlavors[0])"
+        default:
+            string += "\(topFlavors[0])"
+            
+            var topFlavorsNoFirstOrLast = topFlavors
+            topFlavorsNoFirstOrLast.removeLast()
+            topFlavorsNoFirstOrLast.removeFirst()
+            for topFlavor in topFlavorsNoFirstOrLast {
+                string += ", \(topFlavor)"
+            }
+            
+            string += ", and \(topFlavors[topFlavors.count - 1])"
+
+
         }
        print(string)
     }
@@ -78,5 +101,3 @@ myCone?.eat()
 
 // 12.
 print(myShop.totalSales)
-
-// What's left? 1. fix the print string in the orderCone func 2. fix chocolate flavor 3. Format the various strings to account for edge cases, such as if there are no flavors with a rating above 4.0, finishing the last flavor with "and". For example,", , and ", instead of just ", , " 4. In the orderCone function, check to make sure the flavor that the person requested exists on the menu.
