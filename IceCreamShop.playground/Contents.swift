@@ -24,3 +24,17 @@ struct Cone {
         print("This \(fullName), was delicious!")
     }
 }
+
+class IceCreamShop {
+    let flavors: [Flavor]
+    let toppings: [String]
+    let sizes: [Size]
+    
+    var totalSales: Double = 0.0
+    
+    init(flavors: [Flavor], toppings: [String], sizes: [Size]) {
+        self.flavors = flavors
+        self.toppings = toppings
+        self.sizes = sizes
+    }
+}
