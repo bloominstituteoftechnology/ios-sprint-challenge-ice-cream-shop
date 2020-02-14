@@ -135,7 +135,7 @@ extension IceCreamShop {
         formatter.numberStyle = .currency
         let cost = formatter.string(from: cone.size.rawValue as NSNumber)
 
-        let topping = (cone.topping != nil) ? "with \(cone.topping!)" : ""
+        let topping = (cone.topping != nil) ? "with \(cone.topping!) " : ""
             
         print("Your \(cone.flavor.name) \(topping)is \(cost!).")
     }
@@ -219,10 +219,14 @@ saltAndStaw.listTopFlavors()
 
 let eleanorOrder = saltAndStaw.orderCone(flavor: saltAndStaw.flavor[0],
                                          size: .large)
+let markOrder = saltAndStaw.orderCone(flavor: saltAndStaw.flavor[1],
+                                      size: .large,
+                                      topping: "Cookie dough")
 
 //:11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 
 eleanorOrder?.eat()
+markOrder?.eat()
 
 //:12. Print the shop's `totalSales` and make sure that it has increased since you ordered a cone in step 10.
 //:
