@@ -103,6 +103,15 @@ class Clerk {
         return Clerk.numberedPrompt("These are our top flavors", stringResult)
     }
     
+    var toppings: String {
+        var result = ""
+        for (index, topping) in shop.toppings.enumerated() {
+            result += "\(index + 1)) \(topping)"
+        }
+        
+        return Clerk.numberedPrompt("These are our toppings", result)
+    }
+    
     static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
     
     static func numberedPrompt(_ pre: String, _ post: String) -> String {
@@ -135,7 +144,7 @@ class Clerk {
             case "F":
                 print(topFlavors)
             case "t":
-                break
+                print(toppings)
             case "s":
                 break
             case "o":
