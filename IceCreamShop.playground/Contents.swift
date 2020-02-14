@@ -11,7 +11,7 @@ enum Size: Double {
 }
 
 struct Cone {
-    var flavor: String
+    var flavor: IceCreamShop.flavors(String, Double)
     let topping: String
     let size: Size
 }
@@ -19,7 +19,7 @@ struct Cone {
 class IceCreamShop {
     
     let Cone: Cone
-    let flavors = ["Vanilla", "Chocolate", "Strawberry"]
+    let flavors = [("Vanilla", 3.0), ("Chocolate", 4.0), ("Strawberry", 5.0)]
     let sizes = Size
     let toppings = ["Gummy Bears", "Sprinkles", "Nuts"]
     let totalSales: Double
@@ -39,7 +39,10 @@ func eat() {
 }
 
 func orderCone(cone: Cone) {
-    
+        
+    if let Cone = Cone {
+        
+    }
     coneString += "Flavor: \(cone.flavor)"
     
     if let coneTopping = cone.topping {
@@ -51,6 +54,7 @@ func orderCone(cone: Cone) {
     return cone
 }
 
+let iceCreamShop = IceCreamShop(size: <#T##Size#>, toppings: ["Gummy Bears", "Sprinkles", "Nuts"], totalSales: 0.0, flavors: ["Gummy Bears", "Sprinkles", "Nuts"])
 
 func listTopFlavors() {
     
@@ -64,5 +68,6 @@ func listTopFlavors() {
 }
 
 listTopFlavors()
+
 
 eat()
