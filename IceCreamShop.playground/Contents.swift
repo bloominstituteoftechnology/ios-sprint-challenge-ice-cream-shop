@@ -17,7 +17,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(self.flavor)")
+        print("Mmm! I love \(self.flavor.name)")
     }
 }
 
@@ -48,7 +48,7 @@ class IceCreamShop {
         self.totalSales += cone.size.rawValue // Add price to store's total
         
         // Composing the print out in seperate lines. Makes it more readable and adjustable. Got this idea from Mark's airport code.
-        print("Your \(cone.flavor.name)", terminator: " ") // Prints name of icecream just purchased.
+        print("Your \(cone.flavor.name) ice cream", terminator: " ") // Prints name of icecream just purchased.
         if let top = cone.topping {
             print("with \(top)", terminator: " ") // If there's a topping, add this to the string
         } // Uwrap
@@ -76,11 +76,15 @@ var lambdaShop = IceCreamShop(flavors: [vanilla, mint, lime, chocolate], sizes: 
 lambdaShop.listTopFlavors()
 
 // New Cone with no topping
-lambdaShop.orderCone(flavor: mint, size: .large)
+let cone1 = lambdaShop.orderCone(flavor: mint, size: .large)
 
 print(lambdaShop.totalSales) // Check that it was added to total sales
 
 // New Cone with topping
-lambdaShop.orderCone(flavor: vanilla, topping: lambdaShop.toppings[3], size: .small)
+let cone2 = lambdaShop.orderCone(flavor: vanilla, topping: lambdaShop.toppings[3], size: .small)
 
 print(lambdaShop.totalSales) // Check that it was added to total sales
+
+// Use eat on each.
+cone1?.eat()
+cone2?.eat()
