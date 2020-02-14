@@ -11,9 +11,9 @@ enum Size: Double {
 }
 
 struct Cone {
-    let flavor: String
+    let flavor: Flavor
     let topping: String?
-    let size: String
+    let size: Size
     
     func eat() {
         print("Mmm! I love \(flavor)")
@@ -21,19 +21,24 @@ struct Cone {
 }
 
 class IceCreamShop {
-    let flavors: [String]
-    let sizes: [String]
+    let flavors: [Flavor] = []
+    let sizes: [Size]
     let toppings: [String]
     var totalSales: Double
     
-    init(flavors: [String], sizes: [String], toppings: [String], totalSales: Double) {
-        self.flavors = []
+    init(flavors: [Flavor], sizes: [Size]) {
         self.sizes = []
         self.toppings = []
-        self.totalSales = totalSales
     }
 }
 
+var topFlavors = [IceCreamShop(flavors: [], sizes: [])]
+
 func listTopFlavors() {
     
+    for flavor in topFlavors {
+        if
+    }
+    
 }
+[IceCreamShop(flavors: [], sizes: [], toppings: [], totalSales: )]
