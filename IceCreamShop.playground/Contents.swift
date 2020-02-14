@@ -11,23 +11,36 @@ enum Size: Double {
     case large = 5.99
 }
 
-//// 3.
-//struct Cone {
-//    let flavor: Flavor
-//    let topping: String
-//    let size: Size
-//    
-//    func eat() {
-//        print("Mmm! I love \(self.flavor)!")
-//    }
-//}
-//
-//// 4.
-//class IceCreamShop {
-//    var flavors: [Flavor]
-//    var sizes: Size
-//    var toppings: [String]
-//    var totalSales: Double
-//}
-//
-//// 5.
+// 3.
+struct Cone {
+    let flavor: Flavor
+    let topping: String
+    let size: Size
+
+    func eat() {
+        print("Mmm! I love \(self.flavor)!")
+    }
+}
+
+// 4-5.
+class IceCreamShop {
+    var flavors: [Flavor]
+    var sizes: Size
+    var toppings: [String]
+    var totalSales: Double
+    
+    init(<#parameters#>) {
+        <#statements#>
+    }
+    func listTopFlavors() {
+        var string = ""
+        for flavor in self.flavors {
+            if flavor.rating >= 4.0 {
+                string += ", \(flavor.name)"
+            }
+        }
+       print(string)
+    }
+}
+
+
