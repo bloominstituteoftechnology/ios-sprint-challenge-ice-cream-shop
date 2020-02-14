@@ -35,12 +35,11 @@ class IceCreamShop {
         self.totalSales = totalSales
     }
     
-    
     func listTopFlavors() {
         var topFlavors = ""
         
         for flavor in flavors {
-            if flavor.rating > 4.0 {
+            if flavor.rating >= 4.0 {
                 
                 topFlavors += flavor.name
                 
@@ -49,26 +48,25 @@ class IceCreamShop {
             }
         }
     }
-    
-}
-
-
-func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-    
-    let newCone = Cone(flavor: flavor, topping: topping, size: size)
-    let price = size.rawValue
-    
-     totalSales += price
-    
-    if let unwrappedTopping = topping {
-        print("Your \(flavor.name) ice cream with \(unwrappedTopping) is \(size.rawValue)")
-    } else {
-        print("Your \(flavor.name) ice cream is \(size.rawValue)")
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        
+        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        let price = size.rawValue
+        
+        totalSales += price
+        
+        if let unwrappedTopping = topping {
+            print("Your \(flavor.name) ice cream with \(unwrappedTopping) is \(size.rawValue)")
+        } else {
+            print("Your \(flavor.name) ice cream is \(size.rawValue)")
+        }
+        
+        
+        return newCone
     }
     
-    
-    return newCone
 }
+
 
 
 
