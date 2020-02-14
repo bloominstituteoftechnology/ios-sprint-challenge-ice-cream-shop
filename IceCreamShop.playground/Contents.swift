@@ -5,9 +5,14 @@ enum Size: Double {
 }
 
 
-struct Flavor {
+struct Flavor: Equatable {
     var name: String
     var rating: Double
+    
+    static func == (lhs: Flavor, rhs: Flavor) -> Bool {
+        return lhs.name == rhs.name && lhs.rating == rhs.rating
+    }
+    
 }
 
 struct Cone {
@@ -46,6 +51,10 @@ class IceCreamShop {
     }
     
     func orderCone (yourCone : Cone) -> Cone? {
+        guard menuFlavors.contains(yourCone.flavor) else {
+            print("Please enter an avalible flavor.")
+            return nil
+        }
         totalSales += yourCone.size.rawValue
         if let actualTopping: [String] = yourCone.topping {
             print("Your order of \(yourCone.size) size \(yourCone.flavor.name) cone with \(actualTopping) topping will be \(totalSales) dollars.")
@@ -79,4 +88,5 @@ myIceCreamShop.listTopFlavors()
 let myCone = Cone(flavor: myFlavor1, topping: nil, size:.medium)
 myCone.eat()
 myIceCreamShop.orderCone(yourCone: myCone)
-//print(myIceCreamShop.totalSales)
+//myIceCreamShop.orderCone(yourCone: Cone(flavor: Flavor(name: "123", rating: 4.4), topping: nil, size: .large)) test my flavor
+print(myIceCreamShop.totalSales)
