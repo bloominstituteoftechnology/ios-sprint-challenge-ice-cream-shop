@@ -25,28 +25,30 @@ struct Cone {
 // 4-6.
 class IceCreamShop {
     var flavors: [Flavor]
-    var sizes: Size
+    var sizes: [Size]
     var toppings: [String]
-    var totalSales: Double
+    var totalSales: Double = 0
     
-    init(<#parameters#>) {
-        <#statements#>
+    init(flavors: [Flavor], sizes: [Size], toppings: [String]) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
     }
     func listTopFlavors() {
         var string = ""
         for flavor in self.flavors {
             if flavor.rating >= 4.0 {
-                string += ", \(flavor.name)"
+                string += "\(flavor.name), "
             }
         }
        print(string)
     }
-    func orderCone(flavor: , topping: ?, size: ) -> Cone? {
-        let cone = Cone(flavor: flavor, topping: topping, size: size)
-        IceCreamShop.totalSales += .size.rawvalue
-        // Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
-        return cone
-    }
+//    func orderCone(flavor: , topping: ?, size: ) -> Cone? {
+//        let cone = Cone(flavor: flavor, topping: topping, size: size)
+//        IceCreamShop.totalSales += .size.rawvalue
+//        // Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
+//        return cone
+//    }
 }
 
 // 7. At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
@@ -62,7 +64,9 @@ let toppings: [String] = ["sprinkles", "chocolate sauce", "gummy bears"]
 
 // 8. Use the constants you just made to initialize a new IceCreamShop constant.
 
-let myShop = IceCreamShop()
+let myShop = IceCreamShop(flavors: [vanilla, chocolate, strawberry, mango],
+                          sizes: availableSizes,
+                          toppings: toppings)
 
 // 9. Call the shop's listTopFlavors function and make sure it runs correctly.
 
@@ -70,12 +74,12 @@ myShop.listTopFlavors()
 
 // 10. Create a new Cone constant. Use the shop's orderCone function to assign the constant a Cone value.
 
-let myCone = myShop.orderCone()
+//let myCone = myShop.orderCone()
 
 // 11. Using that new Cone constant, call its eat function without unwrapping the constant.
 
-myCone.eat()
+//myCone.eat()
 
 // 12. Print the shop's totalSales and make sure that it has increased since you ordered a cone in step 10. Validate your work through running your playground and ensure that your code operates as designed.
 
-print(myShop.totalSales)
+//print(myShop.totalSales)
