@@ -47,7 +47,7 @@ struct Cone {
     }
     
     func eat() {
-        print("This \(fullName), was delicious!")
+        print("\nThis \(fullName), was delicious!")
     }
 }
 
@@ -167,6 +167,8 @@ class Clerk {
                 continue
             }
         }
+        
+        print("\nThank you for visiting \(shop.name), we are now closed! Out total sales for the day were: \(shop.totalSales)")
     }
     
     func takeOrder(inputs: inout [String]) {
@@ -175,23 +177,23 @@ class Clerk {
             return
         }
         
-        print("\nI'm ready to take your order!\n What flavor would you like?")
+        print("\nI'm ready to take your order! What flavor would you like?")
         guard let flavorNumber = takeItemNumber(&inputs, shop.flavors) else { return }
         
-        print("\nYou chose \(shop.flavors[flavorNumber - 1].fullName), what topping would you like?")
+        print("\nYou chose \(shop.flavors[flavorNumber - 1].name) flavor, what topping would you like?")
         guard let toppingNumber = takeItemNumber(&inputs, shop.toppings) else { return }
         
-        print("\nYou chose \(shop.toppings[toppingNumber - 1]), what size would you like?")
+        print("\nYou chose \(shop.toppings[toppingNumber - 1]) topping, what size would you like?")
         guard let sizeNumber = takeItemNumber(&inputs, shop.sizes) else { return }
         
         let cone = Cone(flavor: shop.flavors[flavorNumber - 1],
                         topping: shop.toppings[toppingNumber - 1],
                         size: shop.sizes[sizeNumber - 1])
         
-        print("Your ordered a \(cone.fullName)\n your total will is \(cone.size.price)")
+        print("\nYou've ordered a \(cone.fullName), your total will be \(cone.size.price)")
         shop.totalSales += cone.size.price
         
-        print("Enjoy your cone!")
+        print("\nEnjoy your cone!")
         cone.eat()
     }
     
@@ -203,7 +205,7 @@ class Clerk {
             return nil
         }
         
-        print("\n You entered: \(input)")
+        print("\nYou entered: \(input)")
         
         return itemNumber
     }
