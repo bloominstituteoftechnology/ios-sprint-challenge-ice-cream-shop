@@ -16,7 +16,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print(" My favorite flave is \(flavor.name)!")
+        print(" My favorite flavor is \(flavor.name)!")
     }
 }
 
