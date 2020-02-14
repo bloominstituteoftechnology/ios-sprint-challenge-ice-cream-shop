@@ -21,9 +21,9 @@ struct Flavor {
 //:
 
 enum Size: Double {
-    case small  = 3.99
-    case medium = 4.99
-    case large  = 5.99
+    case small  = 4.15
+    case medium = 5.25
+    case large  = 7.50
 }
 
 //:3. Create a struct called `Cone`.
@@ -46,10 +46,14 @@ struct Cone {
 //:    - Create a variable called `totalSales`. This will be used to keep track of how much money was made.
 //:
 
-//FIXME: Not sure what to do about size.
 class IceCreamShop {
     var flavor: [Flavor]
     var topping: [String]
+
+    var kidsScoop = Size.small
+    var singleScoop = Size.medium
+    var doubleScoop = Size.large
+
     var totalSales: Double
     
     func addTopping(_ item: String) {
@@ -124,10 +128,24 @@ extension IceCreamShop {
 //:
 
 extension IceCreamShop {
+    func printConeDetail(_ cone: Cone) {
+        
+        // Create our sales number
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        let cost = formatter.string(from: cone.size.rawValue as NSNumber)
+
+        let topping = (cone.topping != nil) ? "with \(cone.topping!)" : ""
+            
+        print("Your \(cone.flavor.name) \(topping)is \(cost!).")
+    }
+    
     func orderCone(flavor: Flavor, size: Size, topping: String? = nil) -> Cone? {
         let order = Cone(flavor: flavor, topping: topping, size: size)
 
         totalSales += size.rawValue
+ 
+        printConeDetail(order)
         
         return order
     }
@@ -252,6 +270,8 @@ extension IceCreamShop {
         let order = Cone(flavor: orderFlavor, topping: topping, size: size)
 
         totalSales += size.rawValue
+        
+        printConeDetail(order)
         
         return order
     }
