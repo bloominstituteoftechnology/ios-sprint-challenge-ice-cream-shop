@@ -76,7 +76,9 @@ let arrayOfToppings: [String] = ["chocolate chips", "reese's peanut butter cups"
 
 
 let iceCreamShop = IceCreamShop(totalSales: 0, sizes: arrayOfSizes, toppings: arrayOfToppings, flavors: [flavor1, flavor2, flavor3])
-let newCone = Cone(flavor: <#T##Flavor#>, topping: <#T##String?#>, size: <#T##Size#>)
 
 iceCreamShop.listTopFlavors()
 
+let newCone = iceCreamShop.orderCone(flavor: flavor1, topping: "chocolate chips", size: .large)
+newCone?.eat()
+print(iceCreamShop.totalSales)
