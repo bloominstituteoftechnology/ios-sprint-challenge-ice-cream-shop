@@ -45,7 +45,19 @@ struct Cone {
 //:    - Create a variable called `totalSales`. This will be used to keep track of how much money was made.
 //:
 
-
+class IceCreamShop {
+    var menu: [Cone]
+    var totalSales: Double
+    
+    func addCone(_ cone: Cone) {
+        menu.append(cone)
+    }
+    
+    init() {
+        self.menu = []
+        self.totalSales = 0.00
+    }
+}
 
 //:5. If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
 //:    - Create a function called `listTopFlavors`.
