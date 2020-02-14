@@ -9,10 +9,32 @@ struct Flavor {
     }
 }
 
-enum Size: Double, CaseIterable {
-    case small = 2.99
-    case medium = 4.99
-    case large = 7.99
+enum Size {
+    case small(String, Double)
+    case medium(String, Double)
+    case large(String, Double)
+    
+    var name: String {
+        switch self {
+        case .small(let n, _),
+             .medium(let n, _),
+             .large(let n, _):
+            return n
+        }
+    }
+    
+    var price: Double {
+        switch self {
+        case .small(_, let p),
+             .medium(_, let p),
+             .large(_, let p):
+            return p
+        }
+    }
+    
+    var fullName: String {
+        "\(name) - $\(price)"
+    }
 }
 
 struct Cone {
@@ -43,19 +65,16 @@ class IceCreamShop {
         self.toppings = toppings
         self.sizes = sizes
     }
-
-    func listTopFlavors() {
-    }
     
     func orderCone(flavor: Flavor, topping: String = "", size: Size) -> Cone? {
         let cone = Cone(flavor: flavor, topping: topping, size: size)
-        totalSales += size.rawValue
-        print("Your \(cone.fullName) is \(size.rawValue)")
+        totalSales += size.price
+        print("Your \(size.name) \(cone.fullName) is $\(size.price)")
         return cone
     }
     
     func printTotalSales() {
-        print("The total sales for \(name) is: \(totalSales)")
+        print("The total sales for \(name) is: $\(totalSales)")
     }
 }
 
@@ -112,6 +131,15 @@ class Clerk {
         return Clerk.numberedPrompt("These are our toppings", result)
     }
     
+    var sizes: String {
+        var result = ""
+        for (index, size) in shop.sizes.enumerated() {
+            result += "\(index + 1)) \(size.fullName)"
+        }
+        
+        return Clerk.numberedPrompt("These are our sizes", result)
+    }
+    
     static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
     
     static func numberedPrompt(_ pre: String, _ post: String) -> String {
@@ -146,7 +174,7 @@ class Clerk {
             case "t":
                 print(toppings)
             case "s":
-                break
+                print(sizes)
             case "o":
                 break
             default:
@@ -156,20 +184,3 @@ class Clerk {
         }
     }
 }
-
-let flavors = [Flavor(name: "Vanilla", rating: 5.0),
-               Flavor(name: "Chocolate", rating: 4.0),
-               Flavor(name: "Mint", rating: 3.0)]
-let toppings = ["Chocolate Chips",
-                "Fudge",
-                "Caramel",
-                "Sprinkles"]
-let sizes = Size.allCases
-
-let iceCreamShop = IceCreamShop(name: "Sally Cones", flavors: flavors, toppings: toppings, sizes: sizes)
-iceCreamShop.listTopFlavors()
-
-let cone = iceCreamShop.orderCone(flavor: flavors[0], topping: toppings[2], size: .large)
-cone?.eat()
-
-iceCreamShop.printTotalSales()
