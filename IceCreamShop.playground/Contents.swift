@@ -21,24 +21,24 @@ struct Cone {
 }
 
 class IceCreamShop {
-    let flavors: [Flavor] = []
-    let sizes: [Size]
-    let toppings: [String]
+    var flavors: [Flavor] = []
+    var sizes: [Size] = []
+    var toppings: [String]
     var totalSales: Double
     
-    init(flavors: [Flavor], sizes: [Size]) {
-        self.sizes = []
+    init(flavors: Flavor, sizes: Size, toppings: [String], totalSales: Double) {
+        self.flavors = [flavors]
+        self.sizes = [sizes]
         self.toppings = []
+        self.totalSales = totalSales
     }
-}
-
-var topFlavors = [IceCreamShop(flavors: [], sizes: [])]
 
 func listTopFlavors() {
     
-    for flavor in topFlavors {
-        if
+    for flavor in flavors {
+        if flavor.rating >= 4.0 {
+            print("Our topflavors are \(flavor)")
+        }
     }
-    
+ }
 }
-[IceCreamShop(flavors: [], sizes: [], toppings: [], totalSales: )]
