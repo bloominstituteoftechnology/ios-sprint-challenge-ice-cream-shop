@@ -37,7 +37,7 @@ class IceCreamShop {
     func listTopFlavors() {
         print("Our top flavors are: ")
         for f in self.flavors {
-            if f.rating > 3 {
+            if f.rating >= 4 {
                 print(f.name)
             }
         } // End of for loop
@@ -73,3 +73,4 @@ let toppings: [String] = ["M&Ms", "Cookies", "Sprinkles", "Chocolate Chips"]
 
 // IceCramShop initialized
 var lambdaShop = IceCreamShop(flavors: [vanilla, mint, lime, chocolate], sizes: sizes, toppings: toppings)
+lambdaShop.listTopFlavors()
