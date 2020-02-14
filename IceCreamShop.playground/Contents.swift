@@ -19,14 +19,26 @@ struct Flavor {
 //:    - Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
 //:
 
-
+enum Size: Double {
+    case small  = 3.99
+    case medium = 4.99
+    case large  = 5.99
+}
 
 //:3. Create a struct called `Cone`.
 //:    - Give the struct properties (constants) that hold a flavor, topping (as a `String`), and size.
 //:    - Create a function called `eat`. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love <flavor here>!"
 //:
 
-
+struct Cone {
+    let flavor: String
+    let topping: String
+    let size: Size
+    
+    func eat() {
+        print("Mmm! I love \(flavor)!")
+    }
+}
 
 //:4. Create a class called `IceCreamShop`.
 //:    - An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
