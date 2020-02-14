@@ -1,8 +1,8 @@
 extension Cone {
     struct Flavor: Equatable {
-    static func ==(lhs: Flavor, rhs: Flavor) {
-        lhs.name == rhs.name
-    }
+        static func ==(lhs: Flavor, rhs: Flavor) {
+            lhs.name == rhs.name
+        }
         let name: String
         let rating: Double
     }
@@ -17,7 +17,7 @@ struct Cone {
     let toppings: [String]
     let size: Size
     func eat() {
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 
@@ -34,22 +34,20 @@ class IceCreamShop {
     }
     let menu: Menu
     func listTopFlavors() {
-        var strings = [String]()
+        var topFlavors = [String]()
         for flavor in menu.flavors where flavor.rating >= 4.0 {
-            strings.append(flavor.name)
+            topFlavors.append(flavor.name)
         }
-        if strings.isEmpty {
+        if topFlavors.isEmpty {
             print("Nobody seems to like any of our flavors.")
-        } else if strings.count > 1 {
-            for var string in strings {
-                if string != strings.last {
-                    string.append(", ")
-                } else {
-                    string = "and \(string)."
-                }
-            }
-            print(strings.joined())
+            return
         }
+        
+        let formattedTopFlavors = topFlavors.map({ flavor -> String in
+            if flavor == topFlavors.last { return "and \(flavor)." }
+            else { return "\(flavor), " }
+            }).joined()
+        print("Our top flavors are \(formattedTopFlavors)")
     }
     func orderCone(flavor: Cone.Flavor, toppings: [String], size: Cone.Size) -> Cone? {
         guard menu.flavors.contains(flavor) else {
@@ -65,22 +63,58 @@ class IceCreamShop {
             print("Sorry we don't carry that size.")
             return nil
         }
-        
         let price: Double = {
             let pricePerTopping = 0.5
             let toppingsPrice = pricePerTopping * Double(toppings.count)
             let priceOfSize = size.rawValue
             return toppingsPrice + priceOfSize
         }()
-        
+        print("That will be $\(price).")
         totalSales += price
         return Cone(flavor: flavor, toppings: toppings, size: size)
     }
     var totalSales = 0.0
 }
 
-//let ics = IceCreamShop(:)
-//ics.listTopFlavors
-//let cone = ics.orderCone(:)
-//cone.eat()    //without unwrapping
-//print(ics.totalSales)  //increased
+let newShopMenu: IceCreamShop.Menu = {
+    let newShopFlavors = [
+        Cone.Flavor(name: "Vanilla", rating: 5.0),
+        Cone.Flavor(name: "Chocolate", rating: 4.9),
+        Cone.Flavor(name: "Strawberry", rating: 4.0),
+        Cone.Flavor(name: "Raspberry", rating: 3.9),
+        Cone.Flavor(name: "Bacon", rating: 2.1),
+        Cone.Flavor(name: "Butter pecan", rating: 3.6),
+        Cone.Flavor(name: "Cookie dough", rating: 4.3),
+    ]
+    let newShopToppings = [
+    "Hot Fudge",
+    "Sprinkles",
+    "Caramel",
+    "Oreos",
+    "Peanut butter cups",
+    "Cookie dough",
+    "Whipped cream",
+    "Nuts",
+    "Fruit",
+    ]
+    let newShopSizes = [
+        Cone.Size.small,
+        Cone.Size.large
+    ]
+    return IceCreamShop.Menu(flavors: newShopFlavors, toppings: newShopToppings, sizes: newShopSizes)
+}()
+let iceCreamShop = IceCreamShop(menu: newShopMenu)
+
+iceCreamShop.listTopFlavors()
+
+let cone: Cone? = {
+    let selectedFlavor = iceCreamShop.menu.flavors.randomElement()!
+    var selectedToppings = [String]()
+    for _ in 0...Int.random(in: 0...3) {
+        selectedToppings.append(iceCreamShop.menu.toppings.randomElement()!)
+    }
+    let selectedSize = iceCreamShop.menu.sizes.randomElement()!
+    return iceCreamShop.orderCone(flavor: selectedFlavor, toppings: selectedToppings, size: selectedSize)
+}()
+cone?.eat()
+print("Total sales: \(iceCreamShop.totalSales)")
