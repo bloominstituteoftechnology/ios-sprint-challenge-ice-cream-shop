@@ -26,7 +26,7 @@ class IceCreamShop {
     var flavors: [Flavor]
     var size: [Size]
     var toppings: [String]
-    var totalSales: Double
+    var totalSales: Double = 0.0
     
     init(flavors: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
         self.flavors = flavors
@@ -63,6 +63,7 @@ class IceCreamShop {
         
         
         return newCone
+        
     }
     
 }
@@ -82,6 +83,8 @@ let newIceCreamShop = IceCreamShop(flavors: [myFlavor], size: sizes, toppings: t
 
 newIceCreamShop.listTopFlavors()
 
-newCone?.eat()
+let myNewCone = newIceCreamShop.orderCone(flavor: myFlavor, topping: "sprinkles", size: .medium)
+
+myNewCone?.eat()
 
 print(newIceCreamShop.totalSales)
