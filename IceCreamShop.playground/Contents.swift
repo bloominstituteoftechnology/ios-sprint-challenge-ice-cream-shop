@@ -1,11 +1,10 @@
 extension Array where Element == String {
-    func formatCommaAnd() -> Self {
-        guard self.count > 1 else { return self }
-        return self.map({
-            item -> String in
+    func formatCommaAnd() -> String {
+        guard self.count > 1 else { return self.joined() }
+        return self.map({ item -> String in
             if item != self.last { return "\(item), " }
             else { return "and \(item)" }
-        })
+            }).joined()
     }
 }
 
@@ -15,7 +14,11 @@ extension Cone {
             lhs.name.lowercased() == rhs.name.lowercased()
         }
         let name: String
-        let rating: Double
+        var rating: Double
+        init(name: String, rating: Double = 0.0) {
+            self.name = name
+            self.rating = rating
+        }
     }
     enum Size: Double {
         case small = 3.99
@@ -50,11 +53,11 @@ class IceCreamShop {
             print("Nobody seems to like any of our flavors.")
             return
         }
-        let formattedTopFlavors = topFlavors.formatCommaAnd().joined()
+        let formattedTopFlavors = topFlavors.formatCommaAnd()
         print("Our top flavors are \(formattedTopFlavors)")
     }
-    func orderCone(flavor: Cone.Flavor, toppings: [String], size: Cone.Size) -> Cone? {
-        guard menu.flavors.contains(flavor) else {
+    func orderCone(flavor: String, toppings: [String], size: Cone.Size) -> Cone? {
+        guard let flavor = menu.flavors.first(where: {$0.name == flavor }) else {
             print("Sorry, we don't have that flavor.")
             return nil
         }
@@ -73,8 +76,8 @@ class IceCreamShop {
             let priceOfSize = size.rawValue
             return toppingsPrice + priceOfSize
         }()
-        let formattedToppings = toppings.formatCommaAnd().joined().lowercased()
-        print("One \(size) Cone of \(flavor.name) ice cream with \(formattedToppings) coming right up!")
+        let formattedToppings = toppings.formatCommaAnd().lowercased()
+        print("One \(size) cone of \(flavor.name) ice cream with \(formattedToppings) coming right up!")
         print("That will be $\(price).")
         totalSales += price
         return Cone(flavor: flavor, toppings: toppings, size: size)
@@ -117,7 +120,7 @@ let iceCreamShop: IceCreamShop = {
 iceCreamShop.listTopFlavors()
 
 let cone: Cone? = {
-    let selectedFlavor = iceCreamShop.menu.flavors.randomElement()!
+    let selectedFlavor = iceCreamShop.menu.flavors.map({ $0.name }).randomElement()!
     var selectedToppings = [String]()
     for _ in 0...Int.random(in: 0...3) {
         var newTopping = iceCreamShop.menu.toppings.randomElement()!
