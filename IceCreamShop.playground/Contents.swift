@@ -40,3 +40,18 @@ class IceCreamShop {
 
 let addCone = Cone(flavor: [Flavor.init(flavorA: "Vanilla", flavorB: "Chocolate", flavorC: "Coockie Doug", rating: 4.0)], size: .medium)
 print(addCone)
+
+func listTopFlavor() {
+    let newFlavors = addCone.flavor
+    for flavor in newFlavors {
+        print("\(flavor)")
+}
+}
+
+listTopFlavor()
+
+
+func orderCone(iceCream: IceCreamShop ) {
+    var iceCream = iceCream
+    
+}
