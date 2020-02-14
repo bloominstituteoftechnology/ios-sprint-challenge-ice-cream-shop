@@ -138,14 +138,15 @@ class Clerk {
     }
     
     func open(inputs: [String]) {
+        var inputs = inputs
+        
+        print("\n\n****OPEN****\n\n\(shop.name) is now open for business!")
+        print(Clerk.menuPrompt("Hello! I'm \(name), how may I help you today?", shop.menu))
+        
+        shop.totalSales = 0.0
         guard !inputs.isEmpty else {
             return
         }
-        
-        var inputs = inputs
-        
-        print("\(shop.name) is now open for business!")
-        print(Clerk.menuPrompt("Hello! I'm \(name), how may I help you today?", shop.menu))
 
         while !inputs.isEmpty {
             let choice = inputs.removeFirst()
@@ -169,6 +170,7 @@ class Clerk {
         }
         
         print("\nThank you for visiting \(shop.name), we are now closed! Out total sales for the day were: \(shop.totalSales)")
+        print("\n****CLOSED****")
     }
     
     func takeOrder(inputs: inout [String]) {
@@ -238,7 +240,19 @@ clerk.open(inputs: [
     "t", // list all toppings
     "s", // list all sizes
     "o", // start order
-    "1",
-    "2",
-    "3"
+    "1", // choose first flavor
+    "2", // choose second topping
+    "3", // choose third size
+])
+
+clerk.open(inputs: [
+    "q", // Invalid input
+    "o", // start order
+    "4", // choose an invalid flavor
+    "o", // start order
+    "3", // choose third flavor
+    "1", // choose first topping
+    "2", // Choose second size,
+    "f", // list all flavors
+    "o", // start order as final choice
 ])
