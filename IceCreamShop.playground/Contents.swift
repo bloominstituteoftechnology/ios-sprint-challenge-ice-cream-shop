@@ -54,6 +54,20 @@ class IceCreamShop {
     } // End of listTpoFlavors method
     
     func orderCone(flavor: Flavor, topping: String? = nil, size: Size) -> Cone? {
+        
+        var flavorExists: Bool = false // Assume flavor isn't the same
+        for f in self.flavors { // Loop through store's flavors
+            if f.name == flavor.name {
+                flavorExists = true // If we find one, turn checker to true
+            }
+        }
+        
+        guard flavorExists else { // Unless flavor does exist in store's list of flavors, then get me out.
+            print("Flavor entered was invalid")
+            return nil
+            
+        }
+        
         let cone = Cone(flavor: flavor, topping: topping, size: size) // Uses passed values to initialize new cone
         self.totalSales += cone.size.rawValue // Add price to store's total
         
@@ -98,3 +112,10 @@ print(lambdaShop.totalSales) // Check that it was added to total sales
 // Use eat on each.
 cone1?.eat()
 cone2?.eat()
+
+
+// Test cone with invalid flavor
+let badFlavor = Flavor(name: "Grass", rating: 0.10)
+let brokenCone = lambdaShop.orderCone(flavor: badFlavor, size: .large)
+print(lambdaShop.totalSales) // Check that it didn't add to total sales.
+brokenCone?.eat() // Check if eat method works
