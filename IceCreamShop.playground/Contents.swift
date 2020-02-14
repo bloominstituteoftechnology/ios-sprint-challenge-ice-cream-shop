@@ -70,3 +70,6 @@ let sizes: [Size] = [.large, .medium, .small]
 
 // Toppings array
 let toppings: [String] = ["M&Ms", "Cookies", "Sprinkles", "Chocolate Chips"]
+
+// IceCramShop initialized
+var lambdaShop = IceCreamShop(flavors: [vanilla, mint, lime, chocolate], sizes: sizes, toppings: toppings)
