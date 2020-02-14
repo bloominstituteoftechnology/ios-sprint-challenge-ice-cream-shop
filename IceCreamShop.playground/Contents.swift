@@ -1,4 +1,9 @@
 
+enum Size: Double {
+    case small = 1.99
+    case medium = 2.99
+    case large = 3.99
+}
 
 struct Flavor {
     var name = ["Vanilla", "Chocolate"]
@@ -6,11 +11,6 @@ struct Flavor {
 }
 
 
-enum Size: Double {
-    case small = 1.99
-    case medium = 2.99
-    case large = 3.99
-}
 
 struct Cone {
     let flavor: String
@@ -44,6 +44,9 @@ class IceCreamShop {
     }
     func listTopFlavors() {
         
+        for topFlavors in flavors {
+            print("Our top flavors are \(flavors)")
+        }
     }
     
 }
