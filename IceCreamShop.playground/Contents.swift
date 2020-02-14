@@ -66,8 +66,13 @@ class IceCreamShop {
         }
        print(string)
     }
-    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-        let cone = Cone(flavor: flavor, topping: topping ?? "no toppings", size: size)
+    func orderCone(flavor: Flavor?, topping: String?, size: Size) -> Cone? {
+        
+        guard let flavorUnwrap = flavor else {
+            print("We don't currently have that flavor")
+            return nil}
+        
+        let cone = Cone(flavor: flavorUnwrap, topping: topping ?? "no toppings", size: size)
         self.totalSales += cone.size.rawValue
         let string = "Your \(cone.flavor.name) ice cream with \(cone.topping) is \(cone.size.rawValue)"
         print(string)
