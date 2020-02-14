@@ -8,6 +8,7 @@
 //:    - `name`
 //:    - `rating`
 //:
+import Foundation
 
 struct Flavor {
     var name: String
@@ -203,16 +204,24 @@ let eleanorOrder = saltAndStaw.orderCone(flavor: saltAndStaw.flavor[0],
 
 //:11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 
-if let cone = eleanorOrder {
-    cone.eat()
-}
+eleanorOrder?.eat()
 
 //:12. Print the shop's `totalSales` and make sure that it has increased since you ordered a cone in step 10.
 //:
 //:Validate your work through running your playground and ensure that your code operates as designed.
 //:
 
+// Create our sales number
+let formatter = NumberFormatter()
+formatter.numberStyle = .currency
+let sale = formatter.string(from: saltAndStaw.totalSales as NSNumber)
 
+// Create a pretty timestamp
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "h:mm a"
+let time = dateFormatter.string(from: Date())
+
+print("Total sales of \(sale!) as of \(time)")
 
 //:## Stretch Problems (Optional)
 //:
