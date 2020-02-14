@@ -74,3 +74,13 @@ let toppings: [String] = ["M&Ms", "Cookies", "Sprinkles", "Chocolate Chips"]
 // IceCramShop initialized
 var lambdaShop = IceCreamShop(flavors: [vanilla, mint, lime, chocolate], sizes: sizes, toppings: toppings)
 lambdaShop.listTopFlavors()
+
+// New Cone with no topping
+lambdaShop.orderCone(flavor: mint, size: .large)
+
+print(lambdaShop.totalSales) // Check that it was added to total sales
+
+// New Cone with topping
+lambdaShop.orderCone(flavor: vanilla, topping: lambdaShop.toppings[3], size: .small)
+
+print(lambdaShop.totalSales) // Check that it was added to total sales
