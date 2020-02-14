@@ -32,7 +32,7 @@ enum Size: Double {
 
 struct Cone {
     let flavor: Flavor
-    let topping: String
+    let topping: String?
     let size: Size
     
     func eat() {
@@ -123,7 +123,7 @@ extension IceCreamShop {
 //:
 
 extension IceCreamShop {
-    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+    func orderCone(flavor: Flavor, size: Size, topping: String? = nil) -> Cone? {
         let order = Cone(flavor: flavor, topping: topping, size: size)
 
         totalSales += size.rawValue
@@ -198,7 +198,8 @@ saltAndStaw.listTopFlavors()
 
 //:10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
 
-
+let eleanorOrder = saltAndStaw.orderCone(flavor: saltAndStaw.flavor[0],
+                                         size: .large)
 
 //:11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 
