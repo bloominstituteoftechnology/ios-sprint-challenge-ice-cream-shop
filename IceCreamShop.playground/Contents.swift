@@ -27,3 +27,16 @@ struct Cone {
     }
 }
 
+
+class IceCreamShop {
+    var menu: Cone
+    var totalSales: Double
+    
+    init(menu: Cone, totalSales: Double) {
+        self.menu = menu
+        self.totalSales = totalSales
+    }
+}
+
+let addCone = Cone(flavor: [Flavor.init(flavorA: "Vanilla", flavorB: "Chocolate", flavorC: "Coockie Doug", rating: 4.0)], size: .medium)
+print(addCone)
