@@ -18,7 +18,7 @@ struct Cone {
     let size: Size
 
     func eat() {
-        print("Mmm! I love \(self.flavor)!")
+        print("Mmm! I love \(self.flavor.name)!")
     }
 }
 
@@ -43,12 +43,14 @@ class IceCreamShop {
         }
        print(string)
     }
-//    func orderCone(flavor: , topping: ?, size: ) -> Cone? {
-//        let cone = Cone(flavor: flavor, topping: topping, size: size)
-//        IceCreamShop.totalSales += .size.rawvalue
-//        // Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
-//        return cone
-//    }
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        let cone = Cone(flavor: flavor, topping: topping ?? "no toppings", size: size)
+        self.totalSales += cone.size.rawValue
+        // Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
+        var string = ""
+        string += "Price: \(cone.size.rawValue), Flavor: \(cone.flavor), Topping: \(cone.topping)"
+        return cone
+    }
 }
 
 // 7. At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
@@ -74,11 +76,11 @@ myShop.listTopFlavors()
 
 // 10. Create a new Cone constant. Use the shop's orderCone function to assign the constant a Cone value.
 
-//let myCone = myShop.orderCone()
+let myCone = myShop.orderCone(flavor: vanilla, topping: nil, size: .small)
 
 // 11. Using that new Cone constant, call its eat function without unwrapping the constant.
 
-//myCone.eat()
+myCone?.eat()
 
 // 12. Print the shop's totalSales and make sure that it has increased since you ordered a cone in step 10. Validate your work through running your playground and ensure that your code operates as designed.
 
