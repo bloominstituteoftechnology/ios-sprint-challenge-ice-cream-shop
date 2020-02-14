@@ -19,9 +19,10 @@ class IceCreamShop {
     
     let cone: Cone
     let sizes: Size
-    let toppings = ["Gummy Bears", "Sprinkles", "Nuts"]
+    var toppings: [String]
     let totalSales: Double
-    let flavors = [("Vanilla", 3.0), ("Chocolate", 4.0), ("Strawberry", 5.0)]
+    var flavorNameRate = (String, Double)
+    var flavors = [flavorNameRate]
     
     init(cone: Cone, sizes: Size, toppings: [String], totalSales: Double, flavors: [(String, Double)]) {
         self.cone = cone
@@ -37,35 +38,35 @@ class IceCreamShop {
 
 var coneString: String = ""
 
-func orderCone(cone: Cone?) {
-    
-    if let unwrappedCone = cone {
-        coneString += "Flavor: \(unwrappedCone.flavor)"
-    }
-    
-    if let unwrappedConeTopping = cone {
-        coneString += " Topping: \(unwrappedConeTopping.topping)"
-    }
-    if let unWrappedConeSize = cone {
-        coneString += " Size: \(unWrappedConeSize.size)"
-    }
-    return cone
-}
+//func orderCone(cone: Cone?) -> Cone {
+//
+//    if let unwrappedCone = cone {
+//        coneString += "Flavor: \(unwrappedCone.flavor)"
+//    }
+//
+//    if let unwrappedConeTopping = cone {
+//        coneString += " Topping: \(unwrappedConeTopping.topping)"
+//    }
+//    if let unWrappedConeSize = cone {
+//        coneString += " Size: \(unWrappedConeSize.size)"
+//    }
+//    return cone
+//}
 
-let iceCreamShop: IceCreamShop
+let iceCreamShop: IceCreamShop = IceCreamShop(cone: Cone, sizes: Size,
+                                              toppings: ["Gummy Bears", "Sprinkles", "Nuts"],
+                                              totalSales: 0.0,
+                                              flavors: [(name: "Vanilla", rate: 3.0), (name: "Chocolate", rate: 4.0), (name: "Strawberry", rate: 5.0)])
 
 func listTopFlavors() {
     
     let flavors = iceCreamShop.flavors
     
     for flavor in flavors {
-        var flavorsString = ""
+        var flavorsString = flavor.name
         flavorsString += " \(flavor)"
-        print(flavorsString)
+        print("Our top flavors are: " + flavorsString)
     }
 }
 
 listTopFlavors()
-
-
-iceCreamShop.eat()
