@@ -44,6 +44,7 @@ class IceCreamShop {
         var numberOfTopFlavors: Int = 0
         var numberOfTimesRun: Int = 0
         
+        // CHECK TO SEE HOW MANY TOP FLAVORS THERE ARE
         for flavor in flavors {
             if flavor.rating > 4.0 {
                 numberOfTopFlavors += 1
@@ -52,13 +53,21 @@ class IceCreamShop {
         
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                numberOfTimesRun += 1
-                if topFlavors == "" {
-                    topFlavors += flavor.name
-                } else if numberOfTopFlavors == numberOfTimesRun {
-                    topFlavors = topFlavors + ", and " + flavor.name
-                } else {
-                    topFlavors = topFlavors + ", " + flavor.name
+                if numberOfTopFlavors > 2 {
+                    numberOfTimesRun += 1
+                    if topFlavors == "" { // IF THERE ARE MORE THAN TWO TOP FLAVORS
+                        topFlavors += flavor.name
+                    } else if numberOfTopFlavors == numberOfTimesRun {
+                        topFlavors = topFlavors + ", and " + flavor.name
+                    } else {
+                        topFlavors = topFlavors + ", " + flavor.name
+                    }
+                } else { // IF THERE ARE ONLY TWO TOP FLAVORS, NO COMMAS NEEDED
+                    if topFlavors == "" {
+                        topFlavors += flavor.name
+                    } else {
+                        topFlavors = topFlavors + " and " + flavor.name
+                    }
                 }
             }
         }
