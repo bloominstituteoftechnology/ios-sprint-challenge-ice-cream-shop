@@ -73,6 +73,14 @@ class IceCreamShop {
     func printTotalSales() {
         print("The total sales for \(name) is: \(totalSales)")
     }
+    
+    func open() {
+        print("\(name) is now open for business!")
+        var closed = false
+        while !closed {
+            
+        }
+    }
 }
 
 let flavors = [Flavor(name: "Vanilla", rating: 5.0),
