@@ -43,7 +43,7 @@ struct Cone {
     let size: Size
     
     var fullName: String {
-        "\(flavor.name) ice cream cone \(!topping.isEmpty ? "with " + topping : "")"
+        "\(size.name) \(flavor.name) ice cream cone \(!topping.isEmpty ? "with " + topping : "")"
     }
     
     func eat() {
@@ -60,11 +60,11 @@ struct IceCreamShop {
     
     var menu: String {
         """
-        'f' to list all flavors
-        'F' to list the top flavors (greater than 4.0 rating)
-        't' to list all toppings
-        's' to list all sizes
-        'o' to order
+        f) List all flavors
+        r) List the top flavors (greater than 4.0 rating)
+        t) List all toppings
+        s) List all sizes
+        o) Order
         """
     }
     
@@ -90,7 +90,7 @@ struct IceCreamShop {
         
         var stringResult = ""
         for val in results {
-            stringResult += "\(val.index + 1)) \(val.flavor.fullName)"
+            stringResult += "\(val.index + 1)) \(val.flavor.fullName)\n"
         }
         
         return stringResult
@@ -99,16 +99,16 @@ struct IceCreamShop {
     var toppingsMenu: String {
         var result = ""
         for (index, topping) in shop.toppings.enumerated() {
-            result += "\(index + 1)) \(topping)"
+            result += "\(index + 1)) \(topping)\n"
         }
-        return menu
+        return result
     }
     
     
     var sizesMenu: String {
         var result = ""
         for (index, size) in shop.sizes.enumerated() {
-            result += "\(index + 1)) \(size.fullName)"
+            result += "\(index + 1)) \(size.fullName)\n"
         }
         return result
     }
@@ -116,15 +116,20 @@ struct IceCreamShop {
 
 class Clerk {
     let name: String
-    let shop: IceCreamShop
+    var shop: IceCreamShop
     
-    static let inputErrorMsg = "I'm sorry I didn't quite get that. Can you repeat that?"
+    static let inputErrorMsg = "\nI'm sorry I didn't quite get that. Can you start over?"
     
-    static func numberedPrompt(_ pre: String, _ post: String) -> String {
+    static func menuPrompt(_ pre: String, _ post: String) -> String {
         return """
-               \(pre), use the number next to it when you order:
+               \n
+               \(pre), ** use the identifier on the left-hand side when selecting a value **
                \(post)
                """
+    }
+    
+    static func validateNumber(_ num: Int, _ options: [Any]) -> Bool {
+        return 0 < num && num <= options.count
     }
     
     init(name: String, shop: IceCreamShop) {
@@ -132,33 +137,106 @@ class Clerk {
         self.shop = shop
     }
     
-    func open() {
+    func open(inputs: [String]) {
+        guard !inputs.isEmpty else {
+            return
+        }
+        
+        var inputs = inputs
+        
         print("\(shop.name) is now open for business!")
-        var closed = false
-        while !closed {
-            print(greeting)
-            
-            let input = readLine(strippingNewline: true)
-            guard let choice = input else {
-                print(Clerk.inputErrorMsg)
-                continue
-            }
+        print(Clerk.menuPrompt("Hello! I'm \(name), how may I help you today?", shop.menu))
+
+        while !inputs.isEmpty {
+            let choice = inputs.removeFirst()
+            print("\nYou entered: \(choice)")
             
             switch choice {
             case "f":
-                print(flavors)
-            case "F":
-                print(topFlavors)
+                print(Clerk.menuPrompt("These are our flavors", shop.flavorsMenu))
+            case "r":
+                print(Clerk.menuPrompt("These are our top flavors", shop.topFlavorsMenu))
             case "t":
-                print(toppings)
+                print(Clerk.menuPrompt("These are our toppings", shop.toppingsMenu))
             case "s":
-                print(sizes)
+                print(Clerk.menuPrompt("These are our sizes", shop.sizesMenu))
             case "o":
-                break
+                takeOrder(inputs: &inputs)
             default:
                 print(Clerk.inputErrorMsg)
                 continue
             }
         }
     }
+    
+    func takeOrder(inputs: inout [String]) {
+        guard inputs.count >= 3 else {
+            print("\nI'm sorry, I'm unable to take your order at this time")
+            return
+        }
+        
+        print("\nI'm ready to take your order!\n What flavor would you like?")
+        guard let flavorNumber = takeItemNumber(&inputs, shop.flavors) else { return }
+        
+        print("\nYou chose \(shop.flavors[flavorNumber - 1].fullName), what topping would you like?")
+        guard let toppingNumber = takeItemNumber(&inputs, shop.toppings) else { return }
+        
+        print("\nYou chose \(shop.toppings[toppingNumber - 1]), what size would you like?")
+        guard let sizeNumber = takeItemNumber(&inputs, shop.sizes) else { return }
+        
+        let cone = Cone(flavor: shop.flavors[flavorNumber - 1],
+                        topping: shop.toppings[toppingNumber - 1],
+                        size: shop.sizes[sizeNumber - 1])
+        
+        print("Your ordered a \(cone.fullName)\n your total will is \(cone.size.price)")
+        shop.totalSales += cone.size.price
+        
+        print("Enjoy your cone!")
+        cone.eat()
+    }
+    
+    func takeItemNumber(_ inputs: inout [String], _ from: [Any]) -> Int? {
+        let input = inputs.removeFirst()
+        guard let itemNumber = Int(input),
+                0 < itemNumber && itemNumber <= from.count else {
+            print(Clerk.inputErrorMsg)
+            return nil
+        }
+        
+        print("\n You entered: \(input)")
+        
+        return itemNumber
+    }
 }
+
+var shop = IceCreamShop(
+    name: "Sally Cones",
+    flavors: [
+        Flavor(name: "Vanilla", rating: 5.0),
+        Flavor(name: "Chocolate", rating: 4.5),
+        Flavor(name: "Mint", rating: 4.0)
+    ],
+    toppings: [
+        "Chocolate Chips",
+        "Fudge",
+        "Sprinkles",
+    ],
+    sizes: [
+        Size.small("Small", 2.99),
+        Size.medium("Medium", 4.99),
+        Size.large("Large", 7.99)
+    ]
+)
+
+let clerk = Clerk(name: "Sally", shop: shop)
+
+clerk.open(inputs: [
+    "f", // list all flavors
+    "r", // list top flavors
+    "t", // list all toppings
+    "s", // list all sizes
+    "o", // start order
+    "1",
+    "2",
+    "3"
+])
