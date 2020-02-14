@@ -1,7 +1,7 @@
 
 
 struct Flavor {
-    var name: String
+    var name = ["Vanilla", "Chocolate"]
     var rating: Double
 }
 
@@ -27,7 +27,31 @@ struct Cone {
 
 
 class IceCreamShop {
+    
+    var flavors = ["Vanilla", "Chocolate"]
+    
+    var totalScoops: Int
+    
+    var toppings: String
    
-    var totalSales: Double
+    var totalSales: Double = 0.0
+    
+    init(iceCreamFlavors: String, totalScoops: Int, toppings: String, totalSales: Double) {
+        self.flavors = flavors
+        self.totalScoops = totalScoops
+        self.toppings = toppings
+        self.totalSales = totalSales
+    }
+    func listTopFlavors() {
+        
+    }
     
 }
+
+
+
+func orderCone(order: Cone?) {
+    
+}
+
+
