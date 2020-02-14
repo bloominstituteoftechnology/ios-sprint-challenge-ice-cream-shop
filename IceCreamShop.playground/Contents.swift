@@ -9,7 +9,10 @@
 //:    - `rating`
 //:
 
-
+struct Flavor {
+    var name: String
+    var rating: Int
+}
 
 //:2. Create an enum called `Size`.
 //:    - Give it a case for small, medium, and large.
