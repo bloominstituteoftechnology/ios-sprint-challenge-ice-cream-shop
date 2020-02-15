@@ -2,22 +2,50 @@ extension Array where Element == String {
     func formatCommaAnd() -> String {
         guard self.count > 1 else { return self.joined() }
         return self.map({ item -> String in
-            if item != self.last { return "\(item), " }
-            else { return "and \(item)" }
-            }).joined()
+            if item == self.last { return "and \(item)" }
+            else if self.count == 2 { return "\(item) " }
+            else { return "\(item), " }
+        }).joined()
+    }
+    
+    /// Returns true if every string in the original array is contained by the input array, case insensitive
+    func isContained(by array: [String]) -> Bool {
+        let thisArray = self.map({$0.lowercased()})
+        let thatArray = array.map({$0.lowercased()})
+        return thisArray.allSatisfy(thatArray.contains)
     }
 }
 
+
+
+struct Cone: CustomStringConvertible {
+    let flavor: Flavor
+    let size: Size
+    let toppings: [String]
+    
+    var description: String {
+        let formattedToppings = toppings.count > 0 ? "with \(toppings.formatCommaAnd().lowercased()) " : ""
+        return "\(size) cone of \(flavor.name.lowercased()) ice cream \(formattedToppings)"
+    }
+    
+    var price: Double {
+        let pricePerTopping = 0.5
+        let toppingsPrice = pricePerTopping * Double(toppings.count)
+        let sizePrice = size.rawValue
+        return toppingsPrice + sizePrice
+    }
+    
+    func eat() {
+        print("Mmm! I love \(flavor.name)!")
+    }
+}
 extension Cone {
     struct Flavor: Equatable {
-        static func ==(lhs: Flavor, rhs: Flavor) {
-            lhs.name.lowercased() == rhs.name.lowercased()
-        }
         let name: String
         var rating: Double
-        init(name: String, rating: Double = 0.0) {
-            self.name = name
-            self.rating = rating
+        
+        static func ==(lhs: Flavor, rhs: Flavor) {
+            lhs.name.lowercased() == rhs.name.lowercased()
         }
     }
     enum Size: Double {
@@ -27,63 +55,57 @@ extension Cone {
         case extraLarge = 11.99
     }
 }
-struct Cone {
-    let flavor: Flavor
-    let toppings: [String]
-    let size: Size
-    func eat() {
-        print("Mmm! I love \(flavor.name)!")
+
+
+
+class IceCreamShop {
+    let menu: Menu
+    var totalSales = 0.0
+    
+    init(menu: Menu) {
+        self.menu = menu
+    }
+    
+    func listTopFlavors() {
+        let topFlavors = menu.flavors.filter({ $0.rating > 4.0 }).map({ $0.name })
+        if topFlavors.isEmpty {
+            print("Nobody seems to like any of our flavors.")
+            return
+        }
+        print("Our top flavors are \(topFlavors.formatCommaAnd()).")
+    }
+    
+    func orderCone(flavor: String, size: Cone.Size, toppings: [String] = []) -> Cone? {
+        guard let flavor = menu.flavors.first(where: {$0.name == flavor }) else {
+            print("Sorry, we don't have that flavor.")
+            return nil
+        }
+        guard menu.sizes.contains(size) else {
+            print("Sorry, we don't carry that size.")
+            return nil
+        }
+        guard toppings.isContained(by: menu.toppings) else {
+            let requestedTopping = toppings.count > 1 ? "those toppings" : "that topping"
+            print("Sorry, we don't have \(requestedTopping).")
+            return nil
+        }
+        
+        let cone = Cone(flavor: flavor, size: size, toppings: toppings)
+        print("One \(cone.description)coming right up!")
+        print("That will be $\(cone.price).")
+        totalSales += cone.price
+        return cone
     }
 }
 extension IceCreamShop {
     struct Menu {
         var flavors: [Cone.Flavor]
-        var toppings: [String]
         var sizes: [Cone.Size]
+        var toppings: [String]
     }
 }
-class IceCreamShop {
-    init(menu: Menu) {
-        self.menu = menu
-    }
-    let menu: Menu
-    func listTopFlavors() {
-        let topFlavors = menu.flavors.filter({ $0.rating >= 4.0 }).map({ $0.name })
-        if topFlavors.isEmpty {
-            print("Nobody seems to like any of our flavors.")
-            return
-        }
-        let formattedTopFlavors = topFlavors.formatCommaAnd()
-        print("Our top flavors are \(formattedTopFlavors)")
-    }
-    func orderCone(flavor: String, toppings: [String], size: Cone.Size) -> Cone? {
-        guard let flavor = menu.flavors.first(where: {$0.name == flavor }) else {
-            print("Sorry, we don't have that flavor.")
-            return nil
-        }
-        guard toppings.map({$0.lowercased()}).allSatisfy(menu.toppings.map({$0.lowercased()}).contains) else {
-            let grammar = toppings.count > 1 ? "those toppings" : "that topping"
-            print("Sorry, we don't have \(grammar).")
-            return nil
-        }
-        guard menu.sizes.contains(size) else {
-            print("Sorry we don't carry that size.")
-            return nil
-        }
-        let price: Double = {
-            let pricePerTopping = 0.5
-            let toppingsPrice = pricePerTopping * Double(toppings.count)
-            let priceOfSize = size.rawValue
-            return toppingsPrice + priceOfSize
-        }()
-        let formattedToppings = toppings.formatCommaAnd().lowercased()
-        print("One \(size) cone of \(flavor.name) ice cream with \(formattedToppings) coming right up!")
-        print("That will be $\(price).")
-        totalSales += price
-        return Cone(flavor: flavor, toppings: toppings, size: size)
-    }
-    var totalSales = 0.0
-}
+
+
 
 let iceCreamShop: IceCreamShop = {
     let newShopMenu: IceCreamShop.Menu = {
@@ -92,7 +114,7 @@ let iceCreamShop: IceCreamShop = {
             Cone.Flavor(name: "Chocolate", rating: 4.9),
             Cone.Flavor(name: "Strawberry", rating: 4.0),
             Cone.Flavor(name: "Raspberry", rating: 3.9),
-            Cone.Flavor(name: "Bacon", rating: 2.1),
+            Cone.Flavor(name: "Bacon bits", rating: 2.1),
             Cone.Flavor(name: "Butter pecan", rating: 3.6),
             Cone.Flavor(name: "Cookie dough", rating: 4.3),
         ]
@@ -102,7 +124,6 @@ let iceCreamShop: IceCreamShop = {
             "Caramel",
             "Oreos",
             "Peanut butter cups",
-            "Cookie dough",
             "Whipped cream",
             "Nuts",
             "Fruit",
@@ -112,7 +133,7 @@ let iceCreamShop: IceCreamShop = {
             Cone.Size.medium,
             Cone.Size.large,
         ]
-        return IceCreamShop.Menu(flavors: newShopFlavors, toppings: newShopToppings, sizes: newShopSizes)
+        return IceCreamShop.Menu(flavors: newShopFlavors, sizes: newShopSizes, toppings: newShopToppings)
     }()
     return IceCreamShop(menu: newShopMenu)
 }()
@@ -122,15 +143,17 @@ iceCreamShop.listTopFlavors()
 let cone: Cone? = {
     let selectedFlavor = iceCreamShop.menu.flavors.map({ $0.name }).randomElement()!
     var selectedToppings = [String]()
-    for _ in 0...Int.random(in: 0...3) {
-        var newTopping = iceCreamShop.menu.toppings.randomElement()!
-        while selectedToppings.contains(newTopping) {
-            newTopping = iceCreamShop.menu.toppings.randomElement()!
+    if Bool.random() || Bool.random() {
+        for _ in 0...Int.random(in: 0...2) {
+            var newTopping = iceCreamShop.menu.toppings.randomElement()!
+            while selectedToppings.contains(newTopping) {
+                newTopping = iceCreamShop.menu.toppings.randomElement()!
+            }
+            selectedToppings.append(newTopping)
         }
-        selectedToppings.append(newTopping)
     }
     let selectedSize = iceCreamShop.menu.sizes.randomElement()!
-    return iceCreamShop.orderCone(flavor: selectedFlavor, toppings: selectedToppings, size: selectedSize)
+    return iceCreamShop.orderCone(flavor: selectedFlavor, size: selectedSize, toppings: selectedToppings)
 }()
 
 cone?.eat()
