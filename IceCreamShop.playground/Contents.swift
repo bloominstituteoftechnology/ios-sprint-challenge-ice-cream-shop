@@ -1,5 +1,5 @@
 struct Flavor {
-    let name: String
+    var name: String
     var rating: Double
 }
 
@@ -9,27 +9,32 @@ enum Size: Double {
     case large = 8.99
 }
 
+enum Toppings {
+    case gummybears
+    case sprinkles
+    case nuts
+}
+
 struct Cone {
     var flavor: String
-    let topping: String
     let size: Size
+    let toppings: Toppings
 }
 
 class IceCreamShop {
     
     let cone: Cone
     let sizes: Size
-    var toppings: [String]
+    var toppings: Toppings
     let totalSales: Double
-    var flavorNameRate = (String, Double)
-    var flavors = [flavorNameRate]
+    var flavorArray: [Flavor]
     
-    init(cone: Cone, sizes: Size, toppings: [String], totalSales: Double, flavors: [(String, Double)]) {
+    init(cone: Cone, sizes: Size, toppings: Toppings, totalSales: Double, flavorArray: [Flavor]) {
         self.cone = cone
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
-        self.flavors = flavors
+        self.flavorArray = flavorArray
     }
     func eat() {
         print("Mmm!  I love \(cone.flavor) flavor!")
@@ -38,35 +43,42 @@ class IceCreamShop {
 
 var coneString: String = ""
 
-//func orderCone(cone: Cone?) -> Cone {
-//
-//    if let unwrappedCone = cone {
-//        coneString += "Flavor: \(unwrappedCone.flavor)"
-//    }
-//
-//    if let unwrappedConeTopping = cone {
-//        coneString += " Topping: \(unwrappedConeTopping.topping)"
-//    }
-//    if let unWrappedConeSize = cone {
-//        coneString += " Size: \(unWrappedConeSize.size)"
-//    }
-//    return cone
-//}
-
-let iceCreamShop: IceCreamShop = IceCreamShop(cone: Cone, sizes: Size,
-                                              toppings: ["Gummy Bears", "Sprinkles", "Nuts"],
-                                              totalSales: 0.0,
-                                              flavors: [(name: "Vanilla", rate: 3.0), (name: "Chocolate", rate: 4.0), (name: "Strawberry", rate: 5.0)])
-
-func listTopFlavors() {
+func orderCone(cone: Cone?) -> String {
     
-    let flavors = iceCreamShop.flavors
+    if let unwrappedCone = cone {
+        coneString += "Flavor: \(unwrappedCone.flavor)"
+    }
     
-    for flavor in flavors {
+    if let unwrappedConeTopping = cone {
+        coneString += " Topping: \(unwrappedConeTopping.toppings)"
+    }
+    if let unWrappedConeSize = cone {
+        coneString += " Size: \(unWrappedConeSize.size)"
+    }
+    return coneString
+}
+
+var flavorVan = Flavor(name: "Vanilla", rating: 3.0)
+var flavorChoc = Flavor(name: "Chocolate", rating: 4.0)
+var flavorStraw = Flavor(name: "Strawberry", rating: 5.0)
+
+var myFlavorsArray: [Flavor] = []
+
+myFlavorsArray.append(flavorVan)
+myFlavorsArray.append(flavorChoc)
+myFlavorsArray.append(flavorStraw)
+
+var cone1: Cone = Cone(flavor: flavorStraw.name, size: .medium, toppings: .gummybears)
+
+let myIceCreamShop: IceCreamShop = IceCreamShop(cone: cone1, sizes: .medium, toppings: .nuts, totalSales: 0.0, flavorArray: myFlavorsArray)
+
+func listTopFlavors(iceCreamShop: IceCreamShop) {
+    
+    for flavor in iceCreamShop.flavorArray {
         var flavorsString = flavor.name
-        flavorsString += " \(flavor)"
+        flavorsString += "\(flavor)"
         print("Our top flavors are: " + flavorsString)
     }
 }
 
-listTopFlavors()
+listTopFlavors(iceCreamShop: myIceCreamShop)
