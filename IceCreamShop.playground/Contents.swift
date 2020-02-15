@@ -44,7 +44,7 @@ class IceCreamShop {
 var coneString: String = ""
 
 func orderCone(cone: Cone?) -> String {
-    
+        
     if let unwrappedCone = cone {
         coneString += "Flavor: \(unwrappedCone.flavor)"
     }
@@ -55,6 +55,7 @@ func orderCone(cone: Cone?) -> String {
     if let unWrappedConeSize = cone {
         coneString += " Size: \(unWrappedConeSize.size)"
     }
+    
     return coneString
 }
 
@@ -85,3 +86,4 @@ func listTopFlavors(iceCreamShop: IceCreamShop) {
 
 listTopFlavors(iceCreamShop: myIceCreamShop)
 
+print(orderCone(cone: cone1))
