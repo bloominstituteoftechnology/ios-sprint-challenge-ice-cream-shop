@@ -76,9 +76,12 @@ func listTopFlavors(iceCreamShop: IceCreamShop) {
     
     for flavor in iceCreamShop.flavorArray {
         var flavorsString = flavor.name
-        flavorsString += "\(flavor)"
-        print("Our top flavors are: " + flavorsString)
+        var flavorRating = flavor.rating
+        if(flavor.rating >= 4.0) {
+            print("Our top flavors are: " + flavorsString)
+        }
     }
 }
 
 listTopFlavors(iceCreamShop: myIceCreamShop)
+
