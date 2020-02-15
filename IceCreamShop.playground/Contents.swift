@@ -53,7 +53,7 @@ func orderCone(cone: Cone?) -> String {
         coneString += " Topping: \(unwrappedConeTopping.toppings)"
     }
     if let unWrappedConeSize = cone {
-        coneString += " Size: \(unWrappedConeSize.size)"
+        coneString += " Size: \(unWrappedConeSize.size.rawValue)"
     }
     
     return coneString
