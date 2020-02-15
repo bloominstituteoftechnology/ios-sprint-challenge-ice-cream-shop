@@ -4,9 +4,7 @@
 // Project
 
 struct Flavor {
-   var flavorA: String
-    var flavorB: String
-    var flavorC: String
+    var name: String
     var rating: Double
 }
 
@@ -19,7 +17,7 @@ enum Size: Double {
  
 struct Cone {
     let flavor: [Flavor]
-    let topping: String = "Caramel"
+    let topping: [String]
     let size: Size
     
     func eat() {
@@ -29,33 +27,51 @@ struct Cone {
 
 
 class IceCreamShop {
-    var menu: Cone
-    var totalSales: Double
+    let flavorMenu: [Flavor]
+    let toppingMenu: [String]
+    let sizeMenu: [Size]
+    var totalSales: Double = 0
     
-    init(menu: Cone, totalSales: Double) {
-        self.menu = menu
+    init(flavorMenu: [Flavor], toppingMenu: [String], sizeMenu: [Size], totalSales: Double = 0) {
+        self.flavorMenu = flavorMenu
+        self.toppingMenu = toppingMenu
+        self.sizeMenu = sizeMenu
         self.totalSales = totalSales
     }
-}
-
-let addCone = Cone(flavor: [Flavor.init(flavorA: "Vanilla", flavorB: "Chocolate", flavorC: "Coockie Doug", rating: 4.0)], size: .medium)
-print(addCone)
-
-func listTopFlavor() {
-    let newFlavors = addCone.flavor
-    for flavor in newFlavors {
-        print("\(flavor)")
-}
-}
-
-listTopFlavor()
-let addIceCreamShop = (IceCreamShop(menu: Cone.init(flavor: addCone.flavor, size: .medium), totalSales: nil ))
-
-func orderCone(flavor: IceCreamShop = Flavor, topping: IceCreamShop = topping, size: Size ) -> Cone? {
-    var iceCream = iceCream.menu
-    for order in iceCream.flavor{
-        if order.flavorA {
+    func listTopFlavors() {
+        var addFlavors: [String] = []
+        for flavor in flavorMenu {
+            if flavor.rating < 4.0 {
+                addFlavors.append(flavor.name)
+            }
+            print(flavor)
+        }
+        
+    }
     
-    }
+    func orderMenu(flavor: Flavor, theTopping: [String]?, size: Size) -> Cone? {
+        
+        guard let unwrappedTopping = theTopping else {
+        return nil
+        }
+        let newCone = Cone(flavor: [flavor], topping: unwrappedTopping, size: size)
+        totalSales += newCone.size.rawValue
+        if let orderedCone: [String] = newCone.topping { // to assign array of string to array of string
+            print("Your order of flavor  \(newCone.flavor) with \(newCone.topping) will be of total \(totalSales) US dollars.")
+        } else {
+        print("Your \(newCone.flavor) with no topping will be of \(totalSales)")
+        }
+        return newCone
     }
 }
+
+
+let newFlavors1 = Flavor(name: "Vanilla", rating: 4.9)
+let newFlavors2 = Flavor(name: "Chocolate", rating: 5.0)
+let newFlavors3 = Flavor(name: "CoockieDough", rating: 4.8)
+
+let arrayOfSizes: [Size] = [.large, .medium, .small]
+let newToppings: [String] = ["Chocolate chips", "Sprinkles", "Caramel", "Nuts"]
+
+let addToIceCreamShop = IceCreamShop(flavorMenu: [newFlavors1, newFlavors2, newFlavors3], toppingMenu: newToppings, sizeMenu: arrayOfSizes)
+let newConstant = addToIceCreamShop.orderMenu(flavor: newFlavors1, theTopping: newToppings, size: .medium)
