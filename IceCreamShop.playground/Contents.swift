@@ -60,11 +60,13 @@ var myIceCreamShop: IceCreamShop = IceCreamShop(cone: cone1, sizes: .medium, top
 
 func listTopFlavors(iceCreamShop: IceCreamShop) {
     
+    print("Our top flavors are: ")
+
     for flavor in iceCreamShop.flavorArray {
-        let flavorsString = flavor.name
+        let flavorString = flavor.name
         let flavorRating = flavor.rating
         if(flavor.rating >= 4.0) {
-            print("Our top flavors are: " + flavorsString)
+            print(flavorString)
         }
     }
 }
@@ -76,14 +78,14 @@ cone1.eat()
 func orderCone(cone: Cone?) -> String {
     
     if let unwrappedCone = cone {
-        coneString += "Flavor: \(unwrappedCone.flavor)"
+        coneString += "Flavor: \(unwrappedCone.flavor) "
     }
     
     if let unwrappedConeTopping = cone {
-        coneString += " Topping: \(unwrappedConeTopping.toppings)"
+        coneString += " Topping: \(unwrappedConeTopping.toppings) "
     }
     if let unWrappedConeSize = cone {
-        coneString += " Size: \(unWrappedConeSize.size.rawValue)"
+        coneString += " Size: \(unWrappedConeSize.size.rawValue) "
         myIceCreamShop.totalSales += unWrappedConeSize.size.rawValue
     }
     return coneString
@@ -93,10 +95,10 @@ func printTotalSales(iceCreamShopTotalSales: IceCreamShop) {
     print("Total Sales for our Ice Cream Shop: \(myIceCreamShop.totalSales)")
 }
 
-print(orderCone(cone: cone1))
+print(orderCone(cone: cone1) + " ")
 
 printTotalSales(iceCreamShopTotalSales: myIceCreamShop)
 
-print(orderCone(cone: cone1))
+print(orderCone(cone: cone1) + " ")
 
 printTotalSales(iceCreamShopTotalSales: myIceCreamShop)
