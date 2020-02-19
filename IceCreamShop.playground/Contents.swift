@@ -121,11 +121,14 @@ let iceCreamShop2 = IceCreamShop(flavors: [cookieDough], size: arrayOfSizes[0], 
 
 iceCreamShop2.listOfFlavors()
 
-let cone2 = Cone(flavor: strawberry, topping: nil, size: Size.medium)
+//let cone2 = Cone(flavor: strawberry, topping: nil, size: Size.medium)
 
-cone2.eat
+let cone2 = iceCreamShop.orderCone(flavor: rasberry, toppings: nil, size: .small)
 
-iceCreamShop2.orderCone(flavor: walnut, toppings: "chocolate mint", size: .large)
+cone2!.eat()
 
-iceCreamShop2.totalSales
+let iceCreamShop2Cone = iceCreamShop2.orderCone(flavor: walnut, toppings: "chocolate mint", size: .large)
+
+//print(iceCreamShop2Cone!)
+//iceCreamShop2.totalSales
 
