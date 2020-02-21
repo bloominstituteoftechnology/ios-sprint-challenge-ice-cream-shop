@@ -5,7 +5,7 @@ struct Flavor {
     let rate :String
     let vanilla: String
     let chocolate: String
-    let strawberry: string
+    let strawberry: String
     let cookiesAndCream : String
     let rockyRoad : String
     let chocolateChip: String
@@ -18,9 +18,6 @@ struct Flavor {
 
 
 enum iceCreamSizes {
-    case small = "Small"
-    case medium = "Medium"
-    case large = "Large"
 }
  
 struct Cone {
@@ -29,30 +26,31 @@ struct Cone {
     let sugarCone: String
     
 }
-func icecream flavor: String
+
+func icecream {
       
 class IcecreamShop: String {
-    var flavors: String{
+    var flavor {
         let vanilla: String
         let chocolate: String
-        let strawberry: string
+        let strawberry: String
         let cookiesAndCream : String
         let rockyRoad : String
         let chocolateChip: String
-        let MintChocolateChip : String
+        let mintChocolateChip : String
         let frenchVanilla: String
         let coffee: String
-        let peanutButterCup: Strin
+        let peanutButterCup: String
     }
     var sizes: String {
     case small = "Small"
     case medium = "Medium"
     case large = "Large"
     }
-        var toppings: String {
+        var toppings  {
         let hotFudge: String
         let sprinkles: String
-        let caramel: string
+        let caramel: String
         let oreos: String
         let peanutButterCup : String
         let cookieDough: String
@@ -77,18 +75,19 @@ func topFlavors
     var cookiesAndCream: String
 
 
-    Func orderCone: string {
-        Var SugarCone: [flavour: vanilla, toppings: hotFudge, size: 4.5]{
-        } else
-        var waffleCone: [flavor: Chocolate, toppings: caramel, size: small]
-        private func updateWithFlavor (flavor:Flavor)
+        func orderCone  {
+        var SugarCone: [(flavor: "vanilla", toppings: "hotFudge", size: "4.5")]
         }
-    icecreamView.updatewithflavor(flavor)
-    label.text = flavor.name
-}
+        var waffleCone[flavor: "chocolate", toppings: "caramel", size: "small"]
+        print(flavor:flavor)
+        }
+  
+   }
         
 }
 
-struct Flavor: String{
-var chocolate = chocolate
-var vanilla = vanilla 
+struct flavor{
+var chocolate = "chocolate"
+var vanilla = "vanilla"
+ }
+}
