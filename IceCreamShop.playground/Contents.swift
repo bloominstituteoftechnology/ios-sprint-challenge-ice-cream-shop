@@ -63,7 +63,7 @@ class IceCreamShop {
         if toppings.contains(requestedTopping) {
             let newCone = Cone(flavor: flavor, topping: requestedTopping, size: size)
             self.totalSales += size.rawValue
-            print("Your \(newCone.flavor.name) ice cream with \(newCone.topping) is \(newCone.size.rawValue)")
+            print("Your \(newCone.flavor.name) ice cream with \(newCone.topping) is \(formatAsCurrency(newCone.size.rawValue))")
             return newCone
         } else {
             print("Sorry, we don't have that topping. Please try again")
