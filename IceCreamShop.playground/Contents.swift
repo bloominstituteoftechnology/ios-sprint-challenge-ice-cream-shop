@@ -56,6 +56,24 @@ class IceCreamShop {
             }
         }
     }
+    
+    
+    
+    func orderCone(flavor: Flavor, size: Size, topping: String?) -> Cone? {
+        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        let price = size.rawValue
+        
+        totalSales += price
+        
+        if let unwrappedTopping = topping {
+            print("Your \(flavor.name) ice cream with \(unwrappedTopping) is \(size.rawValue)")
+        } else {
+            print("Your \(flavor.name) ice cream is \(size.rawValue)")
+        }
+        
+        
+        return newCone
+    }
 }
 
 
