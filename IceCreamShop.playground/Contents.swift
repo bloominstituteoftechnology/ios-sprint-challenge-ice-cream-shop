@@ -42,7 +42,7 @@ struct Cone {
 
 class IceCreamShop {
     var flavors: [Flavor] = []
-    var totalSales: Int = 0
+    var totalSales: Double = 0
     var conesSold: [Cone] = []
     
     func listTopFlavors() {
@@ -56,15 +56,35 @@ class IceCreamShop {
     }
     
     func conePrice(cone: Cone) -> Double {
-        
+        let salesTax = 1.135
+        let conePrice = cone.size.rawValue * salesTax
+        return(conePrice)
     }
     
     func orderCone(size: Size, flavor: Flavor, topping: Topping?) -> Cone? {
         let yourCone = Cone(size: size, flavor: flavor, topping: topping)
+        totalSales = conePrice(cone: yourCone) + totalSales
         conesSold.append(yourCone)
+        if let unwrappedTopping = topping {
+            print("A \(size) \(flavor) cone with \(unwrappedTopping) will be \(conePrice(cone: yourCone)).")
+        } else {
+            print("A \(size) \(flavor) cone will be \(conePrice(cone: yourCone)).")
+        }
         return(yourCone)
     }
     
 }
+
+let chocolate = Flavor(name: "Chocolate", rating: 4)
+let vanilla = Flavor(name:"Vanilla", rating: 3)
+let swirl = Flavor(name: "Chocolate Vanilla Swirl", rating: 3)
+let mooseTracks = Flavor(name: "Moose Tracks", rating: 5)
+let pistacio = Flavor(name: "Pistacio", rating: 4)
+let mint = Flavor(name: "Mint Chocolate Chip", rating: 5)
+let superman = Flavor(name: "Gum-ball Rainbow", rating: 3)
+let sherbet = Flavor(name: "Orange Sherbet", rating: 3)
+let rumRaisin = Flavor(name: "Rum Raisin", rating: 3)
+let snickerdoodle = Flavor(name: "Snickerdoodle", rating: 4)
+
 
 
