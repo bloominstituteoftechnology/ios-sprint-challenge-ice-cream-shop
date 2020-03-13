@@ -23,23 +23,29 @@ struct Cone {
     let flavor: Flavor
     let topping: String?
     
-    init(size: Size, flavor: Flavor, topping: Topping) {
+    init(size: Size, flavor: Flavor, topping: Topping?) {
         self.size = size
         self.flavor = flavor
-        self.topping = topping.rawValue
+        
+        if let unwrappedTopping = topping {
+        self.topping = unwrappedTopping.rawValue
+        } else {
+            self.topping = nil
+        }
     }
     
     func eat() {
         print("Yum! I love the \(flavor) here!")
     }
+        
 }
 
 class IceCreamShop {
     var flavors: [Flavor] = []
     var totalSales: Int = 0
+    var conesSold: [Cone] = []
     
     func listTopFlavors() {
-        
         print("Our customers really seem to enjoy...")
         for flavor in flavors {
             if flavor.rating >= 4 {
@@ -49,4 +55,16 @@ class IceCreamShop {
         print("Which can I get for you today?")
     }
     
+    func conePrice(cone: Cone) -> Double {
+        
+    }
+    
+    func orderCone(size: Size, flavor: Flavor, topping: Topping?) -> Cone? {
+        let yourCone = Cone(size: size, flavor: flavor, topping: topping)
+        conesSold.append(yourCone)
+        return(yourCone)
+    }
+    
 }
+
+
