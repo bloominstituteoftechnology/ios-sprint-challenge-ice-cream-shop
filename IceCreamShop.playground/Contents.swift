@@ -9,9 +9,9 @@ struct Flavor {
 //2.
 
 enum Size: Double {
-    case Small = 3.0
-    case Medium = 5.0
-    case Large = 8.0
+    case Small = 3.99
+    case Medium = 5.99
+    case Large = 8.99
 }
 
 //3.
@@ -76,23 +76,23 @@ func orderCone(flavor : Flavor, topping: String?, size: Size) -> Cone? {
     
     if let unwrappedTopping = myCone.topping {
         
-        print("Your \(myCone.flavor) with \(unwrappedTopping) is \(myCone.size)")
+        print("Your \(myCone.flavor.name) with \(unwrappedTopping) is \(myCone.size.rawValue).")
         
     } else {
-         print("Your \(myCone.flavor)  is \(myCone.size)")
+        print("Your \(myCone.flavor.name) is \(myCone.size.rawValue).")
     } ;return myCone
    
 }
 
 //7.
 
-let flavor1 = Flavor(name: "Chocolate", rating: 4.0)
+let flavor1 = Flavor(name: "Chocolate", rating: 4.1)
 let flavor2 = Flavor(name: "Blueberry", rating: 4.3)
 let flavor3 = Flavor(name: "Lemon", rating: 3.8)
 
 let sizes = [Size.Large, Size.Medium, Size.Small]
 
-let toppings = ["Coconut", "Walnut", "Sesame"]
+let toppings = ["Coconut Chips", "Walnut", "Sesame"]
 
 
 //8.
@@ -105,4 +105,15 @@ myIceCreamShop.toppings = toppings
 
 //9.
 listTopFlavors()
+
+
+//10.
+
+let cone1 = orderCone(flavor: flavor1, topping: nil , size: .Large)
+
+//11.
+cone1?.eat()
+
+//12.
+print(myIceCreamShop.totalSales)
 
