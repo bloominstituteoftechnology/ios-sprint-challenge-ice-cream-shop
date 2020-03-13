@@ -1,7 +1,4 @@
 
-import UIKit
-
-
 //Enums
 enum Flavors: String, CaseIterable {
     case Orange_Sherbet = "Orange Sherbet"
