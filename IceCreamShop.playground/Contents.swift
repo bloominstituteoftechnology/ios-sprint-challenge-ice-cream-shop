@@ -49,7 +49,7 @@ let myIceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [""])
 //5.
 
 
-func listTopFlavors () {
+func listTopFlavors(){
     
     print ("Our top flavors are : ")
     
@@ -62,3 +62,24 @@ func listTopFlavors () {
 }
 
 listTopFlavors()
+
+
+//6.
+
+
+func orderCone(flavor : Flavor, topping: String?, size: Size) -> Cone? {
+    
+    
+    let myCone = Cone(flavor: flavor, topping: topping, size: size)
+    
+    myIceCreamShop.totalSales += myCone.size.rawValue
+    
+    if let unwrappedTopping = myCone.topping {
+        
+        print("Your \(myCone.flavor) with \(unwrappedTopping) is \(myCone.size)")
+        
+    } else {
+         print("Your \(myCone.flavor)  is \(myCone.size)")
+    } ;return myCone
+   
+}
