@@ -11,15 +11,22 @@ enum Size: Double {
     case large = 3.19
 }
 
+enum Topping: String {
+    case nuts
+    case hotFudge
+    case sprinkles
+}
+
 struct Cone {
     let flavor: String
-    let topping: String?
+    let topping: [Topping]?
     let size: Size
     
     func eat() {
         print("wow. this is really good \(self.flavor) gelato.")
     }
 }
+
 // test code heretofore
 let yum = Flavor(name: "lemon", rating: 3.05)
 let twoScoops = Size.medium
@@ -28,31 +35,30 @@ double.eat()
 // so far, so good
 
 class IceCreamShop {
-    var flavor: Flavor
-    var size: Size
-    var topping: [String]?
     var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [Topping]
+    var totalSales: Double
     
-    var totalSales: Double = 0
-    
-    init(flavor: Flavor, size: Size, topping: String?) {
-        self.flavor = flavor
-        self.size = size
-        self.topping = []
+    init(flavor: [Flavor], size: [Size], topping: [Topping], totalSales: Double) {
         self.flavors = []
+        self.sizes = []
+        self.toppings = []
+        self.totalSales = totalSales
     }
-    func listTopFlavors() {
+    
+    func listTopFlavors() -> String {
         var topFlavors = [String]()
         for flavor in flavors {
             if flavor.rating > 4.0 {
                 topFlavors.append(flavor.name)
             }
-        print("our top flavors are: \(topFlavors).")
         }
+        return "our top flavors are: \(topFlavors)."
     }
     
     func orderCone(flavor: Flavor, topping:[String]?, size: Size) -> Cone? {
-        let order = Cone(flavor: flavor.name, topping: nil, size: size)
+        let order = Cone(flavor: flavor, topping: toppings, size: size)
         totalSales += order.size.rawValue
         if let topping = topping {
             print("your \(flavor) ice cream cone with \(topping) is \(size.rawValue).")
@@ -70,12 +76,6 @@ let oneScoop = Size.small
 let two = Size.medium
 let threeScoops = Size.large
 
-let gross = Cone(flavor: "vanilla", topping: "sprinkles", size: .small)
-
-let rons = IceCreamShop(flavor: stracciatella, size: two, topping: nil)
-
-rons.orderCone(flavor: stracciatella, topping: nil, size: .small)
-rons.orderCone(flavor: pistachio, topping: nil, size: .medium)
-rons.orderCone(flavor: choc, topping: nil, size: .large)
+let rons = IceCreamShop(flavor: [stracciatella], size: [two], topping: [Topping.nuts], totalSales: 0.0)
 
 rons.listTopFlavors() 
