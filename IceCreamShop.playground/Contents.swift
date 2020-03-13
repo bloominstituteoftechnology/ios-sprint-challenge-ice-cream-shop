@@ -43,7 +43,7 @@ class IceCreamShop{
     
 }
 
-let myIceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [""])
+var myIceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [""])
 
 
 //5.
@@ -61,7 +61,7 @@ func listTopFlavors(){
     }
 }
 
-listTopFlavors()
+
 
 
 //6.
@@ -83,3 +83,26 @@ func orderCone(flavor : Flavor, topping: String?, size: Size) -> Cone? {
     } ;return myCone
    
 }
+
+//7.
+
+let flavor1 = Flavor(name: "Chocolate", rating: 4.0)
+let flavor2 = Flavor(name: "Blueberry", rating: 4.3)
+let flavor3 = Flavor(name: "Lemon", rating: 3.8)
+
+let sizes = [Size.Large, Size.Medium, Size.Small]
+
+let toppings = ["Coconut", "Walnut", "Sesame"]
+
+
+//8.
+myIceCreamShop.flavors.append(flavor1)
+myIceCreamShop.flavors.append(flavor2)
+myIceCreamShop.flavors.append(flavor3)
+
+myIceCreamShop.sizes = sizes
+myIceCreamShop.toppings = toppings
+
+//9.
+listTopFlavors()
+
