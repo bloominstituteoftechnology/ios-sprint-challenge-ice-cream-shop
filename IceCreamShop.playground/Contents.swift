@@ -1,14 +1,14 @@
 enum Name: String {
     case chocolate
     case vanilla
-    case lavenderHoney                  //flavor names
+    case lavenderHoney                     //flavor names
     case strawberry
     case twist
 }
 
 struct Flavor{
     let name: Name                         //puts the rating and flavor name together
-    let rating: Int
+    let rating: Int = 1..5
 }
 
 enum Size {
@@ -44,14 +44,17 @@ class IceCreamShop {
 //        return formatter
 //    }()
     func listTopFlavors(){
-        var flavors : [Flavor] = []
+        let flavors : [Flavor] = []
         for flavor in flavors{
-            
+            if rating >= 4{
+                print("Our top flavors are \(Name)!")
+                return Name
+            }
         }
                 
     }
     func orderCone(flavor: Flavor, cone:Cone){
         let iceCreamCone = Cone(flavor: Flavor, topping: topping, size: size)
     }
-    
+  init(cone = Cone)
 }
