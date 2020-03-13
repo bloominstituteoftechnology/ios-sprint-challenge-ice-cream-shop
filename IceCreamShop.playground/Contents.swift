@@ -25,3 +25,40 @@ struct Cone {
         print("Mmm! I love \(flavor.name)!")
     }
 }
+
+//4.
+
+class IceCreamShop{
+    var flavors : [Flavor]
+    var sizes : [Size]
+    var toppings : [String]
+    var totalSales : Double
+    
+    init(flavors : [Flavor], sizes: [Size], toppings: [String] ){
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
+        self.totalSales = 0.0
+    }
+    
+}
+
+let myIceCreamShop = IceCreamShop(flavors: [], sizes: [], toppings: [""])
+
+
+//5.
+
+
+func listTopFlavors () {
+    
+    print ("Our top flavors are : ")
+    
+    for flavor in  myIceCreamShop.flavors {
+        if flavor.rating > 4.0 {
+            print(flavor.name)
+            
+        }
+    }
+}
+
+listTopFlavors()
