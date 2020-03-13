@@ -36,10 +36,10 @@ class IceCreamShop {
     }
     
     func listTopFlavors() {
-        var printString = "Our top flavors are "
+        var printString = "Our top flavors are:"
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                printString += "\(flavor.name) ,"
+                printString += "\n -\(flavor.name)"
             }
         }
         print(printString)
@@ -54,21 +54,29 @@ class IceCreamShop {
 }
 
 
-// MARK: - Using the above properties
+// MARK: - Create Flavors
 let chocolateFlavor = Flavor(name: "chocolate", rating: 8.0)
 let vanillaFlavor = Flavor(name: "vanilla", rating: 3.5)
-let strawberryFlavor = Flavor(name: "strawberry", rating: 4.0)
+let strawberryFlavor = Flavor(name: "strawberry", rating: 4.5)
 
 let myFlavors = [chocolateFlavor, vanillaFlavor, strawberryFlavor]
 
+// MARK: - Create IceCreamShop
 let myIceCreamShop = IceCreamShop(flavors: myFlavors,
                                   sizes: [.large, .medium, .small],
                                   toppings: ["chocolate sauce", "cherries", "gummy worms"])
 
+// MARK: - List Top Flavors
+myIceCreamShop.listTopFlavors()
+
+// MARK: - Create Cone
 let myNewCone = myIceCreamShop.orderCone(flavor: chocolateFlavor,
                                          topping: "gummy worms",
                                          size: .large)
 
+// MARK: - Eat Cone
 myNewCone?.eat()
 
+// MARK: - Print Total Sales
 print(myIceCreamShop.totalSales)
+
