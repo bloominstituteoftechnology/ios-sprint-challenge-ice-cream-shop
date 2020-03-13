@@ -16,58 +16,76 @@ enum Size: Double {
 
 struct Cone {
     let flavor: Flavor
-    let topping: [Topping]?
+    let topping: Topping?
     let size: Size
     
     func eat(){
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 
 class IceCreamShop {
     // Which sizes available won't change but setting the others to var as may want to add more flavors or toppings later
     let sizes: [Size]
-    var flavors: [Flavor]
-    var toppings: [Topping]
+    var flavorList: [Flavor]
+    var toppingList: [Topping]
     var totalSales: Double
     
-    init(sizes: [Size], flavors: [Flavor], toppings: [Topping], totalSales: Double) {
+    init(sizes: [Size], flavorList: [Flavor], toppingList: [Topping], totalSales: Double = 0) {
         self.sizes = sizes
-        self.flavors = flavors
-        self.toppings = toppings
+        self.flavorList = flavorList
+        self.toppingList = toppingList
         self.totalSales = totalSales
     }
     
     func listTopFlavors(){
         var topFlavors = "Our top flavors are: "
 
-        for flavor in flavors {
-            if flavor.rating > 4.0 {
-                topFlavors += "\(flavor.name) "
+        for n in 0...flavorList.count-1 {
+            if flavorList[n].rating > 4.0 {
+                // Using n so I can more easily grab the index for setting up the grammar
+                if flavorList.count > 1 && n == flavorList.count-2 {
+                    topFlavors += "\(flavorList[n].name) and "
+                } else if n == flavorList.count-1{
+                    topFlavors += "\(flavorList[n].name)"
+                } else {
+                    topFlavors += "\(flavorList[n].name) "
+                }
             }
         }
         print(topFlavors)
     }
     
-    func orderCone(size: Size, flavor: Flavor, toppings: [Topping]?) -> Cone?{
-        let order = Cone(flavor: flavor, topping: toppings, size: size)
+    func orderCone(size: Size, orderedFlavor: String, orderedTopping: String?) -> Cone?{
+        var myFlavor: Flavor?
+        for flavor in flavorList {
+            if flavor.name == orderedFlavor{
+                myFlavor = flavor
+                break
+            }
+        }
+        
+        guard let unwrappedFlavor = myFlavor else {
+            print("Sorry. We don't have that flavor.")
+            return nil
+        }
+        
+        var myTopping: Topping?
+        for topping in toppingList {
+            if topping.name == orderedTopping {
+                myTopping = topping
+                break
+            }
+        }
+        
+        let order = Cone(flavor: unwrappedFlavor, topping: myTopping, size: size)
         var orderPrice = size.rawValue
         
-        var orderString = "Your \(flavor) ice cream "
+        var orderString = "Your \(unwrappedFlavor.name) ice cream "
         
-        // Adds any amount of toppings to ice cream and price
-        if let toppings = toppings{
-            orderString += "with "
-            for n in 0...toppings.count-1{
-                orderPrice += toppings[n].price
-                if toppings.count > 1 || n == toppings.count-2 {
-                    orderString += "\(toppings[n].name) and "
-                } else if n == toppings.count-1{
-                    orderString += "\(toppings[n].name) "
-                } else {
-                    orderString += "\(toppings[n].name), "
-                }
-            }
+        if let myTopping = myTopping{
+            orderString += "with \(myTopping.name) "
+            orderPrice += myTopping.price
         }
         
         orderString += "is \(orderPrice)."
@@ -76,3 +94,24 @@ class IceCreamShop {
         return order
     }
 }
+var mint = Flavor(name: "mint", rating: 3.2)
+var vanilla = Flavor(name: "vanilla", rating: 4.7)
+var chocolate = Flavor(name: "chocolate", rating: 4.4)
+
+var sprinkles = Topping(name: "sprinkles", price: 0.25)
+var chocolateChips = Topping(name: "chocolate chips", price: 0.30)
+var peanuts = Topping(name: "peanuts", price: 0.2)
+
+var availableSizes = [Size.small, Size.medium, Size.large]
+
+let myIceCreamShop = IceCreamShop(sizes: availableSizes,
+                                  flavorList: [mint, vanilla, chocolate],
+                                  toppingList: [sprinkles, chocolateChips, peanuts])
+
+myIceCreamShop.listTopFlavors()
+
+let myCone = myIceCreamShop.orderCone(size: .small, orderedFlavor: "mint", orderedTopping: "peanuts")
+
+myCone?.eat()
+
+print(myIceCreamShop.totalSales)
