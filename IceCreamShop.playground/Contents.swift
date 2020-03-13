@@ -29,7 +29,7 @@ struct Flavor {
 }
 
 struct Cone {
-    let flavor: Flavor?
+    let flavor: Flavors?
     let topping: Toppings?
     let size: Sizes?
     
@@ -38,7 +38,7 @@ struct Cone {
     func eat() {
         if let temp_flavor = flavor
         {
-            print("This \(temp_flavor.name.rawValue) is really good!")
+            print("This \(temp_flavor.rawValue) is really good!")
         } else {
             print("This cone doesn't have any icecream!")
         }
@@ -61,8 +61,6 @@ class IceCreamShop {
     }
 }
 
-var myShop = IceCreamShop(totalSales: 0.00)
-
 //Functions
 func listTopFlavors() {
     for i in flavor_array {
@@ -73,17 +71,17 @@ func listTopFlavors() {
     }
 }
 
-func orderCone(flavor: Flavor?, topping: Toppings?, size: Sizes?) -> Cone? {
+func orderCone(flavor: Flavors?, topping: Toppings?, size: Sizes?, shop: IceCreamShop) -> Cone? {
     
     var cone: Cone? = Cone(flavor: flavor, topping: topping, size: size)
     
     if let temp_size = size {
         if let temp_topping = topping {
             cone?.price = String(temp_size.rawValue + temp_topping.rawValue)
-            myShop.totalSales += temp_size.rawValue + temp_topping.rawValue
+            shop.totalSales += temp_size.rawValue + temp_topping.rawValue
         } else {
             cone?.price = String(temp_size.rawValue)
-            myShop.totalSales += temp_size.rawValue
+            shop.totalSales += temp_size.rawValue
         }
     } else {
         print("You needs to pick a size before you buy a cone!")
@@ -99,8 +97,19 @@ flavor_array.append(Flavor(name: .Vanilla, rating: 3))
 flavor_array.append(Flavor(name: .Orange_Sherbet, rating: 9))
 flavor_array.append(Flavor(name: .Superman, rating: 1))
 
+var myShop = IceCreamShop(totalSales: 0.00)
 
 listTopFlavors()
+
+let myCone: Cone?
+myCone = orderCone(flavor: .Orange_Sherbet, topping: nil, size: .large, shop: myShop)
+
+if let temp_cone = myCone {
+    temp_cone.eat()
+}
+
+print(myShop.totalSales)
+
 /* let cone = Cone(flavor: .init(name: .Vanilla, rating: 4), topping: .Strawberrys, size: .medium) */
 
 
