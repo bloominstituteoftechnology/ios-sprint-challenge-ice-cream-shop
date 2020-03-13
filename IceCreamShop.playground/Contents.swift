@@ -1,11 +1,4 @@
 // Ice-Cream Shop.
-//
-//struct Flavor {
-//    let flavor1 = String
-//    let flavor2 = String
-//    let flavor2 = String
-//}
-
 
 enum Flavor {
     case chocolate
@@ -25,63 +18,66 @@ struct Cone {
     var size: Size
 }
 
-let myFavCone = Cone(flavors: .chocolate, toppings: "Sprinkles", size: .large)
+let myFavCone = Cone(flavors: Flavor.chocolate, toppings: "Sprinkles", size: .large)
 func eat() {
-    print("MMM I Love .\(myFavCone.flavors)")
+    print("MMM I love \(myFavCone.flavors) icecream")
 }
 eat()
 
 class IceCreamShop {
-    var flavors: [Flavor]
+    var flavors: Flavor
     var sizes: Size
     var toppings: String
   
     
     init(flavors: Flavor, sizes: Size, toppings: String) {
-        self.flavors = [flavors]
+        self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
         }
 }
 var totalSales: Double = 0
+var allFlavors = [Flavor.chocolate, Flavor.strawberry, Flavor.vanilla]
 
-
-func listTopFlavors() -> [Flavor] {
-    let availFlavs = [Flavor]()
+func listTopFlavors() {
+    let availFlavs = allFlavors
     
-    for flavors in availFlavs {
-        print("Our available flavors are .\(Flavor.chocolate)")
+    for _ in availFlavs {
+        print("Our available flavors are .\([allFlavors])")
     }
-    return availFlavs
 }
 listTopFlavors()
 
-func orderCone(cone: Cone) -> Cone? {
+func orderCone(cone: Cone)  {
     let myOrder = Cone(flavors: .chocolate, toppings: "sprinkles", size: .large)
-    var newTotalSales = totalSales + myOrder.size.rawValue
-    return myOrder
-    
-    
+    let newTotalSales = totalSales + myOrder.size.rawValue
+    print(newTotalSales)
 }
 
 print("The Price of a large chocolate cone is .\(Size.large)")
+orderCone(cone: myFavCone)
 
-let newFlavors = ["Superman", "Mint", "Coffee"]
-let newToppings = ["Snickers", "Gummy Worms"]
-let newSizes = ["XL", "XXL", "XXXL"]
+let newFlavor1:
 
-class newIceCreamShop: IceCreamShop {
-    let newFlavors:[String]
-    let newToppings:[String]
-    let newSizes: [String]
-    
-    init(newFlavors: [String], newToppings: [String], newSizes: [String]) {
-        self.newSizes = newFlavors
-        self.newToppings = newToppings
-        self.newSizes = newSizes
-        super.init(flavors: [], sizes: Size, toppings: "Sprinkles")
-    }
-}
+//class newIceCreamShop: IceCreamShop {
+//    let newFlavors:[String]
+//    let newToppings:[String]
+//    let newSizes: [String]
+//
+//    init(newFlavors: [String], newToppings: [String], newSizes: [String]) {
+//        self.newSizes = newFlavors
+//        self.newToppings = newToppings
+//        self.newSizes = newSizes
+//        super.init(flavors: newFlavors, sizes: Size, toppings: "Sprinkles")
+//    }
+//}
+//
+//listTopFlavors()
+
+
+var myNewCone = Cone(flavors: .strawberry, toppings: "Skittles", size: .medium)
+eat()
+orderCone(cone: myNewCone)
 
 
 
