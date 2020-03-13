@@ -1,8 +1,9 @@
 
 import UIKit
 
+
 //Enums
-enum Flavors: String {
+enum Flavors: String, CaseIterable {
     case Orange_Sherbet = "Orange Sherbet"
     case Vanilla = "Vanilla"
     case Chocolate = "Chocolate"
@@ -41,8 +42,29 @@ struct Cone {
 //Classes
 class IceCreamShop {
     
+    //Constants
+    let toppings: [Toppings] = [.MandMs, .Sprinkles, .Strawberrys]
+    let flavors: [Flavors] = [.Chocolate, .Orange_Sherbet, .Superman, .Vanilla]
+    let size: [Sizes] = [.small, .medium, .large]
+    
+    //Mutable
+    var totalSales: Double
+    
+    //Functions
+    func listtopFlavors() {
+       // let temp_flavor = Flavors
+        for i in Flavors.allCases {
+            print(i.rawValue)
+        }
+    }
+    
+    init(totalSales: Double) {
+        self.totalSales = totalSales
+    }
 }
 
 /* let cone = Cone(flavor: .init(name: .Vanilla, rating: 4), topping: .Strawberrys, size: .medium) */
 
 
+var tst = IceCreamShop(totalSales: 5.00)
+tst.listtopFlavors()
