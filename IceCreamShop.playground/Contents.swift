@@ -109,7 +109,7 @@ let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
 
 newIceCreamShop.listTopFlavors()
 
-let myNewCone = newIceCreamShop.orderCone(flavor: chicken, topping: "bacon", size: .medium)
+let myNewCone = newIceCreamShop.orderCone(flavor: chicken, topping: "bacon", size: .large)
 
 myNewCone?.eat()
 
