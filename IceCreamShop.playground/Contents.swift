@@ -1,4 +1,7 @@
 
+
+
+// Create a struct called Flavor. Add the following properties. Think about what type they should be:
 struct Flavor {
     let name: String
     let rating: Int
@@ -11,27 +14,25 @@ let myFlavor4 = Flavor(name: "Pistachio", rating: 2)
 
 var allMyFlavors = [myFlavor1, myFlavor2, myFlavor3, myFlavor4]
 
+// Create an enum called Size.
+
+//Give it a case for small, medium, and large.
+
+
 enum Size: Double {
     case small = 3.99
     case medium = 4.99
     case large = 6.99
 }
 
+//Create a struct called Cone.
 
 struct Cone {
-    let flavors: String
+    let flavors: Flavor
     let topping: String?
     let size: Size
     
 }
-
-let myCone1 = Cone(flavors: "Vanilla", topping: nil, size: Size.small)
-let myCone2 = Cone(flavors: "Strawberry", topping: "Sprinkles", size: Size.large)
-let myCone3 = Cone(flavors: "Rocky Road", topping: "Oreos", size: Size.medium)
-
-var allMyCones = [myCone1, myCone2, myCone3]
-
-
 
 
 func eat() -> String{
@@ -40,24 +41,20 @@ func eat() -> String{
     
 print(eat())
 
-
-
-
-
+// Create a class called IceCreamShop.
 
 class IceCreamShop {
     var menuFlavor: [Flavor]
-    var size: [Size]
-    var toppings: [String]
     var totalSales: Double
 
-    init(menuFlavor: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
+    init(menuFlavor: [Flavor], totalSales: Double) {
         self.menuFlavor = menuFlavor
-        self.size = size
-        self.toppings = toppings
         self.totalSales = totalSales
     }
 }
+
+// 5. If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
+
 
 func listTopFlavors() {
     for topFlavors in allMyFlavors {
@@ -69,11 +66,26 @@ func listTopFlavors() {
 
 listTopFlavors()
 
-func orderCone(cone: (flavors: String, toppings: String?, size: Double)) -> (flavors: String, toppings: String?, size: Double) {
-    let newCone = Cone(flavors: allMyFlavors, topping: <#T##String?#>, size: <#T##Size#>)
-    
+// 6. Customers will need a way to order a cone.
+
+
+func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
+    let newCone = Cone(flavors: flavor, topping: toppings, size: size)
+    if let unwrappedTopping = toppings {
+        print("Your \(flavor.name) with \(unwrappedTopping) is \(size.rawValue)")
+    } else {
+        print(("Your \(flavor.name) ice cream is \(size.rawValue)"))
+    }
+    return newCone
 }
 
+let arrayOfSizes: [Size]  = [.small, .medium, .large]
 
+enum Toppings: String {
+    case oreo = "Oreos"
+    case sprinkles = "Sprinkles"
+    case fudge = "Fudge"
+}
 
+let arrayOfToppings: [Toppings] = [.oreo, .sprinkles, .fudge]
 
