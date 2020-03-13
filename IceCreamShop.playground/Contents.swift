@@ -13,14 +13,30 @@ enum Size: Double {
 
 struct Cone {
     let flavor: String
-    let topping: [String]?
+    let topping: String?
     let size: Size
     
     func eat() {
         print("wow. this is really good \(self.flavor) gelato.")
     }
 }
+// test code heretofore
 let yum = Flavor(name: "lemon", rating: 3.05)
 let twoScoops = Size.medium
 var double = Cone(flavor: "lemon", topping: nil, size: twoScoops)
 double.eat()
+// so far, so good
+
+class IceCreamShop {
+    var flavor: Flavor
+    var size: Size
+    var topping: [String]?
+    
+    var totalSale: Double = 0
+    
+    init(flavor: Flavor, size: Size, topping: String?) {
+        self.flavor = flavor
+        self.size = size
+        self.topping = []
+    }
+}
