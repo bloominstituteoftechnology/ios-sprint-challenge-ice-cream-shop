@@ -36,9 +36,9 @@ class IceCreamShop {
         for icecream in menu {
             if icecream.flavor.rating > 4 {
                 greatFlavors.append(icecream.flavor.name)
-                topFlavorString = "Our top flavors are \(greatFlavors)"
+                topFlavorString = "Our top flavors are \(greatFlavors.joined(separator: ", "))"
             }else {
-                print("We only carry the best IceCream here")
+                print("We only carry the best Ice Cream here")
             }
         }
         print(topFlavorString)
