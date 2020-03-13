@@ -28,14 +28,14 @@ double.eat()
 // so far, so good
 
 class IceCreamShop {
-    var flavor: Flavor
+    var flavor: String
     var size: Size
     var topping: [String]?
     var flavors: [Flavor]
     
-    var totalSale: Double = 0
+    var totalSales: Double = 0
     
-    init(flavor: Flavor, size: Size, topping: String?) {
+    init(flavor: String, size: Size, topping: String?) {
         self.flavor = flavor
         self.size = size
         self.topping = []
@@ -45,10 +45,29 @@ class IceCreamShop {
         var topFlavors: [String] = []
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                topFlavors.append([Flavor])
+                topFlavors.append(self.flavor)
             }
         print("our top flavors are: \(topFlavors).")
         }
-    } 
+    }
+    func orderCone(flavor: Flavor, topping:[String]?, size: Size) -> Cone? {
+        let order = Cone(flavor: self.flavor, topping: nil, size: self.size)
+        size.rawValue + totalSales
+        if let topping = topping {
+            print("your \(flavor) ice cream cone with \(topping) is \(size.rawValue).")
+        } else {
+            print("your \(flavor) ice cream cone is \(size.rawValue).")
+        }
+        return order
+    }
 }
+
+let stracciatella = Flavor(name: "strawberry", rating: 5)
+let piztachio = Flavor(name: "pistach", rating: 4)
+let choc = Flavor(name: "chocolate", rating: 4.55)
+let oneScoop = Size.small
+let two = Size.medium
+let threeScoops = Size.large
+
+let gross = Cone(flavor: "vanilla", topping: "sprinkles", size: .small)
 
