@@ -51,10 +51,16 @@ class IceCreamShop {
     }
     
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-        let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
-        self.totalSales += size.rawValue
-        print("Your \(newCone.flavor.name) ice cream with \(newCone.topping) is \(newCone.size.rawValue)")
-        return newCone
+        let requestedTopping = topping ?? "no topping"
+        if toppings.contains(requestedTopping) {
+            let newCone = Cone(flavor: flavor, topping: requestedTopping, size: size)
+            self.totalSales += size.rawValue
+            print("Your \(newCone.flavor.name) ice cream with \(newCone.topping) is \(newCone.size.rawValue)")
+            return newCone
+        } else {
+            print("Sorry, we don't have that topping. Please try again")
+            return nil
+        }
     }
 }
 
