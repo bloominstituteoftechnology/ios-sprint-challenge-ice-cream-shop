@@ -42,17 +42,18 @@ class IceCreamShop {
         self.flavors = []
     }
     func listTopFlavors() {
-        var topFlavors: [Flavor] = []
+        var topFlavors = [String]()
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                topFlavors.append(flavor)
+                topFlavors.append(flavor.name)
             }
         print("our top flavors are: \(topFlavors).")
         }
     }
+    
     func orderCone(flavor: Flavor, topping:[String]?, size: Size) -> Cone? {
-        let order = Cone(flavor: self.flavor, topping: nil, size: self.size)
-        size.rawValue + totalSales
+        let order = Cone(flavor: flavor.name, topping: nil, size: size)
+        totalSales += order.size.rawValue
         if let topping = topping {
             print("your \(flavor) ice cream cone with \(topping) is \(size.rawValue).")
         } else {
@@ -63,7 +64,7 @@ class IceCreamShop {
 }
 
 let stracciatella = Flavor(name: "strawberry", rating: 5)
-let piztachio = Flavor(name: "pistach", rating: 4)
+let pistachio = Flavor(name: "pistach", rating: 4)
 let choc = Flavor(name: "chocolate", rating: 4.55)
 let oneScoop = Size.small
 let two = Size.medium
@@ -72,4 +73,9 @@ let threeScoops = Size.large
 let gross = Cone(flavor: "vanilla", topping: "sprinkles", size: .small)
 
 let rons = IceCreamShop(flavor: stracciatella, size: two, topping: nil)
+
+rons.orderCone(flavor: stracciatella, topping: nil, size: .small)
+rons.orderCone(flavor: pistachio, topping: nil, size: .medium)
+rons.orderCone(flavor: choc, topping: nil, size: .large)
+
 rons.listTopFlavors() 
