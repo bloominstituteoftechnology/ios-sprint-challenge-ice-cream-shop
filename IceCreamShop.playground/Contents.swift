@@ -9,6 +9,7 @@ enum Topping: String {
     case rainbowSprinkles = "rainbow sprinkles"
     case nuts = "nuts"
     case dip = "dipped in chocolate"
+    case none = "with no frills"
     
 }
 
@@ -27,5 +28,10 @@ struct Cone {
         self.flavor = flavor
         self.topping = topping.rawValue
     }
+    
+    func eat() {
+        print("Yum! I love the \(flavor) here!")
+    }
 }
 
+class IceCreamShop 
