@@ -15,7 +15,16 @@ enum Size: Double {
     case large = 4.99
 }
 
-
+struct Cone {
+    let flavor: Flavor
+    let topping: String
+    let size: [Size]
+    
+    
+    func eat() {
+        print("Mmm! I love \(flavor.name)!")
+    }
+}
 
 
 
