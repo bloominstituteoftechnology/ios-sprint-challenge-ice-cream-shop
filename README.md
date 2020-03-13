@@ -39,7 +39,7 @@ Follow these steps to complete the Sprint Challenge. Recognize that not every st
     - Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
 
 3. Create a struct called `Cone`. 
-    - Give the struct properties (constants) that hold a flavor, topping (as a `String`), and size.
+    - Give the struct properties (constants) that hold a flavor , topping (as a `String`), and size.
     - Create a function called `eat`. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love <flavor here>!"
   
 4. Create a class called `IceCreamShop`. 
