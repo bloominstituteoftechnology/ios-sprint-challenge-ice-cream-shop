@@ -57,27 +57,28 @@ func orderCone(cone: Cone)  {
 print("The Price of a large chocolate cone is .\(Size.large)")
 orderCone(cone: myFavCone)
 
-let newFlavor1:
 
-//class newIceCreamShop: IceCreamShop {
-//    let newFlavors:[String]
-//    let newToppings:[String]
-//    let newSizes: [String]
-//
-//    init(newFlavors: [String], newToppings: [String], newSizes: [String]) {
-//        self.newSizes = newFlavors
-//        self.newToppings = newToppings
-//        self.newSizes = newSizes
-//        super.init(flavors: newFlavors, sizes: Size, toppings: "Sprinkles")
-//    }
-//}
-//
-//listTopFlavors()
 
+class newIceCreamShop  {
+    var newFlavors = ["SuperMan", "Mint"]
+    let newToppings: String
+    let newSizes: String
+    
+    init(newFlavors: String, newToppings: String, newSizes: String) {
+        self.newFlavors = [newFlavors]
+        self.newToppings = newToppings
+        self.newSizes = newSizes
+    }
+}
+
+listTopFlavors()
 
 var myNewCone = Cone(flavors: .strawberry, toppings: "Skittles", size: .medium)
 eat()
 orderCone(cone: myNewCone)
+totalSales = myNewCone.size.rawValue + myFavCone.size.rawValue
+
+print(totalSales)
 
 
 
