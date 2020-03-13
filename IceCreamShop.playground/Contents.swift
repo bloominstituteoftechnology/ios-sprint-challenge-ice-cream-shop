@@ -35,7 +35,7 @@ struct Cone {
     }
     
     func eat() {
-        print("Yum! I love the \(flavor) here!")
+        print("Yum! I love the \(flavor.name) here!")
     }
         
 }
@@ -66,9 +66,9 @@ class IceCreamShop {
         totalSales = conePrice(cone: yourCone) + totalSales
         conesSold.append(yourCone)
         if let unwrappedTopping = topping {
-            print("A \(size) \(flavor) cone with \(unwrappedTopping) will be \(conePrice(cone: yourCone)).")
+            print("A \(size) \(flavor.name) cone with \(unwrappedTopping) will be \(conePrice(cone: yourCone)).")
         } else {
-            print("A \(size) \(flavor) cone will be \(conePrice(cone: yourCone)).")
+            print("A \(size) \(flavor.name) cone will be \(conePrice(cone: yourCone)).")
         }
         return(yourCone)
     }
@@ -92,4 +92,10 @@ let snickerdoodle = Flavor(name: "Snickerdoodle", rating: 4)
 var jenAndBarrys = IceCreamShop(flavors: [chocolate, vanilla, swirl, mooseTracks, pistacio, mint, superman, sherbet, rumRaisin, snickerdoodle])
 
 jenAndBarrys.listTopFlavors()
+
+let myNewCone = jenAndBarrys.orderCone(size: .large, flavor: mint, topping: .dip)
+
+myNewCone?.eat()
+print(jenAndBarrys.totalSales)
+
 
