@@ -7,16 +7,6 @@ struct Flavor {
     let rating: Int
 }
 
-let myFlavor1 = Flavor(name: "Vanilla", rating: 8)
-let myFlavor2 = Flavor(name: "Rocky Road", rating: 10)
-let myFlavor3 = Flavor(name: "Strawberry", rating: 3)
-let myFlavor4 = Flavor(name: "Pistachio", rating: 2)
-
-var allMyFlavors = [myFlavor1, myFlavor2, myFlavor3, myFlavor4]
-
-// Create an enum called Size.
-
-//Give it a case for small, medium, and large.
 
 
 enum Size: Double {
@@ -25,67 +15,84 @@ enum Size: Double {
     case large = 6.99
 }
 
-//Create a struct called Cone.
 
 struct Cone {
-    let flavors: Flavor
+    let flavor: Flavor
     let topping: String?
     let size: Size
     
-}
-
-
-func eat() -> String{
-    return "MMM! I love \(myFlavor1.name)!"
+    func eat() {
+        print("MMM! I love \(flavor.name)!")
+    }
 }
     
-print(eat())
-
-// Create a class called IceCreamShop.
 
 class IceCreamShop {
-    var menuFlavor: [Flavor]
-    var totalSales: Double
-
-    init(menuFlavor: [Flavor], totalSales: Double) {
-        self.menuFlavor = menuFlavor
-        self.totalSales = totalSales
+    var flavorsMenu: [Flavor]
+    var toppingsMenu: [String]
+    var sizeMenu: [Size]
+    var totalSales: Double = 0
+   
+    init(flavorsMenu: [Flavor], toppingsMenu: [String], sizeMenu: [Size], totalSales: Double = 0) {
+          self.flavorsMenu = flavorsMenu
+          self.toppingsMenu = toppingsMenu
+          self.sizeMenu = sizeMenu
+          self.totalSales = totalSales
     }
-}
-
-// 5. If a customer asks which flavors are available, we need to be ready to tell them. To accomplish this, do the following:
-
-
-func listTopFlavors() {
-    for topFlavors in allMyFlavors {
-        if topFlavors.rating > 4 {
-            print("Our top flavors are \(topFlavors.name)!")
-}
+    
+    func listTopFlavors() {
+        var flavorString = "Our top flavors are: "
+        for flavor in flavorsMenu {
+            if flavor.rating > 4 {
+                flavorString.append("\(flavor.name), ")
+            }
+        }
+        print("\(flavorString)")
     }
-}
 
-listTopFlavors()
-
+    
+    
+    
+    
 // 6. Customers will need a way to order a cone.
 
 
 func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
-    let newCone = Cone(flavors: flavor, topping: toppings, size: size)
+    let newCone = Cone(flavor: flavor, topping: toppings, size: size)
+    totalSales += newCone.size.rawValue
     if let unwrappedTopping = toppings {
-        print("Your \(flavor.name) with \(unwrappedTopping) is \(size.rawValue)")
+        print("Your \(flavor.name) ice cream with \(unwrappedTopping) is \(size.rawValue)")
     } else {
         print(("Your \(flavor.name) ice cream is \(size.rawValue)"))
     }
     return newCone
 }
-
-let arrayOfSizes: [Size]  = [.small, .medium, .large]
-
-enum Toppings: String {
-    case oreo = "Oreos"
-    case sprinkles = "Sprinkles"
-    case fudge = "Fudge"
 }
 
-let arrayOfToppings: [Toppings] = [.oreo, .sprinkles, .fudge]
+
+let myFlavor1 = Flavor(name: "Chocolate", rating: 10)
+let myFlavor2 = Flavor(name: "Vanilla", rating: 3)
+let myFlavor3 = Flavor(name: "Cookie Dough", rating: 8)
+
+var allFlavors = [myFlavor1, myFlavor2, myFlavor3]
+
+let myTopping1 = "Sprinkles"
+let myTopping2 = "Chocolate Chips"
+let myTopping3 = "Oreos"
+
+let totalToppings: [String] = [myTopping1, myTopping2, myTopping3]
+
+let totalSizes: [Size] = [.large, .medium, .small]
+
+let lambdaIceCreamShop = IceCreamShop(flavorsMenu: allFlavors, toppingsMenu: totalToppings, sizeMenu: totalSizes)
+
+lambdaIceCreamShop.orderCone(flavor: myFlavor1, toppings: myTopping3, size: .small)
+
+lambdaIceCreamShop.listTopFlavors()
+
+let firstOrderToday = lambdaIceCreamShop.orderCone(flavor: myFlavor2, toppings: myTopping3, size: .large)
+
+firstOrderToday?.eat()
+
+print(lambdaIceCreamShop.totalSales)
 
