@@ -1,7 +1,6 @@
 // IceCreamShop - by Harmony Radley
 
 
-
 struct Flavor {
     var name: String
     var rating: Double
@@ -22,7 +21,6 @@ struct Cone {
         print("My favorite flavor is \(flavor.name)!")
     }
 }
-
 
 class IceCreamShop {
     
@@ -46,12 +44,15 @@ class IceCreamShop {
                 print("Our top flavors are \(flavor.name)")
                 
             }
-            
         }
     }
     
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         
+        let shopsToppings = topping ?? "Not an avaiable topping."
+        
+        if toppings.contains(shopsToppings) {
+            
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
         let price = size.rawValue
         
@@ -59,14 +60,18 @@ class IceCreamShop {
         
         if let unwrappedTopping = topping {
             print("Your \(flavor.name) ice cream with \(unwrappedTopping) is \(size.rawValue)")
+            
         } else {
             print("Your \(flavor.name) ice cream is \(size.rawValue)")
         }
-        
+            
         return newCone
-        
+            
+        } else {
+            print("I'm sorry, that topping is not available here!")
+            return nil
+        }
     }
-    
 }
 
 // List of Ice cream shops flavors:
