@@ -42,7 +42,12 @@ class IceCreamShop {
                 printString += "\n -\(flavor.name)"
             }
         }
-        print(printString)
+        
+        if printString == "Our top flavors are:" {
+            print("Sorry, we have don't have any favorite flavors. They are all gross")
+        } else {
+            print(printString)
+        }
     }
     
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
