@@ -9,6 +9,8 @@ enum Size: Double {
     case Large = 5.99
 }
 
+var totalSales = Size.Type.self
+
 struct Cone {
     let flavor: [Flavor]
     let topping: String
@@ -28,7 +30,7 @@ class IceCreamShop {
     }
 }
 
-var totalSales = Size.self
+
 
 let flavor1 = Flavor(name: "Vanilla", rating: 8.7)
 let flavor2 = Flavor(name: "Mint Chocolate Chip", rating: 9.2)
@@ -38,8 +40,7 @@ let flavor4 = Flavor(name: "Moose Tracks", rating: 10)
     var allFlavors = [flavor1, flavor2, flavor3, flavor4]
 
 
-
-let myIceCreamShop = IceCreamShop(flavor: allFlavors, size: Size.Medium , topping: " ")
+let myIceCreamShop = IceCreamShop(flavor: allFlavors, size: Size.Medium, topping: " ")
 
 
 func eat(iceCreamShop: IceCreamShop) {
@@ -55,12 +56,21 @@ print(eat(iceCreamShop: myIceCreamShop))
 
 
 
-func orderCone() {
-    var cone = 1.00
-    guard let totalSalesWithCone: (Double) = Size.Small.rawValue + 1.00 else {
-        return
+func orderCone(iceCreamShop: Cone) {
+    print(Cone(flavor: allFlavors, topping: " ", size: .Medium))
     }
-}
+
+print("Your chocolate ice cream is 4.99")
+
+let cone = 1.00
+
+listofFlavors(iceCreamShop: myIceCreamShop)
+
+
+let myOrder = IceCreamShop(flavor: [flavor1] , size: .Large, topping: " ")
+
+eat(iceCreamShop: myOrder )
+
 
 
 
