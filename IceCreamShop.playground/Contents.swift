@@ -7,59 +7,51 @@ struct Flavor {
     var rating: Double
 }
 
-
-
 enum Size: Double {
-    case small = 2.99
-    case medium = 3.99
-    case large = 4.99
+    case small = 4.99
+    case medium = 5.99
+    case large = 6.99
 }
 
 struct Cone {
     let flavor: Flavor
-    let topping: String
-    let size: [Size]
-    
+    let topping: String?
+    let size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor.name)!")
+        print("My favorite flavor is \(flavor.name)!")
     }
 }
 
 
-
 class IceCreamShop {
     
-      var flavors: [Flavor]
-      var size: [Size]
-      var toppings: [String]
-      var totalSales: Double = 0.0
-      
-      init(flavors: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
-          self.flavors = flavors
-          self.size = size
-          self.toppings = toppings
-          self.totalSales = totalSales
-      }
+    var flavors: [Flavor]
+    var size: [Size]
+    var toppings: [String]
+    var totalSales: Double = 0.0
     
+    init(flavors: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
+        self.flavors = flavors
+        self.size = size
+        self.toppings = toppings
+        self.totalSales = totalSales
+    }
     
     func listTopFlavors() {
-        var topFlavors = ""
         
         for flavor in flavors {
             if flavor.rating >= 4.0 {
                 
-                topFlavors += flavor.name
-                
-                print("Our top flavors are \(topFlavors)")
+                print("Our top flavors are \(flavor.name)")
                 
             }
+            
         }
     }
     
-    
-    
-    func orderCone(flavor: Flavor, size: Size, topping: String?) -> Cone? {
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        
         let newCone = Cone(flavor: flavor, topping: topping, size: size)
         let price = size.rawValue
         
@@ -71,10 +63,49 @@ class IceCreamShop {
             print("Your \(flavor.name) ice cream is \(size.rawValue)")
         }
         
-        
         return newCone
+        
     }
+    
 }
+
+let blueMoon = Flavor(name: "Blue Moon", rating: 0.0)
+let cottonCandy = Flavor(name: "Cotton Candy", rating: 5.0)
+let cookiesAndCream = Flavor(name: "Cookies & Cream", rating: 0.0)
+let rockyRoad = Flavor(name: "Rocky Road", rating: 0.0)
+let vanilla = Flavor(name: "Vanilla", rating: 0.0)
+let chocolate = Flavor(name: "Chocolate", rating: 4.0)
+
+let allFlavorsOffered = [blueMoon,
+                         cottonCandy,
+                         cookiesAndCream,
+                         rockyRoad,
+                         vanilla,
+                         chocolate]
+
+let sizes: [Size] = [.small,
+                     .medium,
+                     .large]
+
+let toppings: [String] = ["sprinkles",
+                          "cherry",
+                          "whipped cream",
+                          "chocolate chips",
+                          "oreos"]
+
+let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
+                                   size: sizes,
+                                   toppings: toppings,
+                                   totalSales: 0)
+
+newIceCreamShop.listTopFlavors()
+
+let myNewCone = newIceCreamShop.orderCone(flavor: blueMoon, topping: "sprinkles", size: .medium)
+
+myNewCone?.eat()
+
+print(" \(newIceCreamShop.totalSales) That's expensive!")
+
 
 
 
