@@ -41,6 +41,21 @@ class IceCreamShop {
           self.toppings = toppings
           self.totalSales = totalSales
       }
+    
+    
+    func listTopFlavors() {
+        var topFlavors = ""
+        
+        for flavor in flavors {
+            if flavor.rating >= 4.0 {
+                
+                topFlavors += flavor.name
+                
+                print("Our top flavors are \(topFlavors)")
+                
+            }
+        }
+    }
 }
 
 
