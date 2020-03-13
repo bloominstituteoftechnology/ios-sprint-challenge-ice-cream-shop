@@ -18,7 +18,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("My favorite flavor is \(flavor.name)!")
+        print("Mmm! I love \(flavor.name) flavored ice cream!")
     }
 }
 
@@ -75,29 +75,32 @@ class IceCreamShop {
 }
 
 // List of Ice cream shops flavors:
-let blueMoon = Flavor(name: "Blue Moon", rating: 0.0)
-let cottonCandy = Flavor(name: "Cotton Candy", rating: 5.0)
-let cookiesAndCream = Flavor(name: "Cookies & Cream", rating: 0.0)
-let rockyRoad = Flavor(name: "Rocky Road", rating: 0.0)
-let vanilla = Flavor(name: "Vanilla", rating: 0.0)
-let chocolate = Flavor(name: "Chocolate", rating: 4.0)
+let blueMoon = Flavor(name: "blue moon", rating: 0.0)
+let cottonCandy = Flavor(name: "cotton candy", rating: 5.0)
+let cookiesAndCream = Flavor(name: "cookies & cream", rating: 0.0)
+let rockyRoad = Flavor(name: "rocky road", rating: 0.0)
+let vanilla = Flavor(name: "vanilla", rating: 1.0)
+let chocolate = Flavor(name: "chocolate", rating: 4.0)
+let chicken = Flavor(name: "chicken", rating: 5.0)
 
 let allFlavorsOffered = [blueMoon,
                          cottonCandy,
                          cookiesAndCream,
                          rockyRoad,
                          vanilla,
-                         chocolate]
+                         chocolate,
+                         chicken]
 
 let sizes: [Size] = [.small,
                      .medium,
                      .large]
 
-let toppings: [String] = ["Sprinkles",
-                          "Cherry",
-                          "Whipped Cream",
-                          "Chocolate Chips",
-                          "Oreos"]
+let toppings: [String] = ["sprinkles",
+                          "cherry",
+                          "whipped cream",
+                          "chocolate chips",
+                          "oreos",
+                          "bacon"]
 
 let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
                                    size: sizes,
@@ -106,21 +109,9 @@ let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
 
 newIceCreamShop.listTopFlavors()
 
-let myNewCone = newIceCreamShop.orderCone(flavor: blueMoon, topping: "Sprinkles", size: .medium)
+let myNewCone = newIceCreamShop.orderCone(flavor: chicken, topping: "bacon", size: .medium)
 
 myNewCone?.eat()
 
 print("\(newIceCreamShop.totalSales) That's expensive!")
-
-
-
-
-
-
-
-
-
-
-
-
 
