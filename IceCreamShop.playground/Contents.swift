@@ -20,13 +20,13 @@ struct Flavor{
 
 enum size {
     case small(Double)
-    case medium(Double)
+    case medium(Double)                     //sizes and raw value of prices
     case large(Double)
 }
 enum topping {
     case hotFudge
     case caramel
-    case sprinkles
+    case sprinkles                             //Toppings
     case strawberrySauce
     case Nuts
 }
@@ -34,22 +34,25 @@ enum topping {
 
 struct Cone {
     let flavor: Flavor
-    let topping: Topping
+    let topping: Topping                   //What goes into a cone?
     let size: Size
 }
 
 func eat() {
-     print("I love \(name.self)!")
+     print("I love \(name.self)!")       // States an ice cream flavor the customer loves!
  }
 
 class IceCreamShop {
     var cone: Cone
-    var totalSales = 0.00
+    var totalSales = 0.00     //variable for our sales, will be set to increase later
     var currencyFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
+        let formatter = NumberFormatter()               //currency formatter
         formatter.numberStyle = .currency
         return formatter
     }()
+    func listTopFlavors(){
+        
+    }
     func orderCone(flavor: Flavor, cone:Cone){
         let iceCreamCone = Cone(flavor: Flavor, topping: topping, size: size)
     }
