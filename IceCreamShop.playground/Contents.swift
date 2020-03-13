@@ -8,7 +8,7 @@ enum Name: String {
 
 struct Flavor{
     let name: Name                         //puts the rating and flavor name together
-    let rating: Int = 1..5
+    let rating: Int
 }
 
 enum Size {
@@ -36,6 +36,13 @@ func eat() {
  }
 
 class IceCreamShop {
+    var strawberry = Flavor.self
+    var vanilla = Flavor.self
+    var lavenderHoney = Flavor.self
+    var chocolate = Flavor.self
+    var twist = Flavor.self
+    
+    
     var cone: Cone
     var totalSales = 0.00     //variable for our sales, will be set to increase later
 //    var currencyFormatter: NumberFormatter = {
@@ -46,7 +53,7 @@ class IceCreamShop {
     func listTopFlavors(){
         let flavors : [Flavor] = []
         for flavor in flavors{
-            if rating >= 4{
+            if rating.self >= 4{
                 print("Our top flavors are \(Name)!")
                 return Name
             }
