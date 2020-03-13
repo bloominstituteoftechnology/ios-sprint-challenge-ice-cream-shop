@@ -1,5 +1,13 @@
 import UIKit
 
+// MARK: - Format Currency
+let numberFormatter = NumberFormatter()
+numberFormatter.numberStyle = .currency
+
+func formatAsCurrency(_ number: Double) -> String {
+    numberFormatter.string(for: number) ?? "Error"
+}
+
 // MARK: - Properties
 struct Flavor {
     let name: String
@@ -89,5 +97,5 @@ let myNewCone = myIceCreamShop.orderCone(flavor: chocolateFlavor,
 myNewCone?.eat()
 
 // MARK: - Print Total Sales
-print(myIceCreamShop.totalSales)
+print(formatAsCurrency(myIceCreamShop.totalSales))
 
