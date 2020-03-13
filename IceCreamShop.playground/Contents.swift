@@ -34,4 +34,19 @@ struct Cone {
     }
 }
 
-class IceCreamShop 
+class IceCreamShop {
+    var flavors: [Flavor] = []
+    var totalSales: Int = 0
+    
+    func listTopFlavors() {
+        
+        print("Our customers really seem to enjoy...")
+        for flavor in flavors {
+            if flavor.rating >= 4 {
+                print(flavor.name)
+            }
+        }
+        print("Which can I get for you today?")
+    }
+    
+}
