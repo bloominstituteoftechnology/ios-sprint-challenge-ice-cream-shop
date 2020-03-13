@@ -40,18 +40,15 @@ var totalSales: Double = 0
 var allFlavors = [Flavor.chocolate, Flavor.strawberry, Flavor.vanilla]
 
 func listTopFlavors() {
-    let availFlavs = allFlavors
-    
-    for _ in availFlavs {
-        print("Our available flavors are .\([allFlavors])")
-    }
+    _ = [allFlavors]
+    print("Our available flavors are .\([allFlavors])")
 }
+
 listTopFlavors()
 
 func orderCone(cone: Cone)  {
     let myOrder = Cone(flavors: .chocolate, toppings: "sprinkles", size: .large)
-    let newTotalSales = totalSales + myOrder.size.rawValue
-    print(newTotalSales)
+    _ = totalSales + myOrder.size.rawValue
 }
 
 print("The Price of a large chocolate cone is .\(Size.large)")
@@ -74,7 +71,6 @@ class newIceCreamShop  {
 listTopFlavors()
 
 var myNewCone = Cone(flavors: .strawberry, toppings: "Skittles", size: .medium)
-eat()
 orderCone(cone: myNewCone)
 totalSales = myNewCone.size.rawValue + myFavCone.size.rawValue
 
