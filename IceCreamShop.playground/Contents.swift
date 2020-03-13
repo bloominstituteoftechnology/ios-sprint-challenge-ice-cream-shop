@@ -28,24 +28,24 @@ double.eat()
 // so far, so good
 
 class IceCreamShop {
-    var flavor: String
+    var flavor: Flavor
     var size: Size
     var topping: [String]?
     var flavors: [Flavor]
     
     var totalSales: Double = 0
     
-    init(flavor: String, size: Size, topping: String?) {
+    init(flavor: Flavor, size: Size, topping: String?) {
         self.flavor = flavor
         self.size = size
         self.topping = []
         self.flavors = []
     }
     func listTopFlavors() {
-        var topFlavors: [String] = []
+        var topFlavors: [Flavor] = []
         for flavor in flavors {
             if flavor.rating > 4.0 {
-                topFlavors.append(self.flavor)
+                topFlavors.append(flavor)
             }
         print("our top flavors are: \(topFlavors).")
         }
@@ -71,3 +71,5 @@ let threeScoops = Size.large
 
 let gross = Cone(flavor: "vanilla", topping: "sprinkles", size: .small)
 
+let rons = IceCreamShop(flavor: stracciatella, size: two, topping: nil)
+rons.listTopFlavors() 
