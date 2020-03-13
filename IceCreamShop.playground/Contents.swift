@@ -28,6 +28,23 @@ struct Cone {
 
 
 
+class IceCreamShop {
+    
+      var flavors: [Flavor]
+      var size: [Size]
+      var toppings: [String]
+      var totalSales: Double = 0.0
+      
+      init(flavors: [Flavor], size: [Size], toppings: [String], totalSales: Double) {
+          self.flavors = flavors
+          self.size = size
+          self.toppings = toppings
+          self.totalSales = totalSales
+      }
+}
+
+
+
 
 
 
