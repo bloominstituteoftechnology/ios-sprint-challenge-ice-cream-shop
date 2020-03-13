@@ -41,7 +41,7 @@ struct Cone {
 }
 
 class IceCreamShop {
-    var flavors: [Flavor] = []
+    var flavors: [Flavor]
     var totalSales: Double = 0
     var conesSold: [Cone] = []
     
@@ -73,6 +73,9 @@ class IceCreamShop {
         return(yourCone)
     }
     
+    init(flavors: [Flavor]) {
+        self.flavors = flavors
+    }
 }
 
 let chocolate = Flavor(name: "Chocolate", rating: 4)
@@ -86,5 +89,7 @@ let sherbet = Flavor(name: "Orange Sherbet", rating: 3)
 let rumRaisin = Flavor(name: "Rum Raisin", rating: 3)
 let snickerdoodle = Flavor(name: "Snickerdoodle", rating: 4)
 
+var jenAndBarrys = IceCreamShop(flavors: [chocolate, vanilla, swirl, mooseTracks, pistacio, mint, superman, sherbet, rumRaisin, snickerdoodle])
 
+jenAndBarrys.listTopFlavors()
 
