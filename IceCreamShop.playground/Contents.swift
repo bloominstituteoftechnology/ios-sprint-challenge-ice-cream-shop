@@ -9,8 +9,8 @@ struct Flavor {
 
 enum Size: Double {
     case small = 4.99
-    case medium = 5.99
-    case large = 6.99
+    case medium = 9.99
+    case large = 11.99
 }
 
 struct Cone {
@@ -69,6 +69,7 @@ class IceCreamShop {
     
 }
 
+// List of Ice cream shops flavors:
 let blueMoon = Flavor(name: "Blue Moon", rating: 0.0)
 let cottonCandy = Flavor(name: "Cotton Candy", rating: 5.0)
 let cookiesAndCream = Flavor(name: "Cookies & Cream", rating: 0.0)
@@ -87,11 +88,11 @@ let sizes: [Size] = [.small,
                      .medium,
                      .large]
 
-let toppings: [String] = ["sprinkles",
-                          "cherry",
-                          "whipped cream",
-                          "chocolate chips",
-                          "oreos"]
+let toppings: [String] = ["Sprinkles",
+                          "Cherry",
+                          "Whipped Cream",
+                          "Chocolate Chips",
+                          "Oreos"]
 
 let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
                                    size: sizes,
@@ -100,11 +101,11 @@ let newIceCreamShop = IceCreamShop(flavors: allFlavorsOffered,
 
 newIceCreamShop.listTopFlavors()
 
-let myNewCone = newIceCreamShop.orderCone(flavor: blueMoon, topping: "sprinkles", size: .medium)
+let myNewCone = newIceCreamShop.orderCone(flavor: blueMoon, topping: "Sprinkles", size: .medium)
 
 myNewCone?.eat()
 
-print(" \(newIceCreamShop.totalSales) That's expensive!")
+print("\(newIceCreamShop.totalSales) That's expensive!")
 
 
 
