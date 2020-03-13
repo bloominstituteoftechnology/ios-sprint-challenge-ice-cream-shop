@@ -3,7 +3,7 @@ import UIKit
 // MARK: - Properties
 struct Flavor {
     let name: String
-    var rating: Int
+    var rating: Double
 }
 
 enum Size: Double {
@@ -33,6 +33,24 @@ class IceCreamShop {
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
+        
+        func listTopFlavors() {
+            var printString = "Our top flavors are "
+            for flavor in flavors {
+                if flavor.rating > 4.0 {
+                    printString += "\(flavor.name) ,"
+                }
+            }
+            print(printString)
+        }
+        
+        func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+            let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
+            self.totalSales += size.rawValue
+            print("Your \(newCone.flavor) ice cream with \(newCone.topping) is \(newCone.size.rawValue)")
+            return newCone
+        }
     }
 }
+
 
