@@ -1,67 +1,64 @@
-enum Name: String {
-    case chocolate
-    case vanilla
-    case lavenderHoney                     //flavor names
-    case strawberry
-    case twist
-}
 
 struct Flavor{
-    let name: Name                         //puts the rating and flavor name together
-    let rating: Int
+    let name: String                        //puts the rating and flavor name together
+    let rating: Double
 }
 
-enum Size {
-    case small(Double)
-    case medium(Double)                     //sizes and raw value of prices
-    case large(Double)
+enum Size: Double {
+    case small = 2.50
+    case medium = 2.75                   //sizes and raw value of prices
+    case large = 3.00
 }
-enum Topping {
-    case hotFudge
-    case caramel
-    case sprinkles                             //Toppings
-    case strawberrySauce
-    case Nuts
-}
-
-
 struct Cone {
     let flavor: Flavor
-    let topping: Topping                   //What goes into a cone?
+    let topping: String?                  //What goes into a cone?
     let size: Size
+    func eat() {
+        print("I love \(self.flavor.name)!")       // States an ice cream flavor the customer loves!
+    }
 }
-
-func eat() {
-     print("I love \(Name.self)!")       // States an ice cream flavor the customer loves!
- }
 
 class IceCreamShop {
-    var strawberry = Flavor.self
-    var vanilla = Flavor.self
-    var lavenderHoney = Flavor.self
-    var chocolate = Flavor.self
-    var twist = Flavor.self
-    
-    
-    var cone: Cone
-    var totalSales = 0.00     //variable for our sales, will be set to increase later
-//    var currencyFormatter: NumberFormatter = {
-//        let formatter = NumberFormatter()               //currency formatter
-//        formatter.numberStyle = .currency
-//        return formatter
-//    }()
-    func listTopFlavors(){
-        let flavors : [Flavor] = []
-        for flavor in flavors{
-            if rating.self >= 4{
-                print("Our top flavors are \(Name)!")
-                return Name
+    var totalSales: Double
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [String]
+    init(totalSales: Double, flavors: [Flavor], sizes: [Size], toppings: [String]) {
+        self.totalSales = totalSales
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
+    }
+    func listTopFlavors() {
+        var output = "Our top flavors are"
+        for flavor in flavors {
+            if flavor.rating >= 4 {
+                output += " and \(flavor.name)"
             }
         }
+        print(output)
                 
     }
-    func orderCone(flavor: Flavor, cone:Cone){
-        let iceCreamCone = Cone(flavor: Flavor, topping: topping, size: size)
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        totalSales += size.rawValue
+        if let unwrappedTopping = topping {
+            print("Your \(flavor.name) with \(unwrappedTopping) is \(size.rawValue)!")
+        }else{
+            print("Your \(flavor.name) is \(size.rawValue)!")
+        }
+        return newCone
     }
-  init(cone = Cone)
-}
+    
+ }
+let vanilla = Flavor(name: "Vanilla", rating: 4)
+let lavenderHoney = Flavor(name: "Lavender Honey", rating: 5)
+let chocolate = Flavor(name: "Chocolate", rating: 3)
+let toppings = ["Sprinkles","Hot Fudge"]
+let sizes = [Size.small, Size.medium, Size.large]
+let viIceCreamShop = IceCreamShop(totalSales: 0.0, flavors: [vanilla, lavenderHoney, chocolate], sizes: sizes, toppings: toppings)
+viIceCreamShop.listTopFlavors()
+var viCone = viIceCreamShop.orderCone(flavor: lavenderHoney, topping: "Sprinkles", size: .large)
+viCone?.eat()
+print(viIceCreamShop.totalSales)
+
