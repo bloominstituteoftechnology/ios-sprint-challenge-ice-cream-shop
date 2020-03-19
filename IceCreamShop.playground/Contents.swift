@@ -40,10 +40,10 @@ class IceCreamShop {
     var toppings: [Topping]
     var totalSales: Double
     
-    init(flavor: [Flavor], size: [Size], topping: [Topping], totalSales: Double) {
-        self.flavors = []
-        self.sizes = []
-        self.toppings = []
+    init(flavors: [Flavor], sizes: [Size], toppings: [Topping], totalSales: Double) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
         self.totalSales = totalSales
     }
     
@@ -75,7 +75,18 @@ let choc = Flavor(name: "chocolate", rating: 4.55)
 let oneScoop = Size.small
 let two = Size.medium
 let threeScoops = Size.large
+let choco = Topping.hotFudge
 
-let rons = IceCreamShop(flavor: [stracciatella], size: [two], topping: [Topping.nuts], totalSales: 0.0)
+let iceRay = [stracciatella, pistachio, choc]
+let fun = [oneScoop, two, threeScoops]
+let top = [choco]
 
-rons.listTopFlavors() 
+let rons = IceCreamShop(flavors: iceRay, sizes: fun, toppings: top, totalSales: 0.0)
+
+print(rons.listTopFlavors())
+
+let david = Cone(flavor: "pistachio", topping: top, size: two)
+rons.orderCone(flavor: pistachio, topping: nil, size: two)
+
+david.eat()
+print(rons.totalSales)
