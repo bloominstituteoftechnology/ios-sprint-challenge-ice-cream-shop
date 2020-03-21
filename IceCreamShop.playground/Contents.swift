@@ -6,9 +6,11 @@ struct Flavor {
 }
 
 enum Size: Double {
+    case mini = 0.99
     case small = 1.99
     case medium = 2.99
     case large = 5.99
+    case overwhelming = 39.99
 }
 
 struct Cone {
@@ -21,6 +23,7 @@ struct Cone {
     }
 }
 
+//Ice cream shop class with essential falvors, toppings, and sizes
 class IceCreamShop {
     var totalSales: Double
     
@@ -37,39 +40,55 @@ class IceCreamShop {
         self.totalSales = totalSales
     }
     
+    //Lists top flavors
     func listTopFlavors() {
+        let ratingThreshold: Double = 4.0
         print("\nOur top flavors are:")
         for flavor in flavors {
-            if flavor.rating > 4.0 {
+            if flavor.rating > ratingThreshold {
                 print("-\(flavor.name) with a rating of \(flavor.rating)!")
             }
         }
         print("") //New Line
     }
     
+    //Logic behind ordering a cone
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
         totalSales += newCone.size.rawValue
         print("Your \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) comes out to \(newCone.size.rawValue).")
         return newCone
     }
+    
+    //These methods allow us to add additional options later on
+    func addFlavor(moreFlavors: Flavor) {
+        flavors.append(moreFlavors)
+    }
+    
+    func addTopping(moreToppings: String) {
+        toppings.append(moreToppings)
+    }
+    
+    func addSize(moreSizes: Size) {
+        sizes.append(moreSizes)
+    }
 }
 
 let bronsonsIceCreamShop = IceCreamShop()
-bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[0],
-                               topping: bronsonsIceCreamShop.toppings[2],
-                               size: Size.medium)
 
+//Bonus flavors to add
 let mystery = Flavor(name: "mystery magic", rating: 4.8)
 let pineapple = Flavor(name: "swiftly pineapple", rating: 3.5)
 
-enum MoreSizes: Double {
-    case mini = 0.99
-    case jumbo = 6.99
-    case overwhelming = 39.99
-}
+//adding additional flavors
+bronsonsIceCreamShop.addFlavor(moreFlavors: mystery)
+bronsonsIceCreamShop.addFlavor(moreFlavors: pineapple)
 
-var moreSizes: [MoreSizes] = [MoreSizes.mini, MoreSizes.jumbo, MoreSizes.overwhelming]
-var moreToppings: [String] = ["cookies", "definitely not spaghetti", "chocolate chips"]
+//adding additional sizes
+bronsonsIceCreamShop.addSize(moreSizes: Size.mini)
+bronsonsIceCreamShop.addSize(moreSizes: Size.overwhelming)
 
-let undergroundIceCreamShop = IceCreamShop()
+//additional additional toppings
+bronsonsIceCreamShop.addTopping(moreToppings: "cookies")
+bronsonsIceCreamShop.addTopping(moreToppings: "definitely not spaghetti")
+bronsonsIceCreamShop.addTopping(moreToppings: "chocolate chips")
