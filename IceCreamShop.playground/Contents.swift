@@ -9,32 +9,32 @@ enum Size: Double {
     case large = 5.99
 }
 
+struct Topping {
+    var name: String
+}
+
 struct Cone {
     var flavor: Flavor
-    var topping: String?
+    var topping: Topping
     var size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor)")
+        print("Mmm! I love \(flavor.name)")
     }
 }
-
-//test array
-
-let toppingsArray = ["Sprinkles", "Fudge", "Caramel"]
 
 class IceCreamShop {
     var totalSales: Double
     
     var flavor: [Flavor]
-    var sizes: [Size]
-    var toppings: [String]
+    var size: [Size]
+    var topping: [Topping]
     
     init(totalSales: Double) {
         self.totalSales = totalSales
         self.flavor = []
-        self.sizes = []
-        self.toppings = []
+        self.size = []
+        self.topping = []
     }
     
     func listTopFlavors() {
@@ -45,15 +45,15 @@ class IceCreamShop {
         }
     }
     
-    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-        let newCone = Cone(flavor: flavor, topping: topping, size: size)
+    func orderCone(flavor: Flavor, topping: Topping?, size: Size) -> Cone? {
+        let newCone = Cone(flavor: flavor, topping: topping!, size: size)
 
         totalSales += size.rawValue
         
-        if let unwrappedToppings = topping {
-            print("You are ordering a \(flavor.name) cone with \(unwrappedToppings). That will be \(size.rawValue).")
+        if let unwrappedTopping = topping {
+            print("You are ordering a \(size) \(flavor.name) cone with \(unwrappedTopping.name). That will be \(size.rawValue).")
         } else {
-            print("You are ordering a \(flavor.name) cone with no toppings. That will be \(size.rawValue).")
+            print("You are ordering a \(size) \(flavor.name) cone with no toppings. That will be \(size.rawValue).")
         }
         return newCone
     }
@@ -63,22 +63,43 @@ let chocolate = Flavor(name: "Chocolate", rating: 4)
 let strawberry = Flavor(name: "Strawberry", rating: 3)
 let vanilla = Flavor(name: "Vanilla", rating: 5)
 
+let sprinkles = Topping(name: "Sprinkles")
+let chocolateDip = Topping(name: "Chocolate Dip")
+let caramelDrizzle = Topping(name: "Caramel Drizzle")
+
+let sizeSmall = Size.small
+let sizeMedium = Size.medium
+let sizeLarge = Size.large
+
 let lambdaIceCreamShop = IceCreamShop(totalSales: 0)
 
 lambdaIceCreamShop.flavor.append(chocolate)
 lambdaIceCreamShop.flavor.append(strawberry)
 lambdaIceCreamShop.flavor.append(vanilla)
 
-//test top flavors
+lambdaIceCreamShop.topping.append(sprinkles)
+lambdaIceCreamShop.topping.append(chocolateDip)
+lambdaIceCreamShop.topping.append(caramelDrizzle)
+
+lambdaIceCreamShop.size.append(sizeSmall)
+lambdaIceCreamShop.size.append(sizeMedium)
+lambdaIceCreamShop.size.append(sizeLarge)
+
 lambdaIceCreamShop.listTopFlavors()
 
-//test orders, need to string an array of toppings
-lambdaIceCreamShop.orderCone(flavor: chocolate, topping: "Sprinkles", size: .medium)
-lambdaIceCreamShop.orderCone(flavor: strawberry, topping: nil, size: .small)
-lambdaIceCreamShop.orderCone(flavor: vanilla, topping: "Fudge", size: .large)
+lambdaIceCreamShop.orderCone(flavor: chocolate, topping: caramelDrizzle, size: sizeSmall)
+lambdaIceCreamShop.orderCone(flavor: vanilla, topping: chocolateDip, size: sizeLarge)
+lambdaIceCreamShop.orderCone(flavor: strawberry, topping: sprinkles, size: sizeMedium)
 
-//test sales count
-lambdaIceCreamShop.totalSales
+let myOrder = lambdaIceCreamShop.orderCone(flavor: chocolate, topping: sprinkles, size: sizeLarge)
+myOrder?.eat()
+
+let dailyProfit = lambdaIceCreamShop.totalSales
+print("Our daily profit is: \(dailyProfit)")
+
+
+
+
 
 
 
