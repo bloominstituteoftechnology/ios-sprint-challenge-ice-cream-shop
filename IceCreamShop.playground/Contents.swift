@@ -28,26 +28,14 @@ myFavoriteConeFlavor.eat()
 
 //: ## 4
 class IceCreamShop {
-    var vanillaFlavor: String
-    var cookieDoughFlavor: String
-    var strawberryFlavor: String
-    var rockyRoadFlavor: String
-    var hotFudge: String
-    var caramel: String
-    var oreos: String
-    var whippedCream: String
+    var flavors: [String] = ["Vanilla", "Cookie Dough", "Strawberry", "Rocky Road"]
+    var topping: [String] = ["Hot Fudge", "caramel", "oreos", "whippedCream"]
     var totalSales: Int
     var size: [Size]
     
-    init(vanillaFlavor: String, cookieDoughFlavor: String, strawberyFlavor: String, rockyRoadFlavor: String, hotFudge: String, caramel: String, oreos: String, whippedCream: String, totalSales: Int) {
-        self.vanillaFlavor = vanillaFlavor
-        self.cookieDoughFlavor = cookieDoughFlavor
-        self.strawberryFlavor = strawberyFlavor
-        self.rockyRoadFlavor = rockyRoadFlavor
-        self.hotFudge = hotFudge
-        self.caramel = caramel
-        self.oreos = oreos
-        self.whippedCream = whippedCream
+    init(flavor: [String], topping: [String], totalSales: Int) {
+        self.flavors = []
+        self.topping = []
         self.totalSales = totalSales
         self.size = []
     }
