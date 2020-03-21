@@ -38,7 +38,7 @@ class IceCreamShop {
   // Top flavors available
   
   func listTopFlavors() {
-    let faveFlavors = ""
+    let faveFlavors = " "
     
     for flavor in flavors {
       if flavor.rating > 4.0 {
@@ -75,6 +75,11 @@ let strawberry = Flavor(name: "Strawberry", rating: 3.0)
 let chocolateMaltedCrunch = Flavor(name: "Choclate Malted Crunch", rating: 5.0)
 
 let toppings = ["sprinkles", "nuts", "Oreos", "fruit"]
+let sizes: [Size] = [.small, .medium, .large]
+
+let iceCreamShop = IceCreamShop(flavors: [chocolate, vanilla, strawberry, chocolateMaltedCrunch], sizes: sizes, toppings: toppings, totalSales: 0)
+
+iceCreamShop.listTopFlavors()
 
 
 
