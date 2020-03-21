@@ -130,7 +130,7 @@ let sizeLarge = Size.Large
 //Creating our first instance of our Ice Cream Shop
 let myIceCreamShop = IceCreamShop(shopName: "Lambda's Luxurious Ice Cream Palace")
 
-//Adding flavors to the flavor menu
+//Adding flavors to the flavor menu 
 myIceCreamShop.addFlavorToMenu(flavor: chocolate)
 myIceCreamShop.addFlavorToMenu(flavor: vanilla)
 myIceCreamShop.addFlavorToMenu(flavor: cherryChip)
