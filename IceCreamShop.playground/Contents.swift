@@ -22,28 +22,63 @@ struct Cone {
     }
 }
 
-var myFavoriteConeFlavor = Cone(flavor: "Vanilla", topping: "Sprinkles", size: .large)
+var myFavoriteConeFlavor = Cone(flavor: "Vanilla", topping: "Caramel", size: .small)
 
 myFavoriteConeFlavor.eat()
 
 //: ## 4
 class IceCreamShop {
     var flavors: [String] = ["Vanilla", "Cookie Dough", "Strawberry", "Rocky Road"]
-    var topping: [String] = ["Hot Fudge", "caramel", "oreos", "whippedCream"]
+    var topping: [String] = ["Hot Fudge", "Caramel", "oreos", "whippedCream"]
     var totalSales: Int
     var size: [Size]
-    
-    init(flavor: [String], topping: [String], totalSales: Int) {
+
+    init(flavors: [String], topping: [String], totalSales: Int) {
         self.flavors = []
         self.topping = []
         self.totalSales = totalSales
         self.size = []
     }
-    
+
 }
 
-//: ## 5
+//: ## 5.
 
 func listTopFlavors() {
-    
+    var ourPopularFlavor = {
+        print("Our top flavors are \(ourP)")
+    }
+ }
+
+
+
+//: ## 6.
+
+func orderCone() -> Int? {
+    let myfavFlavor = Cone(flavor: "Vanilla", topping: "Caramel", size: .meidum)
 }
+
+
+
+//: ## 7.
+
+let firstFavoriteFlavor = Flavor(name: "Vanilla Carmerila ", rating: 5)
+
+
+//: ## 8.
+
+//: ## 9.
+
+
+//: ## 10.
+
+let
+
+//: ## 11.
+
+
+//: ## 12.
+
+
+
+
