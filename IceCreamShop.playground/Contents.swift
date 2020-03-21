@@ -20,4 +20,6 @@ struct Cone {
     let size: String
 }
 
-
+func eat() {
+    
+}
