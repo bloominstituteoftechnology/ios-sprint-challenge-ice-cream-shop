@@ -17,8 +17,12 @@ struct Toppings{
 
 struct Cone{
     var flavor: Flavor
-    var topping: Toppings
+    var topping: Toppings?
     var size: Size
+    
+    func eat(){
+        print("Wow! I loved it!")
+    }
 }
 
 class IceCreamShop{
@@ -44,15 +48,22 @@ class IceCreamShop{
         menuToppings.append(topping)
     }
     
-//    func listTopFlavors(){
-//        for flavor in menuFlavors
-//    }
+    //This function will list our flavors of icecream that have achevied over a 4 in rating!
+    func listTopFlavors(){
+        print("We have a few best selling flavors that have acheived a rating over 4! They are:")
+        for flavor in menuFlavors{
+            if flavor.rating > 4{
+                print("Flavor: \(flavor.name) Rating: \(flavor.rating)")
+        }
+      }
+   }
+    
     
 }
 
 // These are the flavors of Ice Cream we have available at our shop!
-let chocolate = Flavor(name: "Chocolate", rating: 8)
-let vanilla = Flavor(name: "Vanilla", rating: 7)
+let chocolate = Flavor(name: "Chocolate", rating: 3)
+let vanilla = Flavor(name: "Vanilla", rating: 2)
 let cherryChip = Flavor(name: "Cherry Chip", rating: 10)
 let rockyRoad = Flavor(name: "Rocky Road", rating: 9)
 
@@ -74,3 +85,5 @@ myIceCreamShop.addFlavorToMenu(flavor: rockyRoad)
 myIceCreamShop.addToppingsToMenu(topping: fudge)
 myIceCreamShop.addToppingsToMenu(topping: peanuts)
 myIceCreamShop.addToppingsToMenu(topping: whippedCream)
+
+
