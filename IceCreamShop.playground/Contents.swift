@@ -21,7 +21,7 @@ struct Cone{
     var size: Size
     
     func eat(){
-        print("Wow! I loved it!\n")
+        print("*Eats Ice Cream Cone* Wow! I loved it!\n")
     }
 }
 
@@ -65,14 +65,32 @@ class IceCreamShop{
                 print("Flavor: \(flavor.name) Rating: \(flavor.rating)")
         }
       }
-        print("\n")
    }
+    
+    //This is an unrequired function I'm adding to print out our menus to make the flow of the app nicer
+    func listMenus(){
+        print("\nIn addtion to our top flavors, we also have:")
+        for flavors in menuFlavors{
+            if flavors.rating <= 4{
+                print("Flavor: \(flavors.name) Rating: \(flavors.rating)")
+            }
+        }
+        print("\nWe also have Toppings:")
+            for toppings in menuToppings{
+                print("\(toppings.name)")
+            }
+        print("\nThe Sizes and pricing options we have to choose from:")
+            for sizes in menuSizes{
+                print("\(sizes) \(sizes.rawValue)")
+            }
+    }
     
     //This function will help us order a cone at our icecream shop and give us a rundown of what we ordered
     func orderCone(flavor: Flavor, topping: Toppings?, size: Size) -> Cone?{
         
         //Helps up initialize an order and adds the sale to our total sales variable
         let newOrder = Cone(flavor: flavor, topping: topping, size: size)
+        //Keeps a running total of shop's profit
         totalSales+=size.rawValue
         
         //These four lines of code help us figure out wether or not a topping has been passed into the funtion. If so, print the topping. If not, print a blank string.
@@ -128,20 +146,27 @@ myIceCreamShop.addSizesToMenu(size: sizeSmall)
 myIceCreamShop.addSizesToMenu(size: sizeMedium)
 myIceCreamShop.addSizesToMenu(size: sizeLarge)
 
+//: ## Product Demonstration
+
 //Welcome to our shop! These are our top flavors.
 myIceCreamShop.listTopFlavors()
 
+//This is a function I created to display our whole menu
+myIceCreamShop.listMenus()
+
 //Demonstrating total sales starts with a value of 0
-print("Our total profit so far: $\(myIceCreamShop.totalSales)")
+print("\nOur total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering an Ice Cream Cone
 let myNewCone = myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: sizeSmall)
 myNewCone?.eat()
+
 //Demonstration of total sales keeping a total
 print("Our total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering another ice cream cone
 let mySecondCone = myIceCreamShop.orderCone(flavor: rockyRoad, topping: nil, size: sizeLarge)
 myNewCone?.eat()
+
 //Demonstration of total sales keeping a running total
 print("Our total profit so far: $\(myIceCreamShop.totalSales)")
