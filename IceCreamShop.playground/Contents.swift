@@ -19,7 +19,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Yum! I love the flavor \(self.flavor.name)")
+        print("Yum! I love the flavor \(flavor.name)!")
     }
 }
 
@@ -56,7 +56,7 @@ class IceCreamShop {
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
         totalSales += newCone.size.rawValue
-        print("Your \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) comes out to \(newCone.size.rawValue).")
+        print("Your \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) comes out to $\(newCone.size.rawValue).\n")
         return newCone
     }
     
@@ -92,3 +92,13 @@ bronsonsIceCreamShop.addSize(moreSizes: Size.overwhelming)
 bronsonsIceCreamShop.addTopping(moreToppings: "cookies")
 bronsonsIceCreamShop.addTopping(moreToppings: "definitely not spaghetti")
 bronsonsIceCreamShop.addTopping(moreToppings: "chocolate chips")
+
+bronsonsIceCreamShop.listTopFlavors()
+
+let newCone = bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[2],
+                                             topping: bronsonsIceCreamShop.toppings[1],
+                                             size: Size.overwhelming)
+
+newCone?.eat()
+
+print("The shop has made: $\(bronsonsIceCreamShop.totalSales) so far.")
