@@ -21,7 +21,7 @@ struct Cone{
     var size: Size
     
     func eat(){
-        print("Wow! I loved it!")
+        print("Wow! I loved it!\n")
     }
 }
 
@@ -82,14 +82,12 @@ class IceCreamShop{
         }
        
         //This print statment gives you a "recipt" of your order
-        print("\n")
-        print("Thank you for your purchase at Lambda's Luxurious Ice Cream Palace!\nHere are the detals of your order:")
+        print("\nThank you for your purchase at Lambda's Luxurious Ice Cream Palace!\nHere are the detals of your order:")
         print("The flavor you chose: \(newOrder.flavor.name)")
         print("The topping you chose: \(stringTopping)")
         print("The size you chose: \(newOrder.size)")
         print("The total of your order was: $\(newOrder.size.rawValue)")
-        print("Please do come again soon! :)")
-        print("\n")
+        print("Please do come again soon! :)\n")
         return newOrder
     }
     
@@ -137,13 +135,13 @@ myIceCreamShop.listTopFlavors()
 print("Our total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering an Ice Cream Cone
-myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: sizeSmall)
-
-//Demonstration of total sales keeping a running total
+let myNewCone = myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: sizeSmall)
+myNewCone?.eat()
+//Demonstration of total sales keeping a total
 print("Our total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering another ice cream cone
-myIceCreamShop.orderCone(flavor: rockyRoad, topping: nil, size: sizeLarge)
-
+let mySecondCone = myIceCreamShop.orderCone(flavor: rockyRoad, topping: nil, size: sizeLarge)
+myNewCone?.eat()
 //Demonstration of total sales keeping a running total
 print("Our total profit so far: $\(myIceCreamShop.totalSales)")
