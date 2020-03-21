@@ -33,11 +33,18 @@ class IceCreamShop {
     }
     
     func listTopFlavors() {
+        let justInCaseString = "No one likes any of our flavors :("
+        var topFlavCount = 0
         var topFlavString = "Our top flavors are:"
         for flavor in flavorOptions {
             if flavor.rating >= 4.0 {
                 topFlavString = "\(topFlavString) \(flavor.name),"
+                topFlavCount += 1
             }
+        }
+        if topFlavCount == 0 {
+            print(justInCaseString)
+            return
         }
         print(topFlavString)
     }
@@ -80,11 +87,11 @@ kaysCreamery.listTopFlavors()
 
 let ultimateCone: Cone
 
-if let ultimateCone = kaysCreamery.orderCone(flavor: chocolate, topping: "Chocolate Chips", size: .large) {
+if let ultimateCone = kaysCreamery.orderCone(flavor: chocolate, topping: kaysCreamery.toppingOptions[0], size: .large) {
     ultimateCone.eat()
 }
 
 kaysCreamery.orderCone(flavor: vanilla, size: .small)
-kaysCreamery.orderCone(flavor: strawberry, topping: "Mini-Marshmallows", size: .medium)
+kaysCreamery.orderCone(flavor: strawberry, topping: kaysCreamery.toppingOptions[6], size: .medium)
 
 print(kaysCreamery.totalSales)
