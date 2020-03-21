@@ -60,3 +60,16 @@ bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[0],
                                topping: bronsonsIceCreamShop.toppings[2],
                                size: Size.medium)
 
+let mystery = Flavor(name: "mystery magic", rating: 4.8)
+let pineapple = Flavor(name: "swiftly pineapple", rating: 3.5)
+
+enum MoreSizes: Double {
+    case mini = 0.99
+    case jumbo = 6.99
+    case overwhelming = 39.99
+}
+
+var moreSizes: [MoreSizes] = [MoreSizes.mini, MoreSizes.jumbo, MoreSizes.overwhelming]
+var moreToppings: [String] = ["cookies", "definitely not spaghetti", "chocolate chips"]
+
+let undergroundIceCreamShop = IceCreamShop()
