@@ -1,4 +1,5 @@
 //Sprint Challenge 1 by Bronson Mullens
+print("~Welcome to the Varrock Ice Cream Shoppe~")
 
 struct Flavor {
     var name: String
