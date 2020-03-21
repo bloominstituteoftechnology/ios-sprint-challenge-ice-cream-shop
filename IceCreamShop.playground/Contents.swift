@@ -58,12 +58,14 @@ class IceCreamShop{
     
     //This function will list our flavors of icecream that have achevied over a 4 in rating!
     func listTopFlavors(){
+        print("Welcome to Lambda's Luxurious Ice Cream Palace!")
         print("We have a few best selling flavors that have acheived a rating over 4! They are:")
         for flavor in menuFlavors{
             if flavor.rating > 4{
                 print("Flavor: \(flavor.name) Rating: \(flavor.rating)")
         }
       }
+        print("\n")
    }
     
     //This function will help us order a cone at our icecream shop and give us a rundown of what we ordered
@@ -85,7 +87,8 @@ class IceCreamShop{
         print("The flavor you chose: \(newOrder.flavor.name)")
         print("The topping you chose: \(stringTopping)")
         print("The size you chose: \(newOrder.size)")
-        print("The total of your order was: \(newOrder.size.rawValue)")
+        print("The total of your order was: $\(newOrder.size.rawValue)")
+        print("Please do come again soon! :)")
         print("\n")
         return newOrder
     }
@@ -127,18 +130,20 @@ myIceCreamShop.addSizesToMenu(size: sizeSmall)
 myIceCreamShop.addSizesToMenu(size: sizeMedium)
 myIceCreamShop.addSizesToMenu(size: sizeLarge)
 
+//Welcome to our shop! These are our top flavors.
+myIceCreamShop.listTopFlavors()
 
 //Demonstrating total sales starts with a value of 0
-print(myIceCreamShop.totalSales)
+print("Our total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering an Ice Cream Cone
 myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: sizeSmall)
 
 //Demonstration of total sales keeping a running total
-print(myIceCreamShop.totalSales)
+print("Our total profit so far: $\(myIceCreamShop.totalSales)")
 
 //Ordering another ice cream cone
 myIceCreamShop.orderCone(flavor: rockyRoad, topping: nil, size: sizeLarge)
 
 //Demonstration of total sales keeping a running total
-print(myIceCreamShop.totalSales)
+print("Our total profit so far: $\(myIceCreamShop.totalSales)")
