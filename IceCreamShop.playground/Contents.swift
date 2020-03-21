@@ -2,7 +2,7 @@
 
 struct Flavor {
     var name: String
-    var rating: Int
+    var rating: Double
 }
 
 enum Size: Double {
@@ -14,7 +14,7 @@ enum Size: Double {
 struct Cone {
     let flavor: Flavor
     let topping: String
-    let size: Size.RawValue //TODO: Doublecheck raw value usage
+    let size: Size
     
     func eat() {
         print("Yum! I love the flavor \(self.flavor.name)")
@@ -24,21 +24,39 @@ struct Cone {
 class IceCreamShop {
     var totalSales: Double
     
-    //Ice Cream Flavors
-    let chocolate = Flavor(name: "Mud Slide", rating: 4)
-    let vanilla = Flavor(name: "Vanilla Cream", rating: 4)
-    let bubblegum = Flavor(name: "Bubble Yum", rating: 2)
-    let sherbert = Flavor(name: "Fruity Tooti", rating: 5)
+    var sizes: [Size] = [Size.small, Size.medium, Size.large]
     
-    //Ice Cream Toppings
-    let sprinkles: String = "Sprinkles"
-    let caramelDrizzle: String = "Caramel Drizzle"
-    let gummyWorms: String = "Gummy Worms"
-
-    let sizes: Size
+    var flavors: [Flavor] = [Flavor(name: "chocolate mud slide", rating: 4.5),
+                             Flavor(name: "vanilla cream", rating: 4.0),
+                             Flavor(name: "bubble yum", rating: 2.0),
+                             Flavor(name: "fruity tooti", rating: 5.0)]
     
-    init(totalSales: Double = 0.0, sizes: Size) {
+    var toppings: [String] = ["sprinkles", "caramel bits", "gummy Worms"]
+    
+    init(totalSales: Double = 0.0) {
         self.totalSales = totalSales
-        self.sizes = sizes
+    }
+    
+    func listTopFlavors() {
+        print("\nOur top flavors are:")
+        for flavor in flavors {
+            if flavor.rating > 4.0 {
+                print("-\(flavor.name) with a rating of \(flavor.rating)!")
+            }
+        }
+        print("") //New Line
+    }
+    
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
+        totalSales += newCone.size.rawValue
+        print("Your \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) comes out to \(newCone.size.rawValue).")
+        return newCone
     }
 }
+
+let bronsonsIceCreamShop = IceCreamShop()
+bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[0],
+                               topping: bronsonsIceCreamShop.toppings[2],
+                               size: Size.medium)
+
