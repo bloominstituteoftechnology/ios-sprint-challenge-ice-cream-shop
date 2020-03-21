@@ -23,7 +23,7 @@ struct Cone {
     }
 }
 
-//Ice cream shop class with essential falvors, toppings, and sizes
+//Ice cream shop class with essential flavors, toppings, and sizes
 class IceCreamShop {
     var totalSales: Double
     
@@ -34,13 +34,13 @@ class IceCreamShop {
                              Flavor(name: "bubble yum", rating: 2.0),
                              Flavor(name: "fruity tooti", rating: 5.0)]
     
-    var toppings: [String] = ["sprinkles", "caramel bits", "gummy Worms"]
+    var toppings: [String] = ["sprinkle", "caramel bit", "gummy worm"]
     
     init(totalSales: Double = 0.0) {
         self.totalSales = totalSales
     }
     
-    //Lists top flavors
+    //Lists top rated flavors
     func listTopFlavors() {
         let ratingThreshold: Double = 4.0
         print("\nOur top flavors are:")
@@ -49,14 +49,13 @@ class IceCreamShop {
                 print("-\(flavor.name) with a rating of \(flavor.rating)!")
             }
         }
-        print("") //New Line
     }
     
     //Logic behind ordering a cone
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
         totalSales += newCone.size.rawValue
-        print("Your \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) comes out to $\(newCone.size.rawValue).\n")
+        print("\nYour \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) topping comes out to $\(newCone.size.rawValue).\n")
         return newCone
     }
     
@@ -76,7 +75,7 @@ class IceCreamShop {
 
 let bronsonsIceCreamShop = IceCreamShop()
 
-//Bonus flavors to add
+//Bonus flavors to be added
 let mystery = Flavor(name: "mystery magic", rating: 4.8)
 let pineapple = Flavor(name: "swiftly pineapple", rating: 3.5)
 
@@ -89,9 +88,9 @@ bronsonsIceCreamShop.addSize(moreSizes: Size.mini)
 bronsonsIceCreamShop.addSize(moreSizes: Size.overwhelming)
 
 //additional additional toppings
-bronsonsIceCreamShop.addTopping(moreToppings: "cookies")
+bronsonsIceCreamShop.addTopping(moreToppings: "cookie")
 bronsonsIceCreamShop.addTopping(moreToppings: "definitely not spaghetti")
-bronsonsIceCreamShop.addTopping(moreToppings: "chocolate chips")
+bronsonsIceCreamShop.addTopping(moreToppings: "chocolate chip")
 
 bronsonsIceCreamShop.listTopFlavors()
 
@@ -102,3 +101,5 @@ let newCone = bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavor
 newCone?.eat()
 
 print("The shop has made: $\(bronsonsIceCreamShop.totalSales) so far.")
+
+let questionableCone = bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[1], topping: bronsonsIceCreamShop.toppings[4], size: Size.mini)
