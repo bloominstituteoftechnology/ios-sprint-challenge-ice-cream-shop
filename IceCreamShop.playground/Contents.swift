@@ -67,6 +67,31 @@ class IceCreamShop{
       }
    }
     
+    //This function will help us order a cone at our icecream shop and give us a rundown of what we ordered
+    func orderCone(flavor: Flavor, topping: Toppings?, size: Size) -> Cone?{
+        
+        //Initializes an order and adds the sale to our total sales variable
+        let newOrder = Cone(flavor: flavor, topping: topping, size: size)
+        
+        //Keeps a running total of shop's profit
+        totalSales+=size.rawValue
+        
+        //These four lines of code help us figure out wether or not a topping has been passed into the funtion or if it is nil. If so, print the topping. If not, print a blank string.
+        var stringTopping: String = " "
+        if let unknownTopping = newOrder.topping{
+            stringTopping = "\(unknownTopping.name)"
+        }
+
+        //This print statment gives you a "recipt" of your order
+        print("\nThank you for your purchase at Lambda's Luxurious Ice Cream Palace!\nHere are the detals of your order:")
+        print("The flavor you chose: \(newOrder.flavor.name)")
+        print("The topping you chose: \(stringTopping)")
+        print("The size you chose: \(newOrder.size)")
+        print("The total of your order was: $\(newOrder.size.rawValue)")
+        print("Please do come again soon! :)\n")
+        return newOrder
+    }
+    
     //This is an unrequired function I'm adding to print out our menus to make the flow of the app nicer
     func listMenus(){
         print("\nIn addtion to our top flavors, we also have:")
@@ -83,31 +108,6 @@ class IceCreamShop{
             for sizes in menuSizes{
                 print("\(sizes) \(sizes.rawValue)")
             }
-    }
-    
-    //This function will help us order a cone at our icecream shop and give us a rundown of what we ordered
-    func orderCone(flavor: Flavor, topping: Toppings?, size: Size) -> Cone?{
-        
-        //Initializes an order and adds the sale to our total sales variable
-        let newOrder = Cone(flavor: flavor, topping: topping, size: size)
-        
-        //Keeps a running total of shop's profit
-        totalSales+=size.rawValue
-        
-        //These four lines of code help us figure out wether or not a topping has been passed into the funtion. If so, print the topping. If not, print a blank string.
-        var stringTopping: String = " "
-        if let unknownTopping = newOrder.topping{
-            stringTopping = "\(unknownTopping.name)"
-        }
-
-        //This print statment gives you a "recipt" of your order
-        print("\nThank you for your purchase at Lambda's Luxurious Ice Cream Palace!\nHere are the detals of your order:")
-        print("The flavor you chose: \(newOrder.flavor.name)")
-        print("The topping you chose: \(stringTopping)")
-        print("The size you chose: \(newOrder.size)")
-        print("The total of your order was: $\(newOrder.size.rawValue)")
-        print("Please do come again soon! :)\n")
-        return newOrder
     }
 }
 
