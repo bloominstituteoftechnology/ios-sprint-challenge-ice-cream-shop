@@ -3,17 +3,6 @@ struct Flavor {
     let rating: Double
 }
 
-let chocolate = Flavor(name: "Chocolate", rating: 5.0)
-let vanilla = Flavor(name: "Vanilla", rating: 4.5)
-let cookiesNCream = Flavor(name: "Cookies'n'Cream", rating: 5.0)
-let rockyRoad = Flavor(name: "Rocky Road", rating: 3.5)
-let butterscotch = Flavor(name: "Butterscotch", rating: 4.0)
-let mintChocolate = Flavor(name: "Mint Chocolate", rating: 3.0)
-let frenchVanilla = Flavor(name: "French Vanilla", rating: 5.0)
-let grasshopper = Flavor(name: "Grasshopper", rating: 3.0)
-let strawberry = Flavor(name: "Strawberry", rating: 5.0)
-let raspberry = Flavor(name: "Raspberry", rating: 3.7)
-
 enum Size: Double {
     case small = 3.99
     case medium = 4.49
@@ -26,17 +15,21 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 
 class IceCreamShop {
     var totalSales: Double
     var flavorOptions: [Flavor]
+    var sizeOptions: [Size]
+    var toppingOptions: [String]
     
     init() {
         totalSales = 0
         flavorOptions = []
+        sizeOptions = []
+        toppingOptions = []
     }
     
     func listTopFlavors() {
@@ -63,9 +56,35 @@ class IceCreamShop {
     }
 }
 
+let chocolate = Flavor(name: "Chocolate", rating: 5.0)
+let vanilla = Flavor(name: "Vanilla", rating: 4.5)
+let cookiesNCream = Flavor(name: "Cookies'n'Cream", rating: 5.0)
+let rockyRoad = Flavor(name: "Rocky Road", rating: 3.5)
+let butterscotch = Flavor(name: "Butterscotch", rating: 4.0)
+let mintChocolate = Flavor(name: "Mint Chocolate", rating: 3.0)
+let frenchVanilla = Flavor(name: "French Vanilla", rating: 5.0)
+let grasshopper = Flavor(name: "Grasshopper", rating: 3.0)
+let strawberry = Flavor(name: "Strawberry", rating: 5.0)
+let raspberry = Flavor(name: "Raspberry", rating: 3.7)
+
+let sizes = [Size.small, Size.medium, Size.large]
+
+let toppings = ["Chocolate Chips", "Mini-Marshmallows", "Reeses Pieces", "Coconut", "Granola", "Berries", "Graham Cracker", "Nutter Butter"]
+
 let kaysCreamery = IceCreamShop()
 kaysCreamery.flavorOptions = [chocolate, vanilla, cookiesNCream, rockyRoad, butterscotch, mintChocolate, frenchVanilla, grasshopper, strawberry, raspberry]
+kaysCreamery.sizeOptions = sizes
+kaysCreamery.toppingOptions = toppings
+
 kaysCreamery.listTopFlavors()
-kaysCreamery.orderCone(flavor: chocolate, topping: "Chocolate Chips", size: .large)
+
+let ultimateCone: Cone
+
+if let ultimateCone = kaysCreamery.orderCone(flavor: chocolate, topping: "Chocolate Chips", size: .large) {
+    ultimateCone.eat()
+}
+
 kaysCreamery.orderCone(flavor: vanilla, size: .small)
 kaysCreamery.orderCone(flavor: strawberry, topping: "Mini-Marshmallows", size: .medium)
+
+print(kaysCreamery.totalSales)
