@@ -13,7 +13,7 @@ enum Size: Double {
 
 struct Cone {
   let flavor: Flavor
-  let topping: String
+  let topping: String?
   let size: Size
   
   func eat() {
@@ -35,6 +35,8 @@ class IceCreamShop {
     self.totalSales = totalSales
   }
   
+  // Top flavors available
+  
   func listTopFlavors() {
     let faveFlavors = ""
     
@@ -45,20 +47,24 @@ class IceCreamShop {
     }
   }
 
-  func orderCone (flavor: Flavor, topping: String?, size: Size) -> Cone {
+  func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone {
     let newCone = Cone(flavor: flavor, topping: topping, size: size)
-    let price = size.rawValue
+    var price = size.rawValue
     
     price += totalSales
     
+    if let unwrappedTopping = topping {
+      print("Your \(flavor.name) ice cream with \(unwrappedTopping) is $\(size.rawValue).")
+    } else {
+      print("Your \(flavor.name)is $\(size.rawValue).")
+    }
     
+    return newCone
     
-    print("Price of your \(flavor.name) cone with \(topping) is $\(size.rawValue).")
   }
-  
 }
 
-// Top flavors available
+
 
 
 
