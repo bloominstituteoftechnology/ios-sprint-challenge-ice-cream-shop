@@ -6,9 +6,9 @@ struct Flavor{
 }
 
 enum Size: Double{
-    case small = 3.99
-    case medium = 4.99
-    case large = 5.99
+    case Small = 3.99
+    case Medium = 4.99
+    case Large = 5.99
 }
 
 struct Toppings{
@@ -51,6 +51,11 @@ class IceCreamShop{
         menuToppings.append(topping)
     }
     
+    //This functions adds sizes to the menu
+    func addSizesToMenu(size: Size){
+        menuSizes.append(size)
+    }
+    
     //This function will list our flavors of icecream that have achevied over a 4 in rating!
     func listTopFlavors(){
         print("We have a few best selling flavors that have acheived a rating over 4! They are:")
@@ -62,11 +67,11 @@ class IceCreamShop{
    }
     
     //This function will help us order a cone at our icecream shop and give us a rundown of what we ordered
-    func orderCone(flavor: Flavor, topping: Toppings, size: Size) -> Cone?{
+    func orderCone(flavor: Flavor, topping: Toppings?, size: Size) -> Cone?{
         
         //Helps up initialize an order and adds the sale to our total sales variable
         let newOrder = Cone(flavor: flavor, topping: topping, size: size)
-        totalSales + size.rawValue
+        totalSales+=size.rawValue
         
         //These four lines of code help us figure out wether or not a topping has been passed into the funtion. If so, print the topping. If not, print a blank string.
         var stringTopping: String = " "
@@ -75,11 +80,13 @@ class IceCreamShop{
         }
        
         //This print statment gives you a "recipt" of your order
+        print("\n")
         print("Thank you for your purchase at Lambda's Luxurious Ice Cream Palace!\nHere are the detals of your order:")
         print("The flavor you chose: \(newOrder.flavor.name)")
         print("The topping you chose: \(stringTopping)")
         print("The size you chose: \(newOrder.size)")
         print("The total of your order was: \(newOrder.size.rawValue)")
+        print("\n")
         return newOrder
     }
     
@@ -96,6 +103,10 @@ let fudge = Toppings(name: "Fudge")
 let peanuts = Toppings(name: "Peanuts")
 let whippedCream = Toppings(name: "Whipped Cream")
 
+// These are the sizes available at our shop!
+let sizeSmall = Size.Small
+let sizeMedium = Size.Medium
+let sizeLarge = Size.Large
 
 //Creating our first instance of our Ice Cream Shop
 let myIceCreamShop = IceCreamShop(shopName: "Lambda's Luxurious Ice Cream Palace")
@@ -111,7 +122,23 @@ myIceCreamShop.addToppingsToMenu(topping: fudge)
 myIceCreamShop.addToppingsToMenu(topping: peanuts)
 myIceCreamShop.addToppingsToMenu(topping: whippedCream)
 
+//Adding Sizes to the menu
+myIceCreamShop.addSizesToMenu(size: sizeSmall)
+myIceCreamShop.addSizesToMenu(size: sizeMedium)
+myIceCreamShop.addSizesToMenu(size: sizeLarge)
 
 
-myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: Size.small)
+//Demonstrating total sales starts with a value of 0
+print(myIceCreamShop.totalSales)
 
+//Ordering an Ice Cream Cone
+myIceCreamShop.orderCone(flavor: cherryChip, topping: fudge, size: sizeSmall)
+
+//Demonstration of total sales keeping a running total
+print(myIceCreamShop.totalSales)
+
+//Ordering another ice cream cone
+myIceCreamShop.orderCone(flavor: rockyRoad, topping: nil, size: sizeLarge)
+
+//Demonstration of total sales keeping a running total
+print(myIceCreamShop.totalSales)
