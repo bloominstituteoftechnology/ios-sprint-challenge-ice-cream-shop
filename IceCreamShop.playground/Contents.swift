@@ -76,7 +76,7 @@ class IceCreamShop{
         //Keeps a running total of shop's profit
         totalSales+=size.rawValue
         
-        //These four lines of code help us figure out wether or not a topping has been passed into the funtion or if it is nil. If so, print the topping. If not, print a blank string.
+        //These four lines of code help us figure out whether or not a topping has been passed into the funtion or if it is nil. If so, print the topping. If not, print a blank string.
         var stringTopping: String = " "
         if let unknownTopping = newOrder.topping{
             stringTopping = "\(unknownTopping.name)"
@@ -130,7 +130,7 @@ let sizeLarge = Size.Large
 //Creating our first instance of our Ice Cream Shop
 let myIceCreamShop = IceCreamShop(shopName: "Lambda's Luxurious Ice Cream Palace")
 
-//Adding flavors to the flavor menu 
+//Adding flavors to the flavor menu
 myIceCreamShop.addFlavorToMenu(flavor: chocolate)
 myIceCreamShop.addFlavorToMenu(flavor: vanilla)
 myIceCreamShop.addFlavorToMenu(flavor: cherryChip)
