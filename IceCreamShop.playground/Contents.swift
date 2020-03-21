@@ -31,8 +31,6 @@ eat()
 //var iceCreamFlavors = ["Cookies and Cream", "Chocolate", "Vanilla"]
 //var iceCreamToppings = ["Cookies", "Caramel", "Chocolate Chips"]
 
-var iceCreamFlavor1 = Cone(flavor: "Cookies and Cream", topping: "Caramel", size: .large)
-
 
 struct Sales {
     var sales: Int
@@ -52,7 +50,7 @@ class IceCreamShop {
     }
 }
 
-
+IceCreamShop(shopFlavor: .init(name: <#T##[String]#>, rating: <#T##Double#>), shopToppings: <#T##Cone#>, shopSizes: <#T##Size#>)
 
 
 
