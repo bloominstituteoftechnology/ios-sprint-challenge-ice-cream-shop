@@ -4,7 +4,7 @@ struct Flavor {
     
 }
 
-enum Size {
+enum Size: String {
     case small
     case medium
     case large
@@ -17,9 +17,16 @@ let large = 4.99
 struct Cone {
     let flavor: String
     let topping: String
-    let size: String
+    let size: Size
 }
 
+let myCone = Cone(flavor: "chocolate", topping: "chcolateSyrup", size: .medium)
+
+
 func eat() {
+   print("I love my \(myCone)")
+}
+
+class IceCreamShop {
     
 }
