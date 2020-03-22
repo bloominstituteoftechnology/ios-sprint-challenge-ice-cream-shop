@@ -12,12 +12,13 @@ enum Size: Double {
 }
 
 struct Cone {
-    var flavores: Flavor
-    var topping: String
-    var size: Size
+    let flavores: Flavor
+    let topping: String
+    let size: Size
     
    
     func eat() {
+        
         
         print("Wow! I love \(flavores.name)")
         
@@ -25,38 +26,112 @@ struct Cone {
 }
 
 class IceCreamShop {
-    var menu: [Cone]
+
+    var arrayOfToppings: [String]
+    var arrayOfFlavors: [Flavor]
+    var arrayOfSize: [Size]
+    var totalSales: Double
     
     init() {
-        self.menu = []
+        self.arrayOfFlavors = []
+        self.arrayOfSize = [.large, .medium, .small]
+        self.arrayOfToppings = []
+        totalSales = 0
     }
     
-    }
-
-var totalSale = 0
-var shopMenu = IceCreamShop()
-shopMenu.menu.append(Cone(flavores: Flavor(name: "Vanilla", rating: 4.33), topping: "Whipped Cream", size: .small))
-shopMenu.menu.append(Cone(flavores: Flavor(name: "Chocolate", rating: 4.6), topping: "Chocolate Chip", size: .medium))
-shopMenu.menu.append(Cone(flavores: Flavor(name: "Cheesecake", rating: 3), topping: "Caramel", size: .large))
-shopMenu.menu.append(Cone(flavores: Flavor(name: "Half Vanilla Half Chocolate", rating: 5.0), topping: "Chocolate Syrop", size: .large))
-
-func listOfTopFlavors() {
-    for topFlavors in shopMenu.menu {
-        if topFlavors.flavores.rating >= 4 {
-        print("Our top flavors are \(topFlavors.flavores.name)")
+    
+    func listOfTopFlavors() {
+        print("Our top flavors: ")
+        for topFlavor in arrayOfFlavors {
+            if topFlavor.rating >= 4 {
+                print(topFlavor.name)
+            
+            }
         }
     }
+    
+    func orderCone(flavor: String, topping: String, size: Size) -> Cone? {
+        // Check order for correctness
+        var correctOrder: Bool = false
+        // Match the order with existing menu values
+        var flavorIn : Flavor = Flavor(name: "Name", rating: 0)
+        
+        totalSales += size.rawValue
+        // Find a flavor
+        for fl in arrayOfFlavors {
+
+            if fl.name == flavor {
+                flavorIn = fl
+                correctOrder = true
+                break
+            }
+            correctOrder = false
+            
+        }
+        // Find the topping
+        if !arrayOfToppings.contains(topping){
+            print("Sorry! We don't have this topping")
+            correctOrder = false
+        }
+        // Return the cone to the customer if order is correct
+        if correctOrder == true {
+            return createCone(flavor: flavorIn, topping: topping, size: size)
+        } else {
+            print("Sorry. Wrong input of flavors")
+        }
+        return nil
+    }
+       
+        
+        func createCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+            totalSales += size.rawValue
+            let chosenCone: Cone = Cone(flavores: flavor, topping: topping, size: size)
+            
+            if topping == "no topping" {
+                print("Your \(flavor.name) ice cream is $\(size.rawValue)")
+            } else {
+                print("Your \(flavor.name) ice cream with \(topping) is $\(size.rawValue)")
+            }
+            return chosenCone
+        }
+            
+    }
+
+    
+
+
+// Flavors:
+let vanilla = Flavor(name: "Vanilla", rating: 4.33)
+let chocolate = Flavor(name: "Chocolate", rating: 4.6)
+let cheesecake = Flavor(name: "Cheesecake", rating: 3)
+let halfAndHalf = Flavor(name: "Half Vanilla Half Chocolate", rating: 5.0)
+
+// arrays of flavors, toppings
+let toppings: [String] = ["Honey", "Chocolate Syrop", "Whipped Cream", "Caramel"]
+let arrayOfFlavors: [Flavor] = [vanilla, chocolate, cheesecake, halfAndHalf]
+// Initialize Ice Creame shop:
+var shop = IceCreamShop()
+for top in toppings{
+    shop.arrayOfToppings.append(top)
+}
+for flav in arrayOfFlavors{
+    shop.arrayOfFlavors.append(flav)
 }
 
-listOfTopFlavors()
+shop.listOfTopFlavors()
+print("\n")
+// Create cone:
+var cone: Cone? = shop.orderCone(flavor: "Cheesecake", topping: "Chocolate Syrop", size: .medium)
+cone?.eat()
+print("\n")
+shop.orderCone(flavor: "Vanilla", topping: "Honey", size: .large)
+print("Total sales \(shop.totalSales)")
 
 
-func orderCone(flavor: Flavor, size: Size, topping: String) -> Cone? {
-   
-    var order: Cone
-    order.flavores = 
-    order.size = size
-    order.topping = topping
-}
+
+
+  
+
+
 
 
