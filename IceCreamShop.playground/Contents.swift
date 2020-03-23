@@ -41,7 +41,7 @@ class iceCreamShop {
 
 
 
-// Step 5 
+// Step 5
 func listTopFlavors() {
     
     
@@ -62,3 +62,51 @@ func listTopFlavors() {
     }
 }
 }
+// Step 6
+
+ 
+ 
+    func orderCone (flavor: Flavor, topping: String?, size: Size) -> Cone {
+        let orderedCone = Cone(flavor: flavor, toppings: topping ?? "", size: size)
+        var totalSales = orderedCone.size.rawValue
+        
+        
+        var statement = "Your order of \(orderedCone.size) size \(orderedCone.flavor) cone "
+        
+        
+        if let withTopping = topping {
+             statement += " with \(withTopping) topping"
+        }
+             statement += " will be \(totalSales)"
+        
+            print(statement)
+        
+        return orderedCone
+    }
+
+
+let chocolate = Flavor(name: "Chocolate", rating: 5.2)
+
+let tiger = Flavor(name: "Tiger Tail", rating: 6.1)
+
+let rocky = Flavor(name: "Rocky Road", rating: 3.2)
+
+let lemon = Flavor(name: "Lemon Ice", rating: 5.7)
+
+
+let toppings = ["Rainbow sprinkle", "Caramel", "Chocolate Chips"]
+let sizes = [Size.small, Size.medium, Size.large]
+
+
+let iceCreamCones = [ Cone(flavor: chocolate, toppings: toppings[1], size: sizes[1]),
+                      Cone(flavor: tiger, toppings: toppings[2], size: sizes[2]),
+                      Cone(flavor: rocky, toppings: toppings[0], size: sizes[0]),
+                      Cone(flavor: lemon, toppings: toppings[1], size: sizes[1])]
+
+
+
+
+let myIceCreamstore = iceCreamShop(menuEntry: iceCreamCones)
+
+
+//  This is as far as I got. Struggled tonight heavily as my mind is just not coping right now.  I got too bogged down and neglected to ask for help too. I really need to review and rework so I can do this faster. Typically the projects take me much more than 3 hours.
