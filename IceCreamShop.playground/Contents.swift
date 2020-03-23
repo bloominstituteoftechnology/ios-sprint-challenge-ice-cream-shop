@@ -15,11 +15,11 @@ enum Size: Double {
 
 struct Cone {
     let flavor: Flavor
-    let topping: String
+    let topping: String?
     let size: Size
     
     func eat() {
-        print("MMM! I love \(self.flavor)")
+        print("MMM! I love \(self.flavor.name)")
     }
 }
 
@@ -54,6 +54,12 @@ class IceCreamShop {
         let cone = Cone(flavor: flavor, topping: topping, size: size)
         self.totalSales += Int(cone.size.rawValue)
         
+        if topping == "none" {
+            print("Your \(flavor.name) ice cream is \(size.rawValue)")
+        } else {
+            print("Your \(flavor.name) ice cream with \(topping) is \(size.rawValue)")
+        }
+        
         return cone
     }
 }
@@ -82,13 +88,13 @@ class IceCreamShop {
 //    print(dairyQueen.totalSales)
 
 
-let strawberry = Flavor(name: "Strawberry", rating: 5)
-let chocolate = Flavor(name: "Chocolate", rating: 5)
-let vanilla = Flavor(name: "Vanilla", rating: 3)
+let strawberry = Flavor(name: "strawberry", rating: 5)
+let chocolate = Flavor(name: "chocolate", rating: 5)
+let vanilla = Flavor(name: "vanilla", rating: 3)
 
 let sizes: [Size] = [Size.small, Size.medium, Size.large]
 
-let toppings = ["Sprinkles", "Chocolate Chips"]
+let toppings = ["sprinkles", "chocolate Chips"]
 
 let baskinRobbins = IceCreamShop(flavors: [strawberry, chocolate, vanilla], toppings: toppings, sizes: sizes, totalSales: 180000)
 
@@ -97,8 +103,7 @@ baskinRobbins.listTopFlavors()
 print(baskinRobbins.totalSales)
 //    baskinRobbins.orderCone(flavor: baskinRobbins.flavors[2], topping: baskinRobbins.toppings[1], size: baskinRobbins.sizes[1])
 //    baskinRobbins.orderCone(flavor: strawberry, size: Size.large)
-let cone = baskinRobbins.orderCone(flavor: strawberry, size: Size.small)
+let cone = baskinRobbins.orderCone(flavor: strawberry, topping: toppings[1], size: Size.small)
 cone?.eat()
 
 print(baskinRobbins.totalSales)
-
