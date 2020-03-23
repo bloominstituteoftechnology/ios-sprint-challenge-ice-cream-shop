@@ -24,7 +24,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor)")
+        print("Mmm! I love \(flavor.name)")
     }
 }
 
@@ -61,7 +61,7 @@ class IceCreamShop {
             
             totalSales += myConePrice
             
-            print("Yout \(myFlavor) with \(chosenTopping) is \(myConePrice).")
+            print("Your \(myFlavor) with \(chosenTopping) is \(myConePrice).")
         }
 
     }
@@ -82,7 +82,12 @@ let aaronsIceCreamShop = IceCreamShop(flavors: flavorsArray, sizes: coneSizes, t
 
 aaronsIceCreamShop.listTopFlavors()
 
+let newCone = Cone(flavor: vanilla, topping: "sprinkles", size: .medium)
 
+aaronsIceCreamShop.orderCone(myFlavor: vanilla, mySize: .medium, myTopping: "sprinkles")
+
+newCone.eat()
+print(aaronsIceCreamShop.totalSales)
 
 
 
