@@ -24,13 +24,13 @@ struct Cone {
 class IceCreamShop {
     var flavors: [Flavor]
     var sizes : [Size]
-    var topings: [Cone]
+    var toppings: [Cone]
     var totalSales: [String]
     
     init() {
         self.flavors = []
         self.sizes = []
-        self.topings = []
+        self.toppings = []
         self.totalSales = []
     }
     
@@ -43,8 +43,9 @@ class IceCreamShop {
             func orderCone(flavor: String, topping: String?, size: String) {
                 if topping != nil{
                 }
-                let newCone = Cone(flavor: , topping: nil, size: Size.large)
-                        print("Your Chocolate Chip ice cream is 5.99.")
+                let newCone = Cone(flavor: topFlavors, topping: topping ?? "no topping", size: Size.large)
+                
+                print("Your \(newCone.flavor) ice cream is \(newCone.size).")
             }
         }
     }
