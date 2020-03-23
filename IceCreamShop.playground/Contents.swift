@@ -9,15 +9,6 @@ enum Size: Double {
     case large = 5.99
 }
 
-//enum Toppings: Double {
-//    case sprinkles = 0.15
-//    case crushedOreos = 0.20
-//    case cherry = 0.50
-//    case syrup = 0.25
-//    case whippedCream = 0.60
-//    case none = 0
-//}
-
 struct Cone {
     let flavor: Flavor
     let topping: String
@@ -50,19 +41,19 @@ class IceCreamShop {
         print("Our top flavors are: \(topFlavors)")
     }
     
-    func orderCone(myFlavor: Flavor, mySize: Size, myTopping: String?) {
-        let myConePrice: Double
+    func orderCone(myFlavor: Flavor, mySize: Size, myTopping: String) -> Cone? {
         
-        if let chosenTopping = myTopping {
-            
-            let myCone = Cone(flavor: myFlavor, topping: chosenTopping, size: mySize)
-            
-            myConePrice = myCone.size.rawValue
-            
-            totalSales += myConePrice
-            
-            print("Your \(myFlavor) with \(chosenTopping) is \(myConePrice).")
-        }
+        let myConePrice: Double
+
+        let myCone = Cone(flavor: myFlavor, topping: myTopping, size: mySize)
+
+        myConePrice = myCone.size.rawValue
+
+        totalSales += myConePrice
+        
+        print("Your \(myFlavor.name) with \(myTopping) is \(myConePrice).")
+        
+        return myCone
 
     }
 
