@@ -1,6 +1,6 @@
 struct Flavor {
     let name: String
-    let rating: Int
+    let rating: Double
 }
 
 enum Size: Double {
@@ -30,6 +30,16 @@ class IceCreamShop {
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
+    }
+    
+    func listTopFlavors() {
+        var topFlavors: [String] = []
+        for flavor in flavors {
+            if flavor.rating >= 4.0 {
+                topFlavors.append(flavor.name)
+            }
+        }
+        print("Our top flavors are: \(topFlavors)")
     }
 }
 
