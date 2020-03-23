@@ -1,17 +1,14 @@
-//Sprint Challenge 1 by Bronson Mullens
-print("~Welcome to the Varrock Ice Cream Shoppe~")
+//Sprint challenge 1 by Bronson Mullens
 
 struct Flavor {
-    var name: String
-    var rating: Double
+    let name: String
+    let rating: Double
 }
 
 enum Size: Double {
-    case mini = 0.99
-    case small = 1.99
-    case medium = 2.99
+    case small = 2.99
+    case medium = 3.99
     case large = 5.99
-    case overwhelming = 39.99
 }
 
 struct Cone {
@@ -20,85 +17,96 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("\nYum! I love the flavor \(flavor.name)!")
+        print("\nYum! I love \(flavor.name)!")
     }
 }
 
-//Ice cream shop class with essential flavors, toppings, and sizes
 class IceCreamShop {
     var totalSales: Double
     
-    var sizes: [Size] = [Size.small, Size.medium, Size.large]
+    var menuFlavors: [Flavor] = []
+    var menuSizes: [Size] = []
+    var menuToppings: [String] = []
     
-    var flavors: [Flavor] = [Flavor(name: "chocolate mud slide", rating: 4.5),
-                             Flavor(name: "vanilla cream", rating: 4.0),
-                             Flavor(name: "bubble yum", rating: 2.0),
-                             Flavor(name: "fruity tooti", rating: 5.0)]
-    
-    var toppings: [String] = ["sprinkle", "caramel bit", "gummy worm"]
-    
-    init(totalSales: Double = 0.0) {
+    init(totalSales: Double = 0) {
         self.totalSales = totalSales
     }
     
-    //Lists top rated flavors
     func listTopFlavors() {
-        let ratingThreshold: Double = 4.0
         print("\nOur top flavors are:")
-        for flavor in flavors {
-            if flavor.rating > ratingThreshold {
-                print("-\(flavor.name) with a rating of \(flavor.rating)!")
+        for flavor in menuFlavors {
+            if flavor.rating > 4.0 {
+                print("- \(flavor.name) with a rating of \(flavor.rating)")
             }
         }
     }
     
-    //Logic behind ordering a cone
-    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-        let newCone = Cone(flavor: flavor, topping: topping ?? "no topping", size: size)
+    //Constructs a new ice cream cone
+    func orderCone(chosenFlavor: Flavor, chosenTopping: String?, chosenSize: Size) -> Cone? {
+        let newCone = Cone(flavor: chosenFlavor,
+                           topping: chosenTopping ?? "no",
+                           size: chosenSize)
         totalSales += newCone.size.rawValue
-        print("\nYour \(newCone.size) \(newCone.flavor.name) cone with \(newCone.topping) topping comes out to $\(newCone.size.rawValue).")
+        if let unwrappedTopping = chosenTopping {
+            print("\nYour \(chosenSize) \(chosenFlavor.name) cone with \(unwrappedTopping) is $\(chosenSize.rawValue).")
+        } else {
+            print("\nYour \(chosenFlavor.name) cone is $\(chosenSize.rawValue).")
+        }
         return newCone
     }
     
-    //These methods allow us to add additional options later on
-    func addFlavor(moreFlavors: Flavor) {
-        flavors.append(moreFlavors)
+    func checkRegister() {
+        print("\nYou check today's earnings...")
+        print("...$\(totalSales) so far!")
     }
     
-    func addTopping(moreToppings: String) {
-        toppings.append(moreToppings)
+    func addFlavors(newFlavors: [Flavor]) {
+        for flavor in newFlavors {
+            menuFlavors.append(flavor)
+        }
     }
     
-    func addSize(moreSizes: Size) {
-        sizes.append(moreSizes)
+    func addSizes(newSizes: [Size]) {
+        for size in newSizes {
+            menuSizes.append(size)
+        }
+    }
+    
+    func addToppings(newToppings: [String]) {
+        for topping in newToppings {
+            menuToppings.append(topping)
+        }
     }
 }
 
+//Ice Cream Flavors
+let chocolate: Flavor = Flavor(name: "chocolate mud slide ", rating: 4.5)
+let vanilla: Flavor = Flavor(name: "vanilla cream", rating: 4.0)
+let sherbet: Flavor = Flavor(name: "lemon-lime sublime", rating: 4.7)
+let bubbleGum: Flavor = Flavor(name: "bubble yum", rating: 3.0)
+
+var flavors: [Flavor] = [chocolate, vanilla, sherbet, bubbleGum]
+var sizes: [Size] = [Size.small, Size.medium, Size.large]
+var toppings: [String] = ["sprinkles", "caramel bits", "gummy worms"]
+
 let bronsonsIceCreamShop = IceCreamShop()
 
-//Bonus flavors to be added
-let mystery = Flavor(name: "mystery magic", rating: 4.8)
-let pineapple = Flavor(name: "swiftly pineapple", rating: 3.5)
-
-//adding additional flavors
-bronsonsIceCreamShop.addFlavor(moreFlavors: mystery)
-bronsonsIceCreamShop.addFlavor(moreFlavors: pineapple)
-
-//adding additional sizes
-bronsonsIceCreamShop.addSize(moreSizes: Size.mini)
-bronsonsIceCreamShop.addSize(moreSizes: Size.overwhelming)
-
-//additional additional toppings
-bronsonsIceCreamShop.addTopping(moreToppings: "cookie")
-bronsonsIceCreamShop.addTopping(moreToppings: "definitely not spaghetti")
-bronsonsIceCreamShop.addTopping(moreToppings: "chocolate chip")
+//Adds new items to our menu
+bronsonsIceCreamShop.addFlavors(newFlavors: flavors)
+bronsonsIceCreamShop.addSizes(newSizes: sizes)
+bronsonsIceCreamShop.addToppings(newToppings: toppings)
 
 bronsonsIceCreamShop.listTopFlavors()
 
-let newCone = bronsonsIceCreamShop.orderCone(flavor: bronsonsIceCreamShop.flavors[2],
-                                             topping: bronsonsIceCreamShop.toppings[1],
-                                             size: Size.overwhelming)
+let firstCone: Cone? = bronsonsIceCreamShop.orderCone(chosenFlavor: vanilla,
+                                                      chosenTopping: nil,
+                                                      chosenSize: Size.medium)
 
-newCone?.eat()
+bronsonsIceCreamShop.checkRegister()
+firstCone?.eat()
 
-print("\nThe shop has made: $\(bronsonsIceCreamShop.totalSales) so far.")
+let secondCone: Cone? = bronsonsIceCreamShop.orderCone(chosenFlavor: sherbet,
+                                                       chosenTopping: toppings[2],
+                                                       chosenSize: Size.small)
+
+bronsonsIceCreamShop.checkRegister()
