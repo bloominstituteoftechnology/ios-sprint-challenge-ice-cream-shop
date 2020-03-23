@@ -34,11 +34,10 @@ class IceCreamShop {
     var toppings: [String]
     var totalSales: Double = 0
     
-    init(flavors: [Flavor], sizes: [Size], toppings: [String], totalSales: Double) {
+    init(flavors: [Flavor], sizes: [Size], toppings: [String]) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
-        self.totalSales = totalSales
     }
     
     func listTopFlavors() {
@@ -64,9 +63,26 @@ class IceCreamShop {
             
             print("Yout \(myFlavor) with \(chosenTopping) is \(myConePrice).")
         }
+
     }
 
 }
+
+let chocolate = Flavor(name: "Chocolate", rating: 4.5)
+let vanilla = Flavor(name: "Vanilla", rating: 4.0)
+let strawberry = Flavor(name: "Strawberry", rating: 3.7)
+
+var flavorsArray = [chocolate, vanilla, strawberry]
+
+var coneSizes = [Size.small, Size.medium, Size.large]
+
+var coneToppings = ["sprinkles", "crushed oreos", "chocolate chips"]
+
+let aaronsIceCreamShop = IceCreamShop(flavors: flavorsArray, sizes: coneSizes, toppings: coneToppings)
+
+aaronsIceCreamShop.listTopFlavors()
+
+
 
 
 
