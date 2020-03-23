@@ -25,13 +25,13 @@ class IceCreamShop {
     var flavors: [Flavor]
     var sizes : [Size]
     var topings: [Cone]
-    var totalSales: String
+    var totalSales: [String]
     
-    init(totalSales: String) {
+    init() {
         self.flavors = []
         self.sizes = []
         self.topings = []
-        self.totalSales = totalSales
+        self.totalSales = []
     }
     
     func listTopFlavors() {
@@ -43,10 +43,8 @@ class IceCreamShop {
             func orderCone(flavor: String, topping: String?, size: String) {
                 if topping != nil{
                 }
-                for sizeList in sizes {
-                    for flavorList in flavors {
-                    let newCone = Cone(flavor: flavorList, topping: (topping ?? "no topping"), size: sizeList)
-                
+                let newCone = Cone(flavor: , topping: nil, size: Size.large)
+                        print("Your Chocolate Chip ice cream is 5.99.")
             }
         }
     }
