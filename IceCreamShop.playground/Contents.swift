@@ -43,7 +43,7 @@ class IceCreamShop {
     }
             
     func orderCone(myFlavor: Flavor, myTopping: String?, mySize: Size) -> Cone {
-        let newCone = Cone(flavor: myFlavor, topping: myTopping!, size: mySize)
+        let newCone = Cone(flavor: myFlavor, topping: myTopping ?? "", size: mySize)
                 switch mySize {
                 case .large:
                     self.totalSales += Size.large.rawValue
@@ -54,8 +54,10 @@ class IceCreamShop {
                 default:
                     ""
                 }
+        
+
         if let unwrappedTopping = myTopping {
-            print("Your \(newCone.flavor) ice cream with \(unwrappedTopping) is \(newCone.size.rawValue)")
+            print("Your \(newCone.flavor.name) ice cream with \(unwrappedTopping) is \(newCone.size.rawValue)")
         } else {
             print("Your \(newCone.flavor) ice cream is \(newCone.size.rawValue) ")
         }
@@ -75,11 +77,21 @@ let newFlavors = [flavor_mocha, flavor_cookieDough,flavor_chocolateMint, flavor_
 
 let newSizes = [Size.large, Size.med, Size.small]
 
+let topping_Granolla = "Granolla"
+let topping_Reeses = "Reeses"
+let topping_Snickers = "Snickers"
 
-let newToppings = ["Granola", "Reeses", "Snickers"]
+let newToppings = [topping_Reeses, topping_Granolla, topping_Snickers]
 
 let newIceCreamShop = IceCreamShop(myFlavors: newFlavors, mySizes: newSizes, myToppings: newToppings)
 
 
 newIceCreamShop.listTopFlavors()
 
+
+let anotherCone = newIceCreamShop.orderCone(myFlavor: flavor_mocha, myTopping: topping_Snickers, mySize: Size.med)
+
+anotherCone.eat()
+
+
+print(newIceCreamShop.totalSales)
