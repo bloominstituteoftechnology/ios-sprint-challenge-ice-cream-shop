@@ -24,39 +24,62 @@ struct Cone {
 class IceCreamShop {
     var flavors: [Flavor]
     var sizes : [Size]
-    var toppings: [Cone]
-    var totalSales: [String]
+    var toppings: [String]
+    var totalSales: Double
     
-    init() {
-        self.flavors = []
-        self.sizes = []
-        self.toppings = []
-        self.totalSales = []
+    init(myFlavors: [Flavor], mySizes: [Size], myToppings: [String]) {
+        self.flavors = myFlavors
+        self.sizes = mySizes
+        self.toppings = myToppings
+        self.totalSales = 0
     }
     
     func listTopFlavors() {
-        for topFlavors in flavors {
-            if topFlavors.rating > 4.0 {
-                print("Our top flavors are \(flavors)")
-            }
-            
-            func orderCone(flavor: String, topping: String?, size: String) {
-                if topping != nil{
-                }
-                let newCone = Cone(flavor: topFlavors, topping: topping ?? "no topping", size: Size.large)
-                
-                print("Your \(newCone.flavor) ice cream is \(newCone.size).")
+        for topFlavors in self.flavors {
+            if topFlavors.rating >= 4.0 {
+                print("Our top flavors are \(topFlavors.name)")
             }
         }
     }
+            
+    func orderCone(myFlavor: Flavor, myTopping: String?, mySize: Size) -> Cone {
+        let newCone = Cone(flavor: myFlavor, topping: myTopping!, size: mySize)
+                switch mySize {
+                case .large:
+                    self.totalSales += Size.large.rawValue
+                case .med:
+                    self.totalSales += Size.med.rawValue
+                case .small:
+                    self.totalSales += Size.small.rawValue
+                default:
+                    ""
+                }
+        if let unwrappedTopping = myTopping {
+            print("Your \(newCone.flavor) ice cream with \(unwrappedTopping) is \(newCone.size.rawValue)")
+        } else {
+            print("Your \(newCone.flavor) ice cream is \(newCone.size.rawValue) ")
+        }
+        return newCone
+            }
 }
 
 
-//let chocolateChip = Flavor(name: "Chocolate Chip", rating: 4.5)
-//let cookieDough = Flavor(name: "Cookie Dough", rating: 5.0)
-//let chocolateMint = Flavor(name: "Chocolate Mint", rating: 4.8)
-//let CoffeVanillaBean = Flavor(name: "CoffeVanillaBean", rating: 3.2)
+
+let flavor_chocolateChip = Flavor(name: "Chocolate Chip", rating: 4.5)
+let flavor_cookieDough = Flavor(name: "Cookie Dough", rating: 5.0)
+let flavor_chocolateMint = Flavor(name: "Chocolate Mint", rating: 4.6)
+let flavor_CoffeeVanillaBean = Flavor(name: "CoffeeVanillaBean", rating: 3.2)
+let flavor_mocha = Flavor(name: "Mocha", rating: 3.8)
+
+let newFlavors = [flavor_mocha, flavor_cookieDough,flavor_chocolateMint, flavor_chocolateChip, flavor_CoffeeVanillaBean]
+
+let newSizes = [Size.large, Size.med, Size.small]
 
 
+let newToppings = ["Granola", "Reeses", "Snickers"]
 
+let newIceCreamShop = IceCreamShop(myFlavors: newFlavors, mySizes: newSizes, myToppings: newToppings)
+
+
+newIceCreamShop.listTopFlavors()
 
