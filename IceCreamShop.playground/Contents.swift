@@ -14,12 +14,12 @@ enum Size: Double {
 
 // #3
 struct Cone {
-    let flavor: String
+    let flavor: Flavor
     let topping: String
     let size: Size
     
     func eat() {
-        print ("mmm! I lover \(flavor.name)!")
+        print ("mmm! I lover \(flavor)!")
     }
 }
 
@@ -42,20 +42,19 @@ class IceCreamShop {
     }
     // #5
     func listTopFlavors() {
-        var topFlavors = [Flavor.name]
-        for flavor in IceCreamShop.flavor {
+        var topFlavors = ""
+        for flavor in self.flavor {
             if flavor.rating >= 4 {
-                topFlavors += ("\(flavor)")
+    topFlavors += flavor
+            }
     }
-    print("These are our top flavors: \(topFlavors)")
-            
-    }
-    }
+        print(topFlavors)
+}
     // #6
-    func orderCone(orderFlavor: Flavor, orderTopping: string?, orderSize: Size) -> Cone {
+    func orderCone(orderFlavor: Flavor, orderTopping: String?, orderSize: Size) -> Cone {
         let order = Cone(flavor: orderFlavor, topping: orderTopping ?? "", size: orderSize)
         switch orderSize {
-        case .Large:
+        case .large:
             self.totalSales += Size.large.rawValue
         case .medium:
             self.totalSales += Size.medium.rawValue
@@ -64,13 +63,32 @@ class IceCreamShop {
         default:
             ""
         }
-
+        if let unwrappedTopping = orderTopping {
+            print("You ordered a \(order.size) \(order.flavor.name) with \(unwrappedTopping)")
+        }
+        else {
+            print("You ordered a \(order.size) \(order.flavor.name)")
+        }
+        return order
+    }
+}
+        
 let flavor1 = Flavor(name: "Chocolate", rating: 1)
 let flavor2 = Flavor(name: "Strawberry", rating: 2)
 let flavor3 = Flavor(name: "Mint Chip", rating: 3)
 let flavor4 = Flavor(name: "Phish Food", rating: 4)
 let flavor5 = Flavor(name: "Vanilla", rating: 5)
 
-let zachsIcecream = IceCreamShop.self
+let zachsFlavors = [flavor1, flavor2, flavor3, flavor4, flavor5]
 
-zachsIcecream.listTopFlavors(IceCreamShop)
+let topping1 = "nuts"
+let topping2 = "sprinkles"
+let topping3 = "pineapple"
+
+let zachsToppings = [topping1, topping2, topping3]
+let zachsSizes = [Size.medium, Size.small, Size.large]
+
+let zachsIcecream = IceCreamShop(shopFlavors: zachsFlavors, shopSizes: zachsSizes , shopToppings: zachsToppings)
+
+
+zachsIcecream.listTopFlavors
