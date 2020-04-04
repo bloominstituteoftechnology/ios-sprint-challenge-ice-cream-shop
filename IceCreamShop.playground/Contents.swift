@@ -23,19 +23,14 @@ struct Cone {
     let flavor: Flavor
     let topping: String?
     let size: Size
+    
+    func eat() {
+        print("Yummm! You've chosen the \(flavor.name) flavor!")
+    }
 }
 
-let firstOrder = vanilla
-
-
-func eat() {
-    print("You've chosen the \(firstOrder.name) flavor which has a rating of \(firstOrder.rating)!")
-}
-
-eat()
-
-let flavorOptions = [chocolate, vanilla, cookiesAndCream, peanutButter, cookieDough]
-let toppingOptions = ["Oreos", "Tofee Bits", "Brownie Bites", "Caramel", "Chocolate Chips"]
+var flavorOptions = [chocolate, vanilla, cookiesAndCream, peanutButter, cookieDough]
+var toppingOptions = ["Oreos", "Tofee Bits", "Brownie Bites", "Caramel", "Chocolate Chips"]
 
 class IceCreamShop {
     var shopFlavors = flavorOptions
@@ -61,8 +56,7 @@ class IceCreamShop {
     }
     
     func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
-        let newCone = Cone(flavor: cookiesAndCream, topping: "Oreos" , size: .small)
-        print(newCone.size.rawValue)
+        let newCone = Cone(flavor: cookiesAndCream, topping: "Oreos" , size: .large)
         
         totalSales.append(newCone.size.rawValue)
         
@@ -72,10 +66,35 @@ class IceCreamShop {
             print("Your \(newCone.flavor.name) is \(newCone.size.rawValue)")
         }
     
-        return newCone
+        return newCone 
     }
 }
 
 let newOrder = IceCreamShop(shopFlavors: cookiesAndCream, shopToppings: "Oreos", sizes: .large)
 
+newOrder.listTopFlavors()
+
 newOrder.orderCone(flavor: cookieDough, topping: "Chocolate Chips", size: .medium)
+
+
+let mudPie = Flavor(name: "Mudpie", rating: 3)
+let cottonCandy = Flavor(name: "Cotton Candy", rating: 2.5)
+let caramelExplosion = Flavor(name: "Caramel Explosion", rating: 4.7)
+let cheeseCake = Flavor(name: "Cheese Cake", rating: 5)
+let chocolateChip = Flavor(name: "Chocolate Chip", rating: 3.8)
+
+let sizes: [Size] = []
+
+let toppingsArray = ["Cheesecake Bites", "Snickers", "Twix", "Butterfinger", "Gummies"]
+
+flavorOptions.append(contentsOf: [mudPie, cottonCandy, caramelExplosion, cheeseCake,chocolateChip])
+
+let newIceCreamShop = IceCreamShop(shopFlavors: mudPie, shopToppings: "Twix", sizes: .medium)
+
+newIceCreamShop.listTopFlavors()
+
+
+let newCone = newIceCreamShop.orderCone(flavor: cheeseCake, topping: "Cheesecake Toppings", size: .small)
+
+newCone?.eat()
+
