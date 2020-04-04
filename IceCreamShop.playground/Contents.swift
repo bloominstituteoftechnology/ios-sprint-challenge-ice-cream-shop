@@ -21,46 +21,57 @@ enum Size: Double {
 
 struct Cone {
     let flavor: Flavor
-    let topping: String
+    let topping: String?
     let size: Size
 }
 
-let orderOne = chocolate
+let firstOrder = vanilla
 
 
 func eat() {
-    print("You've chosen the \(orderOne.name) flavor, great choice!")
+    print("You've chosen the \(firstOrder.name) flavor which has a rating of \(firstOrder.rating)!")
 }
 
 eat()
 
-struct Sales {
-    var sales: Int
-}
+let flavorOptions = [chocolate, vanilla, cookiesAndCream, peanutButter, cookieDough]
+let toppingOptions = ["Oreos", "Tofee Bits", "Brownie Bites", "Caramel", "Chocolate Chips"]
 
 class IceCreamShop {
-    var shopFlavors = [chocolate, vanilla, cookieDough, cookiesAndCream, peanutButter]
-    var shopToppings = ["Chocolate Chips", "Oreos", "Cookie Dough Bites", "Tofee Bits", "Caramel", "Cheesecake Bites"]
+    var shopFlavors = flavorOptions
+    var shopToppings = toppingOptions
     var sizes: Size
-    var totalSales: [Int]
+    var totalSales: [Double]
 
-    init(sizes: Size) {
-        self.totalSales = []
-        self.shopFlavors = [chocolate, vanilla, cookieDough, cookiesAndCream, peanutButter]
-        self.shopToppings = ["Chocolate Chips", "Oreos", "Cookie Dough Bites", "Tofee Bits", "Caramel", "Cheesecake Bites"]
+    init(shopFlavors: Flavor, shopToppings: String, sizes: Size) {
+        self.shopFlavors = flavorOptions
+        self.shopToppings = toppingOptions
         self.sizes = sizes
+        self.totalSales = []
     }
-}
-
-func listTopFlavors() -> String {
-    let flavorlist = IceCreamShop(sizes: .large)
-    var topFlavors: [String] = []
-    for flavor in flavorlist.shopFlavors {
-        if flavor.rating >= 4 {
-            topFlavors.append(flavor.name)
+    
+    func listTopFlavors() {
+        var flavorList: [String] = []
+        for flavor in flavorOptions {
+            if flavor.rating >= 4 {
+                flavorList.append(flavor.name)
+            }
         }
+        print("Our top flavors are \(flavorList)")
     }
-    return "Our top flavors are \(topFlavors)"
+    
+    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+        let newCone = Cone(flavor: cookiesAndCream, topping: "Oreos", size: .small)
+        print(newCone.size.rawValue)
+        
+        totalSales.append(newCone.size.rawValue)
+        
+        print("Your \(newCone.flavor) ice cream with \(newCone.topping), will be \(newCone.size.rawValue)")
+    
+        return newCone
+    }
 }
 
-print(listTopFlavors())
+let newOrder = IceCreamShop(shopFlavors: cookiesAndCream, shopToppings: "Oreos", sizes: .large)
+
+newOrder.orderCone(flavor: cookieDough, topping: "Chocolate Chips", size: .medium)
