@@ -38,7 +38,7 @@ class IceCreamShop {
     var sizes: Size
     var totalSales: [Double]
 
-    init(shopFlavors: Flavor, shopToppings: String, sizes: Size) {
+    init(shopFlavor: Flavor, shopTopping: String, sizes: Size) {
         self.shopFlavors = flavorOptions
         self.shopToppings = toppingOptions
         self.sizes = sizes
@@ -55,27 +55,28 @@ class IceCreamShop {
         print("Our top flavors are \(flavorList)")
     }
     
-    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
-        let newCone = Cone(flavor: cookiesAndCream, topping: "Oreos" , size: .large)
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        let newCone = Cone(flavor: peanutButter, topping: "Oreos" , size: .large)
         
-        totalSales.append(newCone.size.rawValue)
+        totalSales.append(sizes.rawValue)
         
-        if let toppingListed = newCone.topping {
-            print("Your \(newCone.flavor.name) ice cream with \(toppingListed), will be \(newCone.size.rawValue)")
+        if let toppingListed = topping {
+            print("Your \(flavor.name) ice cream with \(toppingListed), will be \(size.rawValue)")
         } else if newCone.topping == nil {
-            print("Your \(newCone.flavor.name) is \(newCone.size.rawValue)")
+            print("Your \(flavor.name) is \(size.rawValue)")
         }
     
-        return newCone 
+        return newCone
     }
 }
 
-let newOrder = IceCreamShop(shopFlavors: cookiesAndCream, shopToppings: "Oreos", sizes: .large)
+let newOrder = IceCreamShop(shopFlavor: vanilla, shopTopping: "Brownie Bits", sizes: .large)
 
 newOrder.listTopFlavors()
 
-newOrder.orderCone(flavor: cookieDough, topping: "Chocolate Chips", size: .medium)
+newOrder.orderCone(flavor: chocolate, topping: "Chocolate Chips", size: .small)
 
+newOrder.orderCone(flavor: cookieDough, topping: "Cookie Dough Bites", size: .large)
 
 let mudPie = Flavor(name: "Mudpie", rating: 3)
 let cottonCandy = Flavor(name: "Cotton Candy", rating: 2.5)
@@ -83,18 +84,18 @@ let caramelExplosion = Flavor(name: "Caramel Explosion", rating: 4.7)
 let cheeseCake = Flavor(name: "Cheese Cake", rating: 5)
 let chocolateChip = Flavor(name: "Chocolate Chip", rating: 3.8)
 
-let sizes: [Size] = []
+let sizes: [Size] = [.small, .medium, .large, .small]
 
 let toppingsArray = ["Cheesecake Bites", "Snickers", "Twix", "Butterfinger", "Gummies"]
 
 flavorOptions.append(contentsOf: [mudPie, cottonCandy, caramelExplosion, cheeseCake,chocolateChip])
 
-let newIceCreamShop = IceCreamShop(shopFlavors: mudPie, shopToppings: "Twix", sizes: .medium)
+let newIceCreamShop = IceCreamShop(shopFlavor: mudPie, shopTopping: "Twix", sizes: .medium)
 
 newIceCreamShop.listTopFlavors()
 
+let kennasFlavor = newIceCreamShop.orderCone(flavor: cheeseCake, topping: "Cheesecake Bites", size: .small)
 
-let newCone = newIceCreamShop.orderCone(flavor: cheeseCake, topping: "Cheesecake Toppings", size: .small)
+kennasFlavor?.eat()
 
-newCone?.eat()
-
+print(newIceCreamShop.totalSales)
