@@ -23,7 +23,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print ("MMMMMM! I love \(flavor) ice cream!" )
+        print ("MMMMMM! I love \(flavor.name) ice cream on a hot day!" )
     }
 }
 
@@ -31,12 +31,17 @@ struct Cone {
 class iceCreamShop {
 
   
-    var menuEntry: [Cone] = []
+    var menuEntry: [Flavor]
     var totalSales: Double
+    var size: [Size]
+    var toppings:[String]
     
-    init (menuEntry: [Cone], totalSales: Double = 0.00) {
+    
+    init (menuEntry: [Flavor], totalSales: Double = 0.00, size:[Size], toppings:[String]) {
         self.menuEntry = menuEntry
         self.totalSales = totalSales
+        self.size = size
+        self.toppings = toppings
 }
 
 
@@ -46,67 +51,98 @@ func listTopFlavors() {
     
     
     var topFlavors = [String]()
-    var topFlavorsOutput = ""
+    var topFlavorsOutput = "These are our most popular flavors right now: "
     
     
+   
     for flavorlist in menuEntry {
-        if flavorlist.flavor.rating > 4 {
-            topFlavors.append(flavorlist.flavor.name)
-            topFlavorsOutput = "These are the most popular flavors: \(topFlavors)"
-            
-            
-        } else {
-            continue
+        if flavorlist.rating > 4 {
+            topFlavors.append(flavorlist.name)
+          
         }
-        print(topFlavorsOutput)
+      
     }
+     topFlavorsOutput += " \(topFlavors)"
+    print(topFlavorsOutput)
 }
-}
-// Step 6
+
+// Step 6, generating the order cone function
 
  
  
     func orderCone (flavor: Flavor, topping: String?, size: Size) -> Cone {
         let orderedCone = Cone(flavor: flavor, toppings: topping ?? "", size: size)
-        var totalSales = orderedCone.size.rawValue
+       totalSales += orderedCone.size.rawValue
         
         
-        var statement = "Your order of \(orderedCone.size) size \(orderedCone.flavor) cone "
+        var statement = "Your order of one \(orderedCone.size) sized \(orderedCone.flavor.name) ice cream cone"
         
         
         if let withTopping = topping {
              statement += " with \(withTopping) topping"
         }
-             statement += " will be \(totalSales)"
+             statement += " comes to $\(orderedCone.size.rawValue)"
         
             print(statement)
         
         return orderedCone
     }
+}
+
+// step 7, creating the flavors
 
 
-let chocolate = Flavor(name: "Chocolate", rating: 5.2)
+let chocolate = Flavor(name: "Chocolate", rating: 3.7)
 
 let tiger = Flavor(name: "Tiger Tail", rating: 6.1)
 
 let rocky = Flavor(name: "Rocky Road", rating: 3.2)
 
-let lemon = Flavor(name: "Lemon Ice", rating: 5.7)
+let lemon = Flavor(name: "Iced Lemon", rating: 5.7)
 
 
-let toppings = ["Rainbow sprinkle", "Caramel", "Chocolate Chips"]
+let toppings = ["Rainbow sprinkles", "Caramel", "Chocolate Chips"]
 let sizes = [Size.small, Size.medium, Size.large]
 
 
-let iceCreamCones = [ Cone(flavor: chocolate, toppings: toppings[1], size: sizes[1]),
-                      Cone(flavor: tiger, toppings: toppings[2], size: sizes[2]),
-                      Cone(flavor: rocky, toppings: toppings[0], size: sizes[0]),
-                      Cone(flavor: lemon, toppings: toppings[1], size: sizes[1])]
+
+
+
+// step 8, create my ice cream shop
+
+let myIceCreamstore = iceCreamShop(menuEntry: [chocolate, tiger, rocky, lemon], totalSales: 0, size: sizes, toppings: toppings)
+
+
+// Step 9, calling the top flavor function for my store
+
+myIceCreamstore.listTopFlavors()
 
 
 
 
-let myIceCreamstore = iceCreamShop(menuEntry: iceCreamCones)
+// step 10 create variables to test it all out
+
+var myFirstCustomer = myIceCreamstore.orderCone(flavor: tiger, topping: nil, size: .medium)
+
+// step 11,  calling eat function first cone
+
+myFirstCustomer.eat()
 
 
-//  This is as far as I got. Struggled tonight heavily as my mind is just not coping right now.  I got too bogged down and neglected to ask for help too. I really need to review and rework so I can do this faster. Typically the projects take me much more than 3 hours.
+// Step 12, check total sales have increased
+
+print(myIceCreamstore.totalSales)
+
+// repeat with toppings this time
+
+var myNextCustomer = myIceCreamstore.orderCone(flavor: lemon, topping: toppings[0], size: .large)
+
+myNextCustomer.eat()
+
+// check once more to see if totals increased with next cone ordered
+
+
+print(myIceCreamstore.totalSales)
+
+
+
