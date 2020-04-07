@@ -19,7 +19,7 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print ("mmm! I lover \(flavor)!")
+        print ("mmm! I love \(flavor.name)!")
     }
 }
 
@@ -42,13 +42,13 @@ class IceCreamShop {
     }
     // #5
     func listTopFlavors() {
-        var topFlavors = ""
+    
         for flavor in self.flavor {
             if flavor.rating >= 4 {
-    topFlavors += flavor
+                print("\(flavor.name) is a top flavor")
             }
     }
-        print(topFlavors)
+    
 }
     // #6
     func orderCone(orderFlavor: Flavor, orderTopping: String?, orderSize: Size) -> Cone {
@@ -72,23 +72,33 @@ class IceCreamShop {
         return order
     }
 }
-        
+    
+// #7
 let flavor1 = Flavor(name: "Chocolate", rating: 1)
 let flavor2 = Flavor(name: "Strawberry", rating: 2)
 let flavor3 = Flavor(name: "Mint Chip", rating: 3)
 let flavor4 = Flavor(name: "Phish Food", rating: 4)
 let flavor5 = Flavor(name: "Vanilla", rating: 5)
 
-let zachsFlavors = [flavor1, flavor2, flavor3, flavor4, flavor5]
-
 let topping1 = "nuts"
 let topping2 = "sprinkles"
 let topping3 = "pineapple"
 
+let zachsFlavors = [flavor1, flavor2, flavor3, flavor4, flavor5]
 let zachsToppings = [topping1, topping2, topping3]
 let zachsSizes = [Size.medium, Size.small, Size.large]
 
+// #8
 let zachsIcecream = IceCreamShop(shopFlavors: zachsFlavors, shopSizes: zachsSizes , shopToppings: zachsToppings)
 
+// #9
+zachsIcecream.listTopFlavors()
 
-zachsIcecream.listTopFlavors
+// #10
+let newCone = zachsIcecream.orderCone(orderFlavor: flavor4, orderTopping: topping3, orderSize: Size.large)
+
+// #11
+newCone.eat()
+
+// #11
+print(zachsIcecream.totalSales)
