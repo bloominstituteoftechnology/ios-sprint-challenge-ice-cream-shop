@@ -20,7 +20,7 @@ class IceCreamShop {
     var cone: Cone
     var flavors: [Flavor]
     var toppings: [String?]
-    var totalSales: Double
+    var totalSales: Double = 0
     func listTopFlavors () {
         for flavor in flavors {
             if flavor.rating >= 4.0 {
@@ -28,9 +28,9 @@ class IceCreamShop {
             }
         }
     }
-    func orderCone(flavor: [Flavor], toppings: [String?], size: Size) -> Cone {
-        
-        return cone
+    func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
+        let newCone: Cone? = Cone(flavor: flavor, size: Size, topping: String?)
+        return newCone
     }
     init(cone: Cone, flavors: [Flavor], totalSales: Double, toppings: [String?]){
         self.cone = cone
