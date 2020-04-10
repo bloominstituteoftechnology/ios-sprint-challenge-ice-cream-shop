@@ -55,4 +55,20 @@ class IceCreamShop {
         }
         return "our top flavors are: \(topFlavors)."
     }
+    
+    func orderCone(flavor: Flavor, topping: [String]?, size: Size) -> Cone? {
+        let order = Cone(flavor: flavor.name, topping: toppings, size: size)
+        totalSales += order.size.rawValue
+        if let topping = topping {
+            print("your \(flavor) ice cream cone with \(topping) is \(size.rawValue).")
+        } else {
+            print("your \(flavor) ice cream cone is \(size.rawValue).")
+        }
+        return order 
+    }
 }
+
+let eww = Topping.nuts
+let rons = IceCreamShop(flavors: [yum], sizes: [twoScoops], toppings: [eww], totalSales: 15.00)
+rons.listTopFlavors()
+
