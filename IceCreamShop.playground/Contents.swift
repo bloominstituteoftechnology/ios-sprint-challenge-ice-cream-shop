@@ -29,7 +29,9 @@ class IceCreamShop {
         }
     }
     func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
-        let newCone: Cone? = Cone(flavor: flavor, size: Size, topping: String?)
+        let newCone: Cone? = Cone(flavor: flavor, size: size, topping: toppings)
+        totalSales += size.rawValue
+        print("Your \(flavor.name) ice cream is \(size.rawValue)!")
         return newCone
     }
     init(cone: Cone, flavors: [Flavor], totalSales: Double, toppings: [String?]){
@@ -40,3 +42,4 @@ class IceCreamShop {
         
     }
 }
+let lavenderHoney = Flavor(name: "Lavender Honey", rating: <#T##Double#>)
