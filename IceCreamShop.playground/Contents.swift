@@ -23,9 +23,28 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("wow.this is really good \(self.flavor) gelato.")
+        print("wow. this is really good \(self.flavor) gelato.")
     }
 }
-
+//  cone struct working with eat functionality
 let ice = Cone(flavor: "mango", topping: nil, size: .medium)
 ice.eat()
+
+let yum = Flavor(name: "chocolate", rating: 5)
+let twoScoops = Size.medium
+
+class IceCreamShop {
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [Topping]
+    var totalSales: Double
+    
+    init(flavors: [Flavor], sizes: [Size], toppings: [Topping], totalSales: Double = 0) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
+        self.totalSales = totalSales
+    }
+    
+    
+}
