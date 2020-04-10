@@ -58,6 +58,14 @@ class IceCreamShop {
     }
     
     func orderCone(_ flavor: Flavor, _ topping: String?, _ size: Size) -> Cone? {
+        
+        // Optional Stretch Goal - Checking for existing flavor
+        if !mMenu.contains(where: { (Flavor) -> Bool in
+            Flavor.mName == flavor.mName && Flavor.mRating == flavor.mRating
+        }) {
+            return nil
+        }
+        
         let cone = Cone(mFlavor: flavor, mTopping: topping, mSize: size)
         addTotalSales(cone.mSize.rawValue)
         
@@ -135,3 +143,10 @@ iceCreamCone2?.eat()
 
 
 print("Today's total sales: \(iceCreamShop.getTotalSales())")
+
+// Testing optional stretch goal
+if let testIceCreamCone = iceCreamShop.orderCone(Flavor(mName: "Cotton Candy", mRating: 1.7), nil, Size.LARGE) {
+    testIceCreamCone.eat()
+} else {
+    print("Flavor not found.")
+}
