@@ -42,16 +42,20 @@ class IceCreamShop{
     }
     
     func listTopFlavors(){
-        var listFlavor: [Flavor]
-        for flavor in listFlavor{
-            if flavor.rating >= 4{
-                listFlavor = listFlavor + flavor.name
-                
+        var listFlavor: [Flavor] = []
+        for x in listFlavor{
+            if x.rating >= 4{
+                listFlavor.append(x)
+                print(listFlavor)
             }
-        }print(listFlavor)
+        }
     }
 }
 
+
+func orderCone(flavor:Flavor,topping:String,size:Size){
+    let order = Cone(flavor: flavor, topping: topping, size: size)
+}
 
 
 
