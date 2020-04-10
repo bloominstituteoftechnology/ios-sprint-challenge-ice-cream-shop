@@ -43,6 +43,22 @@ func listTopFlavors() {
     }
     print(topFlavorString)
     }
+func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+        switch flavor.name {
+        case "Gandalf Grape", "Frodo Froyo", "Sauron Sour", "Orc Orange":
+            let newCone = Cone(flavor: flavor, size: size, topping: topping)
+            
+            totalSales = newCone.size.rawValue
+            
+            let newString = "Your \(newCone.flavor.name) ice cream with \(newCone.topping) will be \(newCone.size)"
+            
+            return newCone
+        default:
+            print("We dont have that on our menu, we sincerly apologize")
+            break
+        }
+        return nil
+    }
 }
-func orderCone(
+
 
