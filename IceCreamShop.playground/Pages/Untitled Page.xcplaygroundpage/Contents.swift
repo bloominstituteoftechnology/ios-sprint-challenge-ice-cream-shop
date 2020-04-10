@@ -1,80 +1,153 @@
 // Ice-Cream Shop.
 
-enum Flavor {
-    case chocolate
-    case vanilla
-    case strawberry
+struct Flavor {
+    
+    var name: String
+    var rating: Double
 }
 
-enum Size: (Double) {
+enum Size: Double {
+    
     case small = 1.99
     case medium = 2.99
     case large = 3.99
 }
 
 struct Cone {
-    let flavors: Flavor
-    var toppings: String
+    
+    let flavor: Flavor
+    var toppings: [String]
     var size: Size
-}
-
-let myFavCone = Cone(flavors: Flavor.chocolate, toppings: "Sprinkles", size: .large)
-func eat() {
-    print("MMM I love \(myFavCone.flavors) icecream")
-}
-eat()
-
-class IceCreamShop {
-    var flavors: Flavor
-    var sizes: Size
-    var toppings: String
-  
     
-    init(flavors: Flavor, sizes: Size, toppings: String) {
-        self.flavors = flavors
-        self.sizes = sizes
-        self.toppings = toppings
-        }
-}
-var totalSales: Double = 0
-var allFlavors = [Flavor.chocolate, Flavor.strawberry, Flavor.vanilla]
-
-func listTopFlavors() {
-    _ = [allFlavors]
-    print("Our available flavors are .\([allFlavors])")
-}
-
-listTopFlavors()
-
-func orderCone(cone: Cone)  {
-    let myOrder = Cone(flavors: .chocolate, toppings: "sprinkles", size: .large)
-    _ = totalSales + myOrder.size.rawValue
-}
-
-print("The Price of a large chocolate cone is .\(Size.large)")
-orderCone(cone: myFavCone)
-
-
-
-class newIceCreamShop  {
-    var newFlavors = ["SuperMan", "Mint"]
-    let newToppings: String
-    let newSizes: String
-    
-    init(newFlavors: String, newToppings: String, newSizes: String) {
-        self.newFlavors = [newFlavors]
-        self.newToppings = newToppings
-        self.newSizes = newSizes
+    func eat() {
+        
+        let favFlavor: Flavor = .init(name: "Chocolate", rating: 4.5)
+        
+        print("Mm! I love \(favFlavor)")
     }
 }
 
-listTopFlavors()
+class IceCreamShop {
+    
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [String]
+    var totalSales: Double
+  
+    init(flavors: [Flavor], sizes: [Size], toppings: [String]) {
+        
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
+        self.totalSales = 0.0
+    }
+}
 
-var myNewCone = Cone(flavors: .strawberry, toppings: "Skittles", size: .medium)
-orderCone(cone: myNewCone)
-totalSales = myNewCone.size.rawValue + myFavCone.size.rawValue
+var totalSales: Double = 0.0
 
-print(totalSales)
+// Creating some Flavors
+let flavor1: Flavor =  .init(name: "Chocolate", rating: 4.5)
+let flavor2: Flavor = .init(name: "Strawberry", rating: 2.5)
+let flavor3: Flavor = .init(name: "Vanilla", rating: 1.0)
+let flavor4: Flavor = .init(name: "SuperMan", rating: 5.0)
+
+// Creating some sizes
+let size1 = Size.large
+let size2 = Size.medium
+let size3 = Size.large
+
+// Creating some toppings
+
+let topping1 = "Chocolate Sprinkles"
+let topping2 = "Chocolate Syrup"
+let topping3 = "Oreos"
+let topping4 = "Chocolate Chips"
+
+// Array of all toppings
+var allToppings = [topping1, topping2, topping3, topping4]
+
+// Array of all Sizes
+var allSizes = [size1, size2, size3]
+
+// Array of all Flavors
+var allFlavors: [Flavor] = [flavor1, flavor2, flavor3, flavor4]
+
+// Creating an instance of IceCreamShop
+let myShop = IceCreamShop(flavors: [flavor1, flavor2, flavor4], sizes: allSizes, toppings: allToppings)
+
+// Top flavors function
+func listTopFlavors(for: IceCreamShop) {
+    
+    var topFlavors: [String] = []
+    
+    
+    for flavors in myShop.flavors {
+        if flavors.rating > 4.0 {
+            topFlavors.append("\(flavors.name.description)")
+        }
+    }
+    print("Our top flavors are: \(topFlavors)")
+}
+
+// Calling above function
+listTopFlavors(for: myShop)
+ 
+
+// Order My Favorite Cone!
+
+func orderCone(cone: Cone) -> Cone? {
+    
+    // This will increase the total sales of "myShop" everytime a Cone instance is ordered through this function
+    
+    myShop.totalSales = totalSales + cone.size.rawValue
+
+    return cone
+}
+
+let myCone = Cone(flavor: flavor1, toppings: [topping1, topping3], size: .large)
+
+// Ordering my new cones
+
+orderCone(cone: myCone)
+
+// Checking to see if totalSales increase after the purchases
+
+myShop.totalSales
+
+
+// Creating new Flavors and Toppings
+let newFlavor1: Flavor = .init(name: "Mint", rating: 5.5)
+let newFlavor2: Flavor = .init(name: "Banana", rating: 0.2)
+
+let newFlavorsArray: [Flavor] = [newFlavor1, newFlavor2]
+
+let newTopping1 = "Gummy Worms"
+let newTopping2 = "Reese Cups"
+
+let newToppingsArray = [newTopping1, newTopping2]
+
+// Creating new IceCreamShop instance
+let newIceCreamShop = IceCreamShop(flavors: newFlavorsArray, sizes: allSizes, toppings: newToppingsArray)
+
+
+func listTopFlavors2() {
+    
+    var topFlavors: [String] = []
+    
+    
+    for flavors in newFlavorsArray {
+        if flavors.rating > 4.0 {
+            topFlavors.append("\(flavors.name)")
+        }
+    }
+    print("Our top flavors are: \(topFlavors)")
+}
+// Calling above function
+listTopFlavors2()
+
+
+
+
 
 
 
