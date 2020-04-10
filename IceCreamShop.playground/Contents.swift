@@ -64,11 +64,27 @@ class IceCreamShop {
         } else {
             print("your \(flavor) ice cream cone is \(size.rawValue).")
         }
-        return order 
+        return order
     }
 }
 
 let eww = Topping.nuts
-let rons = IceCreamShop(flavors: [yum], sizes: [twoScoops], toppings: [eww], totalSales: 15.00)
+var rons = IceCreamShop(flavors: [yum], sizes: [twoScoops], toppings: [eww], totalSales: 15.00)
 rons.listTopFlavors()
+
+let stracciatella = Flavor(name: "strawberry", rating: 5)
+let pistachio = Flavor(name: "pistach", rating: 4)
+let choc = Flavor(name: "chocolate", rating: 5)
+
+let oneScoop = Size.small
+let two = Size.medium
+let threeScoops = Size.large
+let scoops = [oneScoop, two, threeScoops]
+
+let nuts = Topping.nuts
+let gross = Topping.sprinkles
+let fudge = Topping.hotFudge
+let tops = [nuts, gross, fudge]
+
+rons = IceCreamShop(flavors: [stracciatella, pistachio, choc], sizes: scoops, toppings: tops, totalSales: 15)
 
