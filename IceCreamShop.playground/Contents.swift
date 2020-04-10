@@ -16,3 +16,16 @@ enum Topping: String {
     case hotFudge
     case sprinkles
 }
+
+struct Cone {
+    let flavor: String
+    let topping: [Topping]?
+    let size: Size
+    
+    func eat() {
+        print("wow.this is really good \(self.flavor) gelato.")
+    }
+}
+
+let ice = Cone(flavor: "mango", topping: nil, size: .medium)
+ice.eat()
