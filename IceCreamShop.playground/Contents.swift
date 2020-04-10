@@ -12,11 +12,11 @@ enum Size: Double {
 
 struct Cone {
     var mFlavor: Flavor
-    var mTopping: String
+    var mTopping: String?
     var mSize: Size
     
     func eat() {
-        print("Mmm! I love \(mFlavor.mName)")
+        print("Mmm! I love \(mFlavor.mName)!")
     }
 }
 
@@ -48,13 +48,26 @@ class IceCreamShop {
         
         for i in 0..<flavorArray.count {
             if i < flavorArray.count - 1 {
-                flavorString += (flavorArray[i] + ", ")
+                flavorString += ("\(flavorArray[i]), ")
             } else if i == flavorArray.count - 1 {
-                flavorString += flavorArray[i]
+                flavorString += ("and \(flavorArray[i])")
             }
         }
         
         print("Our top flavors are \(flavorString)")
+    }
+    
+    func orderCone(_ flavor: Flavor, _ topping: String?, _ size: Size) -> Cone? {
+        let cone = Cone(mFlavor: flavor, mTopping: topping, mSize: size)
+        addTotalSales(cone.mSize.rawValue)
+        
+        guard let unwrappedTopping = cone.mTopping else {
+            print("Your \(cone.mFlavor.mName) ice cream is \(cone.mSize.rawValue)")
+            return cone
+        }
+        
+        print("Your \(cone.mFlavor.mName) ice cream with \(unwrappedTopping) is \(cone.mSize.rawValue)")
+        return cone
     }
     
     func addFlavor(_ flavor: Flavor) {
@@ -82,4 +95,38 @@ class IceCreamShop {
     }
 }
 
+let flavorArray: [Flavor] = [Flavor(mName: "Strawberry", mRating: 4.6),
+                             Flavor(mName: "Chocolate", mRating: 4.9),
+                             Flavor(mName: "Vanilla", mRating: 4.0),
+                             Flavor(mName: "Coffee", mRating: 4.5),
+                             Flavor(mName: "Black Licorice", mRating: 1.0),
+                             Flavor(mName: "Earl Grey", mRating: 3.9)]
 
+let toppingArray: [String] = ["Chocolate Chips", "Gummi Worms", "Almonds", "Peanuts", "Cookie Crumbles", "Assorted Fruit"]
+
+let sizeArray: [Size] = [.SMALL, .MEDIUM, .LARGE]
+
+let iceCreamShop = IceCreamShop()
+
+for flavor in flavorArray {
+    iceCreamShop.addFlavor(flavor)
+}
+
+for topping in toppingArray {
+    iceCreamShop.addToppings(topping)
+}
+
+iceCreamShop.listTopFlavors()
+
+let iceCreamCone: Cone
+
+if let unwrappedRandomFlavor = iceCreamShop.getMenu().randomElement(),
+    let unwrappedRandomTopping = iceCreamShop.getToppings().randomElement(),
+    let unwrappedRandomSize = sizeArray.randomElement() {
+    
+    if let unwrappedIceCreamCone = iceCreamShop.orderCone(unwrappedRandomFlavor, unwrappedRandomTopping, unwrappedRandomSize) {
+        iceCreamCone = unwrappedIceCreamCone
+        iceCreamCone.eat()
+    }
+
+}
