@@ -43,24 +43,21 @@ func listTopFlavors() {
     }
     print(topFlavorString)
 }
-    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
-            switch flavor.name {
-            case "Gandalf Grape", "Frodo Froyo", "Sauron Sour", "Orc Orange":
-                let newCone = Cone(flavor: flavor, size: size, topping: topping)
-            
-                totalSales = newCone.size.rawValue
-            
-                let newString = "Your \(newCone.flavor.name) ice cream with \(newCone.topping) will be \(newCone.size)"
-            
-                return newCone
-            default:
-                print("We dont have that on our menu, we sincerly apologize")
-                break
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        let customersCone: Cone? = Cone(flavor: flavor, size: size, topping: topping ?? "")
+    if let unwrappedCone = customersCone {
+        if unwrappedCone.topping != "" {
+            self.totalSales += unwrappedCone.size.rawValue
+            print("Your \(unwrappedCone.flavor.name) ice cream with \(unwrappedCone.topping) is \(unwrappedCone.size.rawValue).")
         }
-            return nil
+        else {
+            self.totalSales += unwrappedCone.size.rawValue
+            print("Your \(unwrappedCone.flavor.name) ice cream is \(unwrappedCone.size.rawValue).")
+        }
+        return unwrappedCone
+        }
     }
 }
-
 let cones = [
            Cone(flavor: Flavor(name: "Sauron Sour", rating: 5), size: .medium, topping: "Brownies"),
            Cone(flavor: Flavor(name: "Orc Orange", rating: 5), size: .small, topping: "Nuts"),
