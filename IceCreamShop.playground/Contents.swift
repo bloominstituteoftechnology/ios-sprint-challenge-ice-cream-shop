@@ -26,11 +26,11 @@ var totalSales = 0
 class IceCreamShop {
     
     var flavors: [Flavor]
-    var sizes: Size
-    var toppings: String
+    var sizes: [Size]
+    var toppings: [String]
     
     
-    init(flavors: [Flavor], sizes: Size, toppings: String){
+    init(flavors: [Flavor], sizes: [Size], toppings: [String]){
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
@@ -60,12 +60,14 @@ let flavorOne = Flavor(name: "Cookie Dough", rating: 3.5)
 let flavorTwo = Flavor(name: "Mint Chocolate Chip", rating: 4.9)
 let flavorThree = Flavor(name: "Cookies and cream", rating: 4.5)
 
+let flavorArray = [flavorOne,flavorTwo,flavorThree]
+
 let sizeArray = [Size.large, Size.medium, Size.small]
 
 let toppingsArray = ["Fudge", "Chocolate Syrup", "Bananas", "Caramel"]
 
 
-let menu = IceCreamShop(flavors: flavorOne, sizes: sizeArray[0], toppings: toppingsArray[0])
+var menu = IceCreamShop(flavors: flavorArray, sizes: sizeArray, toppings: toppingsArray)
 
 IceCreamShop.listTopFlavors()
 
