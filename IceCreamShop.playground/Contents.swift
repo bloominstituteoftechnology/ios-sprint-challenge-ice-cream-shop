@@ -30,7 +30,11 @@ class IceCreamShop {
     func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
         let newCone: Cone? = Cone(flavor: flavor, size: size, topping: toppings)
         totalSales += size.rawValue
+        guard let unwrappedToppings = toppings else {
         print("Your \(flavor.name) ice cream is \(size.rawValue)!")
+        return newCone
+        };print("Your \(flavor.name) with \(toppings) is \(size.rawValue) ")
+        
         return newCone
     }
     init(flavors: [Flavor], totalSales: Double, toppings: [String?]){
@@ -47,4 +51,5 @@ let flavorList: [Flavor] = [lavenderHoney, vanilla, chocolate, twist]
 let sizeList: [Size] = [Size.small, Size.medium, Size.large]
 let toppingsList: [String] = ["Sprinkles", "Hot Fudge"]
 let visBrainFreeze = IceCreamShop(flavors: flavorList, totalSales: 0.0, toppings: toppingsList)
-
+visBrainFreeze.listTopFlavors()
+visBrainFreeze.orderCone(flavor: lavenderHoney, toppings: <#T##String?#>, size: <#T##Size#>)
