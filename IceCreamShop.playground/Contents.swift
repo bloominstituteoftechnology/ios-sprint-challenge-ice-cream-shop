@@ -17,10 +17,9 @@ struct Cone {
     }
 }
 class IceCreamShop {
-    var cone: Cone
     var flavors: [Flavor]
     var toppings: [String?]
-    var totalSales: Double = 0
+    var totalSales: Double
     func listTopFlavors () {
         for flavor in flavors {
             if flavor.rating >= 4.0 {
@@ -34,12 +33,18 @@ class IceCreamShop {
         print("Your \(flavor.name) ice cream is \(size.rawValue)!")
         return newCone
     }
-    init(cone: Cone, flavors: [Flavor], totalSales: Double, toppings: [String?]){
-        self.cone = cone
+    init(flavors: [Flavor], totalSales: Double, toppings: [String?]){
         self.flavors = flavors
         self.totalSales = totalSales
         self.toppings = toppings
-        
     }
 }
-let lavenderHoney = Flavor(name: "Lavender Honey", rating: <#T##Double#>)
+let lavenderHoney = Flavor(name: "Lavender Honey", rating: 5.0)
+let vanilla = Flavor(name: "Vannilla", rating: 4.5)
+let chocolate = Flavor(name: "Chocolate", rating: 3.0)
+let twist = Flavor(name: "Chocolate Vanilla Twist", rating: 4.0)
+let flavorList: [Flavor] = [lavenderHoney, vanilla, chocolate, twist]
+let sizeList: [Size] = [Size.small, Size.medium, Size.large]
+let toppingsList: [String] = ["Sprinkles", "Hot Fudge"]
+let visBrainFreeze = IceCreamShop(flavors: flavorList, totalSales: 0.0, toppings: toppingsList)
+
