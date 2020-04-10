@@ -92,3 +92,4 @@ let david = Cone(flavor: "vanilla bean", topping: nil, size: .large)
 rons.orderCone(flavor: choc, topping: nil, size: .small)
 
 david.eat()
+print(rons.totalSales)
