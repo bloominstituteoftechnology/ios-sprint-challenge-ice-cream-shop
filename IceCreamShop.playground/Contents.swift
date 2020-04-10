@@ -128,5 +128,10 @@ if let unwrappedRandomFlavor = iceCreamShop.getMenu().randomElement(),
         iceCreamCone = unwrappedIceCreamCone
         iceCreamCone.eat()
     }
-
 }
+
+let iceCreamCone2 = iceCreamShop.orderCone(iceCreamShop.getMenu()[1], nil, Size.MEDIUM)
+iceCreamCone2?.eat()
+
+
+print("Today's total sales: \(iceCreamShop.getTotalSales())")
