@@ -16,3 +16,14 @@ struct Cone {
         print("Mmm! I love \(flavor)!")
     }
 }
+class IceCreamShop {
+    var cone: Cone
+    var flavor: Flavor
+    var toppings: String?
+    var totalSales: Double
+    init(cone: Cone, flavor: Flavor, totalSales: Double){
+        self.cone = cone
+        self.flavor = flavor
+        self.totalSales = totalSales
+    }
+}
