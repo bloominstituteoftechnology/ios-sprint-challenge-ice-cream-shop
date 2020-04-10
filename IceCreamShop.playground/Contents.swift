@@ -69,6 +69,7 @@ let cones = [
 ]
 
 let iceCreamShop = IceCreamShop(menu: cones, totalSales: 0)
+
 iceCreamShop.listTopFlavors()
 
 let myCone = cones[1]
@@ -82,4 +83,3 @@ iceCreamShop.orderCone(flavor: myElevensies.flavor, topping: myElevensies.toppin
 myCone.eat()
 iceCreamShop.totalSales
 print(iceCreamShop.totalSales)
-
