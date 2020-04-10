@@ -46,5 +46,13 @@ class IceCreamShop {
         self.totalSales = totalSales
     }
     
-    
+    func listTopFlavors() -> String {
+        var topFlavors = [String]()
+        for flavor in flavors {
+            if flavor.rating > 4 {
+                topFlavors.append(flavor.name)
+            }
+        }
+        return "our top flavors are: \(topFlavors)."
+    }
 }
