@@ -13,7 +13,7 @@ struct Cone {
     let size: Size
     let topping: String?
     func eat() {
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 class IceCreamShop {
@@ -27,14 +27,13 @@ class IceCreamShop {
             }
         }
     }
-    func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
-        let newCone: Cone? = Cone(flavor: flavor, size: size, topping: toppings)
+    func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone {
+        let newCone: Cone = Cone(flavor: flavor, size: size, topping: toppings)
         totalSales += size.rawValue
         guard let unwrappedToppings = toppings else {
         print("Your \(flavor.name) ice cream is \(size.rawValue)!")
         return newCone
-        };print("Your \(flavor.name) with \(toppings) is \(size.rawValue) ")
-        
+        };print("Your \(flavor.name) ice cream with \(unwrappedToppings) is \(size.rawValue)!")
         return newCone
     }
     init(flavors: [Flavor], totalSales: Double, toppings: [String?]){
@@ -49,7 +48,13 @@ let chocolate = Flavor(name: "Chocolate", rating: 3.0)
 let twist = Flavor(name: "Chocolate Vanilla Twist", rating: 4.0)
 let flavorList: [Flavor] = [lavenderHoney, vanilla, chocolate, twist]
 let sizeList: [Size] = [Size.small, Size.medium, Size.large]
-let toppingsList: [String] = ["Sprinkles", "Hot Fudge"]
+let sprinkles = "sprinkles"
+let hotFudge = "hot fudge"
+let toppingsList: [String] = [sprinkles, hotFudge]
 let visBrainFreeze = IceCreamShop(flavors: flavorList, totalSales: 0.0, toppings: toppingsList)
 visBrainFreeze.listTopFlavors()
-visBrainFreeze.orderCone(flavor: lavenderHoney, toppings: <#T##String?#>, size: <#T##Size#>)
+let visCone = visBrainFreeze.orderCone(flavor: lavenderHoney, toppings: nil, size: Size.large)
+let visConeWithSprinkles = visBrainFreeze.orderCone(flavor: lavenderHoney, toppings: "sprinkles", size: Size.large)
+print(visBrainFreeze.totalSales)
+visCone.eat()
+visConeWithSprinkles.eat()
