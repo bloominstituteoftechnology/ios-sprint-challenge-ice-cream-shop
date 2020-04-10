@@ -54,10 +54,10 @@ class IceCreamShop {
         totalSales += size.rawValue
         if let toppings = topping {
             // If there is a topping, do something
-            print("Your \(newCone.flavor) with \(toppings) is \(size.rawValue)")
+            print("Your \(flavor.name) with \(toppings) is \(size.rawValue)")
         } else {
             // If there are no toppings then this is what should happen
-            print("Your \(newCone.flavor) is \(size.rawValue)")
+            print("Your \(flavor.name) is \(size.rawValue)")
         }
         return newCone
         
