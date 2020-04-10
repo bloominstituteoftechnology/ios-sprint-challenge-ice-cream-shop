@@ -42,23 +42,44 @@ func listTopFlavors() {
         }
     }
     print(topFlavorString)
-    }
-func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
-        switch flavor.name {
-        case "Gandalf Grape", "Frodo Froyo", "Sauron Sour", "Orc Orange":
-            let newCone = Cone(flavor: flavor, size: size, topping: topping)
+}
+    func orderCone(flavor: Flavor, topping: String, size: Size) -> Cone? {
+            switch flavor.name {
+            case "Gandalf Grape", "Frodo Froyo", "Sauron Sour", "Orc Orange":
+                let newCone = Cone(flavor: flavor, size: size, topping: topping)
             
-            totalSales = newCone.size.rawValue
+                totalSales = newCone.size.rawValue
             
-            let newString = "Your \(newCone.flavor.name) ice cream with \(newCone.topping) will be \(newCone.size)"
+                let newString = "Your \(newCone.flavor.name) ice cream with \(newCone.topping) will be \(newCone.size)"
             
-            return newCone
-        default:
-            print("We dont have that on our menu, we sincerly apologize")
-            break
+                return newCone
+            default:
+                print("We dont have that on our menu, we sincerly apologize")
+                break
         }
-        return nil
+            return nil
     }
 }
 
+let cones = [
+           Cone(flavor: Flavor(name: "Sauron Sour", rating: 5), size: .medium, topping: "Brownies"),
+           Cone(flavor: Flavor(name: "Orc Orange", rating: 5), size: .small, topping: "Nuts"),
+           Cone(flavor: Flavor(name: "Gandalf The Grape", rating: 5), size: .large, topping: "Oreos"),
+           Cone(flavor: Flavor(name: "Frodo Froyo", rating: 5), size: .large, topping: "Longbottom Leaf")
+]
+
+let iceCreamShop = IceCreamShop(menu: cones, totalSales: 0)
+iceCreamShop.listTopFlavors()
+
+let myCone = cones[1]
+let mySecondBreakfast = cones[2]
+let myElevensies = Cone(flavor: Flavor(name: "Frodo Froyo", rating: 5), size: .large, topping: "Longbottom Leaf")
+
+iceCreamShop.orderCone(flavor: myCone.flavor, topping: myCone.topping, size: myCone.size)
+iceCreamShop.orderCone(flavor: mySecondBreakfast.flavor, topping: mySecondBreakfast.topping, size: mySecondBreakfast.size)
+iceCreamShop.orderCone(flavor: myElevensies.flavor, topping: myElevensies.topping, size: myElevensies.size)
+
+myCone.eat()
+iceCreamShop.totalSales
+print(iceCreamShop.totalSales)
 
