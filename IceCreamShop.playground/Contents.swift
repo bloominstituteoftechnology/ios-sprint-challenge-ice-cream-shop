@@ -53,7 +53,32 @@ func orderCone(flavor: String, topping: String, Size: String) -> String?{
     let price = medium
     return cindysCone
     }
+let totalSales1 = 2.99
+
 
 7
+let flavor1 = "vanilla"
+let flavor2 = "strawberry"
+let flavor3 = "chocolate"
+let sizes = ["small", "medium", "large"]
+let toppings = ["sprinkles", "snickers", "m&ms"]
+
+8
+let iceCreamShop: [Any] = [flavor1,flavor2, flavor3, sizes, toppings]
+
+9
+topFlavors()
+
+10
+let cone = eat.self
+
+
+11
+eat()
+
+12
+let totalSales = totalSales1 * 3
+print(totalSales)
+
 
 
