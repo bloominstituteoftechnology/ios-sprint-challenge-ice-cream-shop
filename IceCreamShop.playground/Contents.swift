@@ -20,20 +20,20 @@ struct Cone {
     let size: Size
     
     func eat() {
-        print("Mmm! I love \(self.flavor)")
+        print("Mmm! I love \(self.flavor.name) ice cream!")
     }
     
 }
 
 class IceCreamShop {
     let flavors: [Flavor]
-    let size: [Size]
+    let sizes: [Size]
     let topping: [String?]
     var totalSales: Double
     
     init(flavors: [Flavor], size: [Size], topping: [String?] ) {
         self.flavors = flavors
-        self.size = size
+        self.sizes = size
         self.topping = topping
         self.totalSales = 0.0
     }
@@ -51,14 +51,32 @@ class IceCreamShop {
             let customerCone = Cone(flavor: flavor, topping: topping, size: size)
             
             totalSales += customerCone.size.rawValue
-            print("Here is your \(customerCone.flavor) with \(customerCone.topping ?? "no toppings") the price comes to \(customerCone.size)")
+            
+            print("Here is your \(customerCone.flavor.name) cone with \(customerCone.topping ?? "no toppings") the price comes to \(customerCone.size.rawValue).")
                
             return customerCone
             
         }
-    
 
 }
 
+let vanillaIceCream = Flavor(name: "vanilla", rating: 5)
+let chocolateIceCream = Flavor(name: "chocolate", rating: 5)
+let birthdayCake = Flavor(name: "birthday Cake", rating: 3)
+let mint = Flavor(name: "mint chocolate chip", rating: 2)
+let strawberry = Flavor(name: "strawberry", rating: 3)
+let halfBaked = Flavor(name: "half baked", rating: 4)
 
+let sizes:[Size] = [.small, .medium, .large]
 
+let toppings: [String?] = ["sprinkles", "chocolate chips", "whipped cream", "hot fudge"]
+
+var sallysIceCream = IceCreamShop(flavors: [vanillaIceCream,chocolateIceCream,birthdayCake,mint,strawberry,halfBaked], size: sizes, topping: toppings)
+
+sallysIceCream.listTopFlavors()
+
+let myCone = sallysIceCream.orderCone(flavor: vanillaIceCream, size: .small, topping: nil)
+
+myCone?.eat()
+
+print(sallysIceCream.totalSales)
