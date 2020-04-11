@@ -74,8 +74,6 @@ let chocolateChips = "chocolate chips"
 let flakes = "coconut flakes"
 
 
-let TheFlavorsShop = IceCreamShop.self
-
 
 let allRatings: Double
 let totalSales: Double
@@ -85,8 +83,9 @@ let allToppings = [sprinkles, chocolateChips, flakes]
 
 let MyFlavorsShop = IceCreamShop(flavor: allFlavors, size: allSizes, toppings: allToppings, totalSales: 79.23, rating: 3.9)
 
+let newCone = MyFlavorsShop.orderCone(flavor: flavorOne, topping: sprinkles, size: .medium)
 
-MyFlavorsShop.orderCone(flavor: flavorFour, topping: flakes, size: .large)
+newCone.eat()
 
 print(MyFlavorsShop.totalSales)
 
