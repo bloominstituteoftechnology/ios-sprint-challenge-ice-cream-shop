@@ -1,23 +1,20 @@
-1
+
 struct Flavor{
     var name: String
     var rating: Int
 }
 
-2
+
 enum Size: Double{
     case small = 1.99
     case medium = 2.99
     case large = 3.99
 }
-let small = Size.small
-let medium = Size.medium
-let large = Size.large
 
-3
+
 struct Cone{
-    let topping = "vanilla"
-    let size = "large"
+    let topping: String
+    let size: String
     
 }
 func eat(){
@@ -27,47 +24,61 @@ func eat(){
 }
 eat()
 
-4
+
 class IceCreamShop{
-    var flavors = ["vanilla", "strawberry", "chocolate"]
-    var sizes = ["small", "medium", "large"]
-    var toppings = ["sprinkles", "snickers", "m&ms"]
-    var totalSales = 0.00
-    var rating = [1, 2, 3, 4, 5]
-}
-
-5
-func topFlavors(){
-let flavors = ["vanilla", "strawberry", "chocolate"]
-var index = 1
-for topFlavors in flavors {
-    print("\(index). \(topFlavors)")
-    index += 1
-}
-}
-topFlavors()
-  
-6
-func orderCone(flavor: String, topping: String, Size: String) -> String?{
-    let cindysCone = orderCone(flavor: "strawberry", topping: "sprinkles", Size: "medium")
-    let price = medium
-    return cindysCone
+    var flavors: Flavor
+    var sizes: [Size]
+    var toppings: [Cone]
+    
+    
+    init(flavors: Flavor, sizes: [Size], toppings: [Cone] ) {
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
     }
-let totalSales1 = 2.99
+    
 
+    func listTopFlavors() {
+
+        if let flavors = flavors{
+
+            for flavor in flavors {
+                print("Our top flavors are \(myFlavor)")
+          //  }else{
+                print("We are out of our top flavors")
+
+            }
+        }
+    }
+    func orderCone(flavor: String, topping: String, Size: String) -> String?{
+        let cindysCone = orderCone(flavor: "strawberry", topping: "sprinkles", Size: "medium")
+        
+        return cindysCone
+    }
+
+
+}
+
+
+6
+
+let totalSales1 = 2.99
+let vanilla: String
+let strawberry: String
+let chocolate: String
 
 7
-let flavor1 = "vanilla"
-let flavor2 = "strawberry"
-let flavor3 = "chocolate"
+let flavor1 = Flavor(name: vanilla, rating: 5)
+let flavor2 = Flavor(name: strawberry, rating: 2)
+let flavor3 = Flavor(name: chocolate, rating: 1)
 let sizes = ["small", "medium", "large"]
 let toppings = ["sprinkles", "snickers", "m&ms"]
 
 8
-let iceCreamShop: [Any] = [flavor1,flavor2, flavor3, sizes, toppings]
+let iceCreamShop = [flavor1, flavor2, flavor3]
 
 9
-topFlavors()
+//listTopFlavors()
 
 10
 let cone = eat.self
@@ -81,4 +92,4 @@ let totalSales = totalSales1 * 3
 print(totalSales)
 
 
-
+//Spencer, Can we go over this when you have more than 10 minutes and not flustered?
