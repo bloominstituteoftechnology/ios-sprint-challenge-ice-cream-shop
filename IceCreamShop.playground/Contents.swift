@@ -51,7 +51,7 @@ class IceCreamShop {
         }
     }
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone {
-        let newCone = Cone(flavor: [flavor], topping: <#String?#>, size: size)
+        let newCone = Cone(flavor: [flavor], topping: topping, size: size)
         totalSales += size.rawValue
         //if else statement
         if let toppings = topping {
@@ -69,6 +69,8 @@ let flavorTwo =  Flavor(name: "Cookies and Cream", rating: 4.1)
 let flavorThree = Flavor(name: "Chocolate", rating: 3.1)
 let flavorFour = Flavor(name: "Vanilla Bean", rating: 3.7)
 
+
+
 let sprinkles = "sprinkles"
 let chocolateChips = "chocolate chips"
 let flakes = "coconut flakes"
@@ -81,9 +83,13 @@ let allFlavors = [flavorOne, flavorTwo, flavorThree, flavorFour]
 let allSizes = [Size.small, Size.medium, Size.large]
 let allToppings = [sprinkles, chocolateChips, flakes]
 
-let MyFlavorsShop = IceCreamShop(flavor: allFlavors, size: allSizes, toppings: allToppings, totalSales: 79.23, rating: 3.9)
 
-let newCone = MyFlavorsShop.orderCone(flavor: flavorOne, topping: sprinkles, size: .medium)
+let MyFlavorsShop = IceCreamShop(flavor: allFlavors, size: allSizes, toppings: allToppings, totalSales: 79, rating: 3.9)
+MyFlavorsShop.listOfTopFlavors()
+
+let newCone = Cone(flavor: [], topping: "coconut", size: .small)
+MyFlavorsShop.orderCone(flavor: flavorOne, topping: sprinkles, size: .medium)
+
 
 newCone.eat()
 
