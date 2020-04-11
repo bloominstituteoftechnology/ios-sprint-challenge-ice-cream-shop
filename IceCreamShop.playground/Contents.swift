@@ -1,3 +1,6 @@
+import UIKit
+
+
 //1.
 struct Flavor {
     var name: String
@@ -61,44 +64,29 @@ class IceCreamShop {
     
 }
 
-
-
-//7
-
-
-
-
-
-
-
-
-//the instance of a Flavor, like coffee example
 let flavorOne = Flavor(name: "Strawberry", rating: 5.0)
 let flavorTwo =  Flavor(name: "Cookies and Cream", rating: 4.1)
 let flavorThree = Flavor(name: "Chocolate", rating: 3.1)
 let flavorFour = Flavor(name: "Vanilla Bean", rating: 3.7)
 
+let sprinkles = "sprinkles"
+let chocolateChips = "chocolate chips"
+let flakes = "coconut flakes"
 
 
+let TheFlavorsShop = IceCreamShop.self
 
 
+let allRatings: Double
+let totalSales: Double
+let allFlavors = [flavorOne, flavorTwo, flavorThree, flavorFour]
+let allSizes = [Size.small, Size.medium, Size.large]
+let allToppings = [sprinkles, chocolateChips, flakes]
+
+let MyFlavorsShop = IceCreamShop(flavor: allFlavors, size: allSizes, toppings: allToppings, totalSales: 79.23, rating: 3.9)
 
 
+MyFlavorsShop.orderCone(flavor: flavorFour, topping: flakes, size: .large)
 
-
-
-
-
-
-
-let newFlavor1 = "Pecan"
-let newFlavor2 = "Peanut Butter"
-let newFlavor3 = "Napoleon"
-let allSizes = ["small", "medium", "large"]
-let newToppings = ["mochi", "gummies", "coconut flakes"]
-
-//8.
-let newIceCreamShop: [Any] = [newFlavor1, newFlavor2, newFlavor3, allSizes, newToppings]
-
-
+print(MyFlavorsShop.totalSales)
 
