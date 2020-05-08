@@ -4,8 +4,6 @@ struct Flavor {
     let rating: Int
 }
 
-var flavors = [Flavor(name: "Neapolitan", rating: 3),Flavor(name: "Moose Tracks", rating: 4), Flavor(name: "Strawberry", rating: 4), Flavor(name: "Birthday Cake", rating: 4), Flavor(name: "Buttered Pecan", rating: 5), Flavor(name: "Chocolate Chip Cookie Dough", rating: 4), Flavor(name: "Mint Chocolate Chip", rating: 2), Flavor(name: "Cookies & Cream", rating: 4), Flavor(name: "Chocolate", rating: 2), Flavor(name: "Vanilla", rating: 4), Flavor(name: "Banana", rating: 5), Flavor(name: "Coffee", rating: 4) ]
-
 enum Size: Double {
     case kidsCup = 2.49
     case smallCup = 2.99
@@ -32,23 +30,23 @@ enum SizeDescription: String {
 }
 
 struct Cone {
-    let flavor: String
+    let flavor: Flavor
     let topping: String
-    let sizeDescription: String
-    let size: Double
+    let sizeDescription: SizeDescription
+    let size: Size
 }
 
-func eat() {
-    print("Mmm! I love \(flavor)!")
-}
+//func eat() {
+//    print("Mmm! I love \(flavor)!")
+//}
 
 class IceCreamShop {
-    let iceCreamFlavor: String
-    let iceCreamSize : [SizeDescription]
+    let iceCreamFlavor: [Cone]
+    let iceCreamSize : [Cone]
     let iceCreamToppings : String
     var totalSales: Double
     
-    init(flavor: String, description: [SizeDescription], toppings: String, sales: Double){
+    init(flavor: [Cone], description: [Cone], toppings: String, sales: Double){
         self.iceCreamFlavor = flavor
         self.iceCreamSize = description
         self.iceCreamToppings = toppings
@@ -56,10 +54,45 @@ class IceCreamShop {
     }
 }
 
-func listTopFlavors() {
-    for index in flavors {
-        if flavors[index][1] >= 4 {
-            
-        }
-    }
-}
+var flavors = [Flavor]()
+
+let flavorOne = Flavor(name: "Neapolitan", rating: 3)
+flavors.append(flavorOne)
+
+let flavorTwo = Flavor(name: "Moose Tracks", rating: 4)
+flavors.append(flavorTwo)
+
+let flavorThree = Flavor(name: "Strawberry", rating: 4)
+flavors.append(flavorThree)
+
+let flavorFour = Flavor(name: "Birthday Cake", rating: 4)
+flavors.append(flavorFour)
+
+let flavorFive = Flavor(name: "Buttered Pecan", rating: 5)
+flavors.append(flavorFive)
+
+let flavorSix = Flavor(name: "Chocolate Chip Cookie Dough", rating: 4)
+flavors.append(flavorSix)
+
+let flavorSeven = Flavor(name: "Mint Chocolate Chip", rating: 2)
+flavors.append(flavorSeven)
+
+let flavorEight = Flavor(name: "Cookies & Cream", rating: 4)
+flavors.append(flavorEight)
+
+let flavorNine = Flavor(name: "Chocolate", rating: 2)
+flavors.append(flavorNine)
+
+let flavorTen = Flavor(name: "Vanilla", rating: 4)
+flavors.append(flavorTen)
+
+let flavorEleven = Flavor(name: "Coffee", rating: 4)
+flavors.append(flavorEleven)
+
+let flavorTwelve = Flavor(name: "Banana", rating: 5)
+flavors.append(flavorTwelve)
+
+
+
+//var iceCreamShop = IceCreamShop(flavor: flavor , description: <#T##[Cone]#>, toppings: <#T##String#>, sales: <#T##Double#>)
+
