@@ -15,7 +15,9 @@ enum Size: Double {
 
 struct Cone {
     let flavorChoice: [Flavor]
-    let topping: String
+    let chocolateSauceTopping: String = "Chocolate Sauce"
+    let whippedCreamTopping: String = "Whipped Cream"
+    let cherryTopping: String = "Cherry"
     let size: [Size]
     
     
