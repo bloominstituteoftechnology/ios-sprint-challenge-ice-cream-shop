@@ -28,21 +28,21 @@ struct Cone {
 
 class IceCreamShop {
     var iceCreamFlavors: [Cone]
-    let strawberry: Flavor
-    let chocolate: Flavor
-    let vanilla: Flavor
     
 
     
-    init(iceCreamFlavors: [Cone], strawberry: Flavor, chocolate: Flavor, vanilla: Flavor) {
+    init(iceCreamFlavors: [Cone]) {
         self.iceCreamFlavors = iceCreamFlavors
-        self.strawberry = strawberry
-        self.chocolate = chocolate
-        self.vanilla = vanilla
+    }
+    
+    
+    func listTopFlavors() {
+        for topFlavors in iceCreamFlavors {
+            print("Our top flavors are: \(topFlavors)")
+        }
     }
 }
-    
 
+Cone(size: .medium, topping: "Nuts").eat()
 
-
-
+Cone(size: .large, topping: "")
