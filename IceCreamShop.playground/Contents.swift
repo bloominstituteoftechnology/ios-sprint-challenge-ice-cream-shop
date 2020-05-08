@@ -2,7 +2,7 @@ struct Flavor {
     
     let name: String
     let rating: Int
-
+    
 }
 
 enum Size: Double {
@@ -39,30 +39,31 @@ class IceCreamShop {
     }
     
     func listTopFlavors() {
-        for flavor in flavors{
+        let top = "Our top flavors are:"
+        var topflavors: [String] = []
+        
+        for flavor in flavors {
             if flavor.rating >= 4 {
-            print("Our top flavors are: \(flavor.name)")
+                topflavors.append(flavor.name)
             }
         }
+        let list = topflavors.joined(separator: ", ")
+        print("\(top) \(list).")
     }
     
-        func orderCone(flavor: Flavor, size: Size, topping: String?) -> Cone?  {
-            
-            let customerCone = Cone(flavor: flavor, topping: topping, size: size)
-            
-            totalSales += customerCone.size.rawValue
-            
-            print("Here is your \(customerCone.flavor.name) cone with \(customerCone.topping ?? "no toppings") the price comes to \(customerCone.size.rawValue).")
-               
-            return customerCone
-            
-        }
-
+    func orderCone(flavor: Flavor, size: Size, topping: String?) -> Cone?  {
+        let customerCone = Cone(flavor: flavor, topping: topping, size: size)
+        totalSales += customerCone.size.rawValue
+        print("Here is your \(customerCone.flavor.name) cone with \(customerCone.topping ?? "no toppings") the price comes to $\(customerCone.size.rawValue).")
+        return customerCone
+        
+    }
+    
 }
 
 let vanillaIceCream = Flavor(name: "vanilla", rating: 5)
 let chocolateIceCream = Flavor(name: "chocolate", rating: 5)
-let birthdayCake = Flavor(name: "birthday Cake", rating: 3)
+let birthdayCake = Flavor(name: "birthday cake", rating: 3)
 let mint = Flavor(name: "mint chocolate chip", rating: 2)
 let strawberry = Flavor(name: "strawberry", rating: 3)
 let halfBaked = Flavor(name: "half baked", rating: 4)
@@ -76,7 +77,9 @@ var sallysIceCream = IceCreamShop(flavors: [vanillaIceCream,chocolateIceCream,bi
 sallysIceCream.listTopFlavors()
 
 let myCone = sallysIceCream.orderCone(flavor: vanillaIceCream, size: .small, topping: nil)
+let secondCone = sallysIceCream.orderCone(flavor: birthdayCake, size: .large, topping: "sprinkles")
 
 myCone?.eat()
+secondCone?.eat()
 
 print(sallysIceCream.totalSales)
