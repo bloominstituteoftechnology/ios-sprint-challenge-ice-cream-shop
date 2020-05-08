@@ -42,20 +42,18 @@ class IceCreamShop {
             if flavor.rating >= 4.0 {
                 print("Our most popular flavors are \(flavors).")
             }
-            
-    var orderedCone: Cone? = Cone(flavor: "Chocolate", topping: nil, size: "Medium")
-            
-    func orderCone() -> Cone? {
-        if let orderedCone = orderedCone {
-            print("Your \(orderedCone.flavor) with \(orderedCone.topping ?? "") is a price.")
-                }
-        return orderedCone
-            }
         }
     }
 }
 
-
+var orderedCone: Cone? = Cone(flavor: "Chocolate", topping: nil, size: "Medium")
+        
+func orderCone(orderedCone: Cone) -> Cone? {
+    if let orderedCone = Cone?(orderedCone) {
+        print("Your \(orderedCone.flavor) with \(orderedCone.topping ?? "") is a price.")
+            }
+    return orderedCone
+        }
 
 let flavor1 = Flavor(name: "Vanilla", rating: 5.0)
 let flavor2 = Flavor(name: "Chocolate", rating: 3.5)
@@ -68,3 +66,9 @@ let toppingArray = ["Sprinkles", "Whipped Cream", "Hot Fudge"]
 let ianIceCreamShop = IceCreamShop(flavors: [flavor1, flavor2, flavor3], sizes: sizeArray, toppings: toppingArray, totalSales: 3.99)
 
 ianIceCreamShop.listTopFlavors()
+
+let ianCone = Cone(flavor: "Rocky Road", topping: "Whipped Cream", size: "Large")
+
+orderCone(orderedCone: ianCone)
+
+ianCone.eat()
