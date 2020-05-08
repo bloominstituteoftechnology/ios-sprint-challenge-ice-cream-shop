@@ -17,5 +17,12 @@ enum Size: Double {
 }
 
 struct Cone {
+    let flavor: Flavor
+    let topping: String
+    let size: Size
     
+    func eat() {
+        print("Mmm! I love \(flavor)!")
+    }
 }
+
