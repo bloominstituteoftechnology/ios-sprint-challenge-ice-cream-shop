@@ -13,4 +13,9 @@ struct Cone {
     let flavorChoice: [Flavor]
     let topping: String
     let size: [Size]
+    
+    
+    func eat() {
+        print("Mmm! I love \(flavorChoice)!")
+    }
 }
