@@ -30,13 +30,32 @@ struct Cone {
 
 class IceCreamShop {
     
-    var iceCream: Flavor
+    var iceCreams: [Flavor]
+    var price: Size
+    let topping: String
+    var totalSales: Double
     
-    init(iceCream: Flavor) {
+    func listTopFlavors() {
         
-        self.iceCream = iceCream
+        for iceCream in iceCreams {
+            
+            if iceCream.rating <= 4.0 {
+                
+                print("One of our top flavors is \(iceCream.name)!")
+                
+            }
+            
+        }
+        
         
     }
     
+    init(iceCreams: [Flavor], price: Size, topping: String, totalSales: Double) {
+        
+        self.iceCreams = iceCreams
+        self.price = price
+        self.topping = topping
+        self.totalSales = totalSales
+    }
     
 }
