@@ -57,3 +57,13 @@ var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 listTopFlavors()
+
+func orderCone(myOrder: Cone) -> Cone? {
+    
+
+        print(myOrder)
+    return myOrder
+}
+        
+orderCone(myOrder: Cone(size: .large, topping: "Nuts", flavor: strawberry))
+
