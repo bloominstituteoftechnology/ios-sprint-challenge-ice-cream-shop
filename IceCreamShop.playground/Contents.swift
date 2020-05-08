@@ -59,8 +59,10 @@ var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 listTopFlavors()
 
-func orderCone(myOrder: Cone = cone4) -> Cone? {
-        print(myOrder)
+func orderCone(myOrder: Cone) -> Cone? {
+    let customerOrder = cone1
+    
+    print(customerOrder.)
     return myOrder
 }
         
