@@ -32,5 +32,31 @@ enum SizeDescription: String {
 }
 
 struct Cone {
+    let flavor: String
+    let topping: String
+    let sizeDescription: String
+    let size: Double
+}
+
+func eat() {
+    print("Mmm! I love \(flavor)!")
+}
+
+class IceCreamShop {
+    let iceCreamFlavor: String
+    let iceCreamSize : [SizeDescription]
+    let iceCreamToppings : String
+    var totalSales: Double
+    
+    init(flavor: String, description: [SizeDescription], toppings: String, sales: Double){
+        self.iceCreamFlavor = flavor
+        self.iceCreamSize = description
+        self.iceCreamToppings = toppings
+        self.totalSales = sales
+
+        
+        
+    }
     
 }
+
