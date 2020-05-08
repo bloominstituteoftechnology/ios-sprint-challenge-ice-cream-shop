@@ -21,3 +21,16 @@ class IceCreamShop {
         self.totalSales = totalSales
     }
 }
+
+
+struct Cone {
+    let iceCreamFlavors: String
+    let coneSize: Size
+    let iceCreamtoppings: String
+
+    init(iceCreamFlavors: String, coneSize: Size, iceCreamToppings: String) {
+        self.iceCreamFlavors = iceCreamFlavors
+        self.coneSize  = coneSize
+        self.iceCreamtoppings = iceCreamToppings
+    }
+}
