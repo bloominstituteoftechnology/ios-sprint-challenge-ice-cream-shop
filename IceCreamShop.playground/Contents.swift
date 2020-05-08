@@ -40,11 +40,16 @@ class IceCreamShop {
     
     func listTopFlavors() {
         for topFlavors in iceCreamFlavors {
+            if topFlavors.rating >= 4.0 {
             print("Our top flavors are: \(topFlavors.name)")
         }
     }
 }
 
 
+var cone1 = Cone(size: .medium, topping: "Whipped Cream", flavor: strawberry)
+var cone2 = Cone(size: .small, topping: "Chocolate Sauce", flavor: vanilla)
+var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
+var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 
