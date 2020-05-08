@@ -92,4 +92,14 @@ func listTopFlavors() {
 listTopFlavors()
 
 
+func orderCone(size: Size, flavor: iceCreamFlavors, topping: iceCreamToppings) -> String {
+    let newCone = "Customer: I'd like a \(size) cone with two scoops of \(flavor) and some \(topping) on top \n"
+    let conePrice = "Vendor: Sounds good bro, your ice cream cone will cost \(size.rawValue)"
+    let priceOfCone = newCone + conePrice
+    return priceOfCone
+}
+
+let myNewCone = orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
+
+print(myNewCone)
 s
