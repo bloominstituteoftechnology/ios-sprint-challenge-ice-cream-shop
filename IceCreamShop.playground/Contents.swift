@@ -19,6 +19,11 @@ struct Cone {
     func eat() {
         print("Mmm! I love \(flavor)!")
     }
+    
+    func orderCone(cone: Cone) -> Cone? {
+    let newCone = Cone(flavor: flavor, topping: topping, size: size)
+        
+    }
 }
 
 class IceCreamShop {
@@ -32,15 +37,24 @@ class IceCreamShop {
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
+        
     }
-}
-
-func listTopFlavors() {
-    for flavors in Flavor.rating {
-        if flavors.rating > 4 {
-            print("Our top flavors are \(flavors.name)")
+    
+    func listTopFlavors() {
+        let topFlavors = IceCreamShop(flavors: flavors, sizes: sizes, toppings: toppings, totalSales: totalSales)
+        for eachFlavors in topFlavors.flavors {
+            if eachFlavors.rating > 4 {
+                print("Our top flavors are \(eachFlavors.name)")
+            }
         }
     }
 }
 
-func orderCone
+
+
+
+let vanilla = Flavor(name: "Vanilla", rating: 3)
+let chocolate = Flavor(name: "Chocolate", rating: 4)
+let mintChocolate = Flavor(name: "Mint Chocolate", rating: 5)
+let strawberry = Flavor(name: "Strawberry", rating: 5)
+let peach = Flavor(name: "Peach", rating: 1)
