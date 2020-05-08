@@ -6,9 +6,16 @@
 import Foundation
 
 struct Flavor {
-    var name: String
+    
+    enum icecreamFlavor {
+        case chocolate
+        case vanilla
+        case strawberry
+    }
     var rating: String
 }
+
+var flavor: Flavor.icecreamFlavor
 
 enum Size: Double {
     case small
@@ -17,7 +24,8 @@ enum Size: Double {
 }
 
 struct Cone {
-    let flavor: Flavor
+    let flavor: Flavor.icecreamFlavor
+    
     let topping: String
     let size: Size
     
@@ -26,3 +34,16 @@ struct Cone {
     }
 }
 
+class IceCreamShop {
+    var flavor: Flavor.icecreamFlavor
+    var size: Size
+    var toppings: String
+    var totalSales: Double // keep track of how much money it was made
+
+    init(flavor: Flavor.icecreamFlavor, size: Size, toppings: String, totalSales: Double) {
+        self.flavor = flavor
+        self.size = size
+        self.toppings = toppings
+        self.totalSales = totalSales
+    }
+}
