@@ -1,10 +1,10 @@
 
 struct Flavor {
     let name: String
-    let description: String
     let rating: Int
-    let ingredents: String
 }
+
+var flavors = [Flavor(name: "Neapolitan", rating: 3),Flavor(name: "Moose Tracks", rating: 4), Flavor(name: "Strawberry", rating: 4), Flavor(name: "Birthday Cake", rating: 4), Flavor(name: "Buttered Pecan", rating: 5), Flavor(name: "Chocolate Chip Cookie Dough", rating: 4), Flavor(name: "Mint Chocolate Chip", rating: 2), Flavor(name: "Cookies & Cream", rating: 4), Flavor(name: "Chocolate", rating: 2), Flavor(name: "Vanilla", rating: 4), Flavor(name: "Banana", rating: 5), Flavor(name: "Coffee", rating: 4) ]
 
 enum Size: Double {
     case kidsCup = 2.49
@@ -53,10 +53,13 @@ class IceCreamShop {
         self.iceCreamSize = description
         self.iceCreamToppings = toppings
         self.totalSales = sales
-
-        
-        
     }
-    
 }
 
+func listTopFlavors() {
+    for index in flavors {
+        if flavors[index][1] >= 4 {
+            
+        }
+    }
+}
