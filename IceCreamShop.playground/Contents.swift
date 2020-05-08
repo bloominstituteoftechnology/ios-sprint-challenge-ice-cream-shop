@@ -22,10 +22,12 @@ struct Cone {
     let topping: String
     let flavor: Flavor
     func eat() {
-        print("Mmm! I love \(flavor.name)")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
-(Cone(size: .large, topping: "Nuts", flavor: chocolate)).eat()
+
+Cone(size: .large, topping: "Nuts", flavor: chocolate).eat()
+
 class IceCreamShop {
     var iceCreamFlavors: [Flavor]
     
