@@ -8,3 +8,9 @@ enum Size: Double {
     case medium = 4.99
     case large = 5.99
 }
+
+struct Cone {
+    let flavorChoice: [Flavor]
+    let topping: String
+    let size: [Size]
+}
