@@ -20,7 +20,7 @@ struct Flavor{
 //Make the enum have `Double` raw values. The raw value should represent the size's price. For example, small might be 3.99.
 enum Size: Double {
     case small = 3.99
-    case medium = 4.99     // ** should this be int?
+    case medium = 4.99
     case large = 5.99
     
 }
@@ -31,38 +31,44 @@ enum Size: Double {
 //- Give the struct properties (constants) that hold a flavor, topping (as a `String`), and size.
 //- Create a function called `eat`. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love <flavor here>!"
 struct Cone {
-    let flavor: Flavor
-    let topping: String
-    let size: Size
+    let flavor: String
+    let topping: String?
+    let size: String
     
     func eat() {
-        for flavor in Flavor {
-            print("Mmm! I love \(Flavor)")
+        print("Mmm i love \(self.flavor).")
         }                                   //need to finsish
     }
-}
+
 
 
 
 //- An ice cream shop needs a menu, so create variables that hold the various flavors, sizes, and toppings you want to have in your shop.
 //- Create a variable called `totalSales`. This will be used to keep track of how much money was made.
 class IceCreamShop {
-    var flavors: Flavor
-    var toppings: String                // should these types be the enums and structs above?
-    var sizes: String
-    var iceCreams: [Cone]
+    var flavors: [Flavor]         //Flavor
+    var toppings: String
+    var sizes: [Size]
+    var totalSales: Double
     
-    init (flavors: Flavor, toppings: String, sizes: String, iceCreams: [Cone]) {
+    init(flavors: [Flavor], toppings: String, sizes: [Size], totalSales: Double) {
+        
         self.flavors = flavors
         self.toppings = toppings
         self.sizes = sizes
-        self.iceCreams = iceCreams
+        self.totalSales = totalSales
+    }
+
+    func listTopFlavors() {
+        for topflavor in flavors {
+            if topflavor.rating >= 4.0 {
+                print("Our top flavors are \(flavors)")
+            }
+            
+        }
     }
 }
 
-
-
-var totalSales             // will be used to keep track of how much money was made
 
 
 
@@ -72,9 +78,6 @@ var totalSales             // will be used to keep track of how much money was m
 //- This function doesn't need any arguments.
 //- In the function, build a string that lists out the names of each flavor in the shop's `flavors` array whose rating is over 4.0. For example, the string might say "Our top flavors are <flavors here>." **Hint:** You may want to loop through the array of flavors in order to access each one's name.
 //- When the string has been created, print it.
-func listTopFlavors {
-    
-}
 
 
 
@@ -89,7 +92,7 @@ func listTopFlavors {
 //- Add the price of the cone to the `totalSales` variable you made in the previous step.
 //- Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
 //- Finally, return the cone you initialized.
-func orderCone {
+func orderCone(flavor: Flavor, toppings: String, size: Size) -> Cone {
     
 }
 
