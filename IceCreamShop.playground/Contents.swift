@@ -16,14 +16,15 @@ enum Size: Double {
 struct Cone {
     let size: Size
     let topping: String
-    let strawberry: Flavor = Flavor(name: "Strawberry", rating: 8.9)
+    let strawberry: Flavor = Flavor(name: "Strawberry", rating: 10)
     let chocolate: Flavor = Flavor(name: "Chocolate", rating: 10)
     let vanilla: Flavor = Flavor(name: "Vanilla", rating: 7.7)
     let pistachio: Flavor = Flavor(name: "Pistachio", rating: 3.2)
     
     func eat() {
-        print("Mmm! I love \(vanilla)!")
+        print("Mmm! I love \(vanilla)")
     }
+   
 }
 
 class IceCreamShop {
@@ -43,6 +44,6 @@ class IceCreamShop {
     }
 }
 
-Cone(size: .medium, topping: "Nuts").eat()
 
-Cone(size: .large, topping: "")
+
+
