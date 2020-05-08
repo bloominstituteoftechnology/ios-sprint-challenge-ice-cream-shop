@@ -39,34 +39,35 @@ class IceCreamShop {
         self.menuToppings = menuToppings
         self.totalSales = 0.0
     }
-}
-
+  
 // #5
-
-let flavors: [Flavor] = []
-
-func listTopFlavors() {
-    var topFlavors: [Flavor] = []
-    for flavor in flavors {
-        if let unwrappedRating = flavor.rating {
-            if unwrappedRating >= 4.0 {
-                topFlavors.append(flavor)
+    
+    func listTopFlavors() {
+        var topFlavors: [String] = []
+        for flavor in menuFlavors {
+            if let unwrappedRating = flavor.rating {
+                if unwrappedRating >= 4.0 {
+                    topFlavors.append(flavor.name)
+                }
             }
         }
         print("Our top flavors are \(topFlavors)")
     }
-}
-
+    
 // #6
 
-func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-    if let unwrappedTopping = topping {
-        let myCone = Cone(flavor: flavor, topping: unwrappedTopping, size: size)
-        return myCone
-    } else {
-        let myCone = Cone(flavor: flavor, topping: nil, size: size)
-        return myCone
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        if let unwrappedTopping = topping {
+            let myCone = Cone(flavor: flavor, topping: unwrappedTopping, size: size)
+            totalSales += myCone.size.rawValue
+            return myCone
+        } else {
+            let myCone = Cone(flavor: flavor, topping: nil, size: size)
+            totalSales += myCone.size.rawValue
+            return myCone
+        }
     }
+    
 }
 
 // #7
@@ -79,5 +80,22 @@ let pistachio = Flavor(name: "Pistachio", rating: 1.5)
 
 // #8
 
+let myIceCreamShop = IceCreamShop(menuFlavors: [chocolate, vanilla, cherryGarcia, rockyRoad], menuSizes: [Size.small, Size.medium, Size.large], menuToppings: ["Hot Fudge", "Sprinkles", "Caramel", "M&Ms"])
+
+// #9
+
+myIceCreamShop.listTopFlavors()
+
+// #10
+
+let newCone = myIceCreamShop.orderCone(flavor: cherryGarcia, topping: nil, size: .large)
 
 
+// #11
+
+Cone.eat(newCone)
+
+
+// #12
+
+print(myIceCreamShop.totalSales)
