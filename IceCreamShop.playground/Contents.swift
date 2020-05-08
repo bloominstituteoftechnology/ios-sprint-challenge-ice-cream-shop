@@ -61,7 +61,7 @@ class IceCreamShop {
 
     func listTopFlavors() {
         for topflavor in flavors {
-            if topflavor.rating >= 4.0 {
+            if topflavor.rating => 4.0 {
                 print("Our top flavors are \(flavors)")
             }
             
@@ -92,10 +92,15 @@ class IceCreamShop {
 //- Add the price of the cone to the `totalSales` variable you made in the previous step.
 //- Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
 //- Finally, return the cone you initialized.
-func orderCone(flavor: Flavor, toppings: String, size: Size) -> Cone {
+func orderCone(flavor: Flavor, toppings: String?, size: Size) -> Cone? {
+ 
     
-}
-
+    
+    
+    
+    
+    if let unwrappedTopping = toppings {
+        let orderedCone = Cone(flavor: flavor, topping: toppings, size: size)
 
 
 
