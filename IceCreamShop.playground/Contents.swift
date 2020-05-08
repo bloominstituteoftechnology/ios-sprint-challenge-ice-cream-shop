@@ -28,7 +28,17 @@ class IceCreamShop {
     
     init(iceCreamFlavors: [Cone]) {
         self.iceCreamFlavors = iceCreamFlavors
-        
+    
+    }
+    
+    
+    
+    
+    func listTopFlavors() {
+        for flavors in menu.iceCreamFlavors {
+            if rating >= 4.0 {
+            print(flavors)
+        }
     }
 }
 
@@ -41,7 +51,5 @@ menu.iceCreamFlavors.append(strawberry)
 menu.iceCreamFlavors.append(vanilla)
 menu.iceCreamFlavors.append(pistachio)
 
-func listTopFlavors() {
-    
-}
+
 
