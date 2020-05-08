@@ -24,7 +24,7 @@ class IceCreamShop {
 
 
 struct Cone {
-    let iceCreamFlavors: String
+    let iceCreamFlavors: [Flavor]
     let coneSize: Size
     let iceCreamtoppings: String
 
@@ -46,3 +46,6 @@ struct Flavor {
         self.rating = rating
     }
 }
+
+
+let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>, iceCreamToppings: <#T##String#>)
