@@ -48,7 +48,6 @@ struct Cone {
     init(iceCreamFlavors: [Flavor]) {
         self.iceCreamFlavors = iceCreamFlavors
     }
-//    func eat() { print("Mmm! I love \(iceCreamFlavors.vanilla)!") }
 }
 
 
@@ -98,12 +97,16 @@ func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?
        let flavor = flavor,
        let topping = topping {
         
-       print("Customer: I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
-       print("Vendor: Sounds good bro, your ice cream cone will cost \(size.rawValue)")
-    } else {
+       print("Customer1: I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
+ //      print("Vendor: Sounds good bro, your ice cream cone will cost \(size.rawValue)")
+        
+     } else {
        print("Error: Missing the size, flavor, or topping")
     }
 }
 orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
+orderCone(size: .medium, flavor: .rockyroad, topping: .fudge)
+
+
 
 
