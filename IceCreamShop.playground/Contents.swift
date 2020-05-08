@@ -1,5 +1,9 @@
+var totalSales: Double = 0.0
+
 struct Flavor {
-    let name: String
+    let chocolate: String = "Chocolate"
+    let vanilla: String = "Vanilla"
+    let strawberry: String = "Vanilla"
     let rating: Double
 }
 
@@ -19,3 +23,16 @@ struct Cone {
         print("Mmm! I love \(flavorChoice)!")
     }
 }
+
+class IceCreamShop {
+    let name: String
+    let iceCreamFlavors: [Flavor]
+    let sizePrice: [Size]
+    
+    init(name: String, iceCreamFlavors: [Flavor], sizePrice: [Size]) {
+        self.name = name
+        self.iceCreamFlavors = iceCreamFlavors
+        self.sizePrice = sizePrice
+    }
+}
+
