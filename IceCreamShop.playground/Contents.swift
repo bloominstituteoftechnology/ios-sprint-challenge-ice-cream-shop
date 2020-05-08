@@ -1,4 +1,3 @@
-var totalSales: Double = 0.0
 
 struct Flavor {
     let name: String
@@ -10,6 +9,7 @@ let chocolate = Flavor(name: "Chocolate", rating: 7)
 let vanilla = Flavor(name: "Vanilla", rating: 6)
 let pistachio = Flavor(name: "Pistachio", rating: 3)
 let allFlavors = [strawberry, chocolate, vanilla, pistachio]
+
 print(strawberry.name)
 
 enum Size: Double {
@@ -30,16 +30,17 @@ struct Cone {
 Cone(size: .large, topping: "Nuts", flavor: chocolate).eat()
 
 class IceCreamShop {
-    var chocolateFlavor: Flavor = chocolate
-    var strawberryFlavor: Flavor = strawberry
-    var pistachioFlavor: Flavor = pistachio
-    var vanillaFlavor: Flavor = vanilla
+    var iceCreamFlavors: [Flavor]
+    var totalSales: Double
+    var sizes: [Size]
+    var topping: [String]
     
-    init(chocolateFlavor: Flavor, strawberryFlavor: Flavor, pistachioFlavor: Flavor, vanillaFlavor: Flavor) {
-        self.chocolateFlavor = chocolateFlavor
-        self.strawberryFlavor = strawberryFlavor
-        self.pistachioFlavor = pistachioFlavor
-        self.vanillaFlavor = vanillaFlavor
+    init(iceCreamFlavors: [Flavor], totalSales: Double, sizes: [Size], topping: [String]) {
+    self.iceCreamFlavors = iceCreamFlavors
+    self.totalSales = totalSales
+    self.sizes = sizes
+    self.topping = topping
+    
     }
     
 }
@@ -58,9 +59,7 @@ var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 listTopFlavors()
 
-func orderCone(myOrder: Cone) -> Cone? {
-    
-
+func orderCone(myOrder: Cone = cone4) -> Cone? {
         print(myOrder)
     return myOrder
 }
