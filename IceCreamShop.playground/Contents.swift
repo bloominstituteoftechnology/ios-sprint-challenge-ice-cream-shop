@@ -3,7 +3,9 @@ var totalSales: Double = 0.0
 struct Flavor {
     let name: String
     let rating: Double
+    
 }
+
 
 enum Size: Double {
     case small = 3.99
@@ -14,42 +16,33 @@ enum Size: Double {
 struct Cone {
     let size: Size
     let topping: String
-    let flavorChoice: Flavor
+    let strawberry: Flavor = Flavor(name: "Strawberry", rating: 8.9)
+    let chocolate: Flavor = Flavor(name: "Chocolate", rating: 10)
+    let vanilla: Flavor = Flavor(name: "Vanilla", rating: 7.7)
+    let pistachio: Flavor = Flavor(name: "Pistachio", rating: 3.2)
     
     func eat() {
-        print("Mmm! I love \(flavorChoice)!")
+        print("Mmm! I love \(vanilla)!")
     }
 }
 
 class IceCreamShop {
     var iceCreamFlavors: [Cone]
+    let strawberry: Flavor
+    let chocolate: Flavor
+    let vanilla: Flavor
     
 
     
-    init(iceCreamFlavors: [Cone]) {
+    init(iceCreamFlavors: [Cone], strawberry: Flavor, chocolate: Flavor, vanilla: Flavor) {
         self.iceCreamFlavors = iceCreamFlavors
-    
-    }
-    
-    
-    
-    
-    func listTopFlavors() {
-        for flavors in menu.iceCreamFlavors {
-            if rating >= 4.0 {
-            print(flavors)
-        }
+        self.strawberry = strawberry
+        self.chocolate = chocolate
+        self.vanilla = vanilla
     }
 }
+    
 
-let strawberry = Cone(size: .large, topping: "Cherry", flavorChoice:Flavor(name: "Strawberry", rating: 9.5))
-let vanilla = Cone(size: .medium, topping: "Whipped Cream", flavorChoice: Flavor(name: "Vanilla", rating: 8.8))
-let pistachio = Cone(size: .small, topping: "Chocolate Sauce", flavorChoice: Flavor(name: "Pistachio", rating: 3.9))
-
-var menu = IceCreamShop(iceCreamFlavors: [])
-menu.iceCreamFlavors.append(strawberry)
-menu.iceCreamFlavors.append(vanilla)
-menu.iceCreamFlavors.append(pistachio)
 
 
 
