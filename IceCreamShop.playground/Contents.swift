@@ -16,13 +16,21 @@ enum iceCreamToppings: String {
 }
 
 
+enum iceCreamFlavors: String {
+    case vanilla = "Vanilla"
+    case chocolate = "Chocolate"
+    case straawberry = "Strawberry"
+    case rockyroad = "Rocky Road"
+}
+
+
 class IceCreamShop {
     let coneSize: Size
     let iceCreamFlavors: String
-    let iceCreamToppings: String
+    let iceCreamToppings: iceCreamToppings
     let totalSales: Double
 
-    init(coneSize: Size, iceCreamFlavors: String, iceCreamToppings: String, totalSales: Double) {
+    init(coneSize: Size, iceCreamFlavors: String, iceCreamToppings: iceCreamToppings, totalSales: Double) {
         self.coneSize = coneSize
         self.iceCreamFlavors = iceCreamFlavors
         self.iceCreamToppings = iceCreamToppings
@@ -34,9 +42,9 @@ class IceCreamShop {
 struct Cone {
     let iceCreamFlavors: [Flavor]
     let coneSize: Size
-    let iceCreamtoppings: String
+    let iceCreamtoppings: iceCreamToppings
 
-    init(iceCreamFlavors: String, coneSize: Size, iceCreamToppings: String) {
+    init(iceCreamFlavors: String, coneSize: Size, iceCreamToppings: iceCreamToppings) {
         self.iceCreamFlavors = iceCreamFlavors
         self.coneSize  = coneSize
         self.iceCreamtoppings = iceCreamToppings
@@ -56,4 +64,8 @@ struct Flavor {
 }
 
 
-let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>, iceCreamToppings: <#T##String#>)
+let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>, iceCreamToppings: iceCreamToppings)
+
+let flavor1 = Flavor(name: "Vanilla", rating: 5)
+
+
