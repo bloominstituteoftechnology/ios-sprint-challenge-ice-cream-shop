@@ -16,23 +16,9 @@ enum Size: Double {
     case waffleCone = 5.49
 }
 
-
-enum SizeDescription: String {
-    case kidsCup = "Kids Cup with Kids Scoop"
-    case smallCup = "Small Cup with 1 Scoop"
-    case mediumCup = "Medium Cup with 2 Scoops"
-    case largeCup = "Large Cup with 3 Scoops"
-    case kidsCone = "Regular Cone with Kids Cone"
-    case smallCone = "Regular Cone with 1 Scoop"
-    case mediumCone = "Regular Cone with 2 Scoops"
-    case largeCone = "Regular Cone with 3 Scoops"
-    case waffleCone = "Waffle Cone with 3 Large Scoops"
-}
-
 struct Cone {
     let flavor: Flavor
     let topping: String
-    let sizeDescription: SizeDescription
     let size: Size
 }
 
@@ -41,14 +27,15 @@ struct Cone {
 //}
 
 class IceCreamShop {
-    let iceCreamFlavor: [flavors]
-    let iceCreamSize : [Cone]
+    let iceCreamFlavor: [Flavor]
+    let iceCreamCone : [Cone]
     let iceCreamToppings : String
     var totalSales: Double
     
-    init(flavor: [Cone], description: [Cone], toppings: String, sales: Double){
+    
+    init(flavor: [Flavor], price: [Cone], toppings: String, sales: Double){
         self.iceCreamFlavor = flavor
-        self.iceCreamSize = description
+        self.iceCreamCone = price
         self.iceCreamToppings = toppings
         self.totalSales = sales
     }
@@ -92,9 +79,17 @@ flavors.append(flavorEleven)
 let flavorTwelve = Flavor(name: "Banana", rating: 5)
 flavors.append(flavorTwelve)
 
+func listTopFlavors() {
+    print("OUR TOP FLAVORS ARE:")
+    for i in flavors {
+        if i.rating >= 4 {
+            print(i.name)
+        }
+    }
+}
+
+(listTopFlavors())
 
 
-
-
-//var iceCreamShop = IceCreamShop(flavor: flavor , description: <#T##[Cone]#>, toppings: <#T##String#>, sales: <#T##Double#>)
+//var iceCreamShop = IceCreamShop(flavor: flavors, price: <#T##[Cone]#>, toppings: String, sales: String)
 
