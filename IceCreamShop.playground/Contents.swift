@@ -33,4 +33,5 @@ struct Cone {
         self.coneSize  = coneSize
         self.iceCreamtoppings = iceCreamToppings
     }
+    func eat() { print("Mmm! I love <flavor here>!") }
 }
