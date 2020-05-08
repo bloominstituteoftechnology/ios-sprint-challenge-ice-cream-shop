@@ -26,8 +26,8 @@ enum iceCreamFlavors: String {
 
 
 enum FlavorRating: Int {
-    case vanillaRating = 5
-    case chocolateRating = 6
+    case vanillaRating = 3
+    case chocolateRating = 2
     case strawberryRating = 7
     case rockyRoad = 8
 }
@@ -48,7 +48,7 @@ struct Cone {
     init(iceCreamFlavors: [Flavor]) {
         self.iceCreamFlavors = iceCreamFlavors
     }
-    func eat() { print("Mmm! I love <flavor here>!") }
+//    func eat() { print("Mmm! I love \(iceCreamFlavors.vanilla)!") }
 }
 
 
@@ -60,7 +60,7 @@ struct Flavor {
 
     init(rating: FlavorRating, coneSize: Size, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
         self.rating = rating
-        self.coneSize  = coneSize
+        self.coneSize = coneSize
         self.iceCreamToppings = iceCreamToppings
         self.iceCreamFlavors = iceCreamFlavors
     }
@@ -84,8 +84,12 @@ myCone.iceCreamFlavors.append(flavor4)
 
 func listTopFlavors() {
     for flavors in myCone.iceCreamFlavors {
-        print("ratings: \(flavors.rating.rawValue), coneSize: \(flavors.coneSize.rawValue), iceCreamToppings: \(flavors.iceCreamToppings.rawValue), iceCreamFlavors: \(flavors.iceCreamFlavors.rawValue)") }
+        if flavors.rating.rawValue > 4 {
+            print("Our top flavors are \(flavors.iceCreamFlavors)") }
+    }
 }
 
 listTopFlavors()
 
+
+s
