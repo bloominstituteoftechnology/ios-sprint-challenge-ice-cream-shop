@@ -8,6 +8,14 @@ enum Size: Double {
 }
 
 
+enum iceCreamToppings: String {
+    case sprinkles = "Sprinkles"
+    case fudge = "Hot fudge"
+    case peanuts = "Peanuts"
+    case gummybears = "Gummy bears"
+}
+
+
 class IceCreamShop {
     let coneSize: Size
     let iceCreamFlavors: String
