@@ -44,10 +44,16 @@ class IceCreamShop {
                 print("One of our top flavors is \(iceCream.name)!")
                 
             }
-            
         }
+    }
+    
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone {
+        
+        var total: Double = size.rawValue + totalSales
         
         
+        
+        return Any
     }
     
     init(iceCreams: [Flavor], price: Size, topping: String, totalSales: Double) {
@@ -57,5 +63,4 @@ class IceCreamShop {
         self.topping = topping
         self.totalSales = totalSales
     }
-    
 }
