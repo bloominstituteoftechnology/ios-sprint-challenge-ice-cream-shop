@@ -31,7 +31,6 @@ struct Cone {
 class IceCreamShop {
     
     var iceCreams: [Flavor]
-    var price: Size
     let toppings: [String?]
     var totalSales: Double
     
@@ -47,23 +46,22 @@ class IceCreamShop {
         }
     }
 
-    func orderCone(iceCream: Flavor, toppings: [String?]?, price: Size) -> Cone {
-
-        let newCone: Cone = Cone(flavor: iceCream, topping: toppings ?? ["no toppings"], size: price)
+    func orderCone(iceCream: Flavor, toppings: [String?]?) -> Cone {
+        let newCone: Cone = Cone(flavor: iceCream, topping: toppings ?? ["no toppings"], size: Size)
         guard let unwrappedToppings = toppings else {
-            print("Your \(iceCream.name) will be \(price.rawValue)!")
-            totalSales +=  price.rawValue
+            print("Your \(iceCream.name) will be \(size.rawValue)!")
+            totalSales +=  size.rawValue
             return newCone
         }
-        print("Your \(iceCream.name) with \(unwrappedToppings) will be \(price.rawValue)")
+        print("Your \(iceCream.name) with \(unwrappedToppings) will be \(Size.rawValue)")
         totalSales +=  price.rawValue
         return newCone
     }
 
-    init(iceCreams: [Flavor], price: Size, toppings: [String?], totalSales: Double) {
+    init(iceCreams: [Flavor], toppings: [String?], totalSales: Double) {
         
         self.iceCreams = iceCreams
-        self.price = price
+    
         self.toppings = toppings
         self.totalSales = totalSales
     }
@@ -77,4 +75,4 @@ let iceCreams = [lavenderHoney, vanilla, lavenderHoneyVanillaTwist]
 let prices: [Size] = [.small, .medium, .small]
 let toppings: [String] = ["Sprinkles", "Honey"]
 
-let viIceCreamShop =
+let viIceCreamShop = IceCreamShop(iceCreams: iceCreams, toppings: toppings, totalSales: 0.0)
