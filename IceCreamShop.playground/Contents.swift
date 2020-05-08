@@ -25,6 +25,14 @@ enum iceCreamFlavors: String {
 }
 
 
+enum FlavorRating: Int {
+    case vanillaRating = 5
+    case chocolateRating = 6
+    case strawberryRating = 7
+    case rockyRoad = 8
+}
+
+
 class IceCreamShop {
     let totalSales: Double
 
@@ -45,12 +53,12 @@ struct Cone {
 
 
 struct Flavor {
-    let rating: Int
+    let rating: FlavorRating
     let coneSize: Size
     let iceCreamToppings: iceCreamToppings
     let iceCreamFlavors : iceCreamFlavors
 
-    init(rating: Int, coneSize: Size, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
+    init(rating: FlavorRating, coneSize: Size, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
         self.rating = rating
         self.coneSize  = coneSize
         self.iceCreamToppings = iceCreamToppings
@@ -62,10 +70,10 @@ struct Flavor {
 var myCone = Cone(iceCreamFlavors: [])
 
 
-let flavor1 = Flavor(rating: 5, coneSize: .small, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
-let flavor2 = Flavor(rating: 6, coneSize: .medium, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
-let flavor3 = Flavor(rating: 7, coneSize: .large,  iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
-let flavor4 = Flavor(rating: 10, coneSize: .extraLarge,  iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
+let flavor1 = Flavor(rating: .vanillaRating, coneSize: .small, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
+let flavor2 = Flavor(rating: .rockyRoad, coneSize: .medium, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
+let flavor3 = Flavor(rating: .chocolateRating, coneSize: .large,  iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
+let flavor4 = Flavor(rating: .strawberryRating, coneSize: .extraLarge,  iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
 
 
 myCone.iceCreamFlavors.append(flavor1)
@@ -76,7 +84,7 @@ myCone.iceCreamFlavors.append(flavor4)
 
 func listTopFlavors() {
     for flavors in myCone.iceCreamFlavors {
-        print("ratings: \(flavors.rating), coneSize: \(flavors.coneSize), iceCreamToppings: \(flavors.iceCreamToppings), iceCreamFlavors: \(flavors.iceCreamFlavors)") }
+        print("ratings: \(flavors.rating.rawValue), coneSize: \(flavors.coneSize.rawValue), iceCreamToppings: \(flavors.iceCreamToppings.rawValue), iceCreamFlavors: \(flavors.iceCreamFlavors.rawValue)") }
 }
 
 listTopFlavors()
