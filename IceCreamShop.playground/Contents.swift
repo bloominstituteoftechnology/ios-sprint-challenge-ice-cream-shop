@@ -41,7 +41,7 @@ class IceCreamShop {
             
             if iceCream.rating <= 4.0 {
                 
-                print("One of our top flavors is \(iceCream.name)!")
+                print("One of our top flavors is \(iceCream.name) with a rating of \(iceCream.rating)!")
                 
             }
         }
@@ -70,4 +70,11 @@ class IceCreamShop {
 }
 
 
+let lavenderHoney = Flavor(name: "Lavender Honey", rating: 5.0)
+let vanilla = Flavor(name: "Vanilla", rating: 4.5)
+let lavenderHoneyVanillaTwist = Flavor(name: "Lavender Honey Vanilla Twist", rating: 4.7)
+let iceCreams = [lavenderHoney, vanilla, lavenderHoneyVanillaTwist]
+let prices: [Size] = [.small, .medium, .small]
+let toppings: [String] = ["Sprinkles", "Honey"]
 
+let viIceCreamShop =
