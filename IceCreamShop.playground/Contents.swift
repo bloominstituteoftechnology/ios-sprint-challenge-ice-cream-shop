@@ -18,7 +18,7 @@ enum Size: Double {
 struct Cone {
     
     let flavor: Flavor
-    let topping: String
+    let topping: [String?]
     let size: Size
     
     func eat() {
@@ -32,7 +32,7 @@ class IceCreamShop {
     
     var iceCreams: [Flavor]
     var price: Size
-    let topping: String
+    let toppings: [String?]
     var totalSales: Double
     
     func listTopFlavors() {
@@ -46,21 +46,28 @@ class IceCreamShop {
             }
         }
     }
-    
-    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone {
-        
-        var total: Double = size.rawValue + totalSales
-        
-        
-        
-        return Any
+
+    func orderCone(iceCream: Flavor, toppings: [String?]?, price: Size) -> Cone {
+
+        let newCone: Cone = Cone(flavor: iceCream, topping: toppings ?? ["no toppings"], size: price)
+        guard let unwrappedToppings = toppings else {
+            print("Your \(iceCream.name) will be \(price.rawValue)!")
+            totalSales +=  price.rawValue
+            return newCone
+        }
+        print("Your \(iceCream.name) with \(unwrappedToppings) will be \(price.rawValue)")
+        totalSales +=  price.rawValue
+        return newCone
     }
-    
-    init(iceCreams: [Flavor], price: Size, topping: String, totalSales: Double) {
+
+    init(iceCreams: [Flavor], price: Size, toppings: [String?], totalSales: Double) {
         
         self.iceCreams = iceCreams
         self.price = price
-        self.topping = topping
+        self.toppings = toppings
         self.totalSales = totalSales
     }
 }
+
+
+
