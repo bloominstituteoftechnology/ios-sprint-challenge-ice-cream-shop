@@ -38,7 +38,7 @@ class IceCreamShop {
         
         for iceCream in iceCreams {
             
-            if iceCream.rating <= 4.0 {
+            if iceCream.rating >= 4.0 {
                 
                 print("One of our top flavors is \(iceCream.name) with a rating of \(iceCream.rating)!")
                 
@@ -46,22 +46,21 @@ class IceCreamShop {
         }
     }
 
-    func orderCone(iceCream: Flavor, toppings: [String?]?) -> Cone {
-        let newCone: Cone = Cone(flavor: iceCream, topping: toppings ?? ["no toppings"], size: Size)
+    func orderCone(iceCream: Flavor, toppings: [String?]?, size: Size) -> Cone {
+        let newCone: Cone = Cone(flavor: iceCream, topping: toppings ?? ["no toppings"], size: size)
         guard let unwrappedToppings = toppings else {
-            print("Your \(iceCream.name) will be \(size.rawValue)!")
+            print("Your \(iceCream.name) ice cream cone will be \(size.rawValue)!")
             totalSales +=  size.rawValue
             return newCone
         }
-        print("Your \(iceCream.name) with \(unwrappedToppings) will be \(Size.rawValue)")
-        totalSales +=  price.rawValue
+        print("Your \(iceCream.name) ice cream cone with \(unwrappedToppings) will be \(size.rawValue)")
+        totalSales +=  size.rawValue
         return newCone
     }
 
     init(iceCreams: [Flavor], toppings: [String?], totalSales: Double) {
         
         self.iceCreams = iceCreams
-    
         self.toppings = toppings
         self.totalSales = totalSales
     }
@@ -71,8 +70,21 @@ class IceCreamShop {
 let lavenderHoney = Flavor(name: "Lavender Honey", rating: 5.0)
 let vanilla = Flavor(name: "Vanilla", rating: 4.5)
 let lavenderHoneyVanillaTwist = Flavor(name: "Lavender Honey Vanilla Twist", rating: 4.7)
-let iceCreams = [lavenderHoney, vanilla, lavenderHoneyVanillaTwist]
+var iceCreams = [lavenderHoney, vanilla, lavenderHoneyVanillaTwist]
 let prices: [Size] = [.small, .medium, .small]
 let toppings: [String] = ["Sprinkles", "Honey"]
 
 let viIceCreamShop = IceCreamShop(iceCreams: iceCreams, toppings: toppings, totalSales: 0.0)
+
+viIceCreamShop.listTopFlavors()
+
+let visLavenderHoneyCone = viIceCreamShop.orderCone(iceCream: lavenderHoneyVanillaTwist, toppings: ["Honey"], size: .large)
+visLavenderHoneyCone.eat()
+
+let eyveCone = viIceCreamShop.orderCone(iceCream: lavenderHoney, toppings: nil, size: .large)
+eyveCone.eat()
+
+let bernieCone = viIceCreamShop.orderCone(iceCream: vanilla, toppings: nil, size: .small)
+bernieCone.eat()
+
+print(viIceCreamShop.totalSales)
