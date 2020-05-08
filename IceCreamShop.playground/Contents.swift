@@ -19,21 +19,15 @@ enum iceCreamToppings: String {
 enum iceCreamFlavors: String {
     case vanilla = "Vanilla"
     case chocolate = "Chocolate"
-    case straawberry = "Strawberry"
+    case strawberry = "Strawberry"
     case rockyroad = "Rocky Road"
 }
 
 
 class IceCreamShop {
-    let coneSize: Size
-    let iceCreamFlavors: String
-    let iceCreamToppings: iceCreamToppings
     let totalSales: Double
 
-    init(coneSize: Size, iceCreamFlavors: String, iceCreamToppings: iceCreamToppings, totalSales: Double) {
-        self.coneSize = coneSize
-        self.iceCreamFlavors = iceCreamFlavors
-        self.iceCreamToppings = iceCreamToppings
+    init(totalSales: Double) {
         self.totalSales = totalSales
     }
 }
@@ -42,30 +36,41 @@ class IceCreamShop {
 struct Cone {
     let iceCreamFlavors: [Flavor]
     let coneSize: Size
-    let iceCreamtoppings: iceCreamToppings
 
-    init(iceCreamFlavors: String, coneSize: Size, iceCreamToppings: iceCreamToppings) {
-        self.iceCreamFlavors = iceCreamFlavors
+    init(iceCreamFlavors: String, coneSize: Size) {
+        self.iceCreamFlavors = []
         self.coneSize  = coneSize
-        self.iceCreamtoppings = iceCreamToppings
     }
     func eat() { print("Mmm! I love <flavor here>!") }
 }
 
 
 struct Flavor {
-    let name: String
     let rating: Int
+    let iceCreamToppings: iceCreamToppings
+    let iceCreamFlavors : iceCreamFlavors
 
-    init(name: String, rating: Int) {
-        self.name = name
+    init(rating: Int, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
         self.rating = rating
+        self.iceCreamToppings = iceCreamToppings
+        self.iceCreamFlavors
     }
 }
 
 
-let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>, iceCreamToppings: iceCreamToppings)
+let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>)
 
-let flavor1 = Flavor(name: "Vanilla", rating: 5)
+
+let flavor1 = Flavor(rating: 5, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
+let flavor2 = Flavor(rating: 6, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
+let flavor3 = Flavor(rating: 7, iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
+let flavor4 = Flavor(rating: 10, iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
+
+
+myCone.iceCreamFlavors.append(flavor1)
+myCone.iceCreamFlavors.append(flavor2)
+myCone.iceCreamFlavors.append(flavor3)
+myCone.iceCreamFlavors.append(flavor4)
+
 
 
