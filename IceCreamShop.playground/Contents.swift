@@ -5,6 +5,7 @@ enum Size: Double {
     case small = 3.99
     case medium = 4.99
     case large = 5.99
+    case extraLarge = 6.99
 }
 
 
@@ -34,12 +35,10 @@ class IceCreamShop {
 
 
 struct Cone {
-    let iceCreamFlavors: [Flavor]
-    let coneSize: Size
+    var iceCreamFlavors: [Flavor]
 
-    init(iceCreamFlavors: String, coneSize: Size) {
-        self.iceCreamFlavors = []
-        self.coneSize  = coneSize
+    init(iceCreamFlavors: [Flavor]) {
+        self.iceCreamFlavors = iceCreamFlavors
     }
     func eat() { print("Mmm! I love <flavor here>!") }
 }
@@ -47,24 +46,26 @@ struct Cone {
 
 struct Flavor {
     let rating: Int
+    let coneSize: Size
     let iceCreamToppings: iceCreamToppings
     let iceCreamFlavors : iceCreamFlavors
 
-    init(rating: Int, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
+    init(rating: Int, coneSize: Size, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
         self.rating = rating
+        self.coneSize  = coneSize
         self.iceCreamToppings = iceCreamToppings
-        self.iceCreamFlavors
+        self.iceCreamFlavors = iceCreamFlavors
     }
 }
 
 
-let myCone = Cone(iceCreamFlavors: [], coneSize: <#T##Size#>)
+var myCone = Cone(iceCreamFlavors: [])
 
 
-let flavor1 = Flavor(rating: 5, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
-let flavor2 = Flavor(rating: 6, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
-let flavor3 = Flavor(rating: 7, iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
-let flavor4 = Flavor(rating: 10, iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
+let flavor1 = Flavor(rating: 5, coneSize: .small, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
+let flavor2 = Flavor(rating: 6, coneSize: .medium, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
+let flavor3 = Flavor(rating: 7, coneSize: .large,  iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
+let flavor4 = Flavor(rating: 10, coneSize: .extraLarge,  iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
 
 
 myCone.iceCreamFlavors.append(flavor1)
@@ -73,4 +74,10 @@ myCone.iceCreamFlavors.append(flavor3)
 myCone.iceCreamFlavors.append(flavor4)
 
 
+func listTopFlavors() {
+    for flavors in myCone.iceCreamFlavors {
+        print("ratings: \(flavors.rating), coneSize: \(flavors.coneSize), iceCreamToppings: \(flavors.iceCreamToppings), iceCreamFlavors: \(flavors.iceCreamFlavors)") }
+}
+
+listTopFlavors()
 
