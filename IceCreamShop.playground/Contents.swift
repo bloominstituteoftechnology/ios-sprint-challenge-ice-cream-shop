@@ -35,3 +35,14 @@ struct Cone {
     }
     func eat() { print("Mmm! I love <flavor here>!") }
 }
+
+
+struct Flavor {
+    let name: String
+    let rating: Int
+
+    init(name: String, rating: Int) {
+        self.name = name
+        self.rating = rating
+    }
+}
