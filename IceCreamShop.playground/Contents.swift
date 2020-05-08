@@ -5,7 +5,10 @@ struct Flavor {
     let rating: Double
 }
 let strawberry = Flavor(name: "Strawberry", rating: 10)
-let chocolate = 
+let chocolate = Flavor(name: "Chocolate", rating: 7)
+let vanilla = Flavor(name: "Vanilla", rating: 6)
+let pistachio = Flavor(name: "Pistachio", rating: 3)
+
 print(strawberry.name)
 
 enum Size: Double {
@@ -22,7 +25,7 @@ struct Cone {
         print("Mmm! I love \(flavor.name)")
     }
 }
-
+(Cone(size: .large, topping: "Nuts", flavor: chocolate)).eat()
 class IceCreamShop {
     var iceCreamFlavors: [Flavor]
     
