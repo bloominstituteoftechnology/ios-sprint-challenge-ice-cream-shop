@@ -20,7 +20,7 @@ struct Cone {
     let topping: String?
     let size: Size
     
-    func eat() {
+    func eat()  {
         print("Mmm! I love \(flavor.name)!")
     }
 }
@@ -88,14 +88,18 @@ myIceCreamShop.listTopFlavors()
 
 // #10
 
-let newCone = myIceCreamShop.orderCone(flavor: cherryGarcia, topping: nil, size: .large)
+let newCone = myIceCreamShop.orderCone(flavor: cherryGarcia, topping: "M&Ms", size: .large)
 
 
 // #11
 
-Cone.eat(newCone)
+// Cone.eat()
 
 
 // #12
 
 print(myIceCreamShop.totalSales)
+
+
+// Stretch
+
