@@ -3,9 +3,10 @@ var totalSales: Double = 0.0
 struct Flavor {
     let name: String
     let rating: Double
-    
 }
-
+let strawberry = Flavor(name: "Strawberry", rating: 10)
+let chocolate = 
+print(strawberry.name)
 
 enum Size: Double {
     case small = 3.99
@@ -16,30 +17,25 @@ enum Size: Double {
 struct Cone {
     let size: Size
     let topping: String
-    let strawberry: Flavor = Flavor(name: "Strawberry", rating: 10)
-    let chocolate: Flavor = Flavor(name: "Chocolate", rating: 10)
-    let vanilla: Flavor = Flavor(name: "Vanilla", rating: 7.7)
-    let pistachio: Flavor = Flavor(name: "Pistachio", rating: 3.2)
-    
+    let flavor: Flavor
     func eat() {
-        print("Mmm! I love \(vanilla)")
+        print("Mmm! I love \(flavor.name)")
     }
-   
 }
 
 class IceCreamShop {
-    var iceCreamFlavors: [Cone]
+    var iceCreamFlavors: [Flavor]
     
 
     
-    init(iceCreamFlavors: [Cone]) {
+    init(iceCreamFlavors: [Flavor]) {
         self.iceCreamFlavors = iceCreamFlavors
     }
     
     
     func listTopFlavors() {
         for topFlavors in iceCreamFlavors {
-            print("Our top flavors are: \(topFlavors)")
+            print("Our top flavors are: \(topFlavors.name)")
         }
     }
 }
