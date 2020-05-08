@@ -41,7 +41,7 @@ struct Cone {
 //}
 
 class IceCreamShop {
-    let iceCreamFlavor: [Cone]
+    let iceCreamFlavor: [flavors]
     let iceCreamSize : [Cone]
     let iceCreamToppings : String
     var totalSales: Double
@@ -91,6 +91,8 @@ flavors.append(flavorEleven)
 
 let flavorTwelve = Flavor(name: "Banana", rating: 5)
 flavors.append(flavorTwelve)
+
+
 
 
 
