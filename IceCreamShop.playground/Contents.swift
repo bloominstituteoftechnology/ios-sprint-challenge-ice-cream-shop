@@ -49,7 +49,7 @@ class IceCreamShop {
     var swirl: String
     var hotFudge: String
     var berries:String
-    var totalSales: [TotalSales]
+    var totalSales: Double
     
     init(small: String, medium: String, large: String, chocolate: String, vanilla: String, swirl: String, hotFudge: String, berries: String) {
         self.small = small
@@ -60,7 +60,7 @@ class IceCreamShop {
         self.swirl = swirl
         self.hotFudge = hotFudge
         self.berries = berries
-        self.totalSales = []
+        
     }
 
 }
@@ -74,12 +74,11 @@ var myIceCreamShop = IceCreamShop(small: "8 ounce", medium: "10 ounce", large: "
 //  When the string has been created, print it.
 
 
-let flavor1 = (flavor: "Chocolate", rating: 4)
-let flavor2 = (flavor: "Vanilla", rating: 3)
 
 
 
-func listTopFlavors {
+
+func listTopFlavors() {
     for flavor in Flavor {
         if flavor.rating >= 4
         print("Our top flavors are \(Flavor.name)!")
@@ -107,13 +106,14 @@ func listTopFlavors {
 //  Finally, return the cone you initialized.
 
 
-let orderCone = Cone(flavor: "Chocolate", topping: "Berries", size: "Medium")
+var orderCone = Cone(flavor: "Chocolate", topping: "Berries", size: .medium)
+
 
 //7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
 
 
-
-
+let flavor1 = (flavor: "Chocolate", rating: 4)
+let flavor2 = (flavor: "Vanilla", rating: 3)
 
 //8. Use the constants you just made to initialize a new `IceCreamShop` constant.
 
@@ -124,13 +124,14 @@ let orderCone = Cone(flavor: "Chocolate", topping: "Berries", size: "Medium")
 //9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
 
 
+listTopFlavors()
 
 
 
 //10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
 
 
-
+var joeOrderCone = Cone(flavor: "Vanilla", topping: "Hot Fudge", size: .small)
 
 
 //11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
