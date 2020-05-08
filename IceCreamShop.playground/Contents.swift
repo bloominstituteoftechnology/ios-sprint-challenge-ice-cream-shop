@@ -4,7 +4,7 @@ struct Flavor {
     
     let name: String
     let rating: Double
-   
+    
 }
 
 enum Size: Double {
@@ -27,3 +27,16 @@ struct Cone {
     
 }
 
+
+class IceCreamShop {
+    
+    var iceCream: Flavor
+    
+    init(iceCream: Flavor) {
+        
+        self.iceCream = iceCream
+        
+    }
+    
+    
+}
