@@ -20,8 +20,9 @@ enum Size: Double {
 
 struct Cone {
     let size: Size
-    let topping: String
+    let topping: String?
     let flavor: Flavor
+    
     func eat() {
         print("Mmm! I love \(flavor.name)!")
     }
@@ -44,27 +45,31 @@ class IceCreamShop {
     }
     
 }
-    func listTopFlavors() {
-        for topFlavors in allFlavors {
-            if topFlavors.rating >= 4.0 {
-                print("\(topFlavors.name) is a top flavor.")
+let myIceCreamShop = IceCreamShop(iceCreamFlavors: allFlavors, totalSales: 20, sizes: [], topping: [])
+
+func orderCone(myOrder: Cone) -> Cone? {
+    if let unwrappedOrder = myOrder.topping {
+        print("Your \(unwrappedOrder) \(myOrder.size.rawValue)")
+   } else {
+    print("whoops")
+    }
+    return myOrder
+}
+
+    
+func listTopFlavors() {
+for topFlavors in allFlavors {
+    if topFlavors.rating >= 4.0 {
+        print("\(topFlavors.name) is a top flavor.")
         }
     }
 }
-
 var cone1 = Cone(size: .medium, topping: "Whipped Cream", flavor: strawberry)
 var cone2 = Cone(size: .small, topping: "Chocolate Sauce", flavor: vanilla)
 var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
+
+orderCone(myOrder: Cone(size: .large, topping: nil, flavor: chocolate))
+
 listTopFlavors()
-
-func orderCone(myOrder: Cone) -> Cone? {
-    let customerOrder = cone1
-    
-    print(customerOrder.)
-    return myOrder
-}
-        
-orderCone(myOrder: Cone(size: .large, topping: "Nuts", flavor: strawberry))
-
