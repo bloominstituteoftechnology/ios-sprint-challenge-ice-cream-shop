@@ -33,15 +33,13 @@ Cone(size: .large, topping: "Nuts", flavor: chocolate).eat()
 class IceCreamShop {
     var iceCreamFlavors: [Flavor]
     var totalSales: Double
-    var sizes: [Size]
-    var topping: [String]
+    var coneType: [Cone]
     
-    init(iceCreamFlavors: [Flavor], totalSales: Double, sizes: [Size], topping: [String]) {
+    init(iceCreamFlavors: [Flavor], totalSales: Double, sizes: [Size], topping: [String], coneType: [Cone]) {
     self.iceCreamFlavors = iceCreamFlavors
     self.totalSales = totalSales
-    self.sizes = sizes
-    self.topping = topping
-    
+    self.coneType = coneType
+        
     }
 
 
@@ -54,8 +52,8 @@ func orderCone(myOrder: Cone) -> Cone? {
            print("Your \(myOrder.flavor.name) is \(myOrder.size.rawValue)")
         myOrder.size.rawValue
        }
-    
-       return myOrder
+     print(totalSales + myOrder.size.rawValue)
+    return myOrder
 }
     
 }
@@ -70,7 +68,6 @@ var cone1 = Cone(size: .medium, topping: "Whipped Cream", flavor: strawberry)
 var cone2 = Cone(size: .small, topping: "Chocolate Sauce", flavor: vanilla)
 var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
-
 
 
 listTopFlavors()
