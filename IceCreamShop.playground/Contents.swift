@@ -80,36 +80,36 @@ var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: nil, flavor: chocolate)
 
 let myIceCreamShop = IceCreamShop(iceCreamFlavors: allFlavors, totalSales: 0, coneType: [cone4])
-
+myIceCreamShop.listTopFlavors()
 myIceCreamShop.orderCone(myOrder: cone4)
 myIceCreamShop.orderCone(myOrder: cone3)
 myIceCreamShop.orderCone(myOrder: Cone(size: .large, topping: nil, flavor: strawberry))
-myIceCreamShop.orderCone(myOrder: cone1)
-myIceCreamShop.orderCone(myOrder: Cone(size: .small, topping: nil, flavor: chocolate))
-myIceCreamShop.orderCone(myOrder: cone2)
-myIceCreamShop.orderCone(myOrder: Cone(size: .medium, topping: "Walnuts", flavor: pistachio))
 
 
-let newCones = [Cone(size: .large, topping: nil, flavor: Flavor(name: "Butter Pecan", rating: 9)), Cone(size: .medium, topping: "Nuts", flavor: Flavor(name: "Orange", rating: 5))]
-
-
-myIceCreamShop.listTopFlavors()
 let butterPecan = Flavor(name: "Butter Pecan", rating: 9)
 let peach = Flavor(name: "Peach", rating: 6)
 let mango = Flavor(name: "Mango", rating: 4)
 let neopolitan = Flavor(name: "Neopolitan", rating: 3)
 
 let newFlavors = [butterPecan, peach, mango, neopolitan]
+let newSizes: [Size] = [.large, .medium, .small]
+let newToppings:[String?] = []
+
 
 let cone5 = Cone(size: .large, topping: nil, flavor: mango)
-//myNewIceCreamShop.orderCone(myOrder: cone5)
-myNewIceCreamShop.orderCone(myOrder: Cone(size: .medium, topping: "pecans", flavor: neopolitan))
+let cone6 = Cone(size: .medium, topping: "Gummy Worms", flavor: neopolitan)
+let cone7 = Cone(size: .small, topping: "Oreos", flavor: peach)
 
-let newSizes = [Size].self
-let newToppings = ["Pineapples", "Gummy Worms", "Sprinkles"]
-let thirdIceCreamShop = IceCreamShop(iceCreamFlavors: newFlavors, totalSales: 0, coneType: newCones)
-thirdIceCreamShop.orderCone(myOrder: cone5)
-//thirdIceCreamShop.listTopFlavors()
-let myNewIceCreamShop = IceCreamShop(iceCreamFlavors: newFlavors, totalSales: 0, coneType: [cone5])
-////myNewIceCreamShop.listTopFlavors()
-//
+cone7.eat()
+
+let newCones = [cone5, cone6, cone7]
+let newestIceCreamShop = IceCreamShop(iceCreamFlavors: newFlavors, totalSales: 0.0, coneType: newCones)
+
+newestIceCreamShop.orderCone(myOrder: cone7)
+newestIceCreamShop.orderCone(myOrder: cone6)
+newestIceCreamShop.listTopFlavors2()
+
+
+
+print(myIceCreamShop.totalSales)
+print(newestIceCreamShop.totalSales)
