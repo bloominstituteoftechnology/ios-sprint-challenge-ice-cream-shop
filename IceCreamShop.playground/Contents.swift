@@ -49,9 +49,9 @@ let myIceCreamShop = IceCreamShop(iceCreamFlavors: allFlavors, totalSales: 20, s
 
 func orderCone(myOrder: Cone) -> Cone? {
     if let unwrappedOrder = myOrder.topping {
-        print("Your \(unwrappedOrder) \(myOrder.size.rawValue)")
+        print("Your \(myOrder.flavor.name) with \(unwrappedOrder) is \(myOrder.size.rawValue)")
    } else {
-    print("whoops")
+        print("Your \(myOrder.flavor.name) is \(myOrder.size.rawValue)")
     }
     return myOrder
 }
@@ -70,6 +70,6 @@ var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 
-orderCone(myOrder: Cone(size: .large, topping: nil, flavor: chocolate))
+orderCone(myOrder: Cone(size: .large, topping: "sprinkles", flavor: chocolate))
 
 listTopFlavors()
