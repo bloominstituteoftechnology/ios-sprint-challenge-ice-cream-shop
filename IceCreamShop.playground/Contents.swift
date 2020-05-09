@@ -35,7 +35,7 @@ class IceCreamShop {
     var totalSales: Double
     var coneType: [Cone]
     
-    init(iceCreamFlavors: [Flavor], totalSales: Double, sizes: [Size], topping: [String], coneType: [Cone]) {
+    init(iceCreamFlavors: [Flavor], totalSales: Double, coneType: [Cone]) {
     self.iceCreamFlavors = iceCreamFlavors
     self.totalSales = totalSales
     self.coneType = coneType
@@ -51,11 +51,11 @@ func orderCone(myOrder: Cone) -> Cone? {
       } else {
            print("Your \(myOrder.flavor.name) is \(myOrder.size.rawValue)")
         myOrder.size.rawValue
-       }
-     print(totalSales + myOrder.size.rawValue)
+     totalSales += myOrder.size.rawValue
+        print(totalSales)
+}
     return myOrder
 }
-    
 }
 func listTopFlavors() {
 for topFlavors in allFlavors {
@@ -64,11 +64,15 @@ for topFlavors in allFlavors {
         }
     }
 }
+
 var cone1 = Cone(size: .medium, topping: "Whipped Cream", flavor: strawberry)
 var cone2 = Cone(size: .small, topping: "Chocolate Sauce", flavor: vanilla)
 var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
-var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
+var cone4 = Cone(size: .medium, topping: nil, flavor: chocolate)
 
-
+let myIceCreamShop = IceCreamShop(iceCreamFlavors: allFlavors, totalSales: 0, coneType: [cone4])
 listTopFlavors()
 
+myIceCreamShop.orderCone(myOrder: cone4)
+myIceCreamShop.orderCone(myOrder: cone3)
+myIceCreamShop.orderCone(myOrder: Cone(size: .large, topping: nil, flavor: strawberry))
