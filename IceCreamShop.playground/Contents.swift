@@ -43,20 +43,22 @@ class IceCreamShop {
     self.topping = topping
     
     }
-    
-}
-let myIceCreamShop = IceCreamShop(iceCreamFlavors: allFlavors, totalSales: 20, sizes: [], topping: [])
+
+
 
 func orderCone(myOrder: Cone) -> Cone? {
-    if let unwrappedOrder = myOrder.topping {
-        print("Your \(myOrder.flavor.name) with \(unwrappedOrder) is \(myOrder.size.rawValue)")
-   } else {
-        print("Your \(myOrder.flavor.name) is \(myOrder.size.rawValue)")
-    }
-    return myOrder
-}
-
+       if let unwrappedOrder = myOrder.topping {
+           print("Your \(myOrder.flavor.name) with \(unwrappedOrder) is \(myOrder.size.rawValue)")
+        myOrder.size.rawValue + totalSales
+      } else {
+           print("Your \(myOrder.flavor.name) is \(myOrder.size.rawValue)")
+        myOrder.size.rawValue
+       }
     
+       return myOrder
+}
+    
+}
 func listTopFlavors() {
 for topFlavors in allFlavors {
     if topFlavors.rating >= 4.0 {
@@ -70,6 +72,6 @@ var cone3 = Cone(size: .large, topping: "Cherry", flavor: pistachio)
 var cone4 = Cone(size: .medium, topping: " ", flavor: chocolate)
 
 
-orderCone(myOrder: Cone(size: .large, topping: "sprinkles", flavor: chocolate))
 
 listTopFlavors()
+
