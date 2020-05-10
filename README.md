@@ -1,6 +1,6 @@
 ![](https://tk-assets.lambdaschool.com/99e9f433-68fb-4853-85ae-85bb8af25524_lama-roscu-Wpg3Qm0zaGk-unsplash.jpg)
 
-# Sprint Challenge: Swift Fundamentals - Ice Cream Shop
+#  Sprint Challenge: Swift Fundamentals - Ice Cream Shop
 
 You've been chosen to begin working on an app for Lambda School's first ice cream shop . The app will need to be able to create an ice cream shop model object, give it a menu of flavors, toppings and ice cream cone sizes and let people order from the menu.
 
