@@ -7,8 +7,8 @@ struct Flavor {
 
 enum Size: Double  {
     case small = 3.99
-    case medium = 4.99
-    case large = 5.99
+    case medium = 5.49
+    case large = 6.99
 }
 
 var selectedSize: String
@@ -24,17 +24,44 @@ struct Cone {
 }
 
 class IceCreamShop {
-    let menu: [Cone]
-    let totalSales: Double
+    let flavors: String
+    let sizes: Size
+    let toppings: String
     
-    init(ourMenu: [Cone], sales: Double) {
-        self.menu = ourMenu
-        self.totalSales = sales
+    init(flavors: String, size: Size, toppings: String) {
+        self.flavors = flavors
+        self.sizes = size
+        self.toppings = toppings
     }
 }
 
-// Flavors
+var totalSales: Double = 0.00
+
 var flavors = [Flavor]()
+
+func listTopFlavors() {
+    print("OUR TOP FLAVORS ARE:")
+    for index in flavors {
+        if index.rating >= 4 {
+            print(index.name)
+        }
+    }
+}
+
+func orderCone(orderedFlavor: Flavor, orderedTopping: String?, orderedSize: Size) -> Cone? {
+    let conePrice = orderedSize.rawValue
+    let flavor = orderedFlavor.name
+    totalSales += conePrice
+    if orderedTopping != nil {
+        print("Your \(flavor) ice cream cone with \(orderedTopping!) is $\(totalSales)")
+    }else {
+        print("Your \(flavor) ice cream cone is $\(totalSales).")
+    }
+    let newCone = Cone(flavor: orderedFlavor, topping: orderedTopping, sizes: orderedSize)
+    return newCone
+}
+
+// Flavors
 
 var flavorOne = Flavor(name: "Vanilla", rating: 3)
 flavors.append(flavorOne)
@@ -72,25 +99,13 @@ flavors.append(flavorEleven)
 var flavorTwelve = Flavor(name: "Banana", rating: 5)
 flavors.append(flavorTwelve)
 
-func listTopFlavors() {
-    print("OUR TOP FLAVORS ARE:")
-    for index in flavors {
-        if index.rating >= 4 {
-            print(index.name)
-        }
-    }
-}
+
+// Toppings
+
+let toppings = ["Hot Fudge","Sprinkles","Caramel","Oreos","Peanut Butter Cups","Cookie Dough","Whipped Cream","Hard Chocolate Coating","Melted Marshmallows","Cereal","Nuts","Fruit"]
+
+let coneSize = ["Small","Medium","Large"]
 
 
-func orderCone(orderedFlavor: Flavor, orderedTopping: String?, orderedSize: Size) -> Cone? {
-    let conePrice = orderedSize
-    if let orderToppings =! nil {
-        print("Your \(orderedFlavor) with \(String(describing: orderedTopping)) is $\(orderedSize.rawValue)")
-    }else {
-        print("Your \(orderedFlavor) is $\(orderedSize.rawValue).")
-    }
-    let newCone = Cone(flavor: orderedFlavor, topping: orderedTopping, sizes: orderedSize)
-    return newCone
-}
 
-orderCone(orderedFlavor: flavors[4], orderedTopping: nil, orderedSize: .large)
+
