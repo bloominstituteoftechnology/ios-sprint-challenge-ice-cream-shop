@@ -83,7 +83,14 @@ func listTopFlavors() {
 
 
 func orderCone(orderedFlavor: Flavor, orderedTopping: String?, orderedSize: Size) -> Cone? {
-    let order = Cone(flavor: orderedFlavor, topping: orderedTopping, sizes: orderedSize)
-
-    return order
+    let conePrice = orderedSize
+    if let orderToppings =! nil {
+        print("Your \(orderedFlavor) with \(String(describing: orderedTopping)) is $\(orderedSize.rawValue)")
+    }else {
+        print("Your \(orderedFlavor) is $\(orderedSize.rawValue).")
+    }
+    let newCone = Cone(flavor: orderedFlavor, topping: orderedTopping, sizes: orderedSize)
+    return newCone
 }
+
+orderCone(orderedFlavor: flavors[4], orderedTopping: nil, orderedSize: .large)
