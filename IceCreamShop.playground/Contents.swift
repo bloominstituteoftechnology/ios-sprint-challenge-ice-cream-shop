@@ -24,7 +24,7 @@ struct Cone {
 }
 
 class IceCreamShop {
-    let flavors: String
+    let flavors: [String]
     let sizes: String
     let toppings: String
     
@@ -108,6 +108,8 @@ let toppings = ["Hot Fudge","Sprinkles","Caramel","Oreos","Peanut Butter Cups","
 
 let sizes = ["small", "medium", "large"]
 
-let iceCreamShop = IceCreamShop(flavors: selectedFlavor, size: sizes, toppings: toppings)
+listTopFlavors()
+
+let iceCreamShop = IceCreamShop(flavors: flavors, size: sizes, toppings: toppings)
 
 
