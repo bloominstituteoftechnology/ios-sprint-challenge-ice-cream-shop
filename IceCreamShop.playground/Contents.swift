@@ -110,6 +110,6 @@ let sizes = ["small", "medium", "large"]
 
 listTopFlavors()
 
-let iceCreamShop = IceCreamShop(flavors: flavors, size: sizes, toppings: toppings)
+//let iceCreamShop = IceCreamShop(flavors: flavors, size: sizes, toppings: toppings)
 
 
