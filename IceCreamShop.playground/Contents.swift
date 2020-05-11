@@ -38,6 +38,7 @@ class IceCreamShop {
 var totalSales: Double = 0.00
 
 var flavors = [Flavor]()
+var selectedFlavor = ""
 
 func listTopFlavors() {
     print("OUR TOP FLAVORS ARE:")
@@ -51,6 +52,7 @@ func listTopFlavors() {
 func orderCone(orderedFlavor: Flavor, orderedTopping: String?, orderedSize: Size) -> Cone? {
     let conePrice = orderedSize.rawValue
     let flavor = orderedFlavor.name
+    selectedFlavor = flavor
     totalSales += conePrice
     if orderedTopping != nil {
         print("Your \(flavor) ice cream cone with \(orderedTopping!) is $\(totalSales)")
@@ -106,6 +108,6 @@ let toppings = ["Hot Fudge","Sprinkles","Caramel","Oreos","Peanut Butter Cups","
 
 let coneSize = ["Small","Medium","Large"]
 
-
+var iceCreamShop = IceCreamShop(flavors: selectedFlavor, size: coneSize, toppings: toppings)
 
 
