@@ -25,10 +25,10 @@ struct Cone {
 
 class IceCreamShop {
     let flavors: String
-    let sizes: Size
+    let sizes: String
     let toppings: String
     
-    init(flavors: String, size: Size, toppings: String) {
+    init(flavors: String, size: String, toppings: String) {
         self.flavors = flavors
         self.sizes = size
         self.toppings = toppings
@@ -106,8 +106,8 @@ flavors.append(flavorTwelve)
 
 let toppings = ["Hot Fudge","Sprinkles","Caramel","Oreos","Peanut Butter Cups","Cookie Dough","Whipped Cream","Hard Chocolate Coating","Melted Marshmallows","Cereal","Nuts","Fruit"]
 
-let coneSize = ["Small","Medium","Large"]
+let sizes = ["small", "medium", "large"]
 
-var iceCreamShop = IceCreamShop(flavors: selectedFlavor, size: coneSize, toppings: toppings)
+let iceCreamShop = IceCreamShop(flavors: selectedFlavor, size: sizes, toppings: toppings)
 
 

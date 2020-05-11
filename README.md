@@ -60,7 +60,7 @@ Follow these steps to complete the Sprint Challenge. Recognize that not every st
     - Add the price of the cone to the `totalSales` variable you made in the previous step.
     - Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
     - Finally, return the cone you initialized. 
-
+    
 7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
 8. Use the constants you just made to initialize a new `IceCreamShop` constant.
 9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
