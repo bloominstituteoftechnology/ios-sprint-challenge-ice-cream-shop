@@ -71,8 +71,7 @@ func orderCone(topping: String?, flavor: Flavor, size: Size) -> Cone? {
     return newCone
 }
 
-    
-        
+
         // Instances Of Flavors
     let vanilla = Flavor(name: "Vanilla", rating: 4.0)
     let chocolate = Flavor(name: "Chocolate", rating: 5.0)
@@ -81,7 +80,7 @@ func orderCone(topping: String?, flavor: Flavor, size: Size) -> Cone? {
     
     
     //Instance of IceCreamShop
-let myShop = IceCreamShop(shopFlavors: [vanilla,chocolate,strawberry], shopToppings: "All", shopSizes: [.small, .medium, .large], shopTotalSales: 0.00)
+let myShop = IceCreamShop(shopFlavors: [vanilla,chocolate,strawberry], shopToppings: "shopToppings", shopSizes: [.small, .medium, .large], shopTotalSales: 0.00)
 
 
  
@@ -89,7 +88,7 @@ myShop.listTopFlavors()
 
 
 let newCone = orderCone(topping: "Sprinkles", flavor: vanilla, size: .medium)
-
+let anotherCone = orderCone(topping: "Gummy Bears", flavor: strawberry, size: .large)
 
 newCone?.eat()
 
@@ -97,4 +96,4 @@ newCone?.eat()
 print(myShop.totalSales)
 
 
-    let shopToppings = ["Sprinkles", "Chocolate Sprinkles", "Choclate Syrup", "Gummy Bears"]
+let shopToppings = ["Sprinkles", "Chocolate Sprinkles", "Choclate Syrup", "Gummy Bears"]
