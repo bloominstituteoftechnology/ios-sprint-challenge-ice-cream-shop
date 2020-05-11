@@ -1,6 +1,6 @@
 ![](https://tk-assets.lambdaschool.com/99e9f433-68fb-4853-85ae-85bb8af25524_lama-roscu-Wpg3Qm0zaGk-unsplash.jpg)
 
-# Sprint Challenge: Swift Fundamentals - Ice Cream Shop
+#  Sprint Challenge: Swift Fundamentals - Ice Cream Shop
 
 You've been chosen to begin working on an app for Lambda School's first ice cream shop . The app will need to be able to create an ice cream shop model object, give it a menu of flavors, toppings and ice cream cone sizes and let people order from the menu.
 
@@ -60,7 +60,7 @@ Follow these steps to complete the Sprint Challenge. Recognize that not every st
     - Add the price of the cone to the `totalSales` variable you made in the previous step.
     - Create a string that tells the price of the cone, along with its flavor and topping. **NOTE:** account for the potential lack of a topping on the `Cone` in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
     - Finally, return the cone you initialized. 
-
+    
 7. At the bottom of the playground, create a few `Flavor` constants, an array of sizes, and an array of toppings.
 8. Use the constants you just made to initialize a new `IceCreamShop` constant.
 9. Call the shop's `listTopFlavors` function and make sure it runs correctly.
