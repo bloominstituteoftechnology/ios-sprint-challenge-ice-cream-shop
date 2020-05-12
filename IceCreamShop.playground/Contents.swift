@@ -73,7 +73,7 @@ struct Flavor {
     }
 }
 
-
+/*
 var myCone = Cone(coneSizes: <#T##Size#>, iceCreamFlavors: <#T##iceCreamFlavors#>, iceCreamToppings: <#T##iceCreamToppings#>)
 
 
@@ -88,22 +88,23 @@ myCone.iceCreamFlavors.append(flavor2)
 myCone.iceCreamFlavors.append(flavor3)
 myCone.iceCreamFlavors.append(flavor4)
 
-
 func listTopFlavors() {
-    for flavors in myCone.iceCreamFlavors {
-        if flavors.rating.rawValue > 4 {
-            print("Our top flavors are \(flavors.iceCreamFlavors)") }
+    for flavor in FlavorRating {
+        if flavor.rating.rawValue > 4 {
+            print("Our top flavors are \(flavor.iceCreamFlavors)") }
     }
 }
 
 listTopFlavors()
+ */
 
 
 
-func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?) {
+func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?, totalSales: Double?) {
     if let size = size,
        let flavor = flavor,
-       let topping = topping {
+       let topping = topping,
+       let totalSales = totalSales {
         
        print("Customer1: I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
  //      print("Vendor: Sounds good bro, your ice cream cone will cost \(size.rawValue)")
@@ -112,9 +113,9 @@ func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?
        print("Error: Missing the size, flavor, or topping")
     }
 }
-orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
-orderCone(size: .medium, flavor: .rockyroad, topping: .fudge)
 
+//orderCone(size: .small, flavor: .chocolate, topping: .gummybears, totalSales: _ )
+//orderCone(size: .medium, flavor: .rockyroad, topping: .fudge, totalsales: _ )
 
 
 
