@@ -34,9 +34,16 @@ enum FlavorRating: Int {
 
 
 class IceCreamShop {
+    let coneSizes: Size
+    let iceCreamFlavors: iceCreamFlavors
+    let iceCreamToppings: iceCreamToppings
     let totalSales: Double
+    
 
-    init(totalSales: Double) {
+    init(coneSizes: Size, iceCreamFlavors: iceCreamFlavors, iceCreamToppings: iceCreamToppings, totalSales: Double) {
+        self.coneSizes = coneSizes
+        self.iceCreamFlavors = iceCreamFlavors
+        self.iceCreamToppings = iceCreamToppings
         self.totalSales = totalSales
     }
 }
