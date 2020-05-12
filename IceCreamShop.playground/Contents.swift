@@ -36,11 +36,11 @@ enum FlavorRating: Int {
 class IceCreamShop {
     var coneSizes: [Size]
     var iceCreamFlavors: [Flavor]
-    var iceCreamToppings: [iceCreamToppings]
+    var iceCreamToppings: [Topping]
     var totalSales: Double
     
 
-    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [iceCreamToppings], totalSales: Double) {
+    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [Topping], totalSales: Double) {
         self.coneSizes = coneSizes
         self.iceCreamFlavors = iceCreamFlavors
         self.iceCreamToppings = iceCreamToppings
@@ -64,21 +64,17 @@ struct Cone {
 
 
 struct Flavor {
+    let name: String
     let rating: FlavorRating
-    let coneSize: Size
-    let iceCreamToppings: iceCreamToppings
-    let iceCreamFlavors : iceCreamFlavors
 
-    init(rating: FlavorRating, coneSize: Size, iceCreamToppings: iceCreamToppings, iceCreamFlavors: iceCreamFlavors) {
+    init(name: String, rating: FlavorRating) {
+        self.name = name
         self.rating = rating
-        self.coneSize = coneSize
-        self.iceCreamToppings = iceCreamToppings
-        self.iceCreamFlavors = iceCreamFlavors
     }
 }
 
 
-var myCone = Cone(iceCreamFlavors: [])
+var myCone = Cone(coneSizes: <#T##Size#>, iceCreamFlavors: <#T##iceCreamFlavors#>, iceCreamToppings: <#T##iceCreamToppings#>)
 
 
 let flavor1 = Flavor(rating: .vanillaRating, coneSize: .small, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
