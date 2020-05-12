@@ -34,13 +34,13 @@ enum FlavorRating: Int {
 
 
 class IceCreamShop {
-    let coneSizes: Size
-    let iceCreamFlavors: iceCreamFlavors
-    let iceCreamToppings: iceCreamToppings
-    let totalSales: Double
+    var coneSizes: [Size]
+    var iceCreamFlavors: [Flavor]
+    var iceCreamToppings: [iceCreamToppings]
+    var totalSales: Double
     
 
-    init(coneSizes: Size, iceCreamFlavors: iceCreamFlavors, iceCreamToppings: iceCreamToppings, totalSales: Double) {
+    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [iceCreamToppings], totalSales: Double) {
         self.coneSizes = coneSizes
         self.iceCreamFlavors = iceCreamFlavors
         self.iceCreamToppings = iceCreamToppings
@@ -50,10 +50,14 @@ class IceCreamShop {
 
 
 struct Cone {
-    var iceCreamFlavors: [Flavor]
+    let coneSizes: Size
+    let iceCreamFlavors: iceCreamFlavors
+    let iceCreamToppings: iceCreamToppings
 
-    init(iceCreamFlavors: [Flavor]) {
+    init(coneSizes: Size, iceCreamFlavors: iceCreamFlavors, iceCreamToppings: iceCreamToppings) {
+        self.coneSizes = coneSizes
         self.iceCreamFlavors = iceCreamFlavors
+        self.iceCreamToppings
     }
 }
 
