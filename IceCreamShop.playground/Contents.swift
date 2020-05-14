@@ -32,6 +32,7 @@ class IceCreamShop {
         self.sizes = sizes
         self.toppings = toppings
         self.totalSales = totalSales
+        // We need the raw value of our size to add to our totalSales
         }
     func listTopFlavors() {
         for flavor in flavors {
@@ -40,11 +41,14 @@ class IceCreamShop {
             }
         }
     }
-    func orderCone(orderedCone: Cone) -> Cone? {
-        let orderedCone = Cone(flavor: .init(name: "Chocolate", rating: 3.5), topping: "Whipped Cream", size: .medium)
+    func orderCone(flavor: Flavor, size: Size, topping: String) -> Cone? {
+        let orderedCone = Cone(flavor: flavor, topping: topping, size: size)
+        totalSales += orderedCone.size.rawValue
         if let unwrappedOrderedCone = Cone?(orderedCone) {
             print("Your \(unwrappedOrderedCone.flavor.name) ice cream with \(unwrappedOrderedCone.topping) is \(unwrappedOrderedCone.size.rawValue)")
         }
+        
+        
         return orderedCone
     }
 }
@@ -61,7 +65,7 @@ ianIceCreamShop.listTopFlavors()
 
 let ianCone = Cone(flavor: .init(name: "Rocky Road", rating: 4.5), topping: "Hot Fudge", size: .large)
 
-ianIceCreamShop.orderCone(orderedCone: ianCone)
+ianIceCreamShop.orderCone(flavor: flavor1, size: .medium, topping: "Sprinkles")
 
 ianCone.eat()
 
