@@ -36,11 +36,11 @@ enum FlavorRating: Int {
 class IceCreamShop {
     var coneSizes: [Size]
     var iceCreamFlavors: [Flavor]
-    var iceCreamToppings: [Topping]
+    var iceCreamToppings: [iceCreamToppings]
     var totalSales: Double
     
 
-    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [Topping], totalSales: Double) {
+    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [iceCreamToppings], totalSales: Double) {
         self.coneSizes = coneSizes
         self.iceCreamFlavors = iceCreamFlavors
         self.iceCreamToppings = iceCreamToppings
@@ -57,7 +57,7 @@ struct Cone {
     init(coneSizes: Size, iceCreamFlavors: iceCreamFlavors, iceCreamToppings: iceCreamToppings) {
         self.coneSizes = coneSizes
         self.iceCreamFlavors = iceCreamFlavors
-        self.iceCreamToppings
+        self.iceCreamToppings = iceCreamToppings
     }
     func eat() { print("Mmm! I love \(self.iceCreamFlavors)!") }
 }
@@ -87,35 +87,37 @@ myCone.iceCreamFlavors.append(flavor1)
 myCone.iceCreamFlavors.append(flavor2)
 myCone.iceCreamFlavors.append(flavor3)
 myCone.iceCreamFlavors.append(flavor4)
+*/
+
+
+
+extension FlavorRating: CaseIterable {}
 
 func listTopFlavors() {
-    for flavor in FlavorRating {
-        if flavor.rating.rawValue > 4 {
-            print("Our top flavors are \(flavor.iceCreamFlavors)") }
+    for flavor in FlavorRating.allCases {
+        if flavor.rawValue > 4 {
+            print("Our top flavors are \(flavor)") }
     }
 }
 
 listTopFlavors()
+
+
  */
 
 
-
-func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?, totalSales: Double?) {
+func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?) {
     if let size = size,
        let flavor = flavor,
-       let topping = topping,
-       let totalSales = totalSales {
+       let topping = topping {
+        
+       let totalSale = size.rawValue
         
        print("Customer1: I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
- //      print("Vendor: Sounds good bro, your ice cream cone will cost \(size.rawValue)")
-        
+       print("That comes out to $\(totalSale)")
      } else {
        print("Error: Missing the size, flavor, or topping")
     }
 }
 
-//orderCone(size: .small, flavor: .chocolate, topping: .gummybears, totalSales: _ )
-//orderCone(size: .medium, flavor: .rockyroad, topping: .fudge, totalsales: _ )
-
-
-
+orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
