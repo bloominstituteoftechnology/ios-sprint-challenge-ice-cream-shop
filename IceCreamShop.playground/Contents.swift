@@ -33,61 +33,64 @@ enum FlavorRating: Int {
 }
 
 
-class IceCreamShop {
-    var coneSizes: [Size]
-    var iceCreamFlavors: [Flavor]
-    var iceCreamToppings: [iceCreamToppings]
-    var totalSales: Double
-    
 
-    init(coneSizes: [Size], iceCreamFlavors: [Flavor], iceCreamToppings: [iceCreamToppings], totalSales: Double) {
-        self.coneSizes = coneSizes
-        self.iceCreamFlavors = iceCreamFlavors
-        self.iceCreamToppings = iceCreamToppings
+
+
+class IceCreamShop {
+    let flavor: iceCreamFlavors
+    let toppings: iceCreamToppings
+    let coneSize: Size
+    let totalSales: Double
+    
+    init(flavor: iceCreamFlavors, toppings: iceCreamToppings, coneSize: Size, totalSales: Double) {
+        self.flavor = flavor
+        self.toppings = toppings
+        self.coneSize = coneSize
         self.totalSales = totalSales
     }
 }
 
 
-struct Cone {
-    let coneSizes: Size
-    let iceCreamFlavors: iceCreamFlavors
-    let iceCreamToppings: iceCreamToppings
 
-    init(coneSizes: Size, iceCreamFlavors: iceCreamFlavors, iceCreamToppings: iceCreamToppings) {
-        self.coneSizes = coneSizes
-        self.iceCreamFlavors = iceCreamFlavors
-        self.iceCreamToppings = iceCreamToppings
-    }
-    func eat() { print("Mmm! I love \(self.iceCreamFlavors)!") }
-}
-
-
-struct Flavor {
+class Flavor {
     let name: String
     let rating: FlavorRating
 
-    init(name: String, rating: FlavorRating) {
+    init(rating: FlavorRating) {
         self.name = name
         self.rating = rating
     }
 }
 
-/*
-var myCone = Cone(coneSizes: <#T##Size#>, iceCreamFlavors: <#T##iceCreamFlavors#>, iceCreamToppings: <#T##iceCreamToppings#>)
 
 
-let flavor1 = Flavor(rating: .vanillaRating, coneSize: .small, iceCreamToppings: .fudge, iceCreamFlavors: .vanilla)
-let flavor2 = Flavor(rating: .rockyRoad, coneSize: .medium, iceCreamToppings: .gummybears, iceCreamFlavors: .rockyroad)
-let flavor3 = Flavor(rating: .chocolateRating, coneSize: .large,  iceCreamToppings: .peanuts, iceCreamFlavors: .chocolate)
-let flavor4 = Flavor(rating: .strawberryRating, coneSize: .extraLarge,  iceCreamToppings: .sprinkles, iceCreamFlavors: .strawberry)
+class Cone {
+    let size: Size
+    let topping: iceCreamToppings
+    let flavor: iceCreamFlavors
+    var cones: [Cone]
+    
+    init(coneSize: Size, cones: [Cone]) {
+        self.cones = cones
+    }
+}
 
 
-myCone.iceCreamFlavors.append(flavor1)
-myCone.iceCreamFlavors.append(flavor2)
-myCone.iceCreamFlavors.append(flavor3)
-myCone.iceCreamFlavors.append(flavor4)
-*/
+
+var newCone = Cone(coneSize: <#T##Size#>, coneFlavor: iceCreamFlavors, coneToppings: iceCreamTopping, cones: [])
+
+let cone1 = Cone(coneSize: .small, coneFlavor: .vanilla, iceCreamToppings: .fudge)
+let cone2 = Cone(coneSize: .medium, coneFlavor: .rockyroad, iceCreamToppings: .gummybears)
+let cone3 = Cone(coneSize: .large, coneFlavor: .chocolate, iceCreamToppings: .peanuts)
+let cone4 = Cone(coneSize: .extraLarge, coneFlavor: .strawberry, iceCreamToppings: .sprinkles)
+
+
+newCone.iceCreamFlavors.append(cone1)
+newCone.iceCreamFlavors.append(cone2)
+newCone.iceCreamFlavors.append(cone3)
+newCone.iceCreamFlavors.append(cone4)
+
+
 
 
 
@@ -103,7 +106,6 @@ func listTopFlavors() {
 listTopFlavors()
 
 
- */
 
 
 func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?) {
@@ -121,3 +123,4 @@ func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?
 }
 
 orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
+*/
