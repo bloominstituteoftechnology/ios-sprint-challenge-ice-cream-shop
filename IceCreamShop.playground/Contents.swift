@@ -1,6 +1,3 @@
-// This is th beginning of the Sprint Challenge
-
-
 enum Size: Double {
     case small = 3.99
     case medium = 4.99
@@ -35,7 +32,6 @@ enum FlavorRating: Double {
 
 
 
-
 class IceCreamShop {
     let flavor: iceCreamFlavors
     let toppings: iceCreamToppings
@@ -66,6 +62,10 @@ struct Cone {
     let topping: iceCreamToppings
 }
 
+func eat() {
+    print("Mmm! I love \(iceCreamFlavors.vanilla.rawValue)!")
+}
+eat()
 
 
 
@@ -119,5 +119,7 @@ func orderCone(size: Size?, flavor: iceCreamFlavors?, rating: FlavorRating?, top
 orderCone(size: .small, flavor: .chocolate, rating: .chocolateRating, topping: .gummybears)
 
 orderCone(size: .medium, flavor: .vanilla, rating: .vanillaRating, topping: .fudge)
+
+
 
 
