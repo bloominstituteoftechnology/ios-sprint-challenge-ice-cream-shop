@@ -25,11 +25,11 @@ enum iceCreamFlavors: String {
 }
 
 
-enum FlavorRating: Int {
-    case vanillaRating = 3
-    case chocolateRating = 2
-    case strawberryRating = 7
-    case rockyRoad = 8
+enum FlavorRating: Double {
+    case vanillaRating = 3.0
+    case chocolateRating = 2.0
+    case strawberryRating = 7.0
+    case rockyRoad = 8.0
 }
 
 
@@ -52,43 +52,35 @@ class IceCreamShop {
 
 
 
-class Flavor {
+struct Flavor {
     let name: String
-    let rating: FlavorRating
-
-    init(rating: FlavorRating) {
-        self.name = name
-        self.rating = rating
-    }
-}
-
-
-
-class Cone {
-    let size: Size
-    let topping: iceCreamToppings
-    let flavor: iceCreamFlavors
     var cones: [Cone]
-    
-    init(coneSize: Size, cones: [Cone]) {
-        self.cones = cones
-    }
 }
 
 
 
-var newCone = Cone(coneSize: <#T##Size#>, coneFlavor: iceCreamFlavors, coneToppings: iceCreamTopping, cones: [])
+struct Cone {
+    let size: Size
+    let flavor: iceCreamFlavors
+    let flavorRating: FlavorRating
+    let topping: iceCreamToppings
+}
 
-let cone1 = Cone(coneSize: .small, coneFlavor: .vanilla, iceCreamToppings: .fudge)
-let cone2 = Cone(coneSize: .medium, coneFlavor: .rockyroad, iceCreamToppings: .gummybears)
-let cone3 = Cone(coneSize: .large, coneFlavor: .chocolate, iceCreamToppings: .peanuts)
-let cone4 = Cone(coneSize: .extraLarge, coneFlavor: .strawberry, iceCreamToppings: .sprinkles)
 
 
-newCone.iceCreamFlavors.append(cone1)
-newCone.iceCreamFlavors.append(cone2)
-newCone.iceCreamFlavors.append(cone3)
-newCone.iceCreamFlavors.append(cone4)
+
+var newCone = Flavor(name: "Vanilla", cones: [])
+
+let cone1 = Cone(size: .small, flavor: .vanilla, flavorRating: .vanillaRating, topping: .fudge)
+let cone2 = Cone(size: .medium, flavor: .rockyroad, flavorRating: .chocolateRating, topping: .gummybears)
+let cone3 = Cone(size: .large, flavor: .chocolate, flavorRating: .rockyRoad, topping: .peanuts)
+let cone4 = Cone(size: .extraLarge, flavor: .strawberry, flavorRating: .strawberryRating, topping: .sprinkles)
+
+
+newCone.cones.append(cone1)
+newCone.cones.append(cone2)
+newCone.cones.append(cone3)
+newCone.cones.append(cone4)
 
 
 
@@ -108,19 +100,24 @@ listTopFlavors()
 
 
 
-func orderCone(size: Size?, flavor: iceCreamFlavors?, topping: iceCreamToppings?) {
+func orderCone(size: Size?, flavor: iceCreamFlavors?, rating: FlavorRating?, topping: iceCreamToppings?) {
     if let size = size,
        let flavor = flavor,
+       let rating = rating,
        let topping = topping {
         
        let totalSale = size.rawValue
-        
-       print("Customer1: I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
+
+       print("\n I'd like a \(size) cone with two scoops of \(flavor) ice cream with some \(topping) on top")
+       print("I like \(flavor) best because it has rating of \(rating.rawValue)")
        print("That comes out to $\(totalSale)")
      } else {
-       print("Error: Missing the size, flavor, or topping")
+       print("Error: Missing the size, flavor, rating, or topping")
     }
 }
 
-orderCone(size: .small, flavor: .chocolate, topping: .gummybears)
-*/
+orderCone(size: .small, flavor: .chocolate, rating: .chocolateRating, topping: .gummybears)
+
+orderCone(size: .medium, flavor: .vanilla, rating: .vanillaRating, topping: .fudge)
+
+
