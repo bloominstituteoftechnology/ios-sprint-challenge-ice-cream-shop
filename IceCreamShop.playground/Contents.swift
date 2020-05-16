@@ -1,4 +1,4 @@
-struct Flavor {
+struct Flavor: Equatable {
     let name: String
     var rating: Double
 }
@@ -34,21 +34,21 @@ class IceCreamShop {
     
     func listTopFlavors() {
         var topFlavors: [String] = []
-        var topFlavorString: String = "Our top flavors are "
+        var topFlavorString: String = "There are no flavors rated above 4.0."
         for flavor in flavors {
             if flavor.rating > 4.0 {
                 topFlavors.append(flavor.name)
             }
         }
         for i in 0..<topFlavors.count {
-            if topFlavors.count == 0 {
-                topFlavorString = "There are no flavors rated above 4.0."
-            } else if topFlavors.count == 1{
-                topFlavorString = "\(topFlavors[0])"
+            if topFlavors.count == 1 {
+                topFlavorString = "Our top flavor is \(topFlavors[0])."
+            } else if i == 0 {
+                topFlavorString = "Our top flavors are \(topFlavors[i])"
             } else if i != (topFlavors.count - 1) {
-                topFlavorString += "\(topFlavors[i]), "
+                topFlavorString += ", \(topFlavors[i])"
             } else {
-                topFlavorString += "and \(topFlavors[i])."
+                topFlavorString += " and \(topFlavors[i])."
             }
         }
         print(topFlavorString)
@@ -57,21 +57,27 @@ class IceCreamShop {
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         let cone = Cone(flavor: flavor, topping: topping, size: size)
         totalSales += cone.size.rawValue
-        var orderSummary: String = "Your \(flavor.name) ice cream "
-        if let unwrappedTopping = topping {
-            orderSummary += "with \(unwrappedTopping) "
+        if flavors.contains(cone.flavor) {
+            var orderSummary: String = "Your \(flavor.name) ice cream "
+            if let unwrappedTopping = topping {
+                orderSummary += "with \(unwrappedTopping) "
+            }
+            orderSummary += "is \(size.rawValue)."
+            print(orderSummary)
+        } else {
+            print("\(cone.flavor.name) is not on our menu.")
         }
-        orderSummary += "is \(size.rawValue)."
-        print(orderSummary)
         return cone
     }
 }
 
 let vanilla = Flavor(name: "Vanilla", rating: 3.5)
-let chocolate = Flavor(name: "Chocolate", rating: 4.1)
+let chocolate = Flavor(name: "Chocolate", rating: 4.2)
 let peppermint = Flavor(name: "Peppermint", rating: 4.5)
-let cherry = Flavor(name: "Black Cherry", rating: 4.8)
+let cherry = Flavor(name: "Black Cherry", rating: 4.7)
 let peanutButter = Flavor(name: "Peanut Butter", rating: 3.5)
+
+let pistachio = Flavor(name: "Pistachio", rating: 2.5)
 
 var flavors: [Flavor] = []
 flavors.append(vanilla)
