@@ -1,25 +1,18 @@
 
-enum Ratings: Double {
-    case oneStar = 1
-    case twoStar = 2
-    case threeStar = 3
-    case fourStar = 4
-    case fiveStar = 5
-}
 
 struct Flavor {
     let name: String
-    let rating: Ratings
+    let rating: Int
 }
 
-let chocolateParadise = Flavor(name: "Chocolate Paradise", rating: .threeStar)
-let cookiesAndCream = Flavor(name: "Cookies and Cream", rating: .fiveStar)
-let caramelJoy = Flavor(name: "Caramel Joy", rating: .fiveStar)
+let chocolateParadise = Flavor(name: "Chocolate Paradise", rating: 4)
+let cookiesAndCream = Flavor(name: "Cookies and Cream", rating: 5)
+let caramelJoy = Flavor(name: "Caramel Joy", rating: 4)
 
 enum Size: Double {
-    case small = 3.00
-    case medium = 4.00
-    case large = 5.00
+    case small = 3.99
+    case medium = 4.99
+    case large = 5.99
 }
 
 struct Cone {
@@ -50,29 +43,28 @@ class IceCreamShop {
     
     func listTopFlavors() {
         var flavorList: [String] = []
-        
         for flavor in shopFlavors {
-            if flavor.rating.rawValue >= 4 {
+            if flavor.rating >= 4 {
                 flavorList.append(flavor.name)
             }
         }
         print("Our top flavors are \(flavorList)")
     }
     
-    func orderCone(flavor: Flavor, topping: String, Size: Size) -> Cone? {
+    func orderCone(flavor: Flavor, topping: String?, Size: Size) -> Cone? {
        
         let newCone = Cone(flavor: chocolateParadise, topping: "Whipped Cream", size: .small)
-        totalSales.append(newCone.size.rawValue)
+        totalSales.append(sizes.rawValue)
         
-        print("You ordered the \(newCone.flavor.name) cone with \(newCone.topping ?? "no toppings"). Your total is \(newCone.size.rawValue)")
+        print("You ordered the \(newCone.flavor.name) cone with \(newCone.topping ?? "no toppings"). Your total is $\(newCone.size.rawValue)")
         
         return newCone
     }
 }
 
-let grahamCanyon = Flavor(name: "Graham Canyon", rating: .fiveStar)
-let cookieDough = Flavor(name: "Cookie Dough", rating: .fourStar)
-let strawberry = Flavor(name: "Strawberry", rating: .threeStar)
+let grahamCanyon = Flavor(name: "Graham Canyon", rating: 5)
+let cookieDough = Flavor(name: "Cookie Dough", rating: 4)
+let strawberry = Flavor(name: "Strawberry", rating: 2)
 
 flavorOptions.append(grahamCanyon)
 flavorOptions.append(cookieDough)
@@ -88,8 +80,7 @@ let newIceCreamShop = IceCreamShop(shopFlavors: grahamCanyon, shopToppings: "Gra
 
 newIceCreamShop.listTopFlavors()
 
-let secondOrder = newIceCreamShop.orderCone(flavor: strawberry, topping: "Strawberries", Size: .small)
+let secondCone = Cone(flavor: strawberry, topping: "Strawberries", size: .small)
+secondCone.eat()
 
-secondOrder?.eat()
-
-print(newIceCreamShop.totalSales)
+newIceCreamShop.totalSales
