@@ -56,15 +56,34 @@ class IceCreamShop {
      When the string has been created, print it.
      */
     func listTopFlavors() {
-        var topFlavors: String = "Our top flavors are "
-        
+        var message: String = "Our top flavors are "
+        var topFlavors: [String] = []
+        var totalTopFlavors: Int = 0
         for flavor in self.flavors {
             if flavor.rating > 4 {
-                topFlavors += flavor.name + ", "
+                topFlavors.append(flavor.name)
+                totalTopFlavors += 1
             }
         }
         
-        print("\(topFlavors)")
+        //finishing the last flavor with "and". For example,", , and ", instead of just ", , "
+        var index: Int = 0
+        for f in topFlavors {
+            message += f + ", "
+            if index == topFlavors.count - 2 {
+                message += "and "
+            }
+            
+            index += 1
+        }
+        
+        //account for edge cases, such as if there are no flavors with a rating above 4.0
+        if totalTopFlavors > 0 {
+            print("\(message)")
+        } else {
+            print("There are no top flavors!")
+        }
+        
     }
     
     /*
@@ -80,7 +99,7 @@ class IceCreamShop {
      */
     func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
         //In the orderCone function, check to make sure the flavor that the person requested exists on the menu.
-        //guard flavors.contains(flavor) else { return nil }
+        guard flavorIsOnMenu(flavor: flavor) else { return nil }
         
         let myCone = Cone(flavor: flavor, topping: topping, size: size)
         self.totalSales += myCone.size.rawValue
@@ -92,12 +111,21 @@ class IceCreamShop {
         }
         return myCone
     }
+    
+    func flavorIsOnMenu(flavor: Flavor) -> Bool {
+        for f in flavors {
+            if f.name == flavor.name {
+                return true
+            }
+        }
+        return false
+    }
 }
 
 //At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
 let flavorMint: Flavor = Flavor(name: "Mint", rating: 5)
 let flavorChoc: Flavor = Flavor(name: "Chocolate", rating: 8)
-let flavorVan: Flavor = Flavor(name: "Vanilla", rating: 3)
+let flavorVan: Flavor = Flavor(name: "Vanilla", rating: 6)
 let sizes: [Size] = [.small, .medium, .large]
 let toppings: [String] = ["Candy","Sprinkles","Peanuts"]
 
