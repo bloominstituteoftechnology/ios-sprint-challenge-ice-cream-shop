@@ -10,8 +10,6 @@ let vanilla = Flavor(name: "Vanilla", rating: 2)
 let mint = Flavor(name: "Mint", rating: 4)
 let chocolate = Flavor(name: "Chocolate", rating: 1)
 
-let flavors = [vanilla, mint, chocolate]
-
 let toppings = ["sprinkles", "cookies", "gummie bears"]
 
 enum Size: Double {
@@ -21,8 +19,8 @@ enum Size: Double {
 }
  
 struct Cone {
-    var flavor: Flavor
-    var topping: [String] = ["sprinkles", "cookie crumbs", "hot fudge"]
+    var flavors = [vanilla, mint, chocolate]
+    var toppings: [String] = ["sprinkles", "cookie crumbs", "hot fudge"]
     var size: Size
 }
 
@@ -35,18 +33,13 @@ eat()
 
 
 class IceCreamShop {
-    var orders: Cone
+    var menu: Cone
     var totalSales: Double
     
-    init(eOrder: Cone, eTotalSales: Double ) {
-        self.orders = eOrder
+    init(eMenu: Cone, eTotalSales: Double) {
+    self.menu = eMenu
         self.totalSales = eTotalSales
     }
+    
 }
 
-func listTopFlavors() {
-    
-    
-    
-    
-}
