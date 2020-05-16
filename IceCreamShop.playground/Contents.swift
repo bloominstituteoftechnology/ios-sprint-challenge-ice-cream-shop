@@ -1,105 +1,100 @@
 import UIKit
 
 struct Flavor {
-    let chocolate: String
-    let chocolateRating: Int
-    let vanilla: String
-    let vanillaRating: Int
-    let mint: String
-    let mintRating: Int
-    let peanutButter: String
-    let peanutButterRating: Int
+    let name: String
+    let rating: Int
 }
 
 
 
-enum Size: String {
-  case small = "Small"
-    case medium = "Medium"
-    case large = "Large"
-    case xl = "Extra Large"
+enum Size: Double {
+    case small = 2.99
+    case medium = 3.99
+    case large = 4.99
+    case xl = 5.25
 }
-struct Cone{
-    let waffleCone: String
-    let cakeCones: String
-    let chocolateDipped: String
-    let topping: String?
 
+struct Cone {
+    let flavor: Flavor
+    let size: Size
+    func eat(){
+        print("Mmm! I love \(flavor.name)")
 
-}
-struct Toppings {
-    let sprinkles: String
-    let chocolateSyrup = "Chocolate Syrup"
-    let costOfSprinkes = 0.25
-    let costOfChocolateSyrup = 1.00
 }
 
 
-func eat(flavor: String){
-        print("Mmm! I love \(flavor)")
+
 }
 
-
-eat(flavor: "Chocolate!")
 
 class IceCreamShop {
-    var allFlavors: Flavor
-    var topping: String
+  var allFlavors: [Flavor]
+    var totalSales: Double
   
         
-    init(allFlavors:Flavor, topping: String) {
+    init(allFlavors: [Flavor], totalSales: Double) {
         self.allFlavors = allFlavors
-        self.topping = topping
+        self.totalSales = totalSales
     }
-    }
-    func listTopFlavors(){
-        let flavors = Flavor(chocolate: "Chocolate Ice Cream", chocolateRating: 8, vanilla: "Vanilla Ice Cream", vanillaRating: 4, mint: "Mint Ice Cream", mintRating: 9, peanutButter: "Peanut Butter Ice Cream", peanutButterRating: 10)
-        let goodRating1 = (flavors.chocolate, flavors.chocolateRating)
-        let goodRating2 = (flavors.mint, flavors.mintRating)
-        let goodRating3 = (flavors.peanutButter, flavors.peanutButterRating)
+
+func listTopFlavors() {
+    var message = "Our Top Flavors Are: "
+    
+    
+    for flavor in allFlavors {
+        if flavor.rating >= 4 {
+            message += flavor.name
         
-        let highRatingFlavors = (goodRating1, goodRating2, goodRating3)
+            
+        
+    }
+  
+  
+    }
+   print(message)
 
-     return print("Our top flavors are \(highRatingFlavors)")
-//
+
+}
+    
+    func orderCone(size: Size, eflavor: Flavor) -> Cone? {
+        let costSize = size
+        let newCone = Cone.init(flavor: eflavor, size: size)
+        
+        for flavor in allFlavors {
+            if flavor.name == eflavor.name {
+                totalSales += costSize.rawValue
+            }
         }
+    print(totalSales)
+        print("Your total is $\(totalSales)")
+        return newCone
+    }
+    
+}
 
-listTopFlavors()
-
+let pumpkinFlavor = Flavor.init(name: "Pumpkin ", rating: 5)
+let chocolateFlavor = Flavor.init(name: "Chocolate ", rating: 4)
+let superMan = Flavor.init(name: "Superman ", rating: 3)
+let cookieDoughFlavor = Flavor(name: "Cookie Dough ", rating: 5)
+let peanutButter = Flavor(name: "Peanut Butter ", rating: 5)
 var totalPriceOfWaffleCone = 0.75
 var totalPriceOfChocolateCone = 1.00
 var totalPriceOfCakeCone = 0.90
 var totalPriceOfTopping = 0.25
+var costOfPumpkin = 2.00
 var costOfChoclate = 2.00
-var costOfVanilla = 2.00
-let costOfMint =  2.00
+let costOfCookieDough =  2.00
 let costOfPeanutButter = 2.00
-var costOfOrder = 5.23
-let allFlavors = Flavor(chocolate: "Chocolate Ice Cream", chocolateRating: 7, vanilla: "Vanilla", vanillaRating: 4, mint: "Mint", mintRating: 9, peanutButter: "Peanut Butter Ice Cream", peanutButterRating: 10)
-//func orderACone(cone: Cone?) -> (Cone){
-//    var totalPriceOfWaffleCone = 0.75
-//    var totalPriceOfChocolateCone = 1.00
-//    var totalPriceOfCakeCone = 0.90
-//    var totalPriceOfTopping = 0.25
-//
-//    let allcones = (totalPriceOfWaffleCone, totalPriceOfCakeCone, totalPriceOfChocolateCone)
-//
-//return allcones += 1
-//}
+var listOfFlavors = [pumpkinFlavor, chocolateFlavor, superMan, cookieDoughFlavor, superMan, peanutButter]
+let eugenesIceCream = IceCreamShop.init(allFlavors: listOfFlavors, totalSales: 0.0)
+eugenesIceCream.orderCone(size: .small, eflavor: pumpkinFlavor)?.eat()
+eugenesIceCream.orderCone(size: .medium, eflavor: chocolateFlavor)
+eugenesIceCream.orderCone(size: .large, eflavor: cookieDoughFlavor)
+print(eugenesIceCream.totalSales)
+
+eugenesIceCream.listTopFlavors()
+
     
 
 
 
-
- print("Your total cost for the \(allFlavors.mint) and with the waffle cone, comes out to \(totalPriceOfWaffleCone + costOfMint), how would you like to pay?")
-        
-//        if let unwrappedChocolate = chocolateCone {
-//            print("Your cone: \(chocolateCone ?? chocolateCone))
- 
-
-let allTheFlavors = [allFlavors]
-let allSizes = (Size.small, Size.medium, Size.large)
-print(allSizes)
-
-listTopFlavors()
-orderACone()
