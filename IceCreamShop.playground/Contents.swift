@@ -24,12 +24,12 @@ enum Size: Double {
 //Create a function called eat. It shouldn't have any arguments. It should print a string of text that includes the name of the cone's flavor. For example: "Mmm! I love !"
 
 struct Cone {
-    var flavor: String
+    var flavor: Flavor
     var topping: String?
     var size: Size
     
     func eat() {
-        print("Mmm! I love \(flavor)!")
+        print("Mmm! I love \(flavor.name)!")
     }
 }
 
@@ -39,11 +39,11 @@ struct Cone {
 
 class IceCreamShop {
     var totalSales: Double
-    var flavors: [String]
+    var flavors: [Flavor]
     var sizes: [Size]
     var toppings: [String]
     
-    init(flavors: [String], toppings: [String], sizes: [Size]){
+    init(flavors: [Flavor], toppings: [String], sizes: [Size]){
         self.totalSales = 0.0
         self.flavors = flavors
         self.toppings = toppings
@@ -59,7 +59,9 @@ class IceCreamShop {
         var topFlavors: String = "Our top flavors are "
         
         for flavor in self.flavors {
-            topFlavors += flavor + ", "
+            if flavor.rating > 4 {
+                topFlavors += flavor.name + ", "
+            }
         }
         
         print("\(topFlavors)")
@@ -76,7 +78,10 @@ class IceCreamShop {
      Create a string that tells the price of the cone, along with its flavor and topping. NOTE: account for the potential lack of a topping on the Cone in that string by using optional binding (if-let). For example, the string could say "Your mint ice cream with chocolate chips is 3.99", or "Your vanilla ice cream is 5.99." Print the string.
      Finally, return the cone you initialized.
      */
-    func orderCone(flavor: String, topping: String?, size: Size) -> Cone? {
+    func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+        //In the orderCone function, check to make sure the flavor that the person requested exists on the menu.
+        //guard flavors.contains(flavor) else { return nil }
+        
         let myCone = Cone(flavor: flavor, topping: topping, size: size)
         self.totalSales += myCone.size.rawValue
         
@@ -90,9 +95,9 @@ class IceCreamShop {
 }
 
 //At the bottom of the playground, create a few Flavor constants, an array of sizes, and an array of toppings.
-let flavorMint: String = "Mint"
-let flavorChoc: String = "Chocolate"
-let flavorVan: String = "Vanilla"
+let flavorMint: Flavor = Flavor(name: "Mint", rating: 5)
+let flavorChoc: Flavor = Flavor(name: "Chocolate", rating: 8)
+let flavorVan: Flavor = Flavor(name: "Vanilla", rating: 3)
 let sizes: [Size] = [.small, .medium, .large]
 let toppings: [String] = ["Candy","Sprinkles","Peanuts"]
 
