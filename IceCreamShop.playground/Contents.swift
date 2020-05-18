@@ -51,8 +51,8 @@ func listTopFlavors() {
 
 }
 
-func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
-    let myCone = Cone(flavor: flavor, topping: topping ?? 0, size: size)
+func orderCone(flavors: [Flavor], toppings: [String?], size: [Size]) -> Cone? {
+    let myCone = Cone(flavors: [Flavor], topping: [String?], size: [Size])
     
     totalSales += myCone.size.rawValue
     
@@ -77,7 +77,7 @@ let myShop: IceCreamShop
 
 myShop.listTopFlavors()
 
-let cone1 = orderCone(flavor: flavor1, topping: "", size: .large)
+let cone1 = orderCone(flavors: flavor1, toppings: "", size: .large)
 cone1?.eat()
 print(totalSales)
 
