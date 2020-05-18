@@ -43,11 +43,15 @@ class IceCreamShop {
     }
     func orderCone(order: Cone) -> Cone?  {
         totalSales = 0.00 + order.size.rawValue
-        print("Your Order: \(order.size) \(order.flavor.name), \(order.size.rawValue)")
-        return order
+        if let unwrappedTopping = order.topping {
+            print("Your Order: A \(order.size) \(order.flavor.name) with \(unwrappedTopping) costs \(order.size.rawValue)")
+            return order
+        } else {
+            print("Your Order: A \(order.size) \(order.flavor.name) costs \(order.size.rawValue)")
+            return order
     }
 }
-
+}
     
     
 
