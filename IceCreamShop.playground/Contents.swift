@@ -1,3 +1,4 @@
+import UIKit
 
 struct Flavor {
     var name: String
@@ -5,51 +6,50 @@ struct Flavor {
 }
 
 enum Size: Double {
-    case small = 1.50
-    case medium = 2.60
-    case large = 3.50
+    case small = 1.00
+    case medium = 2.88
+    case large = 5.25
 }
 
 struct Cone {
     let flavor: Flavor
     let topping: String
-    let size: Size.RawValue
+    let size: Size
     
     func eat() {
-        print("Yum, I love \(<#_#>)!)"
+        print("Yum, I love \(flavor.name)!)")
     }
 }
 
 class IceCreamShop {
-    var totalSales: Size
-    var flavorsMenu: [Flavor]
+    var totalSales: Double
+    var flavors: [Flavor]
+    var sizes: [Size]
+    var toppings: [String]
     
-    
-    init(totalSales: Double, flavorsMenu: String) {
+    init(totalSales: Double, flavors: Flavor, sizes: Size, toppings: String) {
         self.totalSales = totalSales
-        self.flavorsMenu = []
+        self.flavors = flavors
+        self.sizes = sizes
+        self.toppings = toppings
     }
 
 }
 
-//    Flavor(name: "Triple Cookie Dough", rating: 9.8)
-    var flavor1 = Flavor(name: "Raspberry Gelato", rating: 3.7)
-    var flavor2 = Flavor(name: "Double Choc Fantasy", rating: 10)
-    var flavor3 = Flavor(name: "Caramel Dream", rating: 9.2)
-//
-//    flavorsMenu.
+
 
 
 func listTopFlavors() {
-    for rating in Cone {
-        if rating > 4.0 {
+    for topFlavor in Flavor {
+        if topFlavor.rating > 4.0 {
             print("Our top flavors are \(Cone.flavor)")
         }
     }
 }
 
 func orderCone(flavor: Flavor, topping: String, size: Double) -> Cone? {
-    let myCone: Cone
+    let myCone = Cone(flavor: flavor, topping: topping, size: size)
+    
     
     
     
