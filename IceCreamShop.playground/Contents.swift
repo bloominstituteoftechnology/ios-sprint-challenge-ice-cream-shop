@@ -13,8 +13,8 @@ enum Size: Double {
 
 struct Cone {
     let flavor: Flavor
-    let topping: String
-    let size: Size
+    let topping: String?
+    let size: Size.RawValue
     
     func eat() {
         print("Yum, I love \(flavor.name)!)")
@@ -22,42 +22,39 @@ struct Cone {
 }
 
 class IceCreamShop {
-    var totalSales: Double
     var flavors: [Flavor]
     var sizes: [Size]
     var toppings: [String?]
+    var totalSales: Double = 0.0
+
     
-    init(totalSales: Double, flavors: [Flavor], sizes: [Size], toppings: [String?]) {
-        self.totalSales = totalSales
+    init(flavors: [Flavor], sizes: [Size], toppings: [String?], totalSales: Double) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
+        self.totalSales = totalSales
     }
-
 }
-
-
 
 
 func listTopFlavors() {
-    var topFlavor: [String] = []
+//    var topFlavor: [Flavor] = []
     
-    for topFlavors in Flavor {
-        if topFlavor.rating > 4.0 {
-            topFlavor.append(topFlavor)
+    for flavor in flavor {
+        if flavor.rating >= 4.0 {
+            print("Our top flavors are \(flavor.name)!")
         }
     }
-    print("Our top flavors are \(topFlavor)")
-
 }
 
 func orderCone(flavors: Flavor, toppings: String?, size: Size) -> Cone? {
-    let myCone = Cone(flavors: Flavor, toppings: String?, size: Size)
+    let myCone = Cone(flavor: flavors, topping: toppings ?? "none", size: size.rawValue)
     
-    totalSales += myCone.size.rawValue
+    totalSales += Cone.size.rawValue
     
-    if myCone.topping != nil {
-        print("Your \(myCone.flavor) with \(myCone.topping) is \(myCone.size)")
+    
+    if let unwrapTopping = myCone.topping {
+        print("Your \(myCone.flavor) with \(String(describing: myCone.topping)) is \(myCone.size)")
     } else {
         print("Your \(myCone.flavor) is \(myCone.size)")
     }
