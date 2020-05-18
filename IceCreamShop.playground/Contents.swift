@@ -1,3 +1,10 @@
+import UIKit
+
+var currencyFormatter: NumberFormatter = {
+    let formatter = NumberFormatter()
+    formatter.numberStyle = .currencyAccounting
+    return formatter
+}()
 
 struct Flavor {
     let name: String
@@ -23,10 +30,10 @@ struct Cone {
 class IceCreamShop {
     var flavor: [Flavor]
     var size: [Size]
-    var toppings: String
+    var toppings: [String]
     var totalSales: Double = 0.00
     
-    init(flavor: [Flavor],size: [Size],toppings: String,totalSales: Double) {
+    init(flavor: [Flavor],size: [Size],toppings: [String], totalSales: Double) {
         self.flavor = flavor
         self.size = size
         self.toppings = toppings
@@ -52,13 +59,13 @@ class IceCreamShop {
         switch cone.size {
         case .small:
             totalSales += totalSales + cone.size.rawValue
-            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(totalSales)")
+            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(Size.small.rawValue)")
         case .medium:
             totalSales += totalSales + cone.size.rawValue
-            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(totalSales)")
+            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(Size.medium.rawValue)")
         case .large:
             totalSales += totalSales + cone.size.rawValue
-            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(totalSales)")
+            print("Your \(flavor.name) ice cream with \(unwrappedToppings) is $\(Size.large.rawValue)")
         }
         
         return cone
@@ -81,15 +88,15 @@ let allSizes: [Size] = [.large, .medium, .small]
 
 let myIceCreamShop = IceCreamShop(flavor: allFlavors, size: allSizes, toppings: allToppings, totalSales: 0.00 )
 
-myIceCreamShop.orderCone(flavor: chocolate, topping: Topping1, size: .large)
+myIceCreamShop.orderCone(flavor: chocolate, toppings: Topping1, size: .large)
 
-myIceCreamShop.listTopFlavors()
+myIceCreamShop.listTopFLavors()
 
-let bensCone = Cone(flavor: chocolate, toppings: Topping1, size: .medium)
+let bensCone = Cone(flavor: pistachio, toppings: Topping2, size: .medium)
 
-myIceCreamShop.orderCone(order: bensCone)
+myIceCreamShop.orderCone(flavor: pistachio, toppings: Topping1, size: .large)
 
 bensCone.eat()
 
-print(myIceCreamShop.totalSales)
+print(currencyFormatter.string(from: NSNumber(value: myIceCreamShop.totalSales)) ?? "It's on the house!")
 
