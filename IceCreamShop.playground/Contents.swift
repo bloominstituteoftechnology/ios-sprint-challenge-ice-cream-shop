@@ -8,12 +8,12 @@ struct Flavor {
 }
 
 
-
 enum Size: Double {
     case small = 3.99
     case medium = 4.99
     case large = 6.99
 }
+
 
 
 struct Cone {
@@ -29,11 +29,11 @@ struct Cone {
 
 class IceCreamShop {
     var flavorsMenu: [Flavor]
-    var toppingsMenu: [String]
+    var toppingsMenu: [String?]
     var sizeMenu: [Size]
     var totalSales: Double = 0
    
-    init(flavorsMenu: [Flavor], toppingsMenu: [String], sizeMenu: [Size], totalSales: Double = 0) {
+    init(flavorsMenu: [Flavor], toppingsMenu: [String?], sizeMenu: [Size], totalSales: Double = 0) {
           self.flavorsMenu = flavorsMenu
           self.toppingsMenu = toppingsMenu
           self.sizeMenu = sizeMenu
