@@ -78,6 +78,13 @@ func listTopFlavors() {
 listTopFlavors()
 
 //6
-func orderCone(flavor: String, topping: String, size: Size.RawValue) {
+func orderCone(flavor: String, topping: String?, size: Size) -> Cone {
+    let price: Double
+    if let choice = topping {
+        let myOrder = Cone(flavor: flavor, topping: choice, size: size)
     
+        price = myOrder.size.rawValue
+        
+    }
+    return myOrder
 }
