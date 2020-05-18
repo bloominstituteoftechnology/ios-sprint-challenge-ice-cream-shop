@@ -25,9 +25,9 @@ class IceCreamShop {
     var totalSales: Double
     var flavors: [Flavor]
     var sizes: [Size]
-    var toppings: [String]
+    var toppings: [String?]
     
-    init(totalSales: Double, flavors: Flavor, sizes: Size, toppings: String) {
+    init(totalSales: Double, flavors: [Flavor], sizes: [Size], toppings: [String?]) {
         self.totalSales = totalSales
         self.flavors = flavors
         self.sizes = sizes
@@ -40,17 +40,46 @@ class IceCreamShop {
 
 
 func listTopFlavors() {
-    for topFlavor in Flavor {
+    var topFlavor: [String] = []
+    
+    for topFlavors in Flavor {
         if topFlavor.rating > 4.0 {
-            print("Our top flavors are \(Cone.flavor)")
+            topFlavor.append(topFlavor)
         }
     }
+    print("Our top flavors are \(topFlavor)")
+
 }
 
-func orderCone(flavor: Flavor, topping: String, size: Double) -> Cone? {
-    let myCone = Cone(flavor: flavor, topping: topping, size: size)
+func orderCone(flavor: Flavor, topping: String?, size: Size) -> Cone? {
+    let myCone = Cone(flavor: flavor, topping: topping ?? 0, size: size)
     
+    totalSales += myCone.size.rawValue
     
+    if myCone.topping != nil {
+        print("Your \(myCone.flavor) with \(myCone.topping) is \(myCone.size)")
+    } else {
+        print("Your \(myCone.flavor) is \(myCone.size)")
+    }
     
-    
+    return myCone
 }
+
+
+let flavor1 = Flavor(name: "Chocolate Fantasy", rating: 5.8)
+let flavor2 = Flavor(name: "Raspberry Gelato", rating: 3.6)
+
+var toppings: [String?] = ["Whipped Cream", "Chocolate Whipped Cream", "Banana", "Cherries"]
+
+var shopSizes: [Size] = [.small, .large, .medium]
+
+let myShop: IceCreamShop
+
+myShop.listTopFlavors()
+
+let cone1 = orderCone(flavor: flavor1, topping: "", size: .large)
+cone1?.eat()
+print(totalSales)
+
+
+
