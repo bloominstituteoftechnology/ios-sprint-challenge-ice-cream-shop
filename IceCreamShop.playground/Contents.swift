@@ -14,7 +14,8 @@ enum Size: Double {
 struct Cone {
     let flavor: Flavor
     let topping: String?
-    let size: Size.RawValue
+    let size: Size
+    var totalSales: Double = 0.0
     
     func eat() {
         print("Yum, I love \(flavor.name)!)")
@@ -25,33 +26,33 @@ class IceCreamShop {
     var flavors: [Flavor]
     var sizes: [Size]
     var toppings: [String?]
-    var totalSales: Double = 0.0
 
     
-    init(flavors: [Flavor], sizes: [Size], toppings: [String?], totalSales: Double) {
+    init(flavors: [Flavor], sizes: [Size], toppings: [String?]) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
-        self.totalSales = totalSales
+ //       self.totalSales = totalSales
     }
 }
 
 
-func listTopFlavors() {
-    var top: [Flavor] = []
+func listTopFlavors(_ flavors: [Flavor]) {
+    var flavors: [Flavor] = flavors
     
     for flavor in flavors {
         if flavor.rating >= 4.0 {
-            top.append(flavor.name)
+            flavors.append(contentsOf: flavors)
             print("Our top flavors are \(flavor.name)!")
         }
     }
 }
 
-func orderCone(flavors: Flavor, toppings: String?, size: Size) -> Cone? {
-    let myCone = Cone(flavor: flavors, topping: toppings ?? "none", size: size.rawValue)
+func orderCone(_ flavors: Flavor, toppings: String?, size: Size, totalSales: Double) -> Cone? {
     
-    totalSales += Cone.size.rawValue
+    let myCone = Cone(flavor: flavors, topping: toppings ?? "none", size: Size.RawValue)
+    
+    var _: Double = totalSales + myCone.size
     
     
     if let unwrapTopping = myCone.topping {
@@ -67,7 +68,7 @@ func orderCone(flavors: Flavor, toppings: String?, size: Size) -> Cone? {
 let flavor1 = Flavor(name: "Chocolate Fantasy", rating: 5.8)
 let flavor2 = Flavor(name: "Raspberry Gelato", rating: 3.6)
 
-var toppings: [String?] = ["Whipped Cream", "Chocolate Whipped Cream", "Banana", "Cherries"]
+var myToppings: [String?] = ["Whipped Cream", "Chocolate Whipped Cream", "Banana", "Cherries"]
 var shopSizes: [Size] = [.small, .large, .medium]
 
 let myShop: IceCreamShop
