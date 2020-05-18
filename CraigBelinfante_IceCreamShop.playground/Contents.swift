@@ -39,7 +39,7 @@ let allCones = [cone0, cone1, cone2, cone3]
 
 func eat() {
     for flavor in allCones {
-            print("Mmm! I love \(flavor.flavor)!")
+        print("Mmm! I love \(flavor.flavor)!")
     }
 }
 
@@ -52,16 +52,21 @@ class IceCreamShop {
     var amount: [Size]
     var coneChoice: [Cone]
     var customerTotal: Int
-    var totalSales: Int
+    var totalSales: Double
     
-    init(choice: [Flavor], amount: [Size], coneChoice: [Cone], customerTotal: Int, totalSales: Int) {
+    init(choice: [Flavor], amount: [Size], coneChoice: [Cone], customerTotal: Int, totalSales: Double) {
         self.choice = choice
         self.amount = amount
         self.coneChoice = coneChoice
         self.customerTotal = customerTotal
         self.totalSales = totalSales
     }
-    
+    func orderCone(myOrder: Cone) -> Cone? {
+        totalSales = 0.0 + myOrder.size.rawValue
+        
+        print("Your \(myOrder.flavor) with \(String(describing: myOrder.topping)) size \(myOrder.size.rawValue) is ready.")
+        return myOrder
+    }
 }
 
 
@@ -78,13 +83,5 @@ func listTopFlavors() {
 listTopFlavors()
 
 //6
-func orderCone(flavor: String, topping: String?, size: Size) -> Cone {
-    let price: Double
-    if let choice = topping {
-        let myOrder = Cone(flavor: flavor, topping: choice, size: size)
-    
-        price = myOrder.size.rawValue
-        
-    }
-    return myOrder
-}
+// in class
+
