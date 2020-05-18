@@ -38,10 +38,11 @@ class IceCreamShop {
 
 
 func listTopFlavors() {
-//    var topFlavor: [Flavor] = []
+    var top: [Flavor] = []
     
-    for flavor in flavor {
+    for flavor in flavors {
         if flavor.rating >= 4.0 {
+            top.append(flavor.name)
             print("Our top flavors are \(flavor.name)!")
         }
     }
