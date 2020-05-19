@@ -1,13 +1,7 @@
-
-
 struct Flavor {
     let name: String
-    let rating: Int
+    let rating: Double
 }
-
-let chocolateParadise = Flavor(name: "Chocolate Paradise", rating: 4)
-let cookiesAndCream = Flavor(name: "Cookies and Cream", rating: 5)
-let caramelJoy = Flavor(name: "Caramel Joy", rating: 4)
 
 enum Size: Double {
     case small = 3.99
@@ -25,62 +19,62 @@ struct Cone {
     }
 }
 
-var flavorOptions = [cookiesAndCream, chocolateParadise, caramelJoy]
-var toppingOptions = ["Oreos", "Caramel", "Whipped Cream"]
-
 class IceCreamShop {
-    var shopFlavors = flavorOptions
-    var shopToppings = toppingOptions
-    var totalSales: [Size.RawValue] = []
-    var sizes: Size
+    var shopFlavors: [Flavor]
+    var shopToppings: [String?]
+    var totalSales: Double = 8.00
+    var sizes: [Size]
     
-    init(shopFlavors: Flavor, shopToppings: String, sizes: Size) {
-        self.shopFlavors = flavorOptions
-        self.shopToppings = toppingOptions
+    init(shopFlavors: [Flavor], shopToppings: [String], sizes: [Size], totalSales: Double) {
+        self.shopFlavors = shopFlavors
+        self.shopToppings = shopToppings
         self.sizes = sizes
-        self.totalSales = []
+        self.totalSales = totalSales
     }
     
     func listTopFlavors() {
-        var flavorList: [String] = []
         for flavor in shopFlavors {
             if flavor.rating >= 4 {
-                flavorList.append(flavor.name)
+                print("\(flavor.name) with a \(flavor.rating) star rating!")
             }
         }
-        print("Our top flavors are \(flavorList)")
     }
     
-    func orderCone(flavor: Flavor, topping: String?, Size: Size) -> Cone? {
-       
-        let newCone = Cone(flavor: chocolateParadise, topping: "Whipped Cream", size: .small)
-        totalSales.append(sizes.rawValue)
-        
-        print("You ordered the \(newCone.flavor.name) cone with \(newCone.topping ?? "no toppings"). Your total is $\(newCone.size.rawValue)")
-        
-        return newCone
+    func orderCone(order: Cone) -> Cone? {
+        totalSales = 0.00 + order.size.rawValue
+        if order.topping != nil {
+             print("You ordered the \(order.flavor.name) with \(order.topping ?? "no toppings"). Your total is $\(order.size.rawValue)")
+        } else {
+            print("Your \(order.flavor) is \(order.size.rawValue)")
+        }
+        return order
     }
 }
 
-let grahamCanyon = Flavor(name: "Graham Canyon", rating: 5)
-let cookieDough = Flavor(name: "Cookie Dough", rating: 4)
-let strawberry = Flavor(name: "Strawberry", rating: 2)
+let chocolateParadise = Flavor(name: "Chocolate Paradise", rating: 4.0)
+let cookiesAndCream = Flavor(name: "Cookies and Cream", rating: 5.0)
+let caramelJoy = Flavor(name: "Caramel Joy", rating: 4.5)
+let grahamCanyon = Flavor(name: "Graham Canyon", rating: 5.0)
+let cookieDough = Flavor(name: "Cookie Dough", rating: 3.5)
+let strawberry = Flavor(name: "Strawberry", rating: 2.5)
 
-flavorOptions.append(grahamCanyon)
-flavorOptions.append(cookieDough)
-flavorOptions.append(strawberry)
+var newSizes: [Size] = [.large, .medium, .small, .medium]
 
-let newSizes: [Size] = [.large, .medium, .small, .large, .large]
+var newToppings = ["Cheesecake bites", "Cookie dough", "Graham Crackers", "Oreos", "Caramel", "Whipped Cream"]
 
-let newToppings: [String] = ["Cheesecake bites", "Cookie dough", "Graham Crackers"]
+let samsIceCreamShop = IceCreamShop(shopFlavors: [chocolateParadise, cookiesAndCream, caramelJoy, grahamCanyon, cookieDough, strawberry],
+                                    shopToppings: newToppings,
+                                    sizes: newSizes,
+                                    totalSales: 0.00)
 
-toppingOptions.append(contentsOf: newToppings)
+samsIceCreamShop.listTopFlavors()
 
-let newIceCreamShop = IceCreamShop(shopFlavors: grahamCanyon, shopToppings: "Graham Crackers", sizes: .large)
+let firstOrder = Cone(flavor: grahamCanyon, topping: "Graham Crackers", size: .small)
 
-newIceCreamShop.listTopFlavors()
+let secondOrder = Cone(flavor: chocolateParadise, topping: nil, size: .medium)
 
-let secondCone = Cone(flavor: strawberry, topping: "Strawberries", size: .small)
-secondCone.eat()
+samsIceCreamShop.orderCone(order: firstOrder)
 
-newIceCreamShop.totalSales
+secondOrder.eat()
+
+print(samsIceCreamShop.totalSales)

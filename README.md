@@ -1,10 +1,3 @@
-# Sprint Challenge: Swift Fundamentals - Ice Cream Shop
-
-You've been chosen to begin working on an app for Lambda School's first ice cream shop . The app will need to be able to create an ice cream shop model object, give it a menu of flavors, toppings and ice cream cone sizes and let people order from the menu.
-
-## Minimum Viable Product
-
-Recognize that not every step necessary to complete this challenge will be listed below. It can be useful to mentally break a step down by its individual sentences, or even smaller than that.
 
 1. Create a struct called `Flavor`. Add the following properties. Think about what type they should be:
     - `name`
@@ -43,5 +36,3 @@ Recognize that not every step necessary to complete this challenge will be liste
 10. Create a new `Cone` constant. Use the shop's `orderCone` function to assign the constant a `Cone` value.
 11. Using that new `Cone` constant, call its `eat` function without unwrapping the constant.
 12. Print the shop's `totalSales` and make sure that it has increased since you ordered a cone in step 10.
-
-Validate your work through running your playground and ensure that your code operates as designed.
