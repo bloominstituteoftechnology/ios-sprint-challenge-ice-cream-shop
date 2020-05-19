@@ -1,13 +1,13 @@
 
 struct Flavor {
     var name : String
-    var rating : Int
+    var rating : Double
 }
 
 struct Cone {
     let flavor : Flavor
     let size : Size
-    let topping : String
+    let topping : String?
     
     func eat() {
         print("Mmm! I love \(flavor.name)")
@@ -38,13 +38,13 @@ class IceCreamShop {
         var message = "Our top flavors are"
         
         for flavor in flavorArray {
-            if flavor.rating >= 4 {
+            if flavor.rating >= 4.0 {
                 topFlavorArray.append(flavor.name)
             }
         }
         for flavor in topFlavorArray {
             if flavor == topFlavorArray.last {
-            message += " and \(flavor)"
+            message += " and \(flavor)."
             } else {
                 message += " \(flavor),"
             }
@@ -63,17 +63,22 @@ class IceCreamShop {
         return false
     }
     
-    func orderCone(cone: Cone) -> Cone? {
-        let newCone = cone
+    func orderCone(flavor: Flavor, size: Size, topping: String?) -> Cone? {
+        let newCone = Cone(flavor: flavor, size: size, topping: topping)
         
-        if checkAvailability(cone: cone) == true {
+        if checkAvailability(cone: newCone) == true {
       
+            if let unwrappedTopping = newCone.topping {
+                print("Your \(newCone.flavor.name) ice cream with \(unwrappedTopping) will be $\(newCone.size.rawValue)")
+            } else {
+                print("Your \(newCone.flavor.name) will be $\(newCone.size.rawValue)")
+            }
         totalSales += newCone.size.rawValue
-            print("Cool that will be $\(cone.size.rawValue)")
             
-        } else if checkAvailability(cone: cone) == false {
+            
+        } else if checkAvailability(cone: newCone) == false {
         
-            print("Sorry we don't have \(cone.flavor.name) ice cream.")
+            print("Sorry we don't have \(newCone.flavor.name) ice cream.")
         }
         return newCone
     }
@@ -99,17 +104,20 @@ class IceCreamShop {
 }
 
 
+
+
+
 // Flavors Seperate
-let vanillaFlavor = Flavor.init(name: "Vanilla", rating: 5)
-let chocolateFlavor = Flavor.init(name: "Chocolate", rating: 4)
-let neopolitanFlavor = Flavor.init(name: "Neopolitan", rating: 3)
-let cookieDoughFlavor = Flavor(name: "Cookie Dough", rating: 5)
+let vanillaFlavor = Flavor.init(name: "Vanilla", rating: 1.5)
+let chocolateFlavor = Flavor.init(name: "Chocolate", rating: 4.5)
+let neopolitanFlavor = Flavor.init(name: "Neopolitan", rating: 3.5)
+let cookieDoughFlavor = Flavor(name: "Cookie Dough", rating: 4.8)
 let oreoCookieFlavor = Flavor(name: "Oreo Cookie", rating: 5)
 let rainbowSherbert = Flavor(name: "Rainbow Sherbert", rating: 5)
 
 // Array of Flavors
-let johnsFlavorArray = [vanillaFlavor, chocolateFlavor, neopolitanFlavor]
-let specialFlavorArray = [cookieDoughFlavor, oreoCookieFlavor, rainbowSherbert]
+var johnsFlavorArray = [vanillaFlavor, chocolateFlavor, neopolitanFlavor, cookieDoughFlavor, oreoCookieFlavor, rainbowSherbert]
+
 
 // Array of Toppings
 let toppingsArray = ["Chocolate Chips", "Sprinkles", "Cookie Dough"]
@@ -124,8 +132,15 @@ let newCone6 = Cone(flavor: rainbowSherbert, size: .xl, topping: toppingsArray[2
 
 let johnsAvailableSizes = [Size.small, Size.medium, Size.large, Size.xl]
 
+
+// Orders
+
+let flavor1 = Flavor(name: "Chocolate", rating: 3.5)
+let size1 = Size.large
+let topping1 = "Chocolate chips"
+
 // Menu
-let johnsMenu = Menu(flavorSelection: specialFlavorArray, sizesAvailable: johnsAvailableSizes, toppingsSelection: toppingsArray)
+let johnsMenu = Menu(flavorSelection: johnsFlavorArray, sizesAvailable: johnsAvailableSizes, toppingsSelection: toppingsArray)
 
 // IceCreamShop Instance
 let johnsIceCreamShop = IceCreamShop(menu: johnsMenu)
@@ -135,18 +150,14 @@ johnsIceCreamShop.listTopFlavors(flavorArray: johnsMenu.flavorSelection)
 
 // Calling the eat function in the Cone struct
 newCone.eat()
+johnsIceCreamShop.orderCone(flavor: flavor1, size: size1, topping: topping1)?.eat()
 
 // Calling the orderCone function multiple times to make sure its adding the the total sales in the class
-johnsIceCreamShop.orderCone(cone: newCone)
-johnsIceCreamShop.orderCone(cone: newCone2)
-johnsIceCreamShop.orderCone(cone: newCone3)
-johnsIceCreamShop.orderCone(cone: newCone4)
-johnsIceCreamShop.orderCone(cone: newCone5)
-johnsIceCreamShop.orderCone(cone: newCone6)
+johnsIceCreamShop.orderCone(flavor: flavor1, size: size1, topping: topping1)
 
 // If someone has a big order I'm Calling the multipleOrders function here
-let bigOrder = [newCone, newCone4, newCone5, newCone6]
-johnsIceCreamShop.multipleOrders(cones: bigOrder)
+//let bigOrder = [newCone, newCone4, newCone5, newCone6, newCone2, newCone3]
+//johnsIceCreamShop.multipleOrders(cones: bigOrder)
 
 // Johns Ice Cream Shop Total Sales
 print("🍦Johns Ice Cream Shop🍦 has $\(johnsIceCreamShop.totalSales) in total sales.")
