@@ -21,30 +21,39 @@ struct Cone {
     }
 }
 
-
 class IceCreamShop {
     var flavors: [Flavor]
     var sizes: [Size]
     var toppings: [String?]
     var totalSales: Double = 0.0
 
-    
     init(flavors: [Flavor], sizes: [Size], toppings: [String?]) {
         self.flavors = flavors
         self.sizes = sizes
         self.toppings = toppings
         
-        
-    func listTopFlavors(_ flavors: [Flavor]) {
-        var flavors: [Flavor] = flavors
-        
+    func listTopFlavors() {
+        var topFlavors: [String] = []
+
         for flavor in flavors {
             if flavor.rating >= 4.0 {
-                flavors.append(contentsOf: flavors)
-                print("Our top flavors are \(flavor.name)!")
+                topFlavors.append(flavor.name)
+                }
+            print("Our top flavors are \(flavor.name)")
             }
         }
-    }
+        
+//    func listTopFlavors(withFlavors flavors: [Flavor]) {
+//
+//        var topFlavors: [String] = []
+//
+//        for flavor in flavors {
+//            if flavor.rating >= 4.0 {
+//                topFlavors.append(flavor.name)
+//                print("Our top flavors are \(flavor.name)!")
+//            }
+//        }
+//    }
 
     func orderCone(_ flavors: Flavor, toppings: String?, sizes: Size) -> Cone? {
         
@@ -68,16 +77,15 @@ let flavor1 = Flavor(name: "Chocolate Fantasy", rating: 5.8)
 let flavor2 = Flavor(name: "Raspberry Gelato", rating: 3.6)
 
 var myFlavors: [Flavor] = [flavor1, flavor2]
-
 var myToppings: [String?] = ["Chocolate Whipped Cream", "Cherries", "Nuts"]
-
 var shopSizes: [Size] = [.small, .large, .medium]
 
 var myShop: IceCreamShop
 myShop = IceCreamShop(flavors: myFlavors, sizes: shopSizes, toppings: myToppings )
 
-
 let cone1 = Cone(flavor: flavor2, topping: nil, size: .large)
 cone1.eat()
+
+myShop.listTopFlavors(myFlavors)
 
 print(myShop.totalSales)
