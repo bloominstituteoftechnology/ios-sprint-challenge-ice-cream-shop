@@ -17,24 +17,27 @@ enum Size: Double {
 struct Cone {
     let flavor: Flavor
     let size: Size
+    let topping: String?
     func eat(){
         print("Mmm! I love \(flavor.name)")
+}
+
+    
 
 }
 
-
-
-}
 
 
 class IceCreamShop {
   var allFlavors: [Flavor]
     var totalSales: Double
+    var toppings: [String?]
   
         
-    init(allFlavors: [Flavor], totalSales: Double) {
+    init(allFlavors: [Flavor], totalSales: Double, toppings: [String?]) {
         self.allFlavors = allFlavors
         self.totalSales = totalSales
+        self.toppings = toppings
     }
 
 func listTopFlavors() {
@@ -56,41 +59,46 @@ func listTopFlavors() {
 
 }
     
-    func orderCone(size: Size, eflavor: Flavor) -> Cone? {
-        let costSize = size
-        let newCone = Cone.init(flavor: eflavor, size: size)
+    func orderCone(order: Cone) -> Cone? {
+        totalSales += order.size.rawValue
+        if let unwrappedTopping = order.topping {
+            print("Your order is: \(order.size) \(order.flavor.name) with \(unwrappedTopping) will be $\(order.size.rawValue )")
         
-        for flavor in allFlavors {
-            if flavor.name == eflavor.name {
-                totalSales += costSize.rawValue
-            }
         }
-    print(totalSales)
-        print("Your total is $\(totalSales)")
-        return newCone
-    }
+        else{
+            print("Your order is: \(order.size.rawValue)")
+        
+                
+
+}
+return order
+    
     
 }
 
-let pumpkinFlavor = Flavor.init(name: "Pumpkin ", rating: 5)
-let chocolateFlavor = Flavor.init(name: "Chocolate ", rating: 4)
+}
+
+    
+
+let pumpkinFlavor = Flavor(name: "Pumpkin ", rating: 5)
+let chocolateFlavor = Flavor(name: "Chocolate ", rating: 6)
 let superMan = Flavor.init(name: "Superman ", rating: 3)
-let cookieDoughFlavor = Flavor(name: "Cookie Dough ", rating: 5)
-let peanutButter = Flavor(name: "Peanut Butter ", rating: 5)
+let cookieDoughFlavor = Flavor(name: "Cookie Dough ", rating: 9)
+let peanutButter = Flavor(name: "Peanut Butter ", rating: 10)
 var totalPriceOfWaffleCone = 0.75
 var totalPriceOfChocolateCone = 1.00
 var totalPriceOfCakeCone = 0.90
 var totalPriceOfTopping = 0.25
+var topping = ["Sprinkles", "Chocolate Sprinkles", "Chocolate Syrup"]
 var costOfPumpkin = 2.00
 var costOfChoclate = 2.00
 let costOfCookieDough =  2.00
 let costOfPeanutButter = 2.00
 var listOfFlavors = [pumpkinFlavor, chocolateFlavor, superMan, cookieDoughFlavor, superMan, peanutButter]
-let eugenesIceCream = IceCreamShop.init(allFlavors: listOfFlavors, totalSales: 0.0)
-eugenesIceCream.orderCone(size: .small, eflavor: pumpkinFlavor)?.eat()
-eugenesIceCream.orderCone(size: .medium, eflavor: chocolateFlavor)
-eugenesIceCream.orderCone(size: .large, eflavor: cookieDoughFlavor)
-print(eugenesIceCream.totalSales)
+let eugenesIceCream = IceCreamShop.init(allFlavors: listOfFlavors, totalSales: 0.00, toppings: topping)
+var eugenesCone = Cone.init(flavor: chocolateFlavor, size: .large, topping: "Chocolate Sprinkles")
+eugenesIceCream.orderCone(order: .init(flavor: chocolateFlavor, size: .medium, topping: "Chocolate Sprinkles"))?.eat()
+
 
 eugenesIceCream.listTopFlavors()
 
