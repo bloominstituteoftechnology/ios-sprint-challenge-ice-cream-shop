@@ -21,6 +21,8 @@ enum Size: Double {
     case large = 4.49
 }
 
+let sizes = [Size.small, Size.medium, Size.large]
+
 //3
 struct Cone {
     let flavor: String
@@ -28,7 +30,11 @@ struct Cone {
     var size: Size
 }
 
-let toppings = ["chocolate chips", "gummy worms", "m&m's", "snowchips"]
+let topping1 = "m&m's"
+let topping2 = "oreos"
+let topping3 = "chocolate chips"
+let topping4 = "gummy worms"
+let topping5 = "snowcaps"
 
 let cone0 = Cone(flavor: "Regular", topping: nil, size: .small)
 let cone1 = Cone(flavor: "Sugar Cone", topping: "gummy worms", size: .medium )
@@ -51,20 +57,25 @@ class IceCreamShop {
     var choice: [Flavor]
     var amount: [Size]
     var coneChoice: [Cone]
-    var customerTotal: Int
     var totalSales: Double
     
-    init(choice: [Flavor], amount: [Size], coneChoice: [Cone], customerTotal: Int, totalSales: Double) {
+    init(choice: [Flavor], amount: [Size], coneChoice: [Cone], totalSales: Double) {
         self.choice = choice
         self.amount = amount
         self.coneChoice = coneChoice
-        self.customerTotal = customerTotal
         self.totalSales = totalSales
     }
-    func orderCone(myOrder: Cone) -> Cone? {
-        totalSales = 0.0 + myOrder.size.rawValue
+    func orderCone(flavor: String, topping: String?, size: Size) -> Cone? {
+        let myOrder = Cone(flavor: flavor, topping: topping, size: size)
         
-        print("Your \(myOrder.flavor) with \(String(describing: myOrder.topping)) size \(myOrder.size.rawValue) is ready.")
+        if let unwrappedTopping = myOrder.topping {
+            print("Your \(myOrder.flavor) ice cearm with \(unwrappedTopping) for \(myOrder.size.rawValue) is ready.")
+        } else {
+            print("Your \(myOrder.flavor) ice cream for \(myOrder.size.rawValue) is ready.")
+        }
+        
+        totalSales += myOrder.size.rawValue
+        
         return myOrder
     }
 }
@@ -84,7 +95,10 @@ listTopFlavors()
 
 //6
 // in class
+let shop = IceCreamShop(choice: allFlavors, amount: sizes, coneChoice: allCones, totalSales: 0.0)
 
+shop.orderCone(flavor: "Chocolate", topping: topping5, size: .large)
+shop.orderCone(flavor: "Vanilla", topping: topping3, size: .small)
+shop.orderCone(flavor: "Strawberry", topping: nil, size: .medium)
 
-
-//TEST TEST TEST
+print(shop.totalSales)
