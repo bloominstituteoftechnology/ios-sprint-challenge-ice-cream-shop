@@ -69,15 +69,15 @@ let flavor2 = Flavor(name: "Raspberry Gelato", rating: 3.6)
 
 var myFlavors: [Flavor] = [flavor1, flavor2]
 
-var myToppings: [String?] = ["Chocolate Whipped Cream"]
+var myToppings: [String?] = ["Chocolate Whipped Cream", "Cherries", "Nuts"]
 
 var shopSizes: [Size] = [.small, .large, .medium]
 
 var myShop: IceCreamShop
-myShop = IceCreamShop(flavors: Flavor.flavor1, sizes: shopSizes, toppings: myToppings )
+myShop = IceCreamShop(flavors: myFlavors, sizes: shopSizes, toppings: myToppings )
 
 
-let cone1 = Cone(flavor: flavor2, topping: myToppings[1], size: .large)
+let cone1 = Cone(flavor: flavor2, topping: nil, size: .large)
 cone1.eat()
 
 print(myShop.totalSales)
