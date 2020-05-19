@@ -3,7 +3,7 @@ import UIKit
 
 struct Flavor {
     var name: String
-    var rating: Int
+    var rating: Double
 }
 
 
@@ -16,10 +16,10 @@ enum Size: Double {
 struct Cone {
     var flavors: Flavor
     var size: Size
-    var topping: String? = nil
+    var topping: String?
     
     
-    func eat() {
+    func eat(){
         print("Mmm! I love \(flavors.name) ice cream!")
     }
     
@@ -39,7 +39,7 @@ class IceCreamShop {
 }
     
     func listTopFlavors() {
-        var message: String = "Our top flavors are "
+        var message: String = "Our top flavors are: "
         
         for flavor in allFlavors {
             if flavor.rating >= 4 {
@@ -49,27 +49,31 @@ class IceCreamShop {
     print(message)
     }
     
-    func orderCone(eFlavor: Flavor, eSize: Size, eToppings: String?)  {
-        //let newCone = Cone
+    func orderCone(eFlavor: Flavor, eSize: Size, eToppings: String?) -> Cone? {
         let costSize = eSize
-        if eFlavor.name == eFlavor.name {
-        totalSales += costSize.rawValue
-    }
-        print("Your \(eFlavor.name) ice cream total is \(eSize.rawValue)")
-    } //return newCone
+        let newCone = Cone(flavors: eFlavor, size: eSize, topping: eToppings)
+        totalSales += newCone.size.rawValue
+        if let unwrappedToppings = eToppings {
+            print("Your order is \(eFlavor.name)ice cream with \(unwrappedToppings), your total will be $\(eSize.rawValue).")
+            
+        }       else {
+            print("Your \(eFlavor.name)ice cream total is \(eSize.rawValue).")
 }
-
-let Vanilla = Flavor(name: "Vanilla", rating: 7)
-let Chocolate = Flavor(name: "Chocolate", rating: 2)
-let Mint = Flavor(name: "Mint", rating: 9)
-let toppings: [String] = ["Sprinkles", "Cookie Crumbs"]
-let listOfFlavors = [Vanilla, Chocolate, Mint]
+        return newCone
+    
+}
+    
+}
+var Vanilla = Flavor(name: "Vanilla ", rating: 7)
+var Chocolate = Flavor(name: "Chocolate ", rating: 2)
+var Mint = Flavor(name: "Mint ", rating: 9)
+var toppings: [String] = ["Sprinkles", "Cookie Crumbs"]
+var listOfFlavors =  [Vanilla, Chocolate, Mint]
 let newIceCreamShop = IceCreamShop(allFlavors: listOfFlavors, sizes: .large, toppings: toppings, totalSales: 0.0)
-
-newIceCreamShop.orderCone(eFlavor: Vanilla, eSize: .medium, eToppings: nil)
-newIceCreamShop.orderCone(eFlavor: Chocolate, eSize: .small, eToppings: "Sprinkles")
+newIceCreamShop.orderCone(eFlavor: Vanilla, eSize: .medium, eToppings: "sprinkles")?.eat()
+newIceCreamShop.orderCone(eFlavor: Chocolate, eSize: .small, eToppings: nil)
 newIceCreamShop.orderCone(eFlavor: Mint, eSize: .large, eToppings: nil)
-print(newIceCreamShop.totalSales)
+newIceCreamShop.totalSales
 newIceCreamShop.listTopFlavors()
 
 
