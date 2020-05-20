@@ -20,7 +20,7 @@ struct Cone {
     var price: Double
     
     func eat() {
-        print("Mmm! I love \(self.flavor)")
+        print("Mmm! I love \(self.flavor.name)")
     }
 }
     
