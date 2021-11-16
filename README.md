@@ -2,7 +2,7 @@
 
 # Sprint Challenge: Swift Fundamentals - Ice Cream Shop
 
-You've been chosen to begin working on an app for Lambda School's first ice cream shop . The app will need to be able to create an ice cream shop model object, give it a menu of flavors, toppings and ice cream cone sizes and let people order from the menu.
+You've been chosen to begin working on an app for BloomTech's first ice cream shop . The app will need to be able to create an ice cream shop model object, give it a menu of flavors, toppings and ice cream cone sizes and let people order from the menu.
 
 This challenge allows you to practice the concepts and techniques learned over the past week and apply them in a concrete project. You will need to use your knowledge of classes, structs, enums and other Swift language features to accomplish these goals.
 
